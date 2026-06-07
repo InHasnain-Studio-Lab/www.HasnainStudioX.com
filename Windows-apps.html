@@ -155,6 +155,41 @@
                 color: var(--ink);
             }
 
+            /* Day mode overrides */
+            body.is-day .modal-overlay {
+                background: rgba(20, 24, 32, .45);
+            }
+            body.is-day .modal-card {
+                background: rgba(255, 255, 255, .96);
+                border-color: rgba(20, 24, 32, .12);
+                box-shadow: 0 40px 100px rgba(40, 60, 90, .22);
+            }
+            body.is-day .modal-close {
+                background: rgba(20, 24, 32, .06);
+                border-color: rgba(20, 24, 32, .12);
+                color: rgba(26, 29, 36, .6);
+            }
+            body.is-day .modal-close:hover {
+                background: rgba(20, 24, 32, .11);
+                color: #1a1d24;
+            }
+            body.is-day .modal-divider {
+                background: rgba(20, 24, 32, .1);
+            }
+            body.is-day .modal-features li {
+                border-bottom-color: rgba(20, 24, 32, .07);
+            }
+            body.is-day .tile-btn-details {
+                background: rgba(20, 24, 32, .05);
+                border-color: rgba(20, 24, 32, .14);
+                color: rgba(26, 29, 36, .7);
+            }
+            body.is-day .tile-btn-details:hover {
+                background: rgba(20, 24, 32, .09);
+                border-color: rgba(138, 112, 56, .35);
+                color: #1a1d24;
+            }
+
             /* Modal */
             .modal-overlay {
                 position: fixed;
