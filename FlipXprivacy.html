@@ -41,16 +41,16 @@
         </nav>
     </header>
 
-    <main class="container" role="main">
+        <main class="container" role="main">
         <section class="hero hero--single">
             <div class="hero-card">
                 <div class="hero-decoration"></div>
                 <h1>Privacy Policy</h1>
-                <p class="lead">FlipX Studio App - How your data is handled and protected.</p>
+                <p class="lead">FlipX Studio — Hasnain Studio X Privacy Policy</p>
                 <p style="color:var(--text-muted); font-size:0.88rem; margin-top:8px;">
-                    <strong style="color:var(--text-main);">Effective date:</strong> 30 May 2026 &nbsp;&middot;&nbsp;
-                    <strong style="color:var(--text-main);">Version:</strong> 0.1.1 &nbsp;&middot;&nbsp;
-                    <strong style="color:var(--text-main);">Publisher:</strong> Hasnain Butt Akhtar
+                    <strong style="color:var(--text-main);">Effective date:</strong> 1 Aug 2026 &nbsp;·&nbsp;
+                    <strong style="color:var(--text-main);">Publisher:</strong> Hasnain Butt Akhtar / Hasnain Studio X &nbsp;·&nbsp;
+                    <strong style="color:var(--text-main);">Applies to:</strong> All Hasnain Studio X Windows apps
                 </p>
             </div>
         </section>
@@ -60,9 +60,14 @@
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>FlipX Studio is an Android media-conversion app for video, audio, image, and document files.</p>
-                    <p><strong>FlipX Studio performs every conversion locally on your device. Your files are never uploaded to Hasnain Studio X servers.</strong></p>
-                    <p>We do not sell, share, or monetize user data.</p>
+                    <p>All Hasnain Studio X apps are designed with a <strong>local-first, privacy-first</strong> approach.</p>
+                    <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:2;">
+                        <li>We do not collect any personal data.</li>
+                        <li>We do not transmit any data to our servers — we do not operate servers.</li>
+                        <li>All processing happens locally on your device.</li>
+                        <li>We do not sell, share, or monetize user data.</li>
+                    </ul>
+                    <p style="margin-top:0.75rem;"><strong>Your data stays on your device — always.</strong></p>
                 </article>
             </div>
         </section>
@@ -70,105 +75,147 @@
         <section class="section" aria-labelledby="collect-title">
             <div class="section-header">
                 <h2 id="collect-title">2. Data We Do NOT Collect</h2>
-                <p>FlipX Studio does not collect or send the following to the developer:</p>
+                <p>Hasnain Studio X apps do not collect, store, or send any of the following:</p>
             </div>
             <div class="grid" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Identity Data</h3><p>No name, email, phone number, account, or sign-in is ever requested.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Your Media Files</h3><p>Videos, audio, images, and documents you convert never leave your device.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Location &amp; Contacts</h3><p>The app never requests location data or reads your contacts.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Telemetry</h3><p>No analytics SDK, no crash-reporting SDK, no third-party trackers.</p></article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Personal Identity Data</h3>
+                    <p>No name, email, phone number, address, or identifiers.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Usage Data or Analytics</h3>
+                    <p>No telemetry, crash analytics, tracking, or advertising SDKs.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Content You Create</h3>
+                    <p>Nothing you create inside the app — prompts, text, images, or files — is uploaded or transmitted.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Sensitive System Data</h3>
+                    <p>No passwords, tokens, credentials, browsing history, or system logs.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Location Data</h3>
+                    <p>No GPS, IP-based location, or device location.</p>
+                </article>
+            </div>
+            <div class="grid" style="grid-template-columns:1fr;margin-top:0;" role="list">
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <p>We do not run servers, so nothing can be uploaded even by accident.</p>
+                </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="local-title">
-            <div class="section-header"><h2 id="local-title">3. Data Stored Locally</h2></div>
+            <div class="section-header"><h2 id="local-title">3. Data Stored Locally on Your Device</h2></div>
             <div class="grid" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Output Files</h3><p>Conversions you run are written to FlipX Studio's app-specific storage on your device.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Job Queue &amp; Library</h3><p>A local SQLite database tracks job status, progress, and the catalogue of finished outputs.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Preferences</h3><p>Theme variant, light / dark choice, reduced-effects flag, haptics toggle, and concurrency setting are saved with SharedPreferences.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Pro Entitlement Flag</h3><p>A boolean cached locally so Pro features continue to work offline after purchase.</p></article>
-            </div>
-            <p style="color:var(--text-muted); font-size:0.88rem; margin-top:12px;">Uninstalling FlipX Studio removes all of this local data.</p>
-        </section>
-
-        <section class="section" aria-labelledby="network-title">
-            <div class="section-header"><h2 id="network-title">4. Network Activity</h2></div>
-            <div class="grid" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Purchase Validation</h3><p>When you buy or restore Pro, the Play Billing token is sent over HTTPS to a Hasnain Studio X edge function which verifies the purchase with Google Play. Only the product id, purchase token, and package name are sent.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Google Fonts</h3><p>The Inter and Cormorant Garamond fonts are fetched on first launch and cached on disk.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Google AdMob (Free tier)</h3><p>When ads are enabled, AdMob loads native ad templates. Your media files are never shared with AdMob.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Outbound Links</h3><p>Tapping hasnainstudiox.com or the support email opens an external browser or mail app.</p></article>
-            </div>
-        </section>
-
-        <section class="section" aria-labelledby="ads-title">
-            <div class="section-header"><h2 id="ads-title">5. Advertising (Free Tier)</h2></div>
-            <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>If you are on the Free tier and ads are enabled in your build, FlipX Studio shows native ads served by Google AdMob. AdMob may collect your Android Advertising ID for ad targeting and frequency capping.</p>
-                    <p>Your media files are never shared with AdMob.</p>
-                    <p>You can reset or opt out of personalised advertising in <em>Android Settings - Google - Ads</em>. Buying Pro removes all ads on this device.</p>
+                    <h3>App Settings</h3>
+                    <p>Your preferences and configuration are saved locally on your device only.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>User-Created Content</h3>
+                    <p>Saved prompts, notes, or any content you create stays on your device.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Local Cache</h3>
+                    <p>Temporary performance cache stored locally and never transmitted.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Licence / Trial State</h3>
+                    <p>Managed entirely by the Microsoft Store. The app reads it locally; we receive nothing.</p>
+                </article>
+            </div>
+            <div class="grid" style="grid-template-columns:1fr;margin-top:0;" role="list">
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <p>This data never leaves your device unless you explicitly export it.</p>
                 </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="store-title">
-            <div class="section-header"><h2 id="store-title">6. Google Play Purchases</h2></div>
+            <div class="section-header"><h2 id="store-title">4. Google Play Billing</h2></div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>All purchases are processed by Google Play Billing. FlipX Studio never sees your card number, billing address, or Google account email.</p>
-                    <p>The only data we receive about a purchase is the product id and the purchase token used for server-side validation.</p>
+                    <p>Some apps may offer in-app purchases or one-time unlocks. All billing and transactions are handled <strong>exclusively by Google Play</strong>.</p>
+                    <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:2;">
+                        <li>We do not process payment information.</li>
+                        <li>We do not store payment details.</li>
+                        <li>We do not receive your Google account information.</li>
+                    </ul>
+                    <p style="margin-top:0.75rem;">Google manages everything securely under their policies.</p>
                 </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="permissions-title">
-            <div class="section-header"><h2 id="permissions-title">7. App Permissions</h2></div>
+            <div class="section-header"><h2 id="permissions-title">5. App Permissions</h2></div>
             <div class="grid" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Media Access</h3><p>Required to read the videos, audio, and images you pick for conversion.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Notifications</h3><p>Used to surface job completion or failure.</p></article>
-                <article class="card" role="listitem"><div class="card-accent"></div><h3>Internet</h3><p>Used for purchase validation, Google Fonts caching, and AdMob (Free tier only).</p></article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Minimum Required Only</h3>
+                    <p>Hasnain Studio X apps request only the minimum permissions required for core functionality. Permissions are used solely for app features and never for data collection.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>File Access</h3>
+                    <p>Only when you choose a file — never background scanning.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Clipboard Access</h3>
+                    <p>Only when you paste or copy within the app.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <h3>Network Access</h3>
+                    <p>Only if the app fetches online content for you — and even then, no data is sent to us.</p>
+                </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="children-title">
-            <div class="section-header"><h2 id="children-title">8. Children's Privacy</h2></div>
+            <div class="section-header"><h2 id="children-title">6. Children's Privacy</h2></div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><p>FlipX Studio is intended for general media-conversion users and is not directed to children under 13.</p></article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <p>Our apps are general-purpose productivity and utility tools. They are not directed to children under 13 and do not collect any data from any user.</p>
+                </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="changes-title">
-            <div class="section-header"><h2 id="changes-title">9. Policy Changes</h2></div>
-            <div class="grid" style="grid-template-columns:1fr;" role="list">
-                <article class="card" role="listitem"><div class="card-accent"></div><p>If this policy changes, we will update the effective date and version at the top of this page.</p></article>
-            </div>
-        </section>
-
-        <section class="section" aria-labelledby="copyright-title">
-            <div class="section-header"><h2 id="copyright-title">10. Copyright &amp; Tamper Protection</h2></div>
+            <div class="section-header"><h2 id="changes-title">7. Policy Updates</h2></div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>&copy; 2026 Hasnain Butt Akhtar - Hasnain Studio X. All rights reserved.</p>
-                    <p>FlipX Studio, its source code, design, brand identity, and all associated assets are protected by copyright. Reverse-engineering, repackaging, decompiling, modifying signed builds, or redistributing the APK / AAB without written authorisation is strictly prohibited and may result in legal action under applicable copyright and computer-misuse legislation.</p>
-                    <p>Only builds published to Google Play under the publisher account &quot;Hasnain Butt Akhtar / Hasnain Studio X&quot; are genuine. Side-loaded or third-party builds are unauthorised and unsupported.</p>
+                    <p>If this policy changes, we will update the version and effective date. Any changes will remain consistent with our core principle: <strong>Your data stays on your device.</strong></p>
                 </article>
             </div>
         </section>
 
         <section class="section" aria-labelledby="contact-title">
-            <div class="section-header"><h2 id="contact-title">11. Contact</h2></div>
+            <div class="section-header"><h2 id="contact-title">Contact</h2></div>
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <p>For privacy questions, contact:<br>
                     <strong>Hasnain Butt Akhtar</strong><br>
-                    <a href="https://www.hasnainstudiox.com" style="color:var(--cyan);">https://www.hasnainstudiox.com</a><br>
-                    <a href="mailto:Hasnain@outlook.at" style="color:var(--cyan);">Hasnain@outlook.at</a></p>
-                    <p>&copy; 2026 Hasnain Butt Akhtar. All rights reserved. &middot; FlipX Studio</p>
+                    <a href="mailto:Hasnain@outlook.at" style="color:var(--cyan);">Hasnain@outlook.at</a><br>
+                    <a href="https://www.Hasnainstudiox.com" style="color:var(--cyan);">https://www.Hasnainstudiox.com</a></p>
+                    <p>© 2026 Hasnain Butt Akhtar / Hasnain Studio X. All rights reserved.</p>
                 </article>
             </div>
         </section>
@@ -209,8 +256,8 @@
         </div>
     </footer>
 
-    <script src="fluid.js"></script>
-    <script src="site.js"></script>
-    <script src="effects.js"></script>
+    <script src="fluid.js" defer></script>
+    <script src="site.js" defer></script>
+    <script src="effects.js" defer></script>
 </body>
 </html>
