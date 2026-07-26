@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QuantumCast - Connect to a remote PC</title>
+<style>
+  :root{
+    --bright:#2F86FF; --mid:#0B3FA8; --base:#06091A;
+    --glass:rgba(255,255,255,.06); --border:rgba(255,255,255,.16);
+    --t1:rgba(255,255,255,.97); --t2:rgba(255,255,255,.62); --t3:rgba(255,255,255,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--base);color:var(--t1);min-height:100vh;
+       font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+       display:flex;flex-direction:column;align-items:center;justify-content:center;
+       padding:28px 20px;text-align:center;overflow-x:hidden}
+  .glow{position:fixed;inset:0;pointer-events:none;
+        background:radial-gradient(60% 40% at 50% 0%,rgba(47,134,255,.22),transparent 70%),
+                   radial-gradient(50% 40% at 50% 100%,rgba(11,63,168,.28),transparent 70%)}
+  .wrap{position:relative;width:100%;max-width:420px}
+  .mark{font:700 13px/1 ui-monospace,Consolas,monospace;letter-spacing:.28em;color:var(--t3)}
+  h1{font-size:26px;font-weight:700;margin:18px 0 8px;letter-spacing:-.01em}
+  p{color:var(--t2);font-size:14.5px;line-height:1.6}
+  .code{margin:26px 0 8px;padding:20px 16px;border-radius:16px;
+        background:var(--glass);border:1px solid var(--border)}
+  .code span{display:block;font:700 30px/1 ui-monospace,Consolas,monospace;letter-spacing:.14em;
+             color:var(--bright);text-shadow:0 0 22px rgba(47,134,255,.5);word-break:break-all}
+  .code em{display:block;font-style:normal;font:600 10px/1 ui-monospace,monospace;
+           letter-spacing:.22em;color:var(--t3);margin-bottom:12px}
+  .btn{display:block;margin-top:16px;padding:16px 20px;border-radius:14px;text-decoration:none;
+       font-size:15px;font-weight:600;color:#fff;
+       background:linear-gradient(120deg,var(--bright),var(--mid));
+       box-shadow:0 12px 34px -12px var(--mid)}
+  .btn.ghost{background:var(--glass);border:1px solid var(--border);color:var(--t1);box-shadow:none}
+  .note{margin-top:22px;font-size:12.5px;color:var(--t3);line-height:1.7}
+  footer{margin-top:30px;font-size:11.5px;color:var(--t3)}
+  footer a{color:var(--bright);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <div class="mark">QUANTUMCAST</div>
+  <h1>Connect to this PC</h1>
+  <p>Open this session in the QuantumX app to watch the screen and take control from anywhere.</p>
+
+  <div class="code">
+    <em>REMOTE LINK CODE</em>
+    <span id="code">--------</span>
+  </div>
+
+  <a class="btn" id="open" href="#">Open in QuantumX</a>
+  <a class="btn ghost" id="store"
+     href="https://play.google.com/store/apps/details?id=com.quantumx.quantumx">Get the QuantumX app</a>
+
+  <p class="note">
+    No app? Install QuantumX, then type the code above on its Remote screen.
+    The screen stream is peer to peer - it never passes through a server.
+  </p>
+
+  <footer>
+    Developed by Hasnain Butt Akhtar &middot; Hasnain Studio X<br>
+    <a href="https://www.inhasnain.com">www.inhasnain.com</a>
+  </footer>
+</div>
+
+<script>
+  // A custom scheme cannot be the QR payload (phone cameras reject non-URL data), but it works
+  // fine as a link the user taps here. This page is the bridge between the two.
+  var code = (new URLSearchParams(location.search).get("code") || "").trim().toUpperCase();
+  if (code) {
+    document.getElementById("code").textContent = code;
+    document.getElementById("open").href = "quantumx:link:" + encodeURIComponent(code);
+  } else {
+    document.getElementById("code").textContent = "NO CODE";
+    document.getElementById("open").style.display = "none";
+  }
+</script>
+</body>
+</html>
