@@ -1,10 +1,7 @@
 User-agent: *
 Allow: /
 
-# Block crawling of raw JS/CSS assets — not useful to index
-Disallow: /fluid.js
-Disallow: /site.js
-Disallow: /effects.js
-Disallow: /portfolio.js
+# Google must be able to fetch CSS and JavaScript to render these pages
+# correctly, so nothing that affects rendering is blocked.
 
 Sitemap: https://www.hasnainstudiox.com/sitemap.xml

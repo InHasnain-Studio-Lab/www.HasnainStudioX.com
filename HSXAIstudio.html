@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>HSX AI Studio | Local AI Image Generation for Windows, No Subscription</title>
-    <meta name="description" content="Generate AI images on your own GPU with HSX StudioFlow, HSX Vanta and Pocket AI. No API keys, no cloud upload, no monthly fees — unlimited local generation."/>
+    <title>AI Studio — On-Device AI for Windows | Hasnain Studio X</title>
+    <meta name="description" content="AI apps for Windows that run entirely on your own GPU: image generation, editing, local chat and prompt tooling. No API keys, no cloud, no subscription."/>
     <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
     <link rel="canonical" href="https://www.hasnainstudiox.com/HSXAIstudio.html"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="HSX AI Studio | Local AI Image Generation, No Cloud, No Subscription"/>
-    <meta property="og:description" content="Generate AI images on your own GPU with HSX StudioFlow, HSX Vanta and Pocket AI. No API keys, no cloud upload, no monthly fees — unlimited local generation."/>
+    <meta property="og:description" content="AI apps for Windows that run entirely on your own GPU: image generation, editing, local chat and prompt tooling. No API keys, no cloud, no subscription."/>
     <meta property="og:url" content="https://www.hasnainstudiox.com/HSXAIstudio.html"/>
     <meta property="og:site_name" content="Hasnain Studio X"/>
     <meta name="twitter:card" content="summary_large_image"/>
@@ -671,6 +671,164 @@
             color: var(--ink-faint); margin-top: 1.4rem;
         }
         .bp-fine span { color: var(--mint); }
+        /* ══════════════════ CINEMATIC AI GALLERY ══════════════════ */
+        .gal-head {
+            display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+        .gal-kick {
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .24em;
+            text-transform: uppercase; color: var(--ink-faint);
+            display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem;
+        }
+        .gal-kick::before { content: ""; width: 26px; height: 1px; background: var(--holo); }
+        #gallery-title {
+            font-family: var(--f-display); font-weight: 800; letter-spacing: -.02em;
+            font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin: 0 0 .5rem; line-height: 1.06;
+        }
+        .gal-sub { color: var(--ink-soft); margin: 0; max-width: 52ch; font-size: .92rem; }
+        .gallery-filter { display: flex; gap: .35rem; flex-wrap: wrap; margin-left: auto; }
+        .gf-btn {
+            font-family: var(--f-mono); font-size: .64rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--ink-soft); cursor: pointer;
+            padding: .55rem .85rem; border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.03); border-radius: 0; transform: none;
+            transition: all .25s var(--ease);
+            clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+        }
+        .gf-btn:hover { color: var(--ink); border-color: var(--accent-line); background: rgba(199,165,247,.07); }
+        .gf-btn.active {
+            color: var(--ink); background: rgba(199,165,247,.14); background-image: none;
+            border-color: rgba(199,165,247,.75); box-shadow: 0 0 18px -6px rgba(199,165,247,.6);
+        }
+        .gf-btn em { font-style: normal; opacity: .55; margin-left: .35rem; }
+
+        /* masonry-style columns keep tall portraits and wide stills together */
+        .gal-grid { columns: 3 260px; column-gap: .85rem; }
+        @media (max-width: 700px) { .gal-grid { columns: 2 150px; } }
+
+        .gal-item {
+            position: relative; display: block; width: 100%; margin: 0 0 .85rem;
+            break-inside: avoid; cursor: pointer; overflow: hidden; border: 0; padding: 0;
+            background: linear-gradient(160deg, #131120, #0c0b13);
+            clip-path: polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+            transition: transform .5s var(--ease), filter .5s var(--ease);
+        }
+        .gal-item img {
+            display: block; width: 100%; height: auto;
+            transition: transform .7s var(--ease), filter .5s var(--ease);
+            filter: saturate(.92) contrast(1.02);
+        }
+        .gal-item:hover { transform: translateY(-4px); filter: drop-shadow(0 20px 40px rgba(199,165,247,.32)); }
+        .gal-item:hover img { transform: scale(1.05); filter: saturate(1.06) contrast(1.05); }
+        .gal-item:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 3px; }
+        .gal-item.hide { display: none; }
+
+        /* holographic edge + cinematic bottom gradient */
+        .gal-item::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(to top, rgba(8,7,12,.92) 0%, rgba(8,7,12,.35) 26%, transparent 52%);
+            opacity: 0; transition: opacity .45s var(--ease);
+        }
+        .gal-item:hover::after, .gal-item:focus-visible::after { opacity: 1; }
+        .gal-cap {
+            position: absolute; left: 0; right: 0; bottom: 0; padding: .9rem 1rem;
+            transform: translateY(8px); opacity: 0; pointer-events: none;
+            transition: opacity .45s var(--ease), transform .45s var(--ease);
+        }
+        .gal-item:hover .gal-cap, .gal-item:focus-visible .gal-cap { opacity: 1; transform: none; }
+        .gal-cap-t {
+            font-family: var(--f-display); font-weight: 600; font-size: .84rem;
+            color: var(--ink); line-height: 1.2; margin-bottom: .22rem;
+        }
+        .gal-cap-m {
+            font-family: var(--f-mono); font-size: .56rem; letter-spacing: .13em;
+            text-transform: uppercase; color: var(--ink-soft);
+        }
+        .gal-tagpill {
+            position: absolute; top: .7rem; left: .7rem; z-index: 2;
+            font-family: var(--f-mono); font-size: .53rem; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--ink);
+            background: rgba(8,7,12,.6); border: 1px solid rgba(255,255,255,.16);
+            padding: .16rem .45rem; backdrop-filter: blur(8px);
+            opacity: 0; transition: opacity .45s var(--ease);
+        }
+        .gal-item:hover .gal-tagpill, .gal-item:focus-visible .gal-tagpill { opacity: 1; }
+
+        /* empty state */
+        .gal-empty {
+            text-align: center; padding: 3.6rem 1.5rem;
+            border: 1px dashed rgba(255,255,255,.13); color: var(--ink-faint);
+            clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+        }
+        .gal-empty-frame { color: var(--accent); opacity: .7; margin-bottom: .9rem; }
+        .gal-empty h3 { font-family: var(--f-display); font-size: 1rem; margin: 0 0 .5rem; color: var(--ink); }
+        .gal-empty p { margin: 0 auto; max-width: 46ch; font-size: .86rem; }
+        .gal-empty code {
+            font-family: var(--f-mono); font-size: .8em; color: var(--accent);
+            background: rgba(199,165,247,.1); padding: .1rem .38rem;
+            border: 1px solid rgba(199,165,247,.2);
+        }
+
+        /* ── lightbox ── */
+        .gal-lb {
+            position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center;
+            background: rgba(5,4,9,.92);
+            backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3);
+            opacity: 0; animation: galFade .35s var(--ease) forwards;
+        }
+        .gal-lb[hidden] { display: none; }
+        @keyframes galFade { to { opacity: 1; } }
+        .gal-lb-stage {
+            margin: 0; max-width: min(92vw, 1180px); max-height: 88vh;
+            display: flex; flex-direction: column; align-items: center; gap: 1rem;
+            animation: galRise .45s var(--ease) both;
+        }
+        @keyframes galRise { from { transform: translateY(14px) scale(.985); opacity: 0; } }
+        .gal-lb-stage img {
+            max-width: 100%; max-height: 74vh; width: auto; height: auto; display: block;
+            clip-path: polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));
+            box-shadow: 0 40px 120px -30px rgba(199,165,247,.5);
+        }
+        .gal-lb-cap { text-align: center; }
+        .gal-lb-title {
+            font-family: var(--f-display); font-weight: 700; font-size: 1.05rem;
+            color: var(--ink); margin-bottom: .3rem;
+        }
+        .gal-lb-meta {
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .16em;
+            text-transform: uppercase; color: var(--ink-soft);
+        }
+        .gal-lb-idx {
+            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .18em;
+            color: var(--ink-faint); margin-top: .5rem;
+        }
+        .gal-lb-close, .gal-lb-nav {
+            position: absolute; background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.14); color: var(--ink);
+            cursor: pointer; display: grid; place-items: center;
+            transition: all .25s var(--ease); backdrop-filter: blur(10px);
+        }
+        .gal-lb-close {
+            top: 1.4rem; right: 1.4rem; width: 40px; height: 40px; font-size: 1rem; border-radius: 50%;
+        }
+        .gal-lb-nav {
+            top: 50%; transform: translateY(-50%); width: 46px; height: 46px;
+            font-size: 1.7rem; line-height: 1; padding-bottom: .18em; border-radius: 50%;
+        }
+        .gal-prev { left: 1.4rem; } .gal-next { right: 1.4rem; }
+        .gal-lb-close:hover, .gal-lb-nav:hover {
+            background: rgba(199,165,247,.2); border-color: var(--accent-line);
+            box-shadow: 0 0 24px -6px rgba(199,165,247,.7);
+        }
+        @media (max-width: 620px) {
+            .gal-lb-nav { width: 38px; height: 38px; font-size: 1.4rem; }
+            .gal-prev { left: .5rem; } .gal-next { right: .5rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .gal-item, .gal-item img, .gal-lb, .gal-lb-stage { transition: none; animation: none; opacity: 1; }
+        }
+
     </style>
     <meta name="robots" content="index, follow"/>
     <meta name="author" content="Hasnain Studio X"/>
@@ -794,10 +952,10 @@
             <div>
                 <div class="ai-eyebrow">Creative · GPU-Powered · Fully Local</div>
                 <h1>
-                    <span class="line-plain">AI Studio.</span>
-                    <span class="line-holo">Built Different.</span>
+                    <span class="line-plain">Generation that never</span>
+                    <span class="line-holo">leaves the room.</span>
                 </h1>
-                <p class="lead">Five purpose-built AI apps covering image generation, photo & video editing, local AI chat, and prompt engineering — all running on your own hardware. No cloud. No subscription. No limits.</p>
+                <p class="lead">Applications for image generation, photo and video editing, local AI chat and prompt engineering. Every model runs on your own GPU — no API keys, no queues, no per-image billing.</p>
                 <div style="display:flex;gap:.9rem;flex-wrap:wrap;">
                     <a class="btn btn--primary" href="#apps-portfolio">Explore AI Apps →</a>
                     <a class="btn btn--secondary" href="#ai-gallery">View AI Gallery</a>
@@ -837,31 +995,49 @@
             </div>
         </section>
 
-        <!-- ── Stats ── -->
-        <div class="ai-stats reveal" aria-label="AI Studio stats">
-            <div class="ai-stat">
-                <div class="ai-stat-num">5</div>
-                <div class="ai-stat-lbl">AI Studio Apps</div>
+        <!-- ══════════════════ AI WORK GALLERY ══════════════════ -->
+        <section class="section" id="ai-gallery" aria-labelledby="gallery-title">
+            <div class="gal-head">
+                <div>
+                    <div class="gal-kick">Selected Output</div>
+                    <h2 id="gallery-title">Made on this hardware</h2>
+                    <p class="gal-sub">Generated locally with StudioFlow and Vanta. No cloud render, no external service, no upload.</p>
+                </div>
+                <div class="gallery-filter" id="gal-filters" role="group" aria-label="Filter gallery"></div>
             </div>
-            <div class="ai-stat">
-                <div class="ai-stat-num">∞</div>
-                <div class="ai-stat-lbl">Images You Can Create</div>
+
+            <div class="gal-grid" id="gal-grid" role="list" aria-label="AI artwork"></div>
+
+            <div class="gal-empty" id="gal-empty" hidden>
+                <div class="gal-empty-frame">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="9" r="1.6"/><path d="M3 16l5-4 4 3 4-4 5 4"/></svg>
+                </div>
+                <h3>The gallery is empty</h3>
+                <p>Drop your artwork into the <code>images</code> folder, then run <code>update-gallery.bat</code>. This section fills itself in.</p>
             </div>
-            <div class="ai-stat">
-                <div class="ai-stat-num">0</div>
-                <div class="ai-stat-lbl">Cloud Required</div>
-            </div>
-            <div class="ai-stat">
-                <div class="ai-stat-num">100%</div>
-                <div class="ai-stat-lbl">Your GPU, Your Control</div>
-            </div>
+        </section>
+
+        <!-- cinematic lightbox -->
+        <div class="gal-lb" id="gal-lb" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
+            <button class="gal-lb-close" id="gal-lb-close" aria-label="Close viewer">&#x2715;</button>
+            <button class="gal-lb-nav gal-prev" id="gal-prev" aria-label="Previous">&#8249;</button>
+            <button class="gal-lb-nav gal-next" id="gal-next" aria-label="Next">&#8250;</button>
+            <figure class="gal-lb-stage">
+                <img id="gal-lb-img" alt=""/>
+                <figcaption class="gal-lb-cap">
+                    <div class="gal-lb-title" id="gal-lb-title"></div>
+                    <div class="gal-lb-meta" id="gal-lb-meta"></div>
+                    <div class="gal-lb-idx" id="gal-lb-idx"></div>
+                </figcaption>
+            </figure>
         </div>
+
 
         <!-- ── Apps Portfolio ── -->
         <section class="section reveal" id="apps-portfolio" aria-labelledby="apps-title">
             <div class="section-header">
-                <h2 id="apps-title">AI Apps Portfolio</h2>
-                <p>Three tools that cover the full creative pipeline — generate, edit, and produce — all running locally on your PC.</p>
+                <h2 id="apps-title">The five applications</h2>
+                <p>The full creative pipeline — generate, refine, organise and produce — with every stage running locally.</p>
             </div>
 
             <div class="app-bento">
@@ -1022,24 +1198,7 @@
         </section>
 
         <!-- ── AI Work Gallery ── -->
-        <section class="section" id="ai-gallery" aria-labelledby="gallery-title">
-            <div class="gallery-header">
-                <div class="section-header">
-                    <h2 id="gallery-title">AI Work Gallery</h2>
-                    <p>Created with custom prompts, local models, and zero cloud dependencies.</p>
-                </div>
-                <div class="gallery-filter" role="group" aria-label="Filter gallery">
-                    <button class="gf-btn active" data-filter="all">All</button>
-                    <button class="gf-btn" data-filter="portrait">Portrait</button>
-                    <button class="gf-btn" data-filter="concept">Concept</button>
-                    <button class="gf-btn" data-filter="video">Video</button>
-                </div>
-            </div>
 
-            <div class="port-grid" id="port-grid" role="list" aria-label="AI portfolio images">
-                <!-- populated by portfolio.js + inline script below -->
-            </div>
-        </section>
 
         <!-- ── Get the Apps ── -->
         <section class="section reveal" aria-labelledby="buy-title">
@@ -1051,66 +1210,13 @@
                 </div>
 
                 <h2 id="buy-title">
-                    <span class="bp-line1">Own Your AI Stack.</span>
-                    <span class="bp-line2">Stop Paying Monthly.</span>
+                    <span class="bp-line1">Buy once.</span>
+                    <span class="bp-line2">Own it permanently.</span>
                 </h2>
 
                 <p class="bp-sub">
-                    Five professional AI apps — image generation, photo &amp; video editing, local AI chat, and prompt engineering. Each a one-time purchase. No subscriptions, no API keys, no data ever leaving your machine.
+                    Each application is a one-time purchase on the Microsoft Store. No subscription, no usage caps, and no data leaving your machine.
                 </p>
-
-                <!-- App mini-cards -->
-                <div class="bp-apps">
-                    <a class="bp-app" href="Windows-apps.html" aria-label="HSX StudioFlow on Windows Apps">
-                        <div class="bp-app-name">HSX StudioFlow</div>
-                        <div class="bp-app-desc">AI image gen · SDXL · Face tools · Upscaling</div>
-                        <span class="bp-app-badge">On Store</span>
-                    </a>
-                    <a class="bp-app" href="Windows-apps.html" aria-label="HSX Vanta on Windows Apps">
-                        <div class="bp-app-name">HSX Vanta</div>
-                        <div class="bp-app-desc">Text-to-image · Face processing · Local GPU</div>
-                        <span class="bp-app-badge">On Store</span>
-                    </a>
-                    <a class="bp-app" href="Windows-apps.html" aria-label="Stillmotion on Windows Apps">
-                        <div class="bp-app-name">Stillmotion</div>
-                        <div class="bp-app-desc">Photo &amp; video library · Edit · Export</div>
-                        <span class="bp-app-badge">On Store</span>
-                    </a>
-                    <a class="bp-app" href="Windows-apps.html" aria-label="HSX Pocket AI on Windows Apps">
-                        <div class="bp-app-name">HSX Pocket AI</div>
-                        <div class="bp-app-desc">Local LLM · Docs Q&amp;A · Image gen</div>
-                        <span class="bp-app-badge">On Store</span>
-                    </a>
-                    <a class="bp-app" href="Windows-apps.html" aria-label="ForgeX Pro on Windows Apps">
-                        <div class="bp-app-name">ForgeX Pro</div>
-                        <div class="bp-app-desc">Prompt builder · Workflow · Templates</div>
-                        <span class="bp-app-badge">On Store</span>
-                    </a>
-                </div>
-
-                <!-- Cost comparison -->
-                <div class="bp-compare" aria-label="Cost comparison with subscription services">
-                    <div class="bp-cmp-item">
-                        <div class="bp-cmp-service">Midjourney</div>
-                        <div class="bp-cmp-cost">£10<span style="font-size:.6em;font-weight:400">/mo</span></div>
-                        <div class="bp-cmp-note">Cloud-only · Limited credits</div>
-                    </div>
-                    <div class="bp-cmp-item">
-                        <div class="bp-cmp-service">ChatGPT Plus</div>
-                        <div class="bp-cmp-cost">£20<span style="font-size:.6em;font-weight:400">/mo</span></div>
-                        <div class="bp-cmp-note">Your data on their servers</div>
-                    </div>
-                    <div class="bp-cmp-item">
-                        <div class="bp-cmp-service">Adobe CC</div>
-                        <div class="bp-cmp-cost">£55<span style="font-size:.6em;font-weight:400">/mo</span></div>
-                        <div class="bp-cmp-note">Subscription, forever</div>
-                    </div>
-                    <div class="bp-cmp-item" style="background:rgba(199,165,247,.04);border-color:rgba(199,165,247,.22);">
-                        <div class="bp-cmp-service" style="color:var(--violet);">HSX AI Studio</div>
-                        <div class="bp-cmp-cost free">£0<span style="font-size:.6em;font-weight:400">/mo</span></div>
-                        <div class="bp-cmp-note highlight">One-time · 100% yours · Forever</div>
-                    </div>
-                </div>
 
                 <!-- Store CTA -->
                 <div class="bp-cta-strip">
@@ -1128,15 +1234,6 @@
 
     </main>
 
-    <!-- Lightbox -->
-    <div class="port-lightbox" id="port-lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
-        <button class="port-lightbox-close" id="port-lb-close" aria-label="Close lightbox">✕</button>
-        <div class="lb-img-wrap">
-            <button class="lb-nav lb-prev" id="port-lb-prev" aria-label="Previous image">‹</button>
-            <img id="port-lb-img" src="" alt="AI portfolio image">
-            <button class="lb-nav lb-next" id="port-lb-next" aria-label="Next image">›</button>
-        </div>
-        <div class="port-lb-caption" id="port-lb-caption"></div>
     </div>
 
     <footer class="site-footer" role="contentinfo">
@@ -1181,16 +1278,115 @@
     <script src="site.js" defer></script>
     <script src="effects.js" defer></script>
 
-    <!--
-        PORTFOLIO GALLERY — Edit portfolio.js to add your AI work images.
-        Each entry: { src: 'images/myimage.jpg', alt: '...', tag: 'Portrait', title: 'Image Title', desc: 'Short description' }
-        The tag value is used for gallery filtering (portrait / concept / video / or any custom category).
-    -->
-    <script src="portfolio.js" defer></script>
+    <script src="gallery-data.js"></script>
     <script>
-    (function(){
-        var grid    = document.getElementById('port-grid');
-        var lb      = document.getElementById('port-lightbox');
-        var lbImg   = document.getElementById('port-lb-img');
-        var lbCap   = document.getElementById('port-lb-caption');
-        var lbClose = document.getEleme
+    /* ══ AI gallery — renders from gallery-data.js, no build step needed ══ */
+    (function () {
+        var DATA = (window.GALLERY_IMAGES || []).filter(function (i) { return i && i.src; });
+        var grid    = document.getElementById('gal-grid');
+        var empty   = document.getElementById('gal-empty');
+        var filters = document.getElementById('gal-filters');
+        if (!grid) return;
+
+        var LABEL = { all:'All', portrait:'Portrait', concept:'Concept',
+                      video:'Video', product:'Product', other:'Other' };
+
+        if (!DATA.length) {
+            grid.hidden = true;
+            if (filters) filters.hidden = true;
+            if (empty) empty.hidden = false;
+            return;
+        }
+
+        /* filters built from what actually exists */
+        var counts = {};
+        DATA.forEach(function (i) { counts[i.tag || 'other'] = (counts[i.tag || 'other'] || 0) + 1; });
+        var tags = ['all'].concat(Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; }));
+        if (filters) {
+            filters.innerHTML = tags.map(function (t, n) {
+                var c = t === 'all' ? DATA.length : counts[t];
+                return '<button class="gf-btn' + (n === 0 ? ' active' : '') + '" data-filter="' + t + '">'
+                     + (LABEL[t] || t) + ' <em>' + c + '</em></button>';
+            }).join('');
+            if (tags.length <= 2) filters.hidden = true;   // one category: no point filtering
+        }
+
+        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+            return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c]; }); }
+
+        grid.innerHTML = DATA.map(function (i, n) {
+            var ratio = (i.w && i.h) ? ' width="' + i.w + '" height="' + i.h + '"' : '';
+            return '<button class="gal-item" role="listitem" data-i="' + n + '"'
+                 + ' data-tag="' + esc(i.tag || 'other') + '" aria-label="' + esc(i.title || 'Artwork') + '">'
+                 + '<span class="gal-tagpill">' + esc(LABEL[i.tag] || i.tag || 'Other') + '</span>'
+                 + '<img src="' + esc(i.src) + '" alt="' + esc(i.alt || i.title || '') + '"'
+                 + ' loading="lazy" decoding="async"' + ratio + '/>'
+                 + '<span class="gal-cap">'
+                 +   '<span class="gal-cap-t">' + esc(i.title || '') + '</span>'
+                 +   (i.desc ? '<span class="gal-cap-m">' + esc(i.desc) + '</span>' : '')
+                 + '</span></button>';
+        }).join('');
+
+        /* filtering */
+        if (filters) filters.addEventListener('click', function (e) {
+            var b = e.target.closest('.gf-btn'); if (!b) return;
+            filters.querySelectorAll('.gf-btn').forEach(function (x) { x.classList.remove('active'); });
+            b.classList.add('active');
+            var f = b.dataset.filter;
+            grid.querySelectorAll('.gal-item').forEach(function (el) {
+                el.classList.toggle('hide', f !== 'all' && el.dataset.tag !== f);
+            });
+        });
+
+        /* ── lightbox ── */
+        var lb    = document.getElementById('gal-lb'),
+            lbImg = document.getElementById('gal-lb-img'),
+            lbT   = document.getElementById('gal-lb-title'),
+            lbM   = document.getElementById('gal-lb-meta'),
+            lbI   = document.getElementById('gal-lb-idx');
+        var cur = 0, lastFocus = null;
+
+        function visible() {
+            return [].slice.call(grid.querySelectorAll('.gal-item:not(.hide)'))
+                     .map(function (el) { return +el.dataset.i; });
+        }
+        function show(n) {
+            var list = visible(); if (!list.length) return;
+            cur = (n + list.length) % list.length;
+            var d = DATA[list[cur]];
+            lbImg.src = d.src; lbImg.alt = d.alt || d.title || '';
+            lbT.textContent = d.title || '';
+            lbM.textContent = d.desc || '';
+            lbI.textContent = (cur + 1) + ' / ' + list.length;
+        }
+        function open(el) {
+            lastFocus = el;
+            var list = visible();
+            show(Math.max(0, list.indexOf(+el.dataset.i)));
+            lb.hidden = false; document.body.style.overflow = 'hidden';
+            document.getElementById('gal-lb-close').focus();
+        }
+        function close() {
+            lb.hidden = true; document.body.style.overflow = '';
+            lbImg.removeAttribute('src');
+            if (lastFocus) lastFocus.focus();
+        }
+
+        grid.addEventListener('click', function (e) {
+            var it = e.target.closest('.gal-item'); if (it) open(it);
+        });
+        document.getElementById('gal-lb-close').addEventListener('click', close);
+        document.getElementById('gal-prev').addEventListener('click', function () { show(cur - 1); });
+        document.getElementById('gal-next').addEventListener('click', function () { show(cur + 1); });
+        lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+        document.addEventListener('keydown', function (e) {
+            if (lb.hidden) return;
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowLeft') show(cur - 1);
+            if (e.key === 'ArrowRight') show(cur + 1);
+        });
+    })();
+    </script>
+
+</body>
+</html>
