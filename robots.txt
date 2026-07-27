@@ -1,7 +1,11 @@
+# robots.txt — https://www.hasnainstudiox.com/
+# Open to all search engines and crawlers. No engine-specific rules.
+
 User-agent: *
 Allow: /
 
-# Google must be able to fetch CSS and JavaScript to render these pages
-# correctly, so nothing that affects rendering is blocked.
+# CSS and JavaScript are intentionally left crawlable.
+# Search engines render pages like a browser, and the app listings on this
+# site are built with JavaScript — blocking those files would hide content.
 
 Sitemap: https://www.hasnainstudiox.com/sitemap.xml
