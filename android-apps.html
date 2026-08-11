@@ -477,7 +477,7 @@
             .m-drop .dv { animation: mBlink 1.8s var(--ease) infinite; }
             .m-drop .dv2 { animation-delay: -.9s; }
 
-            /* ArchiveX Pro — contents compressed and locked */
+            /* PC Archive Pro - contents compressed and locked */
             .m-arch .ar  { animation: mSqueeze 2.4s var(--ease) infinite; }
             @keyframes mSqueeze { 0%,100% { transform: translateY(-4px); opacity: .5; }
                                   45%,60% { transform: translateY(0); opacity: 1; } }
@@ -734,7 +734,7 @@
     {
       "@type": "ItemList",
       "name": "Android Apps by Hasnain Studio X",
-      "numberOfItems": 2,
+      "numberOfItems": 3,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -779,6 +779,28 @@
             },
             "url": "https://play.google.com/store/apps/details?id=com.docsmining.app"
           }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "ConvertMaster Ultra",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Android",
+            "description": "ConvertMaster Ultra converts and compresses video, audio, image and PDF files entirely on your Android device using an on-device media engine. Files you pick are read locally and results are written locally - nothing is uploaded.",
+            "isAccessibleForFree": true,
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "GBP",
+              "availability": "https://schema.org/InStock"
+            },
+            "publisher": {
+              "@id": "https://www.hasnainstudiox.com/#organization"
+            },
+            "url": "https://play.google.com/store/apps/details?id=com.convertmaster.app"
+          }
         }
       ]
     }
@@ -822,9 +844,9 @@
             <!-- Hero: pocket-sized -->
             <section class="hero-split" aria-label="Android apps introduction" style="padding-bottom:0;">
                 <div class="hero-copy">
-                    <div class="hero-eyebrow">Android · Google Play · <span data-count="and-live">2</span> Live, <span data-count="and-soon">3</span> In Development</div>
+                    <div class="hero-eyebrow">Android · Google Play · <span data-count="and-live">4</span> Live, <span data-count="and-soon">3</span> In Development</div>
                     <h1>The same standard,<br><span class="holo-word">in your pocket.</span></h1>
-                    <p class="lead"><span data-count="and-total">Five</span> Android applications built to the same engineering standard as the desktop range. Mobile TuneX handles cleanup, permissions and storage entirely on-device; DocsMining extracts document data without an upload. XCipher, SpatiaX Mobile and FlipX Studio follow.</p>
+                    <p class="lead"><span data-count="and-total">Seven</span> Android applications built to the same engineering standard as the desktop range. Mobile TuneX handles cleanup, permissions and storage entirely on-device; DocsMining extracts document data without an upload. XCipher, SpatiaX Mobile and FlipX Studio follow.</p>
                     <div class="hero-actions">
                         <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share" target="_blank" rel="noopener">Get Mobile TuneX</a>
                         <a class="btn btn--secondary" href="Windows-apps.html">See 41 Windows Apps</a>
@@ -1043,6 +1065,45 @@
                 storeLabel: 'Get on Play',
                 icon: ico('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>'),
             },
+            // ── Added August 2026 ───────────────────────────────────────────
+            {
+                id: 'convertmasterultra',
+                name: 'ConvertMaster Ultra',
+                category: 'files',
+                tagline: 'Convert and compress media on your Android device',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
+                description: 'ConvertMaster Ultra converts and compresses video, audio, image and PDF files entirely on your Android device using an on-device media engine. Files you pick are read locally and results are written locally - nothing is uploaded.',
+                features: [
+                    'Video, audio, image and PDF conversion on-device',
+                    'Compression presets for quality and file size',
+                    'Job queue with adjustable concurrency and a local library',
+                    'No analytics SDK, no crash reporting SDK, no sign-in',
+                ],
+                storeUrl: 'https://play.google.com/store/apps/details?id=com.convertmaster.app',
+                privacyUrl: 'https://www.hasnainstudiox.com/ConvertMasterUltraPrivacy.html',
+                storeLabel: 'Get on Play',
+            },
+            {
+                id: 'workxsuiteandroid',
+                name: 'WorkX Suite',
+                category: 'productivity',
+                tagline: 'PDF, documents and maths in one Android suite',
+                badge: 'Free Trial',
+                badgeClass: 'badge-available',
+                status: 'live',
+                description: 'The Android edition of WorkX Suite - three modules (XPDF, XDOC and XMATH) plus an on-device AI Copilot. Everything you open or create stays on your device unless you export or share it yourself.',
+                features: [
+                    'XPDF, XDOC and XMATH modules in one app',
+                    'On-device AI Copilot with your own optional API key',
+                    'Biometric lock backed by the Android Keystore',
+                    'No account, no sign-in, no third-party analytics SDK',
+                ],
+                storeUrl: '',
+                privacyUrl: 'https://www.hasnainstudiox.com/WorkXSuitePrivacy.html',
+                storeLabel: 'Get on Play',
+            },
         ];
 
         /* ══════════════════════════════════════════════════════════════
@@ -1101,7 +1162,7 @@
             "terraxultra": "explore",
             "infinityjungle": "explore",
             "quantumdrop": "files",
-            "archivexpro": "files",
+            "pcarchivepro": "files",
             "pcdownloadmanagerultra": "files",
             "flipxstudio": "files",
             "convertxpro": "files",
@@ -1109,7 +1170,17 @@
             "xcipher": "files",
             "spatiaxmobile": "media",
             "flipxandroid": "files",
-            "docsmining": "creative"
+            "docsmining": "creative",
+            "conjureai": "creative",
+            "dreammintai": "ai",
+            "earthos": "system",
+            "mediatidyultra": "media",
+            "mobileservicelab": "system",
+            "pcscreenrecorderpro": "media",
+            "quantumxai": "ai",
+            "titanmlstudio": "ai",
+            "convertmasterultra": "files",
+            "workxsuiteandroid": "creative"
         };
 
         /* Per-app animated logos. Key = app id. Each motif depicts what that
@@ -1407,7 +1478,7 @@
         + '<path class="s dim" d="M15 20h10"/>'
         + '<rect class="sf gl pk" x="17" y="17" width="6" height="6" rx="1.6"/></svg>',
 
-        archivexpro:
+        pcarchivepro:
           '<svg viewBox="0 0 40 40" class="m-arch" aria-hidden="true">'
         + '<rect class="s" x="7" y="16" width="26" height="18" rx="2.5"/>'
         + '<path class="s dim" d="M7 22h26"/>'
