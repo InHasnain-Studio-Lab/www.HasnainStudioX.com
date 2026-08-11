@@ -1467,3 +1467,48 @@ body.weather-rain .glass-condensation{opacity:.55;}
     .c-line{opacity:1;}
     html{scroll-behavior:auto;}
 }
+
+/* ── Ad slots (Google AdSense) ────────────────────────────────────────────
+   One shared shell so units read as part of the design system, not as
+   bolted-on boxes. Swap the placeholder markup inside each .ad-slot for
+   the real <ins class="adsbygoogle"> unit once the account is approved —
+   the wrapper, label and spacing stay the same. ───────────────────────── */
+.ad-slot{
+    position:relative;
+    grid-column:1/-1;
+    margin:2.2rem 0;
+    padding:1.3rem 1.2rem 1.5rem;
+    border-radius:16px;
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:.6rem;min-height:110px;overflow:hidden;text-align:center;
+}
+.ad-slot::before{
+    content:'';position:absolute;top:0;left:8%;right:8%;height:1px;
+    background:var(--holo);background-size:300% 100%;
+    animation:holoShift 6s linear infinite;opacity:.55;
+}
+.ad-slot-label{
+    font-family:var(--f-mono,inherit);font-size:.65rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-faint);
+}
+.ad-slot-placeholder{
+    font-size:.82rem;color:var(--ink-faint);
+}
+.ad-slot .adsbygoogle{width:100%;}
+
+/* In-grid variant: same footprint as an app tile / bento cell so it slots
+   cleanly into the card grids instead of breaking the rhythm. */
+.ad-slot--tile{
+    grid-column:auto;margin:0;min-height:210px;border-radius:20px;
+}
+.ad-slot--infeed{grid-column:1/-1;margin:.4rem 0 1rem;}
+
+/* Section banner: full-width strip above a listing grid. */
+.ad-slot--banner{margin:1.8rem 0 2.2rem;}
+
+@media (max-width:640px){
+    .ad-slot{padding:1.1rem 1rem 1.3rem;min-height:96px;}
+}
