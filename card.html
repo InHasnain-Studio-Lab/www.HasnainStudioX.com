@@ -302,7 +302,7 @@
   function footer() {
     var node = el('p', 'footer');
     node.appendChild(document.createTextNode('This card was assembled in your browser. Nothing was uploaded. '));
-    var link = el('a', null, 'Made with QR Creator Studio');
+    var link = el('a', null, 'Made with HSX QR Creator');
     link.href = 'https://www.hasnainstudiox.com';
     link.rel = 'noopener';
     node.appendChild(link);
@@ -460,7 +460,7 @@
     if (!fragment) {
       showEmpty(
         'Nothing to show yet',
-        'This page displays a card that is stored inside a QR code link. Scan a greeting code made with QR Creator Studio to see it.');
+        'This page displays a card that is stored inside a QR code link. Scan a greeting code made with HSX QR Creator to see it.');
       return;
     }
 

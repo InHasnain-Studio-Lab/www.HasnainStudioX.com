@@ -251,13 +251,13 @@
             @keyframes mSweepD { 0% { transform: translate(-13px,-13px); opacity: 0; } 25%,60% { opacity: .9; } 100% { transform: translate(13px,13px); opacity: 0; } }
 
             /* ─────────────── SYSTEM ─────────────── */
-            /* PC TuneX — junk swept away while a tune-up meter fills */
+            /* HSX PC Tune — junk swept away while a tune-up meter fills */
             .m-tunex .arc  { stroke-dasharray: 44; animation: mDraw 2.8s var(--ease) infinite; }
             .m-tunex .jk   { animation: mFall 1.9s linear infinite; }
             .m-tunex .jk2  { animation-delay: -.63s; }
             .m-tunex .jk3  { animation-delay: -1.26s; }
 
-            /* PC TurboX Ultra — speedometer needle sweeping to redline */
+            /* HSX PC Turbo — speedometer needle sweeping to redline */
             .m-turbo .ndl  { transform-box: view-box; transform-origin: 20px 26px;
                              animation: mNeedle 2.2s var(--ease) infinite; }
             @keyframes mNeedle { 0%,100% { transform: rotate(-52deg); } 55%,70% { transform: rotate(52deg); } }
@@ -265,28 +265,28 @@
             .m-turbo .bst2 { animation-delay: -.33s; }
             .m-turbo .bst3 { animation-delay: -.66s; }
 
-            /* PC GuardX — shield scanned top to bottom */
+            /* HSX PC Guard — shield scanned top to bottom */
             .m-guard .scan { animation: mScanY 2.4s var(--ease) infinite; }
             .m-guard .tick { stroke-dasharray: 44; animation: mDraw 2.4s var(--ease) infinite; }
 
-            /* PC SenseX — microphone emitting voice rings */
+            /* HSX PC Sense — microphone emitting voice rings */
             .m-mic .rg   { transform-box: view-box; transform-origin: 20px 20px;
                            animation: mRing 1.9s var(--ease) infinite; }
             .m-mic .rg2  { animation-delay: -.95s; }
             .m-mic .cap  { animation: mPulse 1.9s var(--ease) infinite; }
 
-            /* PC VisionX — sun dimming through warm/cool comfort shift */
+            /* HSX PC Vision — sun dimming through warm/cool comfort shift */
             .m-vision .ray { transform-box: view-box; transform-origin: 20px 20px;
                              animation: mSpin 9s linear infinite; }
             .m-vision .orb2 { animation: mGrow 3s var(--ease) infinite; }
 
-            /* HorizonOS — desktop panes assembling into a shell */
+            /* HSX HorizonOS — desktop panes assembling into a shell */
             .m-shell .pn  { animation: mIn 3s var(--ease) infinite; }
             .m-shell .pn2 { animation-delay: -.4s; }
             .m-shell .pn3 { animation-delay: -.8s; }
             .m-shell .pn4 { animation-delay: -1.2s; }
 
-            /* NimbusDock — dock icons magnifying as the pointer passes */
+            /* HSX NimbusDock — dock icons magnifying as the pointer passes */
             .m-dock .di  { animation: mDockMag 2.6s var(--ease) infinite; }
             @keyframes mDockMag { 0%,100% { transform: scale(1) translateY(0); opacity: .55; }
                                   50% { transform: scale(1.55) translateY(-2px); opacity: 1; } }
@@ -295,98 +295,98 @@
             .m-dock .di4 { animation-delay: -1.56s; }
             .m-dock .di5 { animation-delay: -2.08s; }
 
-            /* BrowseX — browser loading a page behind a privacy shield */
+            /* HSX Browse — browser loading a page behind a privacy shield */
             .m-browse .bar { transform-box: view-box; transform-origin: 9px 20px;
                              animation: mLoad 2.4s var(--ease) infinite; }
             @keyframes mLoad { 0% { transform: scaleX(0); opacity: 1; } 70% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
             .m-browse .shd { animation: mBlink 2.4s var(--ease) infinite; }
 
-            /* AutoClick X — cursor firing repeat clicks */
+            /* HSX AutoClick — cursor firing repeat clicks */
             .m-click .rp  { transform-box: view-box; transform-origin: 16px 16px;
                             animation: mRing 1.3s var(--ease) infinite; }
             .m-click .rp2 { animation-delay: -.65s; }
             .m-click .cur { animation: mClick 1.3s var(--ease) infinite; }
             @keyframes mClick { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-1.5px,-1.5px); } }
 
-            /* XSeasons — wallpaper cycling through the four seasons */
+            /* HSX Seasons — wallpaper cycling through the four seasons */
             .m-season .q  { animation: mSeason 6s linear infinite; }
             @keyframes mSeason { 0%,18% { opacity: 1; } 30%,100% { opacity: .16; } }
             .m-season .q2 { animation-delay: -4.5s; }
             .m-season .q3 { animation-delay: -3s; }
             .m-season .q4 { animation-delay: -1.5s; }
 
-            /* VDroidX — a virtual phone booting inside the desktop */
+            /* HSX VDroid — a virtual phone booting inside the desktop */
             .m-vdroid .ph  { animation: mIn 3.2s var(--ease) infinite; }
             .m-vdroid .ln  { animation: mBlink 1.6s var(--ease) infinite; }
             .m-vdroid .ln2 { animation-delay: -.8s; }
 
             /* ─────────────── AUDIO & VIDEO ─────────────── */
-            /* SpatiaX Ultra — sound orbiting a listener in 3D */
+            /* HSX Spatia — sound orbiting a listener in 3D */
             .m-spatia .o1 { transform-box: view-box; transform-origin: 20px 20px;
                             animation: mSpin 4s linear infinite; }
             .m-spatia .o2 { transform-box: view-box; transform-origin: 20px 20px;
                             animation: mSpinR 5.6s linear infinite; }
             .m-spatia .hd { animation: mPulse 3s var(--ease) infinite; }
 
-            /* Hypersonus Ultra — a 10-band equalizer working */
+            /* HSX Hypersonus — a 10-band equalizer working */
             .m-eq .b  { animation: mRise 1.05s var(--ease) infinite alternate; }
             .m-eq .b1 { animation-delay: -.05s; } .m-eq .b2 { animation-delay: -.38s; }
             .m-eq .b3 { animation-delay: -.66s; } .m-eq .b4 { animation-delay: -.2s; }
             .m-eq .b5 { animation-delay: -.5s; }  .m-eq .b6 { animation-delay: -.82s; }
 
-            /* VAudio Elite — playback driving a live waveform */
+            /* HSX VAudio — playback driving a live waveform */
             .m-play .wv { stroke-dasharray: 44; animation: mDraw 2.2s linear infinite; }
             .m-play .tri { animation: mPulse 2.2s var(--ease) infinite; }
 
-            /* MediaX Ultra — a screen pulling a stream in */
+            /* HSX MediaX — a screen pulling a stream in */
             .m-stream .w  { transform-box: view-box; transform-origin: 20px 30px;
                             animation: mRing 2s var(--ease) infinite; }
             .m-stream .w2 { animation-delay: -1s; }
             .m-stream .scr { animation: mBlink 3s var(--ease) infinite; }
 
-            /* PrimeCut — a playhead scrubbing an edit timeline */
+            /* HSX PrimeCut — a playhead scrubbing an edit timeline */
             .m-cut .head { animation: mScanX 2.6s var(--ease) infinite; }
             .m-cut .clip { animation: mBlink 2.6s var(--ease) infinite; }
             .m-cut .clip2 { animation-delay: -1.3s; }
 
-            /* Stillmotion — a photo stack being sorted */
+            /* HSX Stillmotion — a photo stack being sorted */
             .m-stack .p1 { animation: mShuffle 3.2s var(--ease) infinite; }
             @keyframes mShuffle { 0%,100% { transform: translate(0,0); opacity: 1; }
                                   40% { transform: translate(9px,-5px); opacity: .35; }
                                   60% { transform: translate(0,0); opacity: 1; } }
             .m-stack .p2 { animation: mShuffle 3.2s var(--ease) infinite; animation-delay: -1.6s; }
 
-            /* GlowLab — a light pass sweeping across a photo */
+            /* HSX GlowLab — a light pass sweeping across a photo */
             .m-glow .sw  { animation: mSweepD 2.6s var(--ease) infinite; }
             .m-glow .sun { animation: mGrow 2.6s var(--ease) infinite; }
 
-            /* Image3D X — a flat photo extruding into relief */
+            /* HSX Image3D — a flat photo extruding into relief */
             .m-relief .r  { animation: mExtrude 2.6s var(--ease) infinite alternate; }
             @keyframes mExtrude { 0% { transform: scaleY(.16); } 100% { transform: scaleY(1); } }
             .m-relief .r2 { animation-delay: -.35s; } .m-relief .r3 { animation-delay: -.7s; }
             .m-relief .r4 { animation-delay: -1.05s; }
 
-            /* SenseCapture — an aperture firing on a sound trigger */
+            /* HSX SenseCapture — an aperture firing on a sound trigger */
             .m-aper .ap  { transform-box: view-box; transform-origin: 20px 20px;
                            animation: mSpin 6s linear infinite; }
             .m-aper .sh  { animation: mShutter 2.2s var(--ease) infinite; }
             @keyframes mShutter { 0%,70%,100% { transform: scale(1); opacity: .55; } 80% { transform: scale(.45); opacity: 1; } }
             .m-aper .snd { animation: mRing 2.2s var(--ease) infinite; transform-box: view-box; transform-origin: 20px 20px; }
 
-            /* QuantumCast — a broadcast pushing signal outward */
+            /* HSX QuantumCast — a broadcast pushing signal outward */
             .m-cast .ring { transform-box: view-box; transform-origin: 20px 27px;
                             animation: mRing 2.1s var(--ease) infinite; }
             .m-cast .ring2 { animation-delay: -1.05s; }
             .m-cast .twr { animation: mBlink 2.1s var(--ease) infinite; }
 
             /* ─────────────── CREATIVE & DOCUMENTS ─────────────── */
-            /* WorkX Suite — spreadsheet cells filling in */
+            /* HSX WorkSuite — spreadsheet cells filling in */
             .m-sheet .c  { animation: mCell 2.8s var(--ease) infinite; }
             @keyframes mCell { 0%,100% { opacity: .18; } 40%,70% { opacity: 1; } }
             .m-sheet .c2 { animation-delay: -.35s; } .m-sheet .c3 { animation-delay: -.7s; }
             .m-sheet .c4 { animation-delay: -1.05s; }
 
-            /* DocX Studio Pro — text translating between scripts */
+            /* HSX DocStudio — text translating between scripts */
             .m-trans .g1 { animation: mSwap 3s var(--ease) infinite; }
             .m-trans .g2 { animation: mSwap 3s var(--ease) infinite; animation-delay: -1.5s; }
             @keyframes mSwap { 0%,40% { opacity: 1; transform: translateY(0); }
@@ -394,12 +394,12 @@
                                100% { opacity: 1; transform: translateY(0); } }
             .m-trans .ar { animation: mBob 1.5s var(--ease) infinite; }
 
-            /* CreatorX Studio — a brush laying down a stroke */
+            /* HSX CreatorStudio — a brush laying down a stroke */
             .m-brush .st  { stroke-dasharray: 44; animation: mDraw 3s var(--ease) infinite; }
             .m-brush .dot { animation: mBlink 3s var(--ease) infinite; }
             .m-brush .dot2 { animation-delay: -1s; } .m-brush .dot3 { animation-delay: -2s; }
 
-            /* WebX Studio — page blocks dropping into a layout */
+            /* HSX WebStudio — page blocks dropping into a layout */
             .m-web .blk  { animation: mIn 3s var(--ease) infinite; }
             .m-web .blk2 { animation-delay: -.5s; } .m-web .blk3 { animation-delay: -1s; }
 
@@ -425,36 +425,36 @@
             .m-chat .td2 { animation-delay: -.3s; } .m-chat .td3 { animation-delay: -.6s; }
             .m-chat .bb  { animation: mBlink 2.6s var(--ease) infinite; }
 
-            /* ForgeX Pro — prompt fragments forging into structure */
+            /* HSX ForgeStudio — prompt fragments forging into structure */
             .m-forge .fr  { animation: mForge 2.8s var(--ease) infinite; }
             @keyframes mForge { 0% { transform: translateX(-7px); opacity: 0; }
                                 35%,80% { transform: none; opacity: 1; } 100% { opacity: 1; } }
             .m-forge .fr2 { animation-delay: -.4s; } .m-forge .fr3 { animation-delay: -.8s; }
             .m-forge .spk { animation: mGrow 2.8s var(--ease) infinite; }
 
-            /* DocClarity — a document being read and highlighted */
+            /* HSX DocClarity — a document being read and highlighted */
             .m-clarity .mag { animation: mScanY 2.6s var(--ease) infinite; }
             .m-clarity .hl  { animation: mCell 2.6s var(--ease) infinite; }
             .m-clarity .hl2 { animation-delay: -.9s; }
 
             /* ─────────────── GAMES & EXPLORE ─────────────── */
-            /* PlanetX — constellations drawn across a star field */
+            /* HSX Planet — constellations drawn across a star field */
             .m-stars .ln { stroke-dasharray: 44; animation: mDraw 4s var(--ease) infinite; }
             .m-stars .st { animation: mBlink 2.4s var(--ease) infinite; }
             .m-stars .st2 { animation-delay: -.8s; } .m-stars .st3 { animation-delay: -1.6s; }
 
-            /* PlanetX Infinity — a whole solar system in motion */
+            /* HSX Planet: Infinity — a whole solar system in motion */
             .m-solar .p1 { transform-box: view-box; transform-origin: 20px 20px; animation: mSpin 3.4s linear infinite; }
             .m-solar .p2 { transform-box: view-box; transform-origin: 20px 20px; animation: mSpin 6s linear infinite; }
             .m-solar .sun { animation: mPulse 2.6s var(--ease) infinite; }
 
-            /* PlanetX: Earth Explorer — a globe turning */
+            /* HSX Planet: Earth Explorer — a globe turning */
             .m-globe .mer { transform-box: view-box; transform-origin: 20px 20px;
                             animation: mGlobe 4.4s linear infinite; }
             @keyframes mGlobe { 0% { transform: scaleX(1); } 50% { transform: scaleX(.1); } 100% { transform: scaleX(1); } }
             .m-globe .mer2 { animation-delay: -2.2s; }
 
-            /* TerraX Ultra — dropping to street level on the globe */
+            /* HSX Terra — dropping to street level on the globe */
             .m-terra .pin { animation: mDrop 2.6s var(--ease) infinite; }
             @keyframes mDrop { 0% { transform: translateY(-9px); opacity: 0; }
                                30%,72% { transform: translateY(0); opacity: 1; }
@@ -469,7 +469,7 @@
             .m-jungle .tr2 { animation-delay: -1.7s; }
 
             /* ─────────────── FILES & TRANSFER ─────────────── */
-            /* QuantumDrop — a file hopping between two devices */
+            /* HSX QuantumDrop — a file hopping between two devices */
             .m-drop .pk  { animation: mHop 1.8s var(--ease) infinite; }
             @keyframes mHop { 0% { transform: translate(-9px,0); opacity: 0; }
                               20% { opacity: 1; } 50% { transform: translate(0,-6px); }
@@ -477,25 +477,25 @@
             .m-drop .dv { animation: mBlink 1.8s var(--ease) infinite; }
             .m-drop .dv2 { animation-delay: -.9s; }
 
-            /* PC Archive Pro - contents compressed and locked */
+            /* HSX PC Archive - contents compressed and locked */
             .m-arch .ar  { animation: mSqueeze 2.4s var(--ease) infinite; }
             @keyframes mSqueeze { 0%,100% { transform: translateY(-4px); opacity: .5; }
                                   45%,60% { transform: translateY(0); opacity: 1; } }
             .m-arch .ar2 { animation: mSqueeze 2.4s var(--ease) infinite reverse; }
             .m-arch .lk  { animation: mGrow 2.4s var(--ease) infinite; }
 
-            /* PC Download Manager Ultra — segmented parallel download */
+            /* HSX PC Download Manager — segmented parallel download */
             .m-dl .sg  { transform-box: view-box; transform-origin: 8px 20px;
                          animation: mFill 2.2s var(--ease) infinite; }
             @keyframes mFill { 0% { transform: scaleX(0); } 65%,85% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } }
             .m-dl .sg2 { animation-duration: 1.7s; } .m-dl .sg3 { animation-duration: 2.7s; }
             .m-dl .arw { animation: mBob 1.4s var(--ease) infinite; }
 
-            /* FlipX Studio — one format flipping into another */
+            /* HSX FlipStudio — one format flipping into another */
             .m-flip .tl  { animation: mFlip 3s var(--ease) infinite; }
             .m-flip .tl2 { animation: mFlip 3s var(--ease) infinite; animation-delay: -1.5s; }
 
-            /* ConvertX Pro — formats cycling through conversion */
+            /* HSX ConvertStudio — formats cycling through conversion */
             .m-conv .cyc { transform-box: view-box; transform-origin: 20px 20px;
                            animation: mSpin 3.6s linear infinite; }
             .m-conv .fa  { animation: mSwap 3s var(--ease) infinite; }
@@ -744,7 +744,7 @@
             "name": "Mobile TuneX",
             "applicationCategory": "UtilitiesApplication",
             "operatingSystem": "Android",
-            "description": "A lightweight Android companion to PC TuneX - designed to clear junk, manage permissions, and keep your phone running smoothly without draining your battery.",
+            "description": "A lightweight Android companion to HSX PC Tune - designed to clear junk, manage permissions, and keep your phone running smoothly without draining your battery.",
             "isAccessibleForFree": true,
             "offers": {
               "@type": "Offer",
@@ -847,7 +847,7 @@
                 <div class="hero-copy">
                     <div class="hero-eyebrow">Android · Google Play · <span data-count="and-live">4</span> Live, <span data-count="and-soon">3</span> In Development</div>
                     <h1>The same standard,<br><span class="holo-word">in your pocket.</span></h1>
-                    <p class="lead"><span data-count="and-total">Seven</span> Android applications built to the same engineering standard as the desktop range. Mobile TuneX handles cleanup, permissions and storage entirely on-device; DocsMining extracts document data without an upload. XCipher, SpatiaX Mobile and FlipX Studio follow.</p>
+                    <p class="lead"><span data-count="and-total">Seven</span> Android applications built to the same engineering standard as the desktop range. Mobile TuneX handles cleanup, permissions and storage entirely on-device; DocsMining extracts document data without an upload. XCipher, SpatiaX Mobile and HSX FlipStudio follow.</p>
                     <div class="hero-actions">
                         <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.mobiletunex.app&pcampaignid=web_share" target="_blank" rel="noopener">Get Mobile TuneX</a>
                         <a class="btn btn--secondary" href="Windows-apps.html">See 41 Windows Apps</a>
@@ -992,7 +992,7 @@
                 badge: 'Free Trial',
                 badgeClass: 'badge-available',
                 status: 'live',
-                description: 'A lightweight Android companion to PC TuneX - designed to clear junk, manage permissions, and keep your phone running smoothly without draining your battery.',
+                description: 'A lightweight Android companion to HSX PC Tune - designed to clear junk, manage permissions, and keep your phone running smoothly without draining your battery.',
                 features: [
                     'Junk and cache file cleanup',
                     'App permission auditor',
@@ -1028,13 +1028,13 @@
             // ── Media & Audio ────────────────────────────────────────────────
             {
                 id: 'spatiaxmobile',
-                name: 'SpatiaX Ultra Mobile',
+                name: 'HSX Spatia Mobile',
                 category: 'media',
                 tagline: 'Real-time 3D spatial audio for Android',
                 badge: 'Coming Soon',
                 badgeClass: 'badge-pending',
                 status: 'soon',
-                description: 'The Android version of SpatiaX Ultra - a real-time audio engine that transforms your headphone or speaker experience with 3D spatial sound and pro-grade DSP, running entirely on device.',
+                description: 'The Android version of HSX Spatia - a real-time audio engine that transforms your headphone or speaker experience with 3D spatial sound and pro-grade DSP, running entirely on device.',
                 features: [
                     '3D spatial surround for headphones and speakers',
                     'Profiles for gaming, music, movies, and calls',
@@ -1048,13 +1048,13 @@
             },
             {
                 id: 'flipxandroid',
-                name: 'FlipX Studio',
+                name: 'HSX FlipStudio',
                 category: 'media',
                 tagline: 'Convert audio, video, and images on Android',
                 badge: 'Coming Soon',
                 badgeClass: 'badge-pending',
                 status: 'soon',
-                description: 'The Android edition of FlipX Studio - a local-first media toolkit for fast, high-quality conversion of audio, video, and image files, processed entirely on your device.',
+                description: 'The Android edition of HSX FlipStudio - a local-first media toolkit for fast, high-quality conversion of audio, video, and image files, processed entirely on your device.',
                 features: [
                     'Convert audio, video, and image files locally',
                     'Smart output presets for quality and file size',
@@ -1110,13 +1110,13 @@
             },
             {
                 id: 'workxsuiteandroid',
-                name: 'WorkX Suite',
+                name: 'HSX WorkSuite',
                 category: 'productivity',
                 tagline: 'PDF, documents and maths in one Android suite',
                 badge: 'Free Trial',
                 badgeClass: 'badge-available',
                 status: 'live',
-                description: 'The Android edition of WorkX Suite - three modules (XPDF, XDOC and XMATH) plus an on-device AI Copilot. Everything you open or create stays on your device unless you export or share it yourself.',
+                description: 'The Android edition of HSX WorkSuite - three modules (XPDF, XDOC and XMATH) plus an on-device AI Copilot. Everything you open or create stays on your device unless you export or share it yourself.',
                 features: [
                     'XPDF, XDOC and XMATH modules in one app',
                     'On-device AI Copilot with your own optional API key',
