@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>AI Studio — On-Device AI for Windows | Hasnain Studio X</title>
+    <meta name="description" content="AI apps for Windows that run entirely on your own GPU: image generation, editing, local chat and prompt tooling. No API keys, no cloud, no subscription."/>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+    <link rel="canonical" href="https://www.hasnainstudiox.com/HSXAIstudio.html"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="HSX AI Studio | Local AI Image Generation, No Cloud, No Subscription"/>
+    <meta property="og:description" content="AI apps for Windows that run entirely on your own GPU: image generation, editing, local chat and prompt tooling. No API keys, no cloud, no subscription."/>
+    <meta property="og:url" content="https://www.hasnainstudiox.com/HSXAIstudio.html"/>
+    <meta property="og:site_name" content="Hasnain Studio X"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="theme-color" content="#08070c"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css"/>
+    <style>
+        /* ═══════════════════════════════════════════════════════════════
+           AI STUDIO — PAGE-LOCAL STYLES
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ── Hero split AI ────────────────────────────────────────────── */
+        .ai-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 4vw, 4rem);
+            align-items: center;
+            padding: clamp(2.6rem, 7vh, 5.5rem) 0 1rem;
+        }
+        @media (max-width: 860px) {
+            .ai-hero { grid-template-columns: 1fr; }
+            .ai-hero-stage { display: none; }
+        }
+        .ai-eyebrow {
+            display: inline-flex; align-items: center; gap: .55rem;
+            font-family: var(--f-mono); font-size: .64rem; letter-spacing: .3em;
+            text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.4rem;
+        }
+        .ai-eyebrow::before {
+            content: ''; width: 28px; height: 1px;
+            background: var(--holo); background-size: 300% 100%;
+            animation: holoShift 6s linear infinite;
+        }
+        .ai-hero h1 {
+            font-family: var(--f-display); font-weight: 800;
+            font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08;
+            letter-spacing: -.01em; margin: 0 0 1.2rem;
+        }
+        .ai-hero h1 .line-plain {
+            background: linear-gradient(180deg, #fdfcfa 30%, #c9c5da 90%);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            display: block;
+        }
+        .ai-hero h1 .line-holo {
+            background: var(--holo); background-size: 300% 100%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: holoShift 7s linear infinite; display: block;
+        }
+        .ai-hero .lead {
+            text-align: left; margin: 0 0 2rem; max-width: 500px;
+        }
+        .ai-hero-badges {
+            display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.8rem;
+        }
+        .ai-badge {
+            display: inline-flex; align-items: center; gap: .4rem;
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .13em;
+            text-transform: uppercase; color: var(--ink-soft);
+            padding: .42rem .85rem; border-radius: var(--r-pill);
+            background: rgba(255,255,255,.035); border: 1px solid var(--line);
+        }
+        .ai-badge .dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--mint);
+            box-shadow: 0 0 0 0 rgba(159,232,214,.6);
+            animation: pulse 2.2s var(--ease) infinite;
+        }
+
+        /* ── Hero stage — orbiting AI canvas ─────────────────────────── */
+        .ai-hero-stage {
+            position: relative; min-height: 420px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ai-orb-wrap {
+            position: relative; width: 320px; height: 320px;
+        }
+        .ai-orb-wrap::before {
+            content: ''; position: absolute; inset: -30px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(199,165,247,.18), rgba(159,232,214,.08) 50%, transparent 70%);
+            filter: blur(12px);
+            animation: drift3 10s ease-in-out infinite alternate;
+        }
+        .ai-ring {
+            position: absolute; inset: 0; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.07);
+        }
+        .ai-ring-1 { animation: vgspin 18s linear infinite; border-color: rgba(199,165,247,.22); }
+        .ai-ring-2 { inset: 28px; animation: vgspin 12s linear infinite reverse; border-color: rgba(159,232,214,.18); }
+        .ai-ring-3 { inset: 58px; animation: vgspin 8s linear infinite; border-color: rgba(242,223,184,.15); }
+        .ai-ring-1::before, .ai-ring-2::before, .ai-ring-3::before {
+            content: ''; position: absolute; top: -4px; left: 50%;
+            width: 8px; height: 8px; margin-left: -4px;
+            border-radius: 50%; background: var(--violet);
+            box-shadow: 0 0 12px rgba(199,165,247,.9);
+        }
+        .ai-ring-2::before { background: var(--mint); box-shadow: 0 0 12px rgba(159,232,214,.9); }
+        .ai-ring-3::before { background: var(--gold); box-shadow: 0 0 12px rgba(242,223,184,.9); }
+        .ai-core {
+            position: absolute; inset: 88px; border-radius: var(--r-lg);
+            background: linear-gradient(145deg, rgba(199,165,247,.25), rgba(159,232,214,.12));
+            border: 1px solid rgba(199,165,247,.35);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem;
+            box-shadow: 0 0 60px -15px rgba(199,165,247,.45), inset 0 1px 0 rgba(255,255,255,.12);
+            animation: vapulse 3s ease-in-out infinite;
+        }
+        .ai-core-label {
+            font-family: var(--f-mono); font-size: .52rem; letter-spacing: .3em;
+            text-transform: uppercase; color: var(--ink-faint);
+        }
+        .ai-core-val {
+            font-family: var(--f-display); font-weight: 700; font-size: 1.1rem;
+            background: var(--holo); background-size: 300% 100%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: holoShift 5s linear infinite;
+        }
+        /* floating mini-cards on stage */
+        .ai-float-card {
+            position: absolute; padding: .7rem .95rem;
+            border-radius: 14px;
+            background: linear-gradient(165deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 24px 50px -18px rgba(0,0,0,.8);
+            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--ink-soft);
+            white-space: nowrap;
+        }
+        .ai-float-card .afc-name { font-family: var(--f-display); font-size: .72rem; font-weight: 500; color: var(--ink); margin-bottom: .18rem; }
+        .ai-fc-1 { top: 8%; left: -2%; animation: floaty 6s ease-in-out infinite; }
+        .ai-fc-2 { bottom: 18%; left: -4%; animation: floaty 7s ease-in-out 1.5s infinite; }
+        .ai-fc-3 { top: 14%; right: -2%; animation: floaty 6.5s ease-in-out .8s infinite; }
+
+        /* ── Stats strip ──────────────────────────────────────────────── */
+        .ai-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+            margin-top: clamp(2.4rem, 5vh, 3.6rem);
+            background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg);
+            overflow: hidden;
+        }
+        @media (max-width: 600px) { .ai-stats { grid-template-columns: repeat(2, 1fr); } }
+        .ai-stat {
+            background: var(--bg-soft); padding: 1.6rem 1rem; text-align: center;
+            transition: background var(--t-mid) var(--ease);
+        }
+        .ai-stat:hover { background: #13111d; }
+        .ai-stat-num {
+            font-family: var(--f-display); font-weight: 600; font-size: clamp(1.3rem, 2.4vw, 1.75rem);
+            background: var(--holo); background-size: 300% 100%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: holoShift 8s linear infinite;
+        }
+        .ai-stat-lbl {
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em;
+            text-transform: uppercase; color: var(--ink-faint); margin-top: .45rem;
+        }
+
+        /* ── Apps Portfolio ───────────────────────────────────────────── */
+        .app-bento {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: minmax(160px, auto);
+            gap: 1.1rem;
+        }
+        @media (max-width: 900px) {
+            .app-bento { grid-template-columns: repeat(2, 1fr); }
+            .app-bento .ab-span4,
+            .app-bento .ab-span3,
+            .app-bento .ab-span2 { grid-column: span 2; }
+            .app-bento .ab-row2 { grid-row: span 1; }
+        }
+        @media (max-width: 520px) {
+            .app-bento { grid-template-columns: 1fr; }
+            .app-bento .ab-span4,
+            .app-bento .ab-span3,
+            .app-bento .ab-span2 { grid-column: span 1; }
+        }
+        .ab-span4 { grid-column: span 4; }
+        .ab-span3 { grid-column: span 3; }
+        .ab-span2 { grid-column: span 2; }
+        .ab-row2  { grid-row: span 2; }
+
+        .app-cell {
+            position: relative; border-radius: var(--r-lg); overflow: hidden; isolation: isolate;
+            padding: 1.8rem 1.7rem; display: flex; flex-direction: column; gap: .5rem;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            transition: transform var(--t-mid) var(--ease), border-color var(--t-mid) var(--ease), box-shadow var(--t-mid) var(--ease);
+            --mx: 50%; --my: 50%;
+        }
+        .app-cell::before {
+            content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0;
+            background: radial-gradient(460px circle at var(--mx) var(--my),
+                rgba(199,165,247,.13), rgba(159,232,214,.06) 45%, transparent 65%);
+            transition: opacity var(--t-mid) ease;
+        }
+        .app-cell:hover::before { opacity: 1; }
+        .app-cell:hover {
+            transform: translateY(-5px); border-color: rgba(199,165,247,.32);
+            box-shadow: 0 28px 64px -26px rgba(0,0,0,.9);
+        }
+        /* top prismatic line on each card */
+        .app-cell::after {
+            content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 1px;
+            background: var(--holo); background-size: 300% 100%;
+            animation: holoShift 6s linear infinite; opacity: 0;
+            transition: opacity var(--t-mid) ease;
+        }
+        .app-cell:hover::after { opacity: .7; }
+
+        .app-cell-kicker {
+            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .26em;
+            text-transform: uppercase; color: var(--ink-faint);
+        }
+        .app-cell h3 {
+            font-family: var(--f-display); font-weight: 600; font-size: 1.12rem;
+            margin: .2rem 0 0; line-height: 1.25; color: var(--ink);
+        }
+        .app-cell p { color: var(--text-muted); font-size: .93rem; margin: .4rem 0 0; line-height: 1.65; }
+        .app-cell .app-cta { margin-top: auto; padding-top: 1.2rem; }
+
+        /* tag chips on app cards */
+        .app-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .7rem; }
+        .app-tag {
+            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .12em;
+            text-transform: uppercase; padding: .28rem .65rem; border-radius: var(--r-pill);
+            border: 1px solid rgba(199,165,247,.22); color: var(--violet);
+            background: rgba(199,165,247,.06);
+        }
+        .app-tag.mint { border-color: rgba(159,232,214,.22); color: var(--mint); background: rgba(159,232,214,.06); }
+        .app-tag.gold { border-color: rgba(242,223,184,.22); color: var(--gold); background: rgba(242,223,184,.06); }
+        .app-tag.rose { border-color: rgba(243,179,207,.22); color: var(--rose); background: rgba(243,179,207,.06); }
+
+        /* app viz area */
+        .app-viz {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 110px; margin: .6rem 0; flex: 1;
+        }
+
+        /* ── Image Gen viz (HSX StudioFlow & HSX Vanta) ──────────────── */
+        .viz-gen {
+            position: relative; width: 200px; height: 120px; border-radius: 12px; overflow: hidden;
+            background: rgba(255,255,255,.03); border: 1px solid var(--line);
+        }
+        .vgen-canvas {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg,
+                rgba(199,165,247,.4) 0%, rgba(243,179,207,.35) 25%,
+                rgba(242,223,184,.45) 50%, rgba(159,232,214,.4) 75%,
+                rgba(188,217,244,.35) 100%);
+            transform-origin: left; animation: vimgrender 3.8s var(--ease) infinite;
+        }
+        .vgen-canvas.vanta {
+            background: linear-gradient(145deg,
+                rgba(242,223,184,.45) 0%, rgba(243,179,207,.4) 30%,
+                rgba(159,232,214,.35) 60%, rgba(199,165,247,.4) 100%);
+            animation-delay: 1.2s;
+        }
+        .vgen-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .vgen-bar {
+            position: absolute; left: 8%; right: 8%; bottom: 8px; height: 3px;
+            border-radius: 99px; background: rgba(8,7,12,.5); overflow: hidden;
+        }
+        .vgen-bar::after {
+            content: ''; position: absolute; inset: 0; border-radius: 99px;
+            background: linear-gradient(90deg, var(--violet), var(--mint));
+            animation: vgfill 3.8s var(--ease) infinite;
+        }
+        .vgen-bar.vanta::after {
+            background: linear-gradient(90deg, var(--gold), var(--rose));
+            animation-delay: 1.2s;
+        }
+        .vgen-prompt {
+            position: absolute; top: 8px; left: 8px; right: 8px;
+            font-family: var(--f-mono); font-size: .48rem; letter-spacing: .06em;
+            color: rgba(255,255,255,.7); background: rgba(8,7,12,.5);
+            padding: .3rem .5rem; border-radius: 6px; border: 1px solid rgba(255,255,255,.08);
+            animation: vchin 5s var(--ease) infinite;
+        }
+
+        /* ── HSX Stillmotion viz (photo/video library) ────────────────────── */
+        .viz-still {
+            position: relative; width: 180px; height: 110px; border-radius: 10px;
+            overflow: hidden; background: rgba(255,255,255,.03); border: 1px solid var(--line);
+            display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px;
+        }
+        .vstill-thumb {
+            flex: 1; border-radius: 6px; height: 80px;
+            animation: vgalift 3.6s var(--ease) infinite;
+            position: relative; overflow: hidden;
+        }
+        .vstill-thumb:nth-child(1) { background: linear-gradient(165deg,#2c3550,#1a2030 60%,#3a3050); animation-delay: 0s; }
+        .vstill-thumb:nth-child(2) { background: linear-gradient(165deg,#412e44,#241a2c 60%,#503a45); animation-delay: .5s; flex: 1.4; }
+        .vstill-thumb:nth-child(3) { background: linear-gradient(165deg,#2e4140,#1a2825 60%,#3a5048); animation-delay: 1s; }
+        .vstill-glint {
+            position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.12) 50%, transparent 70%);
+            animation: vgaglint 3.6s ease-in-out infinite;
+        }
+        .vstill-bar {
+            position: absolute; left: 10px; right: 10px; bottom: 8px; height: 3px;
+            border-radius: 99px; background: rgba(255,255,255,.06); overflow: hidden;
+        }
+        .vstill-bar::after {
+            content: ''; position: absolute; inset: 0; border-radius: 99px;
+            background: linear-gradient(90deg, var(--rose), var(--gold));
+            animation: vgfill 3s var(--ease) 0.4s infinite;
+        }
+
+        /* ── Pocket AI viz (chat + doc Q&A) ──────────────────────────── */
+        .viz-pocket {
+            position: relative; width: 170px; height: 110px; border-radius: 10px;
+            background: rgba(255,255,255,.03); border: 1px solid var(--line);
+            padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;
+            overflow: hidden;
+        }
+        .vpocket-msg {
+            display: flex; gap: 6px; align-items: flex-end;
+        }
+        .vpocket-bubble {
+            border-radius: 10px; padding: 5px 8px;
+            font-family: var(--f-mono); font-size: .44rem; letter-spacing: .04em;
+            line-height: 1.4; animation: vchin 4s var(--ease) infinite;
+        }
+        .vpocket-bubble.user {
+            background: rgba(199,165,247,.2); color: rgba(255,255,255,.7);
+            border-bottom-right-radius: 3px; align-self: flex-end; margin-left: auto;
+            animation-delay: 0s;
+        }
+        .vpocket-bubble.ai {
+            background: rgba(255,255,255,.07); color: rgba(255,255,255,.6);
+            border-bottom-left-radius: 3px;
+            animation-delay: 1.4s;
+        }
+        .vpocket-dots {
+            display: flex; gap: 3px; align-items: center; padding: 5px 8px;
+            background: rgba(255,255,255,.06); border-radius: 10px; width: fit-content;
+            animation: vchin 4s var(--ease) 2.6s infinite;
+        }
+        .vpocket-dots b {
+            width: 4px; height: 4px; border-radius: 50%;
+            background: rgba(159,232,214,.7); animation: vchdot 1.1s ease-in-out infinite;
+        }
+        .vpocket-dots b:nth-child(2) { animation-delay: .18s; }
+        .vpocket-dots b:nth-child(3) { animation-delay: .36s; }
+
+        /* ── HSX Promptalon viz (prompt builder) ─────────────────────────── */
+        .viz-forge {
+            position: relative; width: 160px; height: 100px; border-radius: 10px;
+            background: rgba(255,255,255,.03); border: 1px solid var(--line);
+            padding: 12px 14px; display: flex; flex-direction: column; gap: 9px;
+            overflow: hidden;
+        }
+        .vforge-line {
+            height: 6px; border-radius: 3px; transform-origin: left;
+            animation: vprtype 3.6s var(--ease) infinite;
+        }
+        .vforge-line:nth-child(1) { background: linear-gradient(90deg, rgba(199,165,247,.7), rgba(255,255,255,.15)); animation-delay: 0s; }
+        .vforge-line:nth-child(2) { width: 78%; background: linear-gradient(90deg, rgba(159,232,214,.6), rgba(255,255,255,.12)); animation-delay: .5s; }
+        .vforge-line:nth-child(3) { width: 55%; background: linear-gradient(90deg, rgba(242,223,184,.6), rgba(255,255,255,.12)); animation-delay: 1s; }
+        .vforge-line:nth-child(4) { width: 82%; background: linear-gradient(90deg, rgba(243,179,207,.55), rgba(255,255,255,.1)); animation-delay: 1.5s; }
+        .vforge-cursor {
+            position: absolute; right: 14px; bottom: 12px;
+            width: 7px; height: 12px; background: var(--mint);
+            animation: blink 1s steps(1) infinite;
+        }
+
+        /* ── Workflow info cells ─────────────────────────────────────── */
+        .app-cell--info {
+            background: linear-gradient(165deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+        }
+        .workflow-steps { display: flex; flex-direction: column; gap: .6rem; margin-top: .8rem; }
+        .ws {
+            display: flex; align-items: center; gap: .75rem;
+            font-size: .88rem; color: var(--text-muted);
+        }
+        .ws-num {
+            width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--f-mono); font-size: .6rem; font-weight: 600;
+            background: var(--holo); background-size: 300% 100%;
+            color: #0b0a10; animation: holoShift 6s linear infinite;
+        }
+
+        /* ── Feature pillars ─────────────────────────────────────────── */
+        .pillar-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem;
+            margin-top: 2.6rem;
+        }
+        @media (max-width: 680px) { .pillar-grid { grid-template-columns: 1fr; } }
+        .pillar {
+            padding: 1.5rem 1.4rem; border-radius: var(--r-lg);
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            text-align: center; transition: transform var(--t-mid) var(--ease), border-color var(--t-mid) var(--ease);
+        }
+        .pillar:hover { transform: translateY(-4px); border-color: rgba(199,165,247,.3); }
+        .pillar-icon {
+            width: 46px; height: 46px; border-radius: 14px; margin: 0 auto .9rem;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+            border: 1px solid var(--card-border);
+        }
+        .pillar h4 { font-family: var(--f-display); font-weight: 500; font-size: .95rem; margin: 0 0 .45rem; }
+        .pillar p { color: var(--text-muted); font-size: .88rem; margin: 0; }
+
+        /* ── Gallery section ─────────────────────────────────────────── */
+        .gallery-header {
+            display: flex; align-items: flex-end; justify-content: space-between;
+            gap: 1rem; flex-wrap: wrap; margin-bottom: 1.8rem;
+        }
+        .gallery-header .section-header { text-align: left; margin: 0; }
+        .gallery-header .section-header h2::after { margin-left: 0; }
+        .gallery-filter {
+            display: flex; gap: .4rem; flex-wrap: wrap; align-items: center;
+        }
+        .gf-btn {
+            font-family: var(--f-mono); font-size: .65rem; font-weight: 500;
+            letter-spacing: .13em; text-transform: uppercase; cursor: pointer;
+            color: var(--ink-soft); background: rgba(255,255,255,.035);
+            border: 1px solid var(--card-border); border-radius: var(--r-pill);
+            padding: .45rem 1rem; transition: all var(--t-fast) var(--ease);
+        }
+        .gf-btn:hover { color: var(--ink); border-color: var(--accent-line); transform: translateY(-2px); }
+        .gf-btn.active {
+            color: #0b0a10; background: var(--holo); background-size: 260% 100%;
+            border-color: transparent; box-shadow: 0 6px 20px -8px rgba(199,165,247,.5);
+        }
+
+        /* Gallery grid — masonry-ish via CSS columns */
+        .port-grid {
+            columns: 4; column-gap: .9rem; gap: .9rem;
+        }
+        @media (max-width: 900px) { .port-grid { columns: 3; } }
+        @media (max-width: 600px) { .port-grid { columns: 2; } }
+        @media (max-width: 380px) { .port-grid { columns: 1; } }
+
+        .port-item {
+            break-inside: avoid; margin-bottom: .9rem; aspect-ratio: unset;
+            border-radius: var(--r-md); overflow: hidden;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            cursor: pointer; display: block;
+            transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+        }
+        .port-item:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: var(--accent-line);
+            box-shadow: 0 20px 50px -18px rgba(0,0,0,.85), 0 0 0 1px rgba(199,165,247,.12);
+        }
+        .port-item img { width: 100%; display: block; object-fit: cover; }
+        .port-item-meta {
+            padding: .65rem .8rem .75rem;
+            background: linear-gradient(180deg, transparent, rgba(8,7,12,.8));
+            position: absolute; inset: auto 0 0;
+            font-family: var(--f-mono); font-size: .56rem; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--ink-faint);
+            opacity: 0; transition: opacity var(--t-fast) ease;
+        }
+        .port-item:hover .port-item-meta { opacity: 1; }
+        .port-item-meta strong { display: block; color: var(--ink-soft); font-size: .62rem; margin-bottom: .15rem; }
+
+        /* empty state */
+        .port-empty {
+            column-span: all; text-align: center; padding: 4rem 1rem;
+            color: var(--ink-faint); font-family: var(--f-mono); font-size: .82rem;
+            letter-spacing: .12em; border: 1px dashed var(--line); border-radius: var(--r-lg);
+        }
+        .port-empty .port-empty-icon { font-size: 2rem; margin-bottom: .8rem; opacity: .4; }
+        .port-empty p { margin: 0; }
+
+        /* Lightbox */
+        .port-lightbox {
+            display: none; position: fixed; inset: 0; z-index: 1400;
+            background: rgba(4,3,8,.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            align-items: center; justify-content: center; flex-direction: column; gap: 1rem;
+        }
+        .port-lightbox.open { display: flex; }
+        .lb-img-wrap {
+            position: relative; display: flex; align-items: center; justify-content: center;
+            max-width: 90vw;
+        }
+        .port-lightbox img {
+            max-width: 90vw; max-height: 80vh; border-radius: var(--r-md); object-fit: contain;
+            box-shadow: 0 40px 120px rgba(0,0,0,.85);
+        }
+        .port-lb-caption {
+            text-align: center; font-family: var(--f-mono); font-size: .66rem;
+            letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint);
+        }
+        .port-lb-caption strong { display: block; color: var(--ink); font-size: .82rem; margin-bottom: .2rem; font-family: var(--f-display); font-weight: 500; letter-spacing: .01em; }
+        .port-lightbox-close {
+            position: fixed; top: 22px; right: 28px; font-size: 1.8rem; color: var(--ink);
+            cursor: pointer; background: rgba(255,255,255,.06); border: 1px solid var(--card-border);
+            border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+            line-height: 1; opacity: .8; transition: opacity var(--t-fast) ease, border-color var(--t-fast) ease;
+        }
+        .port-lightbox-close:hover { opacity: 1; border-color: var(--accent-line); }
+        .lb-nav {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+            width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+            background: rgba(255,255,255,.06); border: 1px solid var(--card-border);
+            color: var(--ink); font-size: 1.4rem; line-height: 1;
+            display: flex; align-items: center; justify-content: center;
+            transition: all var(--t-fast) var(--ease);
+        }
+        .lb-nav:hover { border-color: var(--accent-line); background: rgba(255,255,255,.12); }
+        .lb-prev { left: -60px; }
+        .lb-next { right: -60px; }
+        @media (max-width: 760px) { .lb-prev { left: 6px; } .lb-next { right: 6px; } }
+
+        /* ── Buy Panel ───────────────────────────────────────────────── */
+        .buy-panel {
+            position: relative; border-radius: 28px; overflow: hidden; isolation: isolate;
+            padding: clamp(2.8rem, 6vw, 4.6rem) clamp(1.8rem, 5vw, 3.6rem);
+            background: linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.012) 60%);
+            border: 1px solid var(--card-border);
+            backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+            box-shadow: 0 50px 100px -40px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.09);
+            text-align: center;
+        }
+        /* prismatic top edge */
+        .buy-panel::before {
+            content: ''; position: absolute; top: 0; left: 6%; right: 6%; height: 1px;
+            background: var(--holo); background-size: 300% 100%;
+            animation: holoShift 6s linear infinite; opacity: 1;
+        }
+        /* ambient glow blobs */
+        .buy-panel::after {
+            content: ''; position: absolute; inset: -40px; z-index: -1; pointer-events: none;
+            background:
+                radial-gradient(600px 500px at 15% 50%, rgba(199,165,247,.10), transparent 60%),
+                radial-gradient(500px 400px at 85% 40%, rgba(159,232,214,.08), transparent 60%);
+        }
+        .bp-eyebrow {
+            display: inline-flex; align-items: center; gap: .6rem;
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .28em;
+            text-transform: uppercase; color: var(--ink-faint);
+            padding: .42rem 1rem; border-radius: var(--r-pill);
+            background: rgba(255,255,255,.035); border: 1px solid var(--line);
+            margin-bottom: 1.8rem;
+        }
+        .bp-eyebrow .live-dot { margin: 0; }
+        .buy-panel h2 {
+            font-family: var(--f-display); font-weight: 800;
+            font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.1; margin: 0 0 .5rem;
+        }
+        .buy-panel h2 .bp-line1 {
+            display: block;
+            background: linear-gradient(180deg, #fdfcfa 20%, #c9c5da 90%);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .buy-panel h2 .bp-line2 {
+            display: block;
+            background: var(--holo); background-size: 300% 100%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: holoShift 7s linear infinite;
+        }
+        .bp-sub {
+            color: var(--text-muted); font-size: clamp(.95rem, 1.8vw, 1.1rem);
+            line-height: 1.75; max-width: 580px; margin: 0 auto 2.4rem;
+            font-weight: 300;
+        }
+
+        /* app mini-cards row */
+        .bp-apps {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem;
+            margin: 0 0 2.2rem;
+        }
+        @media (max-width: 900px) { .bp-apps { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 560px) { .bp-apps { grid-template-columns: repeat(2, 1fr); } }
+        .bp-app {
+            padding: 1rem .9rem; border-radius: var(--r-md);
+            background: rgba(255,255,255,.04); border: 1px solid var(--card-border);
+            transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+            cursor: pointer; text-decoration: none; display: block;
+        }
+        .bp-app:hover {
+            transform: translateY(-4px); border-color: rgba(199,165,247,.35);
+            box-shadow: 0 16px 40px -16px rgba(0,0,0,.8), 0 0 0 1px rgba(199,165,247,.1);
+            color: var(--ink);
+        }
+        .bp-app-name {
+            font-family: var(--f-display); font-weight: 600; font-size: .78rem;
+            color: var(--ink); margin-bottom: .3rem; line-height: 1.25;
+        }
+        .bp-app-desc {
+            font-family: var(--f-mono); font-size: .56rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--ink-faint); line-height: 1.5;
+        }
+        .bp-app-badge {
+            display: inline-block; margin-top: .55rem;
+            font-family: var(--f-mono); font-size: .52rem; letter-spacing: .12em;
+            text-transform: uppercase; color: var(--mint);
+            padding: .2rem .55rem; border-radius: var(--r-pill);
+            background: rgba(159,232,214,.09); border: 1px solid rgba(159,232,214,.25);
+        }
+
+        /* comparison strip */
+        .bp-compare {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0; flex-wrap: wrap;
+            margin: 0 0 2.4rem;
+            border: 1px solid var(--line); border-radius: var(--r-lg);
+            overflow: hidden; background: var(--bg-soft);
+        }
+        .bp-cmp-item {
+            flex: 1; min-width: 120px; padding: 1.1rem .8rem; text-align: center;
+            border-right: 1px solid var(--line); transition: background var(--t-fast) ease;
+        }
+        .bp-cmp-item:last-child { border-right: none; }
+        .bp-cmp-item:hover { background: rgba(255,255,255,.03); }
+        .bp-cmp-service {
+            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .18em;
+            text-transform: uppercase; color: var(--ink-faint); margin-bottom: .4rem;
+        }
+        .bp-cmp-cost {
+            font-family: var(--f-display); font-weight: 700; font-size: 1.1rem;
+            color: var(--rose); line-height: 1;
+        }
+        .bp-cmp-cost.free {
+            background: var(--holo); background-size: 300% 100%;
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            animation: holoShift 6s linear infinite;
+            font-size: 1.3rem;
+        }
+        .bp-cmp-note {
+            font-family: var(--f-mono); font-size: .52rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--ink-faint); margin-top: .3rem;
+        }
+        .bp-cmp-note.highlight { color: var(--mint); }
+
+        /* store CTA strip */
+        .bp-cta-strip {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1rem; flex-wrap: wrap;
+        }
+        .btn--store {
+            display: inline-flex; align-items: center; gap: .75rem;
+            font-family: var(--f-mono); font-size: .8rem; font-weight: 600;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 1.05rem 2rem; border-radius: var(--r-pill);
+            color: #0b0a10;
+            background: var(--holo); background-size: 260% 100%; background-position: 0% 0;
+            box-shadow: 0 10px 36px -10px rgba(199,165,247,.65), inset 0 1px 0 rgba(255,255,255,.65);
+            transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background-position .4s var(--ease);
+        }
+        .btn--store:hover {
+            color: #0b0a10; background-position: 100% 0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 18px 50px -12px rgba(199,165,247,.8), inset 0 1px 0 rgba(255,255,255,.65);
+        }
+        .btn--store svg { flex-shrink: 0; }
+        .bp-fine {
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .1em;
+            color: var(--ink-faint); margin-top: 1.4rem;
+        }
+        .bp-fine span { color: var(--mint); }
+        /* ══════════════════ CINEMATIC AI GALLERY ══════════════════ */
+        .gal-head {
+            display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+        .gal-kick {
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .24em;
+            text-transform: uppercase; color: var(--ink-faint);
+            display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem;
+        }
+        .gal-kick::before { content: ""; width: 26px; height: 1px; background: var(--holo); }
+        #gallery-title {
+            font-family: var(--f-display); font-weight: 800; letter-spacing: -.02em;
+            font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin: 0 0 .5rem; line-height: 1.06;
+        }
+        .gal-sub { color: var(--ink-soft); margin: 0; max-width: 52ch; font-size: .92rem; }
+        .gallery-filter { display: flex; gap: .35rem; flex-wrap: wrap; margin-left: auto; }
+        .gf-btn {
+            font-family: var(--f-mono); font-size: .64rem; letter-spacing: .1em;
+            text-transform: uppercase; color: var(--ink-soft); cursor: pointer;
+            padding: .55rem .85rem; border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.03); border-radius: 0; transform: none;
+            transition: all .25s var(--ease);
+            clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+        }
+        .gf-btn:hover { color: var(--ink); border-color: var(--accent-line); background: rgba(199,165,247,.07); }
+        .gf-btn.active {
+            color: var(--ink); background: rgba(199,165,247,.14); background-image: none;
+            border-color: rgba(199,165,247,.75); box-shadow: 0 0 18px -6px rgba(199,165,247,.6);
+        }
+        .gf-btn em { font-style: normal; opacity: .55; margin-left: .35rem; }
+
+        /* masonry-style columns keep tall portraits and wide stills together */
+        .gal-grid { columns: 3 260px; column-gap: .85rem; }
+        @media (max-width: 700px) { .gal-grid { columns: 2 150px; } }
+
+        .gal-item {
+            position: relative; display: block; width: 100%; margin: 0 0 .85rem;
+            break-inside: avoid; cursor: pointer; overflow: hidden; border: 0; padding: 0;
+            background: linear-gradient(160deg, #131120, #0c0b13);
+            clip-path: polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+            transition: transform .5s var(--ease), filter .5s var(--ease);
+        }
+        .gal-item img {
+            display: block; width: 100%; height: auto;
+            transition: transform .7s var(--ease), filter .5s var(--ease);
+            filter: saturate(.92) contrast(1.02);
+        }
+        .gal-item:hover { transform: translateY(-4px); filter: drop-shadow(0 20px 40px rgba(199,165,247,.32)); }
+        .gal-item:hover img { transform: scale(1.05); filter: saturate(1.06) contrast(1.05); }
+        .gal-item:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 3px; }
+        .gal-item.hide { display: none; }
+
+        /* holographic edge + cinematic bottom gradient */
+        .gal-item::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background: linear-gradient(to top, rgba(8,7,12,.92) 0%, rgba(8,7,12,.35) 26%, transparent 52%);
+            opacity: 0; transition: opacity .45s var(--ease);
+        }
+        .gal-item:hover::after, .gal-item:focus-visible::after { opacity: 1; }
+        .gal-cap {
+            position: absolute; left: 0; right: 0; bottom: 0; padding: .9rem 1rem;
+            transform: translateY(8px); opacity: 0; pointer-events: none;
+            transition: opacity .45s var(--ease), transform .45s var(--ease);
+        }
+        .gal-item:hover .gal-cap, .gal-item:focus-visible .gal-cap { opacity: 1; transform: none; }
+        .gal-cap-t {
+            font-family: var(--f-display); font-weight: 600; font-size: .84rem;
+            color: var(--ink); line-height: 1.2; margin-bottom: .22rem;
+        }
+        .gal-cap-m {
+            font-family: var(--f-mono); font-size: .56rem; letter-spacing: .13em;
+            text-transform: uppercase; color: var(--ink-soft);
+        }
+        .gal-tagpill {
+            position: absolute; top: .7rem; left: .7rem; z-index: 2;
+            font-family: var(--f-mono); font-size: .53rem; letter-spacing: .14em;
+            text-transform: uppercase; color: var(--ink);
+            background: rgba(8,7,12,.6); border: 1px solid rgba(255,255,255,.16);
+            padding: .16rem .45rem; backdrop-filter: blur(8px);
+            opacity: 0; transition: opacity .45s var(--ease);
+        }
+        .gal-item:hover .gal-tagpill, .gal-item:focus-visible .gal-tagpill { opacity: 1; }
+
+        /* empty state */
+        .gal-empty {
+            text-align: center; padding: 3.6rem 1.5rem;
+            border: 1px dashed rgba(255,255,255,.13); color: var(--ink-faint);
+            clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+        }
+        .gal-empty-frame { color: var(--accent); opacity: .7; margin-bottom: .9rem; }
+        .gal-empty h3 { font-family: var(--f-display); font-size: 1rem; margin: 0 0 .5rem; color: var(--ink); }
+        .gal-empty p { margin: 0 auto; max-width: 46ch; font-size: .86rem; }
+        .gal-empty code {
+            font-family: var(--f-mono); font-size: .8em; color: var(--accent);
+            background: rgba(199,165,247,.1); padding: .1rem .38rem;
+            border: 1px solid rgba(199,165,247,.2);
+        }
+
+        /* ── lightbox ── */
+        .gal-lb {
+            position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center;
+            background: rgba(5,4,9,.92);
+            backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3);
+            opacity: 0; animation: galFade .35s var(--ease) forwards;
+        }
+        .gal-lb[hidden] { display: none; }
+        @keyframes galFade { to { opacity: 1; } }
+        .gal-lb-stage {
+            margin: 0; max-width: min(92vw, 1180px); max-height: 88vh;
+            display: flex; flex-direction: column; align-items: center; gap: 1rem;
+            animation: galRise .45s var(--ease) both;
+        }
+        @keyframes galRise { from { transform: translateY(14px) scale(.985); opacity: 0; } }
+        .gal-lb-stage img {
+            max-width: 100%; max-height: 74vh; width: auto; height: auto; display: block;
+            clip-path: polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px));
+            box-shadow: 0 40px 120px -30px rgba(199,165,247,.5);
+        }
+        .gal-lb-cap { text-align: center; }
+        .gal-lb-title {
+            font-family: var(--f-display); font-weight: 700; font-size: 1.05rem;
+            color: var(--ink); margin-bottom: .3rem;
+        }
+        .gal-lb-meta {
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .16em;
+            text-transform: uppercase; color: var(--ink-soft);
+        }
+        .gal-lb-idx {
+            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .18em;
+            color: var(--ink-faint); margin-top: .5rem;
+        }
+        .gal-lb-close, .gal-lb-nav {
+            position: absolute; background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.14); color: var(--ink);
+            cursor: pointer; display: grid; place-items: center;
+            transition: all .25s var(--ease); backdrop-filter: blur(10px);
+        }
+        .gal-lb-close {
+            top: 1.4rem; right: 1.4rem; width: 40px; height: 40px; font-size: 1rem; border-radius: 50%;
+        }
+        .gal-lb-nav {
+            top: 50%; transform: translateY(-50%); width: 46px; height: 46px;
+            font-size: 1.7rem; line-height: 1; padding-bottom: .18em; border-radius: 50%;
+        }
+        .gal-prev { left: 1.4rem; } .gal-next { right: 1.4rem; }
+        .gal-lb-close:hover, .gal-lb-nav:hover {
+            background: rgba(199,165,247,.2); border-color: var(--accent-line);
+            box-shadow: 0 0 24px -6px rgba(199,165,247,.7);
+        }
+        @media (max-width: 620px) {
+            .gal-lb-nav { width: 38px; height: 38px; font-size: 1.4rem; }
+            .gal-prev { left: .5rem; } .gal-next { right: .5rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .gal-item, .gal-item img, .gal-lb, .gal-lb-stage { transition: none; animation: none; opacity: 1; }
+        }
+
+    </style>
+    <meta name="robots" content="index, follow"/>
+    <meta name="author" content="Hasnain Studio X"/>
+    <meta name="keywords" content="local AI image generator Windows, offline AI image generator, AI image generation no subscription, stable diffusion Windows app, run AI locally Windows, HSX StudioFlow, local AI studio GPU, AI image generator no cloud"/>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.hasnainstudiox.com/HSXAIstudio.html#webpage",
+          "url": "https://www.hasnainstudiox.com/HSXAIstudio.html",
+          "name": "HSX AI Studio | Local AI Image Generation for Windows",
+          "isPartOf": { "@id": "https://www.hasnainstudiox.com/#website" },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hasnainstudiox.com/" },
+              { "@type": "ListItem", "position": 2, "name": "AI Studio", "item": "https://www.hasnainstudiox.com/HSXAIstudio.html" }
+            ]
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "HSX AI Studio",
+          "applicationCategory": "GraphicsApplication",
+          "operatingSystem": "Windows 10, Windows 11",
+          "description": "A suite of local AI image generation apps for Windows — HSX StudioFlow, HSX Vanta, and HSX Pocket AI. Run Stable Diffusion and local AI models on your own GPU with no cloud dependency, no API keys, and no subscription.",
+          "featureList": [
+            "GPU-accelerated local AI image generation",
+            "Text-to-image with no internet connection required",
+            "Face-aware portrait enhancement and processing",
+            "Local AI chat and document Q&A",
+            "No API keys, no cloud uploads, no subscription fees",
+            "Batch export with custom naming templates"
+          ],
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "0",
+            "priceCurrency": "GBP",
+            "offerCount": "3",
+            "offers": [
+              { "@type": "Offer", "name": "HSX StudioFlow", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9P6NZMCG20P8" },
+              { "@type": "Offer", "name": "HSX Vanta", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9NJF6CLN5RPD" },
+              { "@type": "Offer", "name": "HSX Pocket AI", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9PFFP713N7X2" }
+            ]
+          },
+          "publisher": { "@id": "https://www.hasnainstudiox.com/#organization" }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Can I generate AI images locally on Windows without an internet connection?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. HSX StudioFlow, HSX Vanta, and HSX Pocket AI all run entirely on your local GPU with no internet connection required. Once downloaded from the Microsoft Store, they work 100% offline."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need an API key or subscription to use the HSX AI apps?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. There are no API keys, no monthly fees, and no subscription. Each app is available with a free trial on the Microsoft Store, then a one-time purchase for lifetime access with unlimited generation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are my AI-generated images uploaded to the cloud?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Every image you generate stays on your device. The apps never upload your prompts, face photos, or generated images anywhere. Zero cloud dependency."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What GPU do I need to run local AI image generation on Windows?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The HSX AI apps support NVIDIA GPUs via CUDA and AMD/Intel Arc via Vulkan. A GPU with at least 4GB VRAM is recommended for smooth generation."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1432225360723485" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="top-bar" role="banner" aria-label="Top navigation">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="title">
+                <div class="name">Hasnain</div>
+                <div class="sub">Studio X</div>
+            </div>
+        </div>
+        <nav aria-label="Primary" role="navigation">
+            <a href="index.html">Home</a>
+            <a href="Windows-apps.html">Windows</a>
+            <a href="android-apps.html">Android</a>
+            <a href="HSXAIstudio.html" class="active">AI Studio</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <main class="container" role="main">
+
+        <!-- ── AI Studio Hero ── -->
+        <section class="ai-hero" aria-label="AI Studio introduction">
+            <div>
+                <div class="ai-eyebrow">Creative · GPU-Powered · Fully Local</div>
+                <h1>
+                    <span class="line-plain">Generation that never</span>
+                    <span class="line-holo">leaves the room.</span>
+                </h1>
+                <p class="lead">Applications for image generation, photo and video editing, local AI chat and prompt engineering. Every model runs on your own GPU — no API keys, no queues, no per-image billing.</p>
+                <div style="display:flex;gap:.9rem;flex-wrap:wrap;">
+                    <a class="btn btn--primary" href="#apps-portfolio">Explore AI Apps →</a>
+                    <a class="btn btn--secondary" href="#ai-gallery">View AI Gallery</a>
+                </div>
+                <div class="ai-hero-badges">
+                    <span class="ai-badge"><span class="dot"></span>Now Accepting Projects</span>
+                    <span class="ai-badge">GPU-Powered</span>
+                    <span class="ai-badge">0 Subscriptions</span>
+                    <span class="ai-badge">100% Offline</span>
+                </div>
+            </div>
+
+            <!-- Animated orbital stage -->
+            <div class="ai-hero-stage" aria-hidden="true">
+                <div class="ai-orb-wrap">
+                    <div class="ai-ring ai-ring-1"></div>
+                    <div class="ai-ring ai-ring-2"></div>
+                    <div class="ai-ring ai-ring-3"></div>
+                    <div class="ai-core">
+                        <div class="ai-core-label">AI Studio</div>
+                        <div class="ai-core-val">HSX</div>
+                    </div>
+                </div>
+                <!-- floating mini-cards -->
+                <div class="ai-float-card ai-fc-1">
+                    <div class="afc-name">HSX StudioFlow</div>
+                    Image Gen · GPU · SDXL
+                </div>
+                <div class="ai-float-card ai-fc-2">
+                    <div class="afc-name">HSX Stillmotion</div>
+                    Photo &amp; Video · Local
+                </div>
+                <div class="ai-float-card ai-fc-3">
+                    <div class="afc-name">HSX Pocket AI</div>
+                    Chat · Docs · Images
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════ AI WORK GALLERY ══════════════════ -->
+        <section class="section" id="ai-gallery" aria-labelledby="gallery-title">
+            <div class="gal-head">
+                <div>
+                    <div class="gal-kick">Selected Output</div>
+                    <h2 id="gallery-title">Made on this hardware</h2>
+                    <p class="gal-sub">Generated locally with StudioFlow and Vanta. No cloud render, no external service, no upload.</p>
+                </div>
+                <div class="gallery-filter" id="gal-filters" role="group" aria-label="Filter gallery"></div>
+            </div>
+
+            <div class="gal-grid" id="gal-grid" role="list" aria-label="AI artwork"></div>
+
+            <div class="gal-empty" id="gal-empty" hidden>
+                <div class="gal-empty-frame">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="9" r="1.6"/><path d="M3 16l5-4 4 3 4-4 5 4"/></svg>
+                </div>
+                <h3>The gallery is empty</h3>
+                <p>Drop your artwork into the <code>images</code> folder, then run <code>update-gallery.bat</code>. This section fills itself in.</p>
+            </div>
+        </section>
+
+        <!-- cinematic lightbox -->
+        <div class="gal-lb" id="gal-lb" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
+            <button class="gal-lb-close" id="gal-lb-close" aria-label="Close viewer">&#x2715;</button>
+            <button class="gal-lb-nav gal-prev" id="gal-prev" aria-label="Previous">&#8249;</button>
+            <button class="gal-lb-nav gal-next" id="gal-next" aria-label="Next">&#8250;</button>
+            <figure class="gal-lb-stage">
+                <img id="gal-lb-img" alt=""/>
+                <figcaption class="gal-lb-cap">
+                    <div class="gal-lb-title" id="gal-lb-title"></div>
+                    <div class="gal-lb-meta" id="gal-lb-meta"></div>
+                    <div class="gal-lb-idx" id="gal-lb-idx"></div>
+                </figcaption>
+            </figure>
+        </div>
+
+        <!-- Ad: banner between the gallery and the app portfolio ── -->
+        <div class="ad-slot ad-slot--banner" aria-label="Advertisement">
+            <span class="ad-slot-label">Advertisement</span>
+            <span class="ad-slot-placeholder">Ad space reserved — activates once AdSense review completes</span>
+            <!-- Replace this comment with your unit once approved:
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- ── Apps Portfolio ── -->
+        <section class="section reveal" id="apps-portfolio" aria-labelledby="apps-title">
+            <div class="section-header">
+                <h2 id="apps-title">The five applications</h2>
+                <p>The full creative pipeline — generate, refine, organise and produce — with every stage running locally.</p>
+            </div>
+
+            <div class="app-bento">
+
+                <!-- HSX StudioFlow — flagship image gen (large) -->
+                <article class="app-cell ab-span4 ab-row2" id="hsx-studioflow">
+                    <div class="app-cell-kicker">AI Image Generation · Windows · GPU-Powered</div>
+                    <h3>HSX StudioFlow</h3>
+                    <p>The flagship AI image studio. Text-to-image and image-to-image generation using SDXL and SD 1.5 checkpoints, running entirely on your own GPU. Includes advanced face swap, face restore, face &amp; hand detailing, and upscaling — all built into a streamlined local workflow. No internet, no fees, no limits.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">SDXL · SD 1.5</span>
+                        <span class="app-tag mint">Local GPU</span>
+                        <span class="app-tag gold">Face Tools</span>
+                        <span class="app-tag rose">Upscaling</span>
+                    </div>
+                    <div class="app-viz">
+                        <div class="viz-gen" aria-hidden="true">
+                            <div class="vgen-canvas"></div>
+                            <div class="vgen-grid"></div>
+                            <div class="vgen-prompt">prompt: cinematic portrait, volumetric light, SDXL...</div>
+                            <div class="vgen-bar"></div>
+                        </div>
+                    </div>
+                    <div class="app-cta">
+                        <a class="btn btn--primary" href="Windows-apps.html">View on Windows Apps →</a>
+                    </div>
+                </article>
+
+                <!-- HSX Vanta — image gen from text prompts -->
+                <article class="app-cell ab-span2 ab-row2">
+                    <div class="app-cell-kicker">AI Image Generation · Text-to-Image</div>
+                    <h3>HSX Vanta</h3>
+                    <p>Generate images from text prompts with an AI engine that runs entirely on your device. Includes face processing and image enhancement — fully local, zero uploads.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">Text-to-Image</span>
+                        <span class="app-tag gold">Face Processing</span>
+                    </div>
+                    <div class="app-viz" style="min-height:100px;">
+                        <div class="viz-gen" aria-hidden="true">
+                            <div class="vgen-canvas vanta"></div>
+                            <div class="vgen-grid"></div>
+                            <div class="vgen-prompt">prompt: golden hour, portrait, warm tones...</div>
+                            <div class="vgen-bar vanta"></div>
+                        </div>
+                    </div>
+                    <div class="app-cta">
+                        <a class="btn btn--secondary" href="Windows-apps.html">Learn More</a>
+                    </div>
+                </article>
+
+                <!-- HSX Stillmotion — photo & video library/editor -->
+                <article class="app-cell ab-span3">
+                    <div class="app-cell-kicker">Photo &amp; Video · Organise · Edit · Export</div>
+                    <h3>HSX Stillmotion</h3>
+                    <p>Organise, edit, and export your photos and videos in one unified local library. Zero upload policy — your media never leaves your device, no cloud sync, no model training on your content.</p>
+                    <div class="app-tags">
+                        <span class="app-tag rose">Photo Library</span>
+                        <span class="app-tag mint">Video Edit</span>
+                        <span class="app-tag">Zero Upload</span>
+                    </div>
+                    <div class="app-viz" style="min-height:90px;">
+                        <div class="viz-still" aria-hidden="true">
+                            <div class="vstill-thumb"></div>
+                            <div class="vstill-thumb"></div>
+                            <div class="vstill-thumb"></div>
+                            <div class="vstill-glint"></div>
+                            <div class="vstill-bar"></div>
+                        </div>
+                    </div>
+                    <div class="app-cta">
+                        <a class="btn btn--secondary" href="Windows-apps.html">Learn More</a>
+                    </div>
+                </article>
+
+                <!-- HSX Promptalon — prompt builder & workflow -->
+                <article class="app-cell ab-span3">
+                    <div class="app-cell-kicker">Prompt Engineering · Workflow Organisation</div>
+                    <h3>HSX Promptalon</h3>
+                    <p>Build, organise, and refine AI prompts with a dedicated desktop tool. Structure complex prompt chains, save and reuse templates, and manage your entire AI workflow in one place — locally.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">Prompt Builder</span>
+                        <span class="app-tag mint">Workflow Tools</span>
+                        <span class="app-tag gold">Template Library</span>
+                    </div>
+                    <div class="app-viz" style="min-height:90px;">
+                        <div class="viz-forge" aria-hidden="true">
+                            <div class="vforge-line"></div>
+                            <div class="vforge-line"></div>
+                            <div class="vforge-line"></div>
+                            <div class="vforge-line"></div>
+                            <div class="vforge-cursor"></div>
+                        </div>
+                    </div>
+                    <div class="app-cta">
+                        <a class="btn btn--secondary" href="Windows-apps.html">Learn More</a>
+                    </div>
+                </article>
+
+                <!-- HSX Pocket AI — local AI companion -->
+                <article class="app-cell ab-span4 app-cell--info">
+                    <div class="app-cell-kicker">Local AI Companion · Chat · Docs · Images</div>
+                    <h3>HSX Pocket AI</h3>
+                    <p>A private, all-in-one AI companion that runs entirely on your machine. Chat with a local language model, ask questions over your own documents, and generate images — all without sending a single byte to any server. Your conversations, files, and images stay completely yours.</p>
+                    <div class="app-tags">
+                        <span class="app-tag">Local LLM Chat</span>
+                        <span class="app-tag mint">Document Q&amp;A</span>
+                        <span class="app-tag rose">Image Generation</span>
+                        <span class="app-tag gold">100% Private</span>
+                    </div>
+                    <div style="margin-top:auto; padding-top:1.2rem; display:flex; gap:.8rem; align-items:center; flex-wrap:wrap;">
+                        <a class="btn btn--primary" href="Windows-apps.html">View on Windows Apps →</a>
+                        <div class="viz-pocket" aria-hidden="true" style="margin:0;border:none;background:transparent;">
+                            <div class="vpocket-msg" style="justify-content:flex-end;"><div class="vpocket-bubble user">Generate a portrait...</div></div>
+                            <div class="vpocket-msg"><div class="vpocket-bubble ai">Running on your GPU now</div></div>
+                            <div class="vpocket-dots"><b></b><b></b><b></b></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Zero cloud principle -->
+                <article class="app-cell ab-span2 app-cell--info">
+                    <div class="app-cell-kicker">Studio Principle</div>
+                    <h3>Zero Cloud. Infinite Output.</h3>
+                    <p>Every AI Studio app runs entirely on your hardware. No API keys, no usage caps, no monthly costs. Your creative pipeline is yours — permanently.</p>
+                    <div class="app-tags" style="margin-top:auto; padding-top:.8rem;">
+                        <span class="app-tag mint">Fully Offline</span>
+                        <span class="app-tag">Privacy First</span>
+                        <span class="app-tag gold">No Limits</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Feature pillars -->
+            <div class="pillar-grid reveal">
+                <div class="pillar">
+                    <div class="pillar-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    </div>
+                    <h4>GPU Generation, No Queues</h4>
+                    <p>StudioFlow and Vanta run directly on your GPU — NVIDIA or AMD. No cloud waitlists, no rate limits. Generate at full speed, all the time.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                    </div>
+                    <h4>Full Creative Pipeline</h4>
+                    <p>From generating raw images in StudioFlow, refining prompts in HSX Promptalon, organising in HSX Stillmotion, to chatting with Pocket AI — the whole workflow, local.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4>Zero Data Sent, Ever</h4>
+                    <p>Your prompts, images, chats, and documents never leave your machine. All five apps are built with the same privacy-first principle — no exceptions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── AI Work Gallery ── -->
+
+
+        <!-- ── Get the Apps ── -->
+        <section class="section reveal" aria-labelledby="buy-title">
+            <div class="buy-panel">
+
+                <div class="bp-eyebrow">
+                    <span class="live-dot"></span>
+                    Microsoft Store · Available Now · Windows 10/11
+                </div>
+
+                <h2 id="buy-title">
+                    <span class="bp-line1">Buy once.</span>
+                    <span class="bp-line2">Own it permanently.</span>
+                </h2>
+
+                <p class="bp-sub">
+                    Each application is a one-time purchase on the Microsoft Store. No subscription, no usage caps, and no data leaving your machine.
+                </p>
+
+                <!-- Store CTA -->
+                <div class="bp-cta-strip">
+                    <a class="btn--store" href="Windows-apps.html">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7.1H3zM3 12.5h7.5v7.1L3 18.5zM11.5 4.2 21 3v8.5h-9.5zM11.5 12.5H21V21l-9.5-1.2z"/></svg>
+                        Get on Microsoft Store
+                    </a>
+                    <a class="btn btn--secondary" href="contact.html">Questions? Get in Touch</a>
+                </div>
+
+                <p class="bp-fine">All apps run <span>100% offline</span> · <span>Zero telemetry</span> · <span>No accounts required</span> · Windows 10 &amp; 11</p>
+
+            </div>
+        </section>
+
+    </main>
+
+    </div>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Hasnain Studio X</div>
+                    <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">AI Studio</h4>
+                    <ul class="footer-links">
+                        <li><a href="#apps-portfolio">App Portfolio</a></li>
+                        <li><a href="#ai-gallery">AI Gallery</a></li>
+                        <li><a href="contact.html">Book a Session</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="Windows-apps.html">Windows Apps</a></li>
+                        <li><a href="android-apps.html">Android Apps</a></li>
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
+                        <li>England, United Kingdom</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 InHasnain. All rights reserved.</span>
+                <span>Built with accessibility-first and responsive design standards.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="fluid.js" defer></script>
+    <script src="site.js" defer></script>
+    <script src="effects.js" defer></script>
+
+    <script src="gallery-data.js"></script>
+    <script>
+    /* ══ AI gallery — renders from gallery-data.js, no build step needed ══ */
+    (function () {
+        var DATA = (window.GALLERY_IMAGES || []).filter(function (i) { return i && i.src; });
+        var grid    = document.getElementById('gal-grid');
+        var empty   = document.getElementById('gal-empty');
+        var filters = document.getElementById('gal-filters');
+        if (!grid) return;
+
+        var LABEL = { all:'All', portrait:'Portrait', concept:'Concept',
+                      video:'Video', product:'Product', other:'Other' };
+
+        if (!DATA.length) {
+            grid.hidden = true;
+            if (filters) filters.hidden = true;
+            if (empty) empty.hidden = false;
+            return;
+        }
+
+        /* filters built from what actually exists */
+        var counts = {};
+        DATA.forEach(function (i) { counts[i.tag || 'other'] = (counts[i.tag || 'other'] || 0) + 1; });
+        var tags = ['all'].concat(Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; }));
+        if (filters) {
+            filters.innerHTML = tags.map(function (t, n) {
+                var c = t === 'all' ? DATA.length : counts[t];
+                return '<button class="gf-btn' + (n === 0 ? ' active' : '') + '" data-filter="' + t + '">'
+                     + (LABEL[t] || t) + ' <em>' + c + '</em></button>';
+            }).join('');
+            if (tags.length <= 2) filters.hidden = true;   // one category: no point filtering
+        }
+
+        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+            return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c]; }); }
+
+        grid.innerHTML = DATA.map(function (i, n) {
+            var ratio = (i.w && i.h) ? ' width="' + i.w + '" height="' + i.h + '"' : '';
+            return '<button class="gal-item" role="listitem" data-i="' + n + '"'
+                 + ' data-tag="' + esc(i.tag || 'other') + '" aria-label="' + esc(i.title || 'Artwork') + '">'
+                 + '<span class="gal-tagpill">' + esc(LABEL[i.tag] || i.tag || 'Other') + '</span>'
+                 + '<img src="' + esc(i.src) + '" alt="' + esc(i.alt || i.title || '') + '"'
+                 + ' loading="lazy" decoding="async"' + ratio + '/>'
+                 + '<span class="gal-cap">'
+                 +   '<span class="gal-cap-t">' + esc(i.title || '') + '</span>'
+                 +   (i.desc ? '<span class="gal-cap-m">' + esc(i.desc) + '</span>' : '')
+                 + '</span></button>';
+        }).join('');
+
+        /* filtering */
+        if (filters) filters.addEventListener('click', function (e) {
+            var b = e.target.closest('.gf-btn'); if (!b) return;
+            filters.querySelectorAll('.gf-btn').forEach(function (x) { x.classList.remove('active'); });
+            b.classList.add('active');
+            var f = b.dataset.filter;
+            grid.querySelectorAll('.gal-item').forEach(function (el) {
+                el.classList.toggle('hide', f !== 'all' && el.dataset.tag !== f);
+            });
+        });
+
+        /* ── lightbox ── */
+        var lb    = document.getElementById('gal-lb'),
+            lbImg = document.getElementById('gal-lb-img'),
+            lbT   = document.getElementById('gal-lb-title'),
+            lbM   = document.getElementById('gal-lb-meta'),
+            lbI   = document.getElementById('gal-lb-idx');
+        var cur = 0, lastFocus = null;
+
+        function visible() {
+            return [].slice.call(grid.querySelectorAll('.gal-item:not(.hide)'))
+                     .map(function (el) { return +el.dataset.i; });
+        }
+        function show(n) {
+            var list = visible(); if (!list.length) return;
+            cur = (n + list.length) % list.length;
+            var d = DATA[list[cur]];
+            lbImg.src = d.src; lbImg.alt = d.alt || d.title || '';
+            lbT.textContent = d.title || '';
+            lbM.textContent = d.desc || '';
+            lbI.textContent = (cur + 1) + ' / ' + list.length;
+        }
+        function open(el) {
+            lastFocus = el;
+            var list = visible();
+            show(Math.max(0, list.indexOf(+el.dataset.i)));
+            lb.hidden = false; document.body.style.overflow = 'hidden';
+            document.getElementById('gal-lb-close').focus();
+        }
+        function close() {
+            lb.hidden = true; document.body.style.overflow = '';
+            lbImg.removeAttribute('src');
+            if (lastFocus) lastFocus.focus();
+        }
+
+        grid.addEventListener('click', function (e) {
+            var it = e.target.closest('.gal-item'); if (it) open(it);
+        });
+        document.getElementById('gal-lb-close').addEventListener('click', close);
+        document.getElementById('gal-prev').addEventListener('click', function () { show(cur - 1); });
+        document.getElementById('gal-next').addEventListener('click', function () { show(cur + 1); });
+        lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+        document.addEventListener('keydown', function (e) {
+            if (lb.hidden) return;
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowLeft') show(cur - 1);
+            if (e.key === 'ArrowRight') show(cur + 1);
+        });
+    })();
+    </script>
+
+</body>
+</html>

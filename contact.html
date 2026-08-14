@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Contact — Support &amp; Licensing | Hasnain Studio X</title>
+        <meta name="description" content="Contact Hasnain Studio X for app support, licensing enquiries, or feedback. Messages go straight to the developer — no bots, reply within 2 business days."/>
+        <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+        <link rel="canonical" href="https://www.hasnainstudiox.com/contact.html"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Contact Hasnain Studio X | Direct Developer Support"/>
+        <meta property="og:description" content="Contact Hasnain Studio X for app support, licensing enquiries, or feedback. Messages go straight to the developer — no bots, reply within 2 business days."/>
+        <meta property="og:url" content="https://www.hasnainstudiox.com/contact.html"/>
+        <meta property="og:site_name" content="Hasnain Studio X"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="theme-color" content="#08070c"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site.css" />
+    <style>
+        /* ── Contact page | Obsidian Holographic redesign ── */
+
+        /* Hero overrides */
+        .contact-hero {
+            padding: 7rem 0 4rem;
+            position: relative;
+        }
+        .contact-hero .hero-split {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 3rem;
+            align-items: center;
+        }
+        .contact-hero .hero-eyebrow {
+            letter-spacing: .18em;
+            font-size: .72rem;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            margin-bottom: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+        .contact-hero .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .7;
+        }
+        .contact-hero h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -.02em;
+            color: var(--ink);
+            margin: 0 0 1.5rem;
+        }
+        .contact-hero .lead {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--ink-soft);
+            max-width: 540px;
+            margin-bottom: 2rem;
+        }
+        .contact-hero .proof-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+        }
+        .contact-hero .proof-chip {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .75rem;
+            font-weight: 500;
+            letter-spacing: .08em;
+            color: var(--ink-soft);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: .4rem .85rem;
+            border-radius: 99px;
+        }
+        .contact-hero .proof-chip b {
+            color: var(--ink);
+            font-weight: 600;
+        }
+        .hero-beacon-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            min-height: 240px;
+        }
+
+        /* ── Contact grid ── */
+        .contact-section {
+            padding: 0 0 5rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* ── Form column ── */
+        .contact-form-col .section-header {
+            margin-bottom: 2rem;
+        }
+        .contact-form-col .section-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 0 0 .5rem;
+            letter-spacing: -.01em;
+        }
+        .contact-form-col .section-header p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .9rem;
+            color: var(--ink-soft);
+            margin: 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem 2rem 2.2rem;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+        .form-group label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--surface, rgba(255,255,255,.04));
+            border: 1px solid var(--line, rgba(255,255,255,.1));
+            border-radius: 10px;
+            padding: .75rem 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .92rem;
+            color: var(--ink);
+            transition: border-color .2s, box-shadow .2s;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .form-group select {
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23ffffff' stroke-opacity='0.4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+        .form-group select option {
+            background: #18141f;
+            color: #fff;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--ink-faint, rgba(255,255,255,.28));
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--violet);
+            box-shadow: 0 0 0 3px rgba(199,165,247,.12);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+            line-height: 1.6;
+        }
+        .form-selects-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .form-submit-row {
+            margin-top: .4rem;
+        }
+        .contact-form .btn--primary {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: .04em;
+            padding: .95rem 1.5rem;
+            font-size: .95rem;
+        }
+        .form-status {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .85rem;
+            text-align: center;
+            min-height: 1.2em;
+            color: var(--mint);
+            margin: 0;
+        }
+
+        /* ── Info column ── */
+        .contact-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-info-col .section-header {
+            margin-bottom: .5rem;
+        }
+        .contact-info-col .section-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 0 0 .5rem;
+            letter-spacing: -.01em;
+        }
+        .contact-info-col .section-header p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .9rem;
+            color: var(--ink-soft);
+            margin: 0 0 1.2rem;
+        }
+
+        .contact-info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.3rem 1.4rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,.35);
+        }
+        a.contact-info-card:hover {
+            border-color: var(--card-accent-color, var(--violet));
+        }
+        .contact-info-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--card-accent-color, var(--violet));
+            border-radius: 3px 0 0 3px;
+            opacity: .8;
+        }
+        .card-icon-wrap {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,.05);
+            border: 1px solid var(--line, rgba(255,255,255,.08));
+        }
+        .card-icon-wrap svg {
+            width: 20px;
+            height: 20px;
+        }
+        .card-text {
+            flex: 1;
+            min-width: 0;
+        }
+        .card-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--card-accent-color, var(--violet));
+            margin-bottom: .25rem;
+        }
+        .card-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .92rem;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.4;
+        }
+        .card-sub {
+            font-size: .78rem;
+            color: var(--ink-soft);
+            margin-top: .2rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ── "What happens next?" strip ── */
+        .next-steps-strip {
+            border-top: 1px solid var(--line, rgba(255,255,255,.08));
+            padding: 4rem 0;
+        }
+        .next-steps-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+        .next-steps-header .eyebrow {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+        }
+        .next-steps-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin: 0;
+            letter-spacing: -.01em;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(16.66% + 1rem);
+            right: calc(16.66% + 1rem);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-line, rgba(242,223,184,.2)) 20%, var(--accent-line, rgba(242,223,184,.2)) 80%, transparent);
+        }
+        .step-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.8rem 1.6rem;
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--surface, rgba(255,255,255,.04));
+            border: 1px solid var(--line, rgba(255,255,255,.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            position: relative;
+            z-index: 1;
+        }
+        .step-card:nth-child(1) .step-number { border-color: var(--gold); color: var(--gold); }
+        .step-card:nth-child(2) .step-number { border-color: var(--violet); color: var(--violet); }
+        .step-card:nth-child(3) .step-number { border-color: var(--mint); color: var(--mint); }
+        .step-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: .65rem;
+            letter-spacing: -.01em;
+        }
+        .step-desc {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .85rem;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-hero .hero-split {
+                grid-template-columns: 1fr;
+            }
+            .hero-beacon-wrap {
+                display: none;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid::before { display: none; }
+            .form-row-2,
+            .form-selects-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .contact-form {
+                padding: 1.4rem 1.2rem 1.6rem;
+            }
+        }
+    </style>
+    <meta name="robots" content="index, follow"/>
+    <meta name="author" content="Hasnain Studio X"/>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "@id": "https://www.hasnainstudiox.com/contact.html#webpage",
+      "url": "https://www.hasnainstudiox.com/contact.html",
+      "name": "Contact Hasnain Studio X",
+      "isPartOf": { "@id": "https://www.hasnainstudiox.com/#website" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.hasnainstudiox.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.hasnainstudiox.com/contact.html" }
+        ]
+      }
+    }
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1432225360723485" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="top-bar" role="banner" aria-label="Top navigation">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="title">
+                <div class="name">Hasnain</div>
+                <div class="sub">Studio X</div>
+            </div>
+        </div>
+        <nav aria-label="Primary" role="navigation">
+            <a href="index.html">Home</a>
+            <a href="Windows-apps.html">Windows</a>
+            <a href="android-apps.html">Android</a>
+            <a href="HSXAIstudio.html">AI Studio</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <main role="main">
+
+        <!-- ── Hero ── -->
+        <section class="contact-hero container" aria-label="Contact hero">
+            <div class="hero-split">
+                <div class="hero-copy">
+                    <div class="hero-eyebrow">Direct Line · No Bots · No Tickets</div>
+                    <h1>Get in <span class="holo-word">touch.</span></h1>
+                    <p class="lead">A real person builds these apps. Your message comes straight to the developer — not a support ticket system, not a bot. Whether it's a product question, licensing request, or collaboration idea, I read every message.</p>
+                    <div class="proof-chips" aria-label="Response info">
+                        <span class="proof-chip">21 apps · <b>in the catalogue</b></span>
+                        <span class="proof-chip">≤ 2 days · <b>typical reply</b></span>
+                        <span class="proof-chip">England · <b>UK</b></span>
+                    </div>
+                </div>
+                <div class="hero-beacon-wrap" aria-hidden="true">
+                    <div class="beacon"><i></i><i></i><i></i><span class="beacon-core"></span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Contact grid ── -->
+        <section class="section contact-section container" aria-label="Contact form and info">
+            <div class="contact-grid">
+
+                <!-- Form column -->
+                <div class="contact-form-col">
+                    <div class="section-header">
+                        <h2>Send a Message</h2>
+                        <p>Apps support, AI Studio enquiries, licensing, or general feedback — fill in the form and I'll get back to you.</p>
+                    </div>
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/mrerqkrv" method="POST" novalidate>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="c-name">Your Name</label>
+                                <input id="c-name" name="name" type="text" required placeholder="First & last name" autocomplete="name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="c-email">Email Address</label>
+                                <input id="c-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email" />
+                            </div>
+                        </div>
+
+                        <div class="form-selects-row">
+                            <div class="form-group">
+                                <label for="c-topic">Topic / App</label>
+                                <select id="c-topic" name="topic" required>
+                                    <option value="">Select a topic</option>
+                                    <optgroup label="Windows Apps">
+                                        <option>HSX PC Tune</option>
+                                        <option>HSX PC Turbo</option>
+                                        <option>HSX Spatia</option>
+                                        <option>HSX Hypersonus</option>
+                                        <option>HSX MediaX</option>
+                                        <option>HSX StudioFlow</option>
+                                        <option>HSX Vanta</option>
+                                        <option>HSX Pocket AI</option>
+                                        <option>HSX Stillmotion</option>
+                                        <option>HSX Promptalon</option>
+                                        <option>HSX WorkX Suite</option>
+                                        <option>HSX WebX Studio</option>
+                                        <option>HSX FlipStudio</option>
+                                        <option>QR Creator Studio</option>
+                                        <option>HSX NimbusDock</option>
+                                        <option>HSX QuantumDrop</option>
+                                        <option>HSX PC Guard</option>
+                                        <option>HSX VAudio</option>
+                                        <option>HSX Browse</option>
+                                    </optgroup>
+                                    <optgroup label="Android Apps">
+                                        <option>HSX Seasons</option>
+                                        <option>SolsticeOS</option>
+                                    </optgroup>
+                                    <optgroup label="Other Topics">
+                                        <option>AI Studio Enquiry</option>
+                                        <option>Licensing</option>
+                                        <option>Partnership</option>
+                                        <option>General Enquiry</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="c-platform">Platform</label>
+                                <select id="c-platform" name="platform">
+                                    <option value="">Select platform</option>
+                                    <option>Windows Apps</option>
+                                    <option>Android Apps</option>
+                                    <option>AI Studio</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="c-message">Message</label>
+                            <textarea id="c-message" name="message" required rows="5" placeholder="Describe your question, issue, or idea in as much detail as you like…"></textarea>
+                        </div>
+
+                        <div class="form-submit-row">
+                            <button type="submit" class="btn btn--primary">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h12M9 4l5 4-5 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                Send Message
+                            </button>
+                        </div>
+                        <p id="contact-status" class="form-status" aria-live="polite"></p>
+                    </form>
+                </div>
+
+                <!-- Info column -->
+                <div class="contact-info-col">
+                    <div class="section-header">
+                        <h2>Other Ways to Reach Me</h2>
+                        <p>Prefer a direct channel? Here's where to find me.</p>
+                    </div>
+
+                    <!-- Email card -->
+                    <a href="mailto:Hasnain@outlook.at" class="contact-info-card" style="--card-accent-color: var(--gold);">
+                        <div class="card-icon-wrap">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <rect x="2" y="4" width="16" height="12" rx="2" stroke="var(--gold)" stroke-width="1.4"/>
+                                <path d="M2 7l8 5 8-5" stroke="var(--gold)" stroke-width="1.4" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="card-text">
+                            <div class="card-label">Email</div>
+                            <div class="card-value">Hasnain@outlook.at</div>
+                            <div class="card-sub">Tap to open your mail client</div>
+                        </div>
+                    </a>
+
+                    <!-- X / Twitter card -->
+                    <a href="https://x.com/InHasnain" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="--card-accent-color: var(--ice);">
+                        <div class="card-icon-wrap">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M3 3l5.5 7.5L3 17h2l4.25-5.5L13.5 17H17l-5.75-7.75L16.5 3h-2l-3.75 4.75L10 3H3z" fill="var(--ice)"/>
+                            </svg>
+                        </div>
+                        <div class="card-text">
+                            <div class="card-label">X · Twitter</div>
+                            <div class="card-value">@InHasnain</div>
+                            <div class="card-sub">DMs open for quick questions</div>
+                        </div>
+                    </a>
+
+                    <!-- WhatsApp card -->
+                    <div class="contact-info-card" style="--card-accent-color: var(--mint);">
+                        <div class="card-icon-wrap">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10 2C5.58 2 2 5.58 2 10c0 1.54.44 2.97 1.2 4.18L2 18l3.92-1.18A7.94 7.94 0 0010 18c4.42 0 8-3.58 8-8s-3.58-8-8-8zm-1.07 11.47c-.8-.44-1.5-1.02-2.09-1.72-.49-.59-.88-1.3-.88-1.99 0-.72.28-1.37.76-1.85l.44-.44c.16-.16.43-.16.6 0l.97.97c.16.16.16.43 0 .6l-.44.44c-.16.16-.16.4-.02.57.26.33.56.63.88.9.33.27.68.5 1.05.68.18.09.4.05.54-.09l.44-.44c.16-.16.43-.16.6 0l.97.97c.16.16.16.43 0 .6l-.44.44c-.48.48-1.13.76-1.85.76-.1 0-.37-.06-.53-.41z" fill="var(--mint)"/>
+                            </svg>
+                        </div>
+                        <div class="card-text">
+                            <div class="card-label">WhatsApp</div>
+                            <div class="card-value">Message on WhatsApp</div>
+                            <div class="card-sub">Number shared on request</div>
+                        </div>
+                    </div>
+
+                    <!-- Location + response card -->
+                    <div class="contact-info-card" style="--card-accent-color: var(--violet);">
+                        <div class="card-icon-wrap">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M10 2a5.5 5.5 0 00-5.5 5.5c0 3.75 5.5 10.5 5.5 10.5S15.5 11.25 15.5 7.5A5.5 5.5 0 0010 2zm0 7.5a2 2 0 110-4 2 2 0 010 4z" fill="var(--violet)"/>
+                            </svg>
+                        </div>
+                        <div class="card-text">
+                            <div class="card-label">Location &amp; Response</div>
+                            <div class="card-value">England, UK</div>
+                            <div class="card-sub">Replies within 2 business days</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ── What happens next? ── -->
+        <section class="next-steps-strip" aria-label="What happens next">
+            <div class="container">
+                <div class="next-steps-header">
+                    <div class="eyebrow">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="6" stroke="var(--gold)" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round"/></svg>
+                        After you send
+                    </div>
+                    <h2>What happens next?</h2>
+                </div>
+                <div class="steps-grid">
+
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Message sent</div>
+                        <p class="step-desc">Your form submission goes directly to my inbox, no middlemen, no ticket queue, no automated routing.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-title">I review it</div>
+                        <p class="step-desc">Every message gets a personal read — usually within a few hours. I look at every detail before replying.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-title">I reply</div>
+                        <p class="step-desc">You'll get a direct response within 2 business days. Complex requests may take a little longer — but I always reply.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Hasnain Studio X</div>
+                    <p class="footer-sub">Local-first software for Windows and Android. Built in England, processed on your device.</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Products</h4>
+                    <ul class="footer-links">
+                        <li><a href="Windows-apps.html">HSX PC Tune</a></li>
+                        <li><a href="HSXAIstudio.html">AI Studio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Windows-apps.html">Windows Apps</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
+                        <li>England, United Kingdom</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 InHasnain. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="fluid.js" defer></script>
+    <script src="site.js" defer></script>
+    <script src="effects.js" defer></script>
+</body>
+</html>
