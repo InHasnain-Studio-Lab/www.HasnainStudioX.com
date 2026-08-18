@@ -199,9 +199,9 @@ window.AppViz = (function () {
         docsmining: 'docs',
         xcipher: 'lock',
         pcguardx: 'guard',      /* privacy toggles dashboard */
-        hsxpocketai: 'chat',    /* local AI chat */
-        stillmotion: 'gallery', /* photo + video library */
-        quantumcast: 'cast'     /* casting, details TBA */
+        pocktium: 'chat',    /* local AI chat */
+        photovidix: 'gallery', /* photo + video library */
+        castvisuality: 'cast'     /* casting, details TBA */
     };
     var byCat = { utilities: 'gauge', media: 'eq', productivity: 'suite', ai: 'prompt' };
     function cells(n, tag) {

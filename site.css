@@ -1214,7 +1214,7 @@ a:hover{color:var(--accent);}
     100%{left:2px;background:var(--ink-faint);}
 }
 
-/* chat — HSX Pocket AI: local conversation with typing dots */
+/* chat — HSX Pocktium: local conversation with typing dots */
 .vch{display:flex;flex-direction:column;gap:9px;width:104px;}
 .vch-b1,.vch-b2{position:relative;height:18px;border-radius:10px;}
 .vch-b1{
@@ -1237,7 +1237,7 @@ a:hover{color:var(--accent);}
 @keyframes vchin{0%{opacity:0;transform:translateY(7px);}12%,88%{opacity:1;transform:none;}100%{opacity:0;transform:translateY(-4px);}}
 @keyframes vchdot{0%,100%{transform:translateY(0);opacity:.5;}50%{transform:translateY(-3px);opacity:1;}}
 
-/* gallery — Stillmotion: photo library with light sweep */
+/* gallery — HSX PhotoVidix: photo library with light sweep */
 .vga{position:relative;display:flex;gap:8px;overflow:hidden;padding:4px;border-radius:10px;}
 .vga i{
     width:34px;height:46px;border-radius:7px;border:1px solid var(--line);
@@ -1254,7 +1254,7 @@ a:hover{color:var(--accent);}
 @keyframes vgalift{0%,100%{transform:none;}16%{transform:translateY(-5px) scale(1.05);}32%{transform:none;}}
 @keyframes vgaglint{0%{left:-22px;}60%,100%{left:110%;}}
 
-/* cast — QuantumCast: screen with expanding cast waves */
+/* cast — HSX CastVisuality: screen with expanding cast waves */
 .vca{position:relative;width:84px;height:58px;}
 .vca-scr{
     position:absolute;inset:0;border-radius:9px;

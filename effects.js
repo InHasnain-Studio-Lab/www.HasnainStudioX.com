@@ -830,7 +830,7 @@
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
                 print('Windows (13 live): HSX PC Tune, HSX PC Guard, HSX NimbusDock, SolsticeOS, QR Creator Studio, HSX QuantumDrop, HSX Seasons, HSX Spatia, HSX VAudio, HSX FlipStudio, HSX WorkX Suite, HSX Promptalon, HSX StudioFlow', '');
-                print('Coming to Windows: HSX Pocket AI, HSX Stillmotion, HSX QuantumCast', '');
+                print('Coming to Windows: HSX Pocktium, HSX PhotoVidix, HSX CastVisuality', '');
                 print('Android: Mobile TuneX (live). Coming: XCipher, SpatiaX Mobile, HSX FlipStudio, DocsMining', '');
             }
         };

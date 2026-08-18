@@ -248,7 +248,7 @@
             min-height: 110px; margin: .6rem 0; flex: 1;
         }
 
-        /* ── Image Gen viz (HSX StudioFlow & HSX Vanta) ──────────────── */
+        /* ── Image Gen viz (HSX StudioFlow & HSX FotoTensor) ──────────────── */
         .viz-gen {
             position: relative; width: 200px; height: 120px; border-radius: 12px; overflow: hidden;
             background: rgba(255,255,255,.03); border: 1px solid var(--line);
@@ -261,7 +261,7 @@
                 rgba(188,217,244,.35) 100%);
             transform-origin: left; animation: vimgrender 3.8s var(--ease) infinite;
         }
-        .vgen-canvas.vanta {
+        .vgen-canvas.fototensor {
             background: linear-gradient(145deg,
                 rgba(242,223,184,.45) 0%, rgba(243,179,207,.4) 30%,
                 rgba(159,232,214,.35) 60%, rgba(199,165,247,.4) 100%);
@@ -283,7 +283,7 @@
             background: linear-gradient(90deg, var(--violet), var(--mint));
             animation: vgfill 3.8s var(--ease) infinite;
         }
-        .vgen-bar.vanta::after {
+        .vgen-bar.fototensor::after {
             background: linear-gradient(90deg, var(--gold), var(--rose));
             animation-delay: 1.2s;
         }
@@ -295,7 +295,7 @@
             animation: vchin 5s var(--ease) infinite;
         }
 
-        /* ── HSX Stillmotion viz (photo/video library) ────────────────────── */
+        /* ── HSX PhotoVidix viz (photo/video library) ────────────────────── */
         .viz-still {
             position: relative; width: 180px; height: 110px; border-radius: 10px;
             overflow: hidden; background: rgba(255,255,255,.03); border: 1px solid var(--line);
@@ -324,7 +324,7 @@
             animation: vgfill 3s var(--ease) 0.4s infinite;
         }
 
-        /* ── Pocket AI viz (chat + doc Q&A) ──────────────────────────── */
+        /* ── Pocktium viz (chat + doc Q&A) ──────────────────────────── */
         .viz-pocket {
             position: relative; width: 170px; height: 110px; border-radius: 10px;
             background: rgba(255,255,255,.03); border: 1px solid var(--line);
@@ -856,7 +856,7 @@
           "name": "HSX AI Studio",
           "applicationCategory": "GraphicsApplication",
           "operatingSystem": "Windows 10, Windows 11",
-          "description": "A suite of local AI image generation apps for Windows — HSX StudioFlow, HSX Vanta, and HSX Pocket AI. Run Stable Diffusion and local AI models on your own GPU with no cloud dependency, no API keys, and no subscription.",
+          "description": "A suite of local AI image generation apps for Windows — HSX StudioFlow, HSX FotoTensor, and HSX Pocktium. Run Stable Diffusion and local AI models on your own GPU with no cloud dependency, no API keys, and no subscription.",
           "featureList": [
             "GPU-accelerated local AI image generation",
             "Text-to-image with no internet connection required",
@@ -872,8 +872,8 @@
             "offerCount": "3",
             "offers": [
               { "@type": "Offer", "name": "HSX StudioFlow", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9P6NZMCG20P8" },
-              { "@type": "Offer", "name": "HSX Vanta", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9NJF6CLN5RPD" },
-              { "@type": "Offer", "name": "HSX Pocket AI", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9PFFP713N7X2" }
+              { "@type": "Offer", "name": "HSX FotoTensor", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9NJF6CLN5RPD" },
+              { "@type": "Offer", "name": "HSX Pocktium", "price": "0", "priceCurrency": "GBP", "url": "https://apps.microsoft.com/detail/9PFFP713N7X2" }
             ]
           },
           "publisher": { "@id": "https://www.hasnainstudiox.com/#organization" }
@@ -886,7 +886,7 @@
               "name": "Can I generate AI images locally on Windows without an internet connection?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. HSX StudioFlow, HSX Vanta, and HSX Pocket AI all run entirely on your local GPU with no internet connection required. Once downloaded from the Microsoft Store, they work 100% offline."
+                "text": "Yes. HSX StudioFlow, HSX FotoTensor, and HSX Pocktium all run entirely on your local GPU with no internet connection required. Once downloaded from the Microsoft Store, they work 100% offline."
               }
             },
             {
@@ -986,11 +986,11 @@
                     Image Gen · GPU · SDXL
                 </div>
                 <div class="ai-float-card ai-fc-2">
-                    <div class="afc-name">HSX Stillmotion</div>
+                    <div class="afc-name">HSX PhotoVidix</div>
                     Photo &amp; Video · Local
                 </div>
                 <div class="ai-float-card ai-fc-3">
-                    <div class="afc-name">HSX Pocket AI</div>
+                    <div class="afc-name">HSX Pocktium</div>
                     Chat · Docs · Images
                 </div>
             </div>
@@ -1002,7 +1002,7 @@
                 <div>
                     <div class="gal-kick">Selected Output</div>
                     <h2 id="gallery-title">Made on this hardware</h2>
-                    <p class="gal-sub">Generated locally with StudioFlow and Vanta. No cloud render, no external service, no upload.</p>
+                    <p class="gal-sub">Generated locally with StudioFlow and FotoTensor. No cloud render, no external service, no upload.</p>
                 </div>
                 <div class="gallery-filter" id="gal-filters" role="group" aria-label="Filter gallery"></div>
             </div>
@@ -1076,10 +1076,10 @@
                     </div>
                 </article>
 
-                <!-- HSX Vanta — image gen from text prompts -->
+                <!-- HSX FotoTensor — image gen from text prompts -->
                 <article class="app-cell ab-span2 ab-row2">
                     <div class="app-cell-kicker">AI Image Generation · Text-to-Image</div>
-                    <h3>HSX Vanta</h3>
+                    <h3>HSX FotoTensor</h3>
                     <p>Generate images from text prompts with an AI engine that runs entirely on your device. Includes face processing and image enhancement — fully local, zero uploads.</p>
                     <div class="app-tags">
                         <span class="app-tag">Text-to-Image</span>
@@ -1087,10 +1087,10 @@
                     </div>
                     <div class="app-viz" style="min-height:100px;">
                         <div class="viz-gen" aria-hidden="true">
-                            <div class="vgen-canvas vanta"></div>
+                            <div class="vgen-canvas fototensor"></div>
                             <div class="vgen-grid"></div>
                             <div class="vgen-prompt">prompt: golden hour, portrait, warm tones...</div>
-                            <div class="vgen-bar vanta"></div>
+                            <div class="vgen-bar fototensor"></div>
                         </div>
                     </div>
                     <div class="app-cta">
@@ -1098,10 +1098,10 @@
                     </div>
                 </article>
 
-                <!-- HSX Stillmotion — photo & video library/editor -->
+                <!-- HSX PhotoVidix — photo & video library/editor -->
                 <article class="app-cell ab-span3">
                     <div class="app-cell-kicker">Photo &amp; Video · Organise · Edit · Export</div>
-                    <h3>HSX Stillmotion</h3>
+                    <h3>HSX PhotoVidix</h3>
                     <p>Organise, edit, and export your photos and videos in one unified local library. Zero upload policy — your media never leaves your device, no cloud sync, no model training on your content.</p>
                     <div class="app-tags">
                         <span class="app-tag rose">Photo Library</span>
@@ -1146,10 +1146,10 @@
                     </div>
                 </article>
 
-                <!-- HSX Pocket AI — local AI companion -->
+                <!-- HSX Pocktium — local AI companion -->
                 <article class="app-cell ab-span4 app-cell--info">
                     <div class="app-cell-kicker">Local AI Companion · Chat · Docs · Images</div>
-                    <h3>HSX Pocket AI</h3>
+                    <h3>HSX Pocktium</h3>
                     <p>A private, all-in-one AI companion that runs entirely on your machine. Chat with a local language model, ask questions over your own documents, and generate images — all without sending a single byte to any server. Your conversations, files, and images stay completely yours.</p>
                     <div class="app-tags">
                         <span class="app-tag">Local LLM Chat</span>
@@ -1188,14 +1188,14 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
                     </div>
                     <h4>GPU Generation, No Queues</h4>
-                    <p>StudioFlow and Vanta run directly on your GPU — NVIDIA or AMD. No cloud waitlists, no rate limits. Generate at full speed, all the time.</p>
+                    <p>StudioFlow and FotoTensor run directly on your GPU — NVIDIA or AMD. No cloud waitlists, no rate limits. Generate at full speed, all the time.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-icon" aria-hidden="true">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mint)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
                     </div>
                     <h4>Full Creative Pipeline</h4>
-                    <p>From generating raw images in StudioFlow, refining prompts in HSX Promptalon, organising in HSX Stillmotion, to chatting with Pocket AI — the whole workflow, local.</p>
+                    <p>From generating raw images in StudioFlow, refining prompts in HSX Promptalon, organising in HSX PhotoVidix, to chatting with Pocktium — the whole workflow, local.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-icon" aria-hidden="true">
