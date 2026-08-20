@@ -191,7 +191,7 @@ let sitemapMsg = '';
       const MF = '<svg viewBox="0 0 40 40" class="m-gen" aria-hidden="true">'
                + '<rect class="s" x="7" y="7" width="26" height="26" rx="3"/>'
                + '<circle class="sf gl px" cx="20" cy="20" r="4"/></svg>';
-      const STORE_FALLBACK = 'https://apps.microsoft.com/search/publisher?name=InHasnain';
+      const STORE_FALLBACK = 'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X';
 
       APPS.forEach((a,i)=>{ if(!a.storeUrl){a.storeUrl=STORE_FALLBACK;} a.cat=CATMAP[a.id]||'system'; a.no=('00'+(i+1)).slice(-3); });
 
@@ -311,9 +311,9 @@ let sitemapMsg = '';
   // search engine ownership-verification pages - must exist, must not be indexed
   'naverebef151fc79df23c57d36c70e3b933cf.html', 'yandex_ec0348fbe6310d9f.html']);
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
-                       'HSXAIstudio.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6' };
+                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
-                   'HSXAIstudio.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly' };
+                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly' };
 
     const pages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f))
