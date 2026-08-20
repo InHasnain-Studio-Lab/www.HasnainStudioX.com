@@ -1662,3 +1662,17 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 
 /* Anchored sections must clear the sticky top bar when jumped to. */
 .section, [id^="app-"], .hero, h1[id], h2[id], h3[id] { scroll-margin-top: 6.5rem; }
+
+/* About page: studio-profile additions */
+/* The hero h1 paints its text with a clipped gradient; a nested <sup>
+   inherits the transparent fill and disappears. Force a solid colour. */
+.ab-r {
+    font-size: .42em; vertical-align: super; letter-spacing: 0;
+    margin-left: .1em; color: var(--gold); opacity: .9;
+    -webkit-text-fill-color: var(--gold);
+}
+.ab-tagline {
+    font-family: var(--f-mono); font-size: .78rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--gold); opacity: .85;
+    margin: .1rem 0 1.1rem;
+}
