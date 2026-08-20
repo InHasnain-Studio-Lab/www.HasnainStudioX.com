@@ -11,28 +11,28 @@
 window.GALLERY_IMAGES = [
   {
     "src": "images/gallery/QuantumGenAI-Image2.png",
-    "tag": "concept",
-    "title": "QuantumGenAI Image2",
+    "tag": "quantumxai",
+    "title": "Open Sky Portrait",
     "desc": "",
-    "alt": "QuantumGenAI Image2 — AI artwork by Hasnain Studio X",
+    "alt": "AI artwork by Hasnain Studio X",
     "w": 1024,
     "h": 1024
   },
   {
     "src": "images/gallery/QuantumGenAI-Image1.png",
-    "tag": "concept",
-    "title": "QuantumGenAI Image1",
+    "tag": "quantumxai",
+    "title": "Gilded Renaissance",
     "desc": "",
-    "alt": "QuantumGenAI Image1 — AI artwork by Hasnain Studio X",
+    "alt": "AI artwork by Hasnain Studio X",
     "w": 1024,
     "h": 1024
   },
   {
     "src": "images/gallery/QuantumGenAI-Image.png",
-    "tag": "concept",
-    "title": "QuantumGenAI Image",
+    "tag": "quantumxai",
+    "title": "Ornate Portrait Study",
     "desc": "",
-    "alt": "QuantumGenAI Image — AI artwork by Hasnain Studio X",
+    "alt": "AI artwork by Hasnain Studio X",
     "w": 1024,
     "h": 1024
   }

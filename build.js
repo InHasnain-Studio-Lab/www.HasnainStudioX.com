@@ -356,6 +356,43 @@ let sitemapMsg = '';
 }
 sitemapMsg = '\n' + sitemapMsg.replace(/\n$/, '');
 
+
+/* ── 4. AI Studio gallery: refresh the app registry ──────────────────────
+   The showcase filters images by the app that produced them. The names and
+   Store links come from the same APPS array as everything else, so a rename
+   or a new Store listing propagates here with no second edit. */
+function syncGalleryApps() {
+  const file = 'HSXAIstudio.html';
+  if (!fs.existsSync(P(file))) return '';
+  // Explicit list. A loose regex drags in PC TuneX and NimbusDock, which have
+  // nothing to do with generated artwork. Add an id here when you ship a new
+  // creative tool.
+  const AI_APPS = new Set([
+    'hsxstudioflow', 'fototensor', 'photovidix', 'novadiffux', 'quantumxai',
+    'conjureai', 'infinitegenai', 'dreamgenaiultra', 'dreammintai',
+    'screenaistudio', 'glowlab', 'image3dx', 'aiscenexultra',
+    'astramorphstudio', 'forgexpro', 'pocktium'
+  ]);
+  const reg = {};
+  for (const a of win) {
+    if (!AI_APPS.has(a.id)) continue;
+    reg[a.id] = {
+      name: a.name,
+      store: /^https?:/.test(a.storeUrl || '') ? a.storeUrl : '',
+      blurb: (a.tagline || '') + '.'
+    };
+  }
+  let s = read(file);
+  const re = /(\/\*APPREG_START\*\/)[\s\S]*?(\/\*APPREG_END\*\/)/;
+  if (!re.test(s)) return '  ! APPREG markers not found in ' + file;
+  s = s.replace(re, (m, open, close) =>
+    open + '\n        var APPREG = ' + JSON.stringify(reg, null, 2).replace(/\n/g, '\n        ') + ';\n        ' + close);
+  write(file, s);
+  return `  gallery app registry  ${Object.keys(reg).length} AI apps`;
+}
+const galleryMsg = syncGalleryApps();
+if (galleryMsg) sitemapMsg += '\n' + galleryMsg;
+
 /* ── report ── */
 console.log(`
   Site synced.

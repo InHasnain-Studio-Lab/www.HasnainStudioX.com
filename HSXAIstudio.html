@@ -674,113 +674,192 @@
         }
         .bp-fine span { color: var(--mint); }
         /* ══════════════════ CINEMATIC AI GALLERY ══════════════════ */
+        /* ══════════════════════════════════════════════════════════════════
+           CINEMATIC SHOWCASE GALLERY
+           One hero frame, a filmstrip rail, and filters keyed to the app that
+           produced each piece. Built on the site tokens: --holo, --accent,
+           clipped corners, mono metadata.
+           ══════════════════════════════════════════════════════════════ */
         .gal-head {
-            display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
-            margin-bottom: 1.8rem;
+            display: flex; align-items: flex-end; gap: 1.2rem;
+            flex-wrap: wrap; margin-bottom: 1.5rem;
         }
         .gal-kick {
-            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .24em;
+            font-family: var(--f-mono); font-size: .62rem; letter-spacing: .22em;
             text-transform: uppercase; color: var(--ink-faint);
-            display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem;
+            display: flex; align-items: center; gap: .5rem; margin-bottom: .55rem;
         }
         .gal-kick::before { content: ""; width: 26px; height: 1px; background: var(--holo); }
-        #gallery-title {
-            font-family: var(--f-display); font-weight: 800; letter-spacing: -.02em;
-            font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin: 0 0 .5rem; line-height: 1.06;
-        }
         .gal-sub { color: var(--ink-soft); margin: 0; max-width: 52ch; font-size: .92rem; }
-        .gallery-filter { display: flex; gap: .35rem; flex-wrap: wrap; margin-left: auto; }
-        .gf-btn {
-            font-family: var(--f-mono); font-size: .64rem; letter-spacing: .1em;
-            text-transform: uppercase; color: var(--ink-soft); cursor: pointer;
-            padding: .55rem .85rem; border: 1px solid rgba(255,255,255,.1);
-            background: rgba(255,255,255,.03); border-radius: 0; transform: none;
-            transition: all .25s var(--ease);
-            clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
-        }
-        .gf-btn:hover { color: var(--ink); border-color: var(--accent-line); background: rgba(199,165,247,.07); }
-        .gf-btn.active {
-            color: var(--ink); background: rgba(199,165,247,.14); background-image: none;
-            border-color: rgba(199,165,247,.75); box-shadow: 0 0 18px -6px rgba(199,165,247,.6);
-        }
-        .gf-btn em { font-style: normal; opacity: .55; margin-left: .35rem; }
 
-        /* masonry-style columns keep tall portraits and wide stills together */
-        .gal-grid { columns: 3 260px; column-gap: .85rem; }
-        @media (max-width: 700px) { .gal-grid { columns: 2 150px; } }
+        .sc { margin-top: .4rem; }
 
-        .gal-item {
-            position: relative; display: block; width: 100%; margin: 0 0 .85rem;
-            break-inside: avoid; cursor: pointer; overflow: hidden; border: 0; padding: 0;
-            background: linear-gradient(160deg, #131120, #0c0b13);
-            clip-path: polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
-            transition: transform .5s var(--ease), filter .5s var(--ease);
-        }
-        .gal-item img {
-            display: block; width: 100%; height: auto;
-            transition: transform .7s var(--ease), filter .5s var(--ease);
-            filter: saturate(.92) contrast(1.02);
-        }
-        .gal-item:hover { transform: translateY(-4px); filter: drop-shadow(0 20px 40px rgba(199,165,247,.32)); }
-        .gal-item:hover img { transform: scale(1.05); filter: saturate(1.06) contrast(1.05); }
-        .gal-item:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 3px; }
-        .gal-item.hide { display: none; }
-
-        /* holographic edge + cinematic bottom gradient */
-        .gal-item::after {
-            content: ""; position: absolute; inset: 0; pointer-events: none;
-            background: linear-gradient(to top, rgba(8,7,12,.92) 0%, rgba(8,7,12,.35) 26%, transparent 52%);
-            opacity: 0; transition: opacity .45s var(--ease);
-        }
-        .gal-item:hover::after, .gal-item:focus-visible::after { opacity: 1; }
-        .gal-cap {
-            position: absolute; left: 0; right: 0; bottom: 0; padding: .9rem 1rem;
-            transform: translateY(8px); opacity: 0; pointer-events: none;
-            transition: opacity .45s var(--ease), transform .45s var(--ease);
-        }
-        .gal-item:hover .gal-cap, .gal-item:focus-visible .gal-cap { opacity: 1; transform: none; }
-        .gal-cap-t {
-            font-family: var(--f-display); font-weight: 600; font-size: .84rem;
-            color: var(--ink); line-height: 1.2; margin-bottom: .22rem;
-        }
-        .gal-cap-m {
-            font-family: var(--f-mono); font-size: .56rem; letter-spacing: .13em;
+        /* ── filters: one per app that actually has artwork ── */
+        .sc-filters { display: flex; gap: .4rem; flex-wrap: wrap; margin: 0 0 .2rem auto; }
+        .sc-fbtn {
+            font-family: var(--f-mono); font-size: .63rem; letter-spacing: .13em;
             text-transform: uppercase; color: var(--ink-soft);
+            background: var(--surface); border: 1px solid var(--card-border);
+            border-radius: var(--r-pill); padding: .46rem .9rem; cursor: pointer;
+            transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
+                        background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+            display: inline-flex; align-items: center; gap: .45rem;
         }
-        .gal-tagpill {
-            position: absolute; top: .7rem; left: .7rem; z-index: 2;
-            font-family: var(--f-mono); font-size: .53rem; letter-spacing: .14em;
-            text-transform: uppercase; color: var(--ink);
-            background: rgba(8,7,12,.6); border: 1px solid rgba(255,255,255,.16);
-            padding: .16rem .45rem; backdrop-filter: blur(8px);
-            opacity: 0; transition: opacity .45s var(--ease);
+        .sc-fbtn .sc-fcount { color: var(--ink-faint); font-size: .58rem; }
+        .sc-fbtn:hover { color: var(--ink); border-color: var(--accent-line); transform: translateY(-1px); }
+        .sc-fbtn[aria-pressed="true"] {
+            color: var(--btn-fg); border-color: transparent; background: var(--holo);
+            box-shadow: 0 6px 22px -8px rgba(199,165,247,.65);
         }
-        .gal-item:hover .gal-tagpill, .gal-item:focus-visible .gal-tagpill { opacity: 1; }
+        .sc-fbtn[aria-pressed="true"] .sc-fcount { color: rgba(11,10,16,.6); }
 
-        /* empty state */
-        .gal-empty {
-            text-align: center; padding: 3.6rem 1.5rem;
-            border: 1px dashed rgba(255,255,255,.13); color: var(--ink-faint);
-            clip-path: polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+        /* ── stage: hero frame + metadata panel ── */
+        .sc-stage {
+            display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(250px, .8fr);
+            gap: 1.3rem; align-items: stretch;
         }
+        @media (max-width: 940px) { .sc-stage { grid-template-columns: 1fr; } }
+
+        .sc-frame {
+            position: relative; padding: 1px; border-radius: 4px;
+            max-width: 880px; width: 100%; margin-inline: auto;
+            background: linear-gradient(150deg, rgba(199,165,247,.5), rgba(159,232,214,.22) 45%, rgba(255,255,255,.06));
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+        .sc-frame-in {
+            position: relative; overflow: hidden; background: #05050a;
+            aspect-ratio: 3 / 2;   /* fixed: the stage must not jump between images */
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            display: grid; place-items: center;
+        }
+        .sc-frame-in picture { position: absolute; inset: 0; display: block; }
+        .sc-frame-in img {
+            width: 100%; height: 100%; object-fit: contain; display: block;
+            transition: opacity .45s var(--ease), transform .7s var(--ease);
+        }
+        .sc-frame-in.is-swapping img { opacity: 0; transform: scale(1.02); }
+
+        /* sweeping scan line on every image change */
+        .sc-scan {
+            position: absolute; inset: 0; pointer-events: none; opacity: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(199,165,247,.16) 46%,
+                        rgba(255,255,255,.5) 50%, rgba(159,232,214,.16) 54%, transparent 100%);
+            background-size: 100% 220%;
+        }
+        .sc-frame-in.is-swapping .sc-scan { opacity: 1; animation: scSweep .72s var(--ease); }
+        @keyframes scSweep { from { background-position: 0 -110%; } to { background-position: 0 210%; } }
+
+        /* faint grid + corner ticks, so the frame reads as an instrument panel */
+        .sc-frame-in::before {
+            content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+            background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 46px 46px;
+        }
+        .sc-tick { position: absolute; width: 15px; height: 15px; pointer-events: none;
+                   border-color: var(--accent); opacity: .55; }
+        .sc-tick.tl { top: 12px; left: 12px; border-top: 1px solid; border-left: 1px solid; }
+        .sc-tick.br { bottom: 12px; right: 12px; border-bottom: 1px solid; border-right: 1px solid; }
+
+        .sc-index {
+            position: absolute; top: 12px; right: 16px; font-family: var(--f-mono);
+            font-size: .6rem; letter-spacing: .16em; color: var(--ink-soft);
+            background: rgba(5,5,10,.62); backdrop-filter: var(--blur);
+            border: 1px solid var(--line); border-radius: var(--r-pill); padding: .22rem .6rem;
+        }
+        .sc-expand {
+            position: absolute; bottom: 14px; right: 16px; width: 38px; height: 38px;
+            display: grid; place-items: center; cursor: pointer; border-radius: 50%;
+            background: rgba(5,5,10,.62); backdrop-filter: var(--blur);
+            border: 1px solid var(--line); color: var(--ink);
+            transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
+                        box-shadow var(--t-fast) var(--ease);
+        }
+        .sc-expand:hover { background: rgba(199,165,247,.2); border-color: var(--accent-line);
+                           box-shadow: 0 0 22px -6px rgba(199,165,247,.75); }
+
+        /* ── metadata panel ── */
+        .sc-meta {
+            display: flex; flex-direction: column; gap: .85rem;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: var(--r-md); padding: 1.25rem 1.3rem; backdrop-filter: var(--blur);
+        }
+        .sc-app { display: inline-flex; align-items: center; gap: .5rem;
+                  font-family: var(--f-mono); font-size: .62rem; letter-spacing: .16em;
+                  text-transform: uppercase; color: var(--accent); }
+        .sc-app::before { content: ""; width: 7px; height: 7px; border-radius: 50%;
+                          background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .sc-title { font-family: var(--f-display); font-size: 1.2rem; line-height: 1.25;
+                    margin: 0; color: var(--ink); }
+        .sc-desc { margin: 0; font-size: .87rem; line-height: 1.6; color: var(--ink-soft); }
+        .sc-specs { margin: .2rem 0 0; padding: .85rem 0 0; border-top: 1px solid var(--line);
+                    display: grid; grid-template-columns: auto 1fr; gap: .5rem .9rem; font-size: .74rem; }
+        .sc-specs dt { font-family: var(--f-mono); font-size: .6rem; letter-spacing: .13em;
+                       text-transform: uppercase; color: var(--ink-faint); }
+        .sc-specs dd { margin: 0; color: var(--ink-soft); text-align: right; }
+        .sc-cta { margin-top: auto; }
+        .sc-cta a {
+            display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+            width: 100%; padding: .7rem 1rem; border-radius: var(--r-pill);
+            background: var(--holo); color: var(--btn-fg); text-decoration: none;
+            font-size: .82rem; font-weight: 600;
+            transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+        }
+        .sc-cta a:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(199,165,247,.8); }
+
+        /* ── filmstrip rail ── */
+        .sc-rail-wrap { display: flex; align-items: center; justify-content: center;
+                        gap: .6rem; margin-top: 1.1rem; }
+        .sc-rail {
+            display: flex; gap: .55rem; overflow-x: auto; scroll-behavior: smooth;
+            justify-content: safe center;
+            padding: .35rem .1rem; flex: 0 1 auto; max-width: 100%; scrollbar-width: none;
+        }
+        .sc-rail::-webkit-scrollbar { display: none; }
+        .sc-thumb {
+            flex: 0 0 auto; width: 96px; aspect-ratio: 1; padding: 0; cursor: pointer;
+            border: 1px solid var(--card-border); border-radius: 3px; overflow: hidden;
+            background: #05050a; position: relative; opacity: .5;
+            clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+            transition: opacity var(--t-fast) var(--ease), transform var(--t-fast) var(--ease),
+                        border-color var(--t-fast) var(--ease);
+        }
+        .sc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .sc-thumb:hover { opacity: .85; transform: translateY(-3px); }
+        .sc-thumb[aria-selected="true"] {
+            opacity: 1; border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent-line), 0 10px 26px -12px rgba(199,165,247,.8);
+        }
+        .sc-thumb[aria-selected="true"]::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--holo);
+        }
+        .sc-nav {
+            flex: 0 0 auto; width: 34px; height: 34px; display: grid; place-items: center;
+            border-radius: 50%; cursor: pointer; font-size: 1.25rem; line-height: 1;
+            background: var(--surface); border: 1px solid var(--card-border); color: var(--ink-soft);
+            transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
+                        background var(--t-fast) var(--ease);
+        }
+        .sc-nav:hover { color: var(--ink); border-color: var(--accent-line); background: rgba(199,165,247,.14); }
+        .sc-nav:disabled { opacity: .28; cursor: default; }
+
+        .gal-empty { text-align: center; padding: 3rem 1rem; color: var(--ink-soft); }
         .gal-empty-frame { color: var(--accent); opacity: .7; margin-bottom: .9rem; }
         .gal-empty h3 { font-family: var(--f-display); font-size: 1rem; margin: 0 0 .5rem; color: var(--ink); }
         .gal-empty p { margin: 0 auto; max-width: 46ch; font-size: .86rem; }
         .gal-empty code {
-            font-family: var(--f-mono); font-size: .8em; color: var(--accent);
-            background: rgba(199,165,247,.1); padding: .1rem .38rem;
-            border: 1px solid rgba(199,165,247,.2);
+            font-family: var(--f-mono); font-size: .8em; padding: .1rem .35rem;
+            border-radius: 5px; background: var(--surface-2); color: var(--gold);
         }
 
-        /* ── lightbox ── */
+        /* ── full-size viewer ── */
         .gal-lb {
-            position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center;
-            background: rgba(5,4,9,.92);
-            backdrop-filter: blur(22px) saturate(1.3); -webkit-backdrop-filter: blur(22px) saturate(1.3);
-            opacity: 0; animation: galFade .35s var(--ease) forwards;
+            position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+            background: rgba(4,4,9,.93); backdrop-filter: blur(22px) saturate(1.3);
+            padding: 3.2rem 1.2rem; animation: galFade .3s var(--ease);
         }
+        @keyframes galFade { from { opacity: 0; } }
         .gal-lb[hidden] { display: none; }
-        @keyframes galFade { to { opacity: 1; } }
         .gal-lb-stage {
             margin: 0; max-width: min(92vw, 1180px); max-height: 88vh;
             display: flex; flex-direction: column; align-items: center; gap: 1rem;
@@ -802,17 +881,19 @@
             text-transform: uppercase; color: var(--ink-soft);
         }
         .gal-lb-idx {
-            font-family: var(--f-mono); font-size: .58rem; letter-spacing: .18em;
-            color: var(--ink-faint); margin-top: .5rem;
+            font-family: var(--f-mono); font-size: .6rem; letter-spacing: .18em;
+            color: var(--ink-faint); margin-top: .45rem;
         }
         .gal-lb-close, .gal-lb-nav {
-            position: absolute; background: rgba(255,255,255,.05);
-            border: 1px solid rgba(255,255,255,.14); color: var(--ink);
-            cursor: pointer; display: grid; place-items: center;
-            transition: all .25s var(--ease); backdrop-filter: blur(10px);
+            position: absolute; display: grid; place-items: center; cursor: pointer;
+            background: rgba(255,255,255,.06); border: 1px solid var(--line);
+            color: var(--ink); backdrop-filter: var(--blur);
+            transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
+                        box-shadow var(--t-fast) var(--ease);
         }
         .gal-lb-close {
-            top: 1.4rem; right: 1.4rem; width: 40px; height: 40px; font-size: 1rem; border-radius: 50%;
+            top: 1.2rem; right: 1.4rem; width: 40px; height: 40px;
+            font-size: 1.05rem; border-radius: 50%;
         }
         .gal-lb-nav {
             top: 50%; transform: translateY(-50%); width: 46px; height: 46px;
@@ -826,11 +907,13 @@
         @media (max-width: 620px) {
             .gal-lb-nav { width: 38px; height: 38px; font-size: 1.4rem; }
             .gal-prev { left: .5rem; } .gal-next { right: .5rem; }
+            .sc-thumb { width: 74px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .gal-item, .gal-item img, .gal-lb, .gal-lb-stage { transition: none; animation: none; opacity: 1; }
+            .sc-frame-in img, .sc-thumb, .sc-fbtn, .gal-lb, .gal-lb-stage,
+            .sc-frame-in.is-swapping .sc-scan { transition: none; animation: none; opacity: 1; }
+            .sc-frame-in.is-swapping img { opacity: 1; transform: none; }
         }
-
     </style>
     <meta name="author" content="Hasnain Studio X"/>
     <meta name="keywords" content="local AI image generator Windows, offline AI image generator, AI image generation no subscription, stable diffusion Windows app, run AI locally Windows, HSX StudioFlow, local AI studio GPU, AI image generator no cloud"/>
@@ -1266,21 +1349,53 @@
                     <h2 id="gallery-title">Made on this hardware</h2>
                     <p class="gal-sub">Generated locally with StudioFlow and FotoTensor. No cloud render, no external service, no upload.</p>
                 </div>
-                <div class="gallery-filter" id="gal-filters" role="group" aria-label="Filter gallery"></div>
+                <div class="sc-filters" id="sc-filters" role="group" aria-label="Filter by app"></div>
             </div>
 
-            <div class="gal-grid" id="gal-grid" role="list" aria-label="AI artwork"></div>
+            <div class="sc" id="showcase" hidden>
+                <div class="sc-stage">
+                    <figure class="sc-frame" style="margin:0">
+                        <div class="sc-frame-in" id="sc-frame">
+                            <picture>
+                                <source id="sc-webp" type="image/webp"/>
+                                <img id="sc-img" alt="" decoding="async" fetchpriority="high"/>
+                            </picture>
+                            <span class="sc-scan" aria-hidden="true"></span>
+                            <span class="sc-tick tl" aria-hidden="true"></span>
+                            <span class="sc-tick br" aria-hidden="true"></span>
+                            <span class="sc-index" id="sc-index"></span>
+                            <button type="button" class="sc-expand" id="sc-expand" aria-label="View full size">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </button>
+                        </div>
+                    </figure>
+
+                    <aside class="sc-meta">
+                        <span class="sc-app" id="sc-app"></span>
+                        <h3 class="sc-title" id="sc-title"></h3>
+                        <p class="sc-desc" id="sc-desc"></p>
+                        <dl class="sc-specs" id="sc-specs"></dl>
+                        <div class="sc-cta" id="sc-cta"></div>
+                    </aside>
+                </div>
+
+                <div class="sc-rail-wrap">
+                    <button type="button" class="sc-nav" id="sc-prev" aria-label="Previous artwork">&#8249;</button>
+                    <div class="sc-rail" id="sc-rail" role="tablist" aria-label="Artwork thumbnails"></div>
+                    <button type="button" class="sc-nav" id="sc-next" aria-label="Next artwork">&#8250;</button>
+                </div>
+            </div>
 
             <div class="gal-empty" id="gal-empty" hidden>
                 <div class="gal-empty-frame">
                     <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="9" r="1.6"/><path d="M3 16l5-4 4 3 4-4 5 4"/></svg>
                 </div>
                 <h3>The gallery is empty</h3>
-                <p>Drop your artwork into the <code>images/gallery</code> folder, then run <code>update-gallery.bat</code>. This section fills itself in.</p>
+                <p>Drop your artwork into the <code>images/gallery</code> folder, then commit. Name files <code>appid__Title__Note.png</code> and the app filter fills itself in.</p>
             </div>
         </section>
 
-        <!-- cinematic lightbox -->
+        <!-- full-size viewer -->
         <div class="gal-lb" id="gal-lb" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
             <button class="gal-lb-close" id="gal-lb-close" aria-label="Close viewer">&#x2715;</button>
             <button class="gal-lb-nav gal-prev" id="gal-prev" aria-label="Previous">&#8249;</button>
@@ -1296,9 +1411,7 @@
                     <div class="gal-lb-idx" id="gal-lb-idx"></div>
                 </figcaption>
             </figure>
-        </div>
-
-        <!-- Ad: banner between the gallery and the app portfolio ── -->
+        </div>        <!-- Ad: banner between the gallery and the app portfolio ── -->
         <div class="ad-slot ad-slot--banner" aria-label="Advertisement">
             <span class="ad-slot-label">Advertisement</span>
             <span class="ad-slot-placeholder">Ad space reserved — activates once AdSense review completes</span>
@@ -1553,117 +1666,289 @@
 
     <script src="gallery-data.js"></script>
     <script>
-    /* ══ AI gallery — renders from gallery-data.js, no build step needed ══ */
+    /* ══ AI Studio showcase — hero frame + filmstrip, driven by gallery-data.js ══
+       Filters are keyed to the app that produced each image. Tag an image by
+       naming the file  appid__Title__Note.png  (e.g. hsxstudioflow__Neon-Rain.png)
+       and it lands under that app automatically.                                */
     (function () {
         var DATA = (window.GALLERY_IMAGES || []).filter(function (i) { return i && i.src; });
-        var grid    = document.getElementById('gal-grid');
-        var empty   = document.getElementById('gal-empty');
-        var filters = document.getElementById('gal-filters');
+
+        /* App registry — refreshed from the Windows catalogue by build.js.
+           Never hand-edit between the markers. */
+        /*APPREG_START*/
+        var APPREG = {
+          "forgexpro": {
+            "name": "HSX Promptalon",
+            "store": "https://apps.microsoft.com/detail/9PMS5ZG4NXXS?hl=en-us&gl=GB&ocid=pdpshare",
+            "blurb": "Build elite AI prompts with guided structure."
+          },
+          "hsxstudioflow": {
+            "name": "HSX StudioFlow",
+            "store": "https://apps.microsoft.com/detail/9P6NZMCG20P8",
+            "blurb": "Local AI image studio powered by your own GPU."
+          },
+          "fototensor": {
+            "name": "HSX FotoTensor",
+            "store": "https://apps.microsoft.com/detail/9NJF6CLN5RPD",
+            "blurb": "AI portrait and image generation with face enhancement."
+          },
+          "pocktium": {
+            "name": "HSX Pocktium",
+            "store": "https://apps.microsoft.com/detail/9PFFP713N7X2",
+            "blurb": "Chat, documents, and images with local AI."
+          },
+          "photovidix": {
+            "name": "HSX PhotoVidix",
+            "store": "https://apps.microsoft.com/detail/9NR32X1TLJZT",
+            "blurb": "Organise, edit, and export photos and videos."
+          },
+          "glowlab": {
+            "name": "HSX GlowCraft",
+            "store": "https://apps.microsoft.com/detail/9NW8DRCTF11G",
+            "blurb": "Local photo editor with on-device AI tools."
+          },
+          "image3dx": {
+            "name": "HSX DepthStudio 3D",
+            "store": "https://apps.microsoft.com/detail/9NR4XC4TCG73",
+            "blurb": "Turn photos into 3D relief meshes, locally."
+          },
+          "novadiffux": {
+            "name": "HSX NovaDiffux",
+            "store": "https://apps.microsoft.com/detail/9MW265HR80PZ",
+            "blurb": "Offline AI image and text-to-art generation studio."
+          },
+          "aiscenexultra": {
+            "name": "HSX SceneStudio",
+            "store": "",
+            "blurb": "Offline AI interaction builder."
+          },
+          "screenaistudio": {
+            "name": "ScreenAI Studio",
+            "store": "",
+            "blurb": "Intelligent screen recorder with on-device insight."
+          },
+          "astramorphstudio": {
+            "name": "AstraMorph Studio",
+            "store": "",
+            "blurb": "Offline image-to-3D creation studio."
+          },
+          "conjureai": {
+            "name": "HSX ArtGen Studio",
+            "store": "https://apps.microsoft.com/detail/9NDT39K51XLK",
+            "blurb": "Local AI design studio with brand kits and batch merge."
+          },
+          "dreammintai": {
+            "name": "DreamMint AI",
+            "store": "",
+            "blurb": "Make pictures and clips on your own graphics card."
+          },
+          "quantumxai": {
+            "name": "HSX QuantumGen AI Studio",
+            "store": "https://apps.microsoft.com/detail/9NCGM2XJFQT3",
+            "blurb": "On-device image and clip generation for Windows."
+          },
+          "dreamgenaiultra": {
+            "name": "HSX DreamVivid AI",
+            "store": "https://apps.microsoft.com/detail/9PLPCW4T3FFW",
+            "blurb": "High-res image and clip generation on your own GPU."
+          },
+          "infinitegenai": {
+            "name": "HSX InfiniteGen Studio",
+            "store": "https://apps.microsoft.com/detail/9NFGT2DJVZMB",
+            "blurb": "Unlimited on-device AI image and clip creation."
+          }
+        };
+        /*APPREG_END*/
+
+        var grid    = document.getElementById('showcase'),
+            empty   = document.getElementById('gal-empty'),
+            filters = document.getElementById('sc-filters'),
+            rail    = document.getElementById('sc-rail'),
+            frame   = document.getElementById('sc-frame'),
+            img     = document.getElementById('sc-img'),
+            webp    = document.getElementById('sc-webp'),
+            idxEl   = document.getElementById('sc-index'),
+            appEl   = document.getElementById('sc-app'),
+            titleEl = document.getElementById('sc-title'),
+            descEl  = document.getElementById('sc-desc'),
+            specsEl = document.getElementById('sc-specs'),
+            ctaEl   = document.getElementById('sc-cta'),
+            prevBtn = document.getElementById('sc-prev'),
+            nextBtn = document.getElementById('sc-next'),
+            expand  = document.getElementById('sc-expand');
+
         if (!grid) return;
+        if (!DATA.length) { if (empty) empty.hidden = false; return; }
+        grid.hidden = false;
 
-        var LABEL = { all:'All', portrait:'Portrait', concept:'Concept',
-                      video:'Video', product:'Product', other:'Other' };
-
-        if (!DATA.length) {
-            grid.hidden = true;
-            if (filters) filters.hidden = true;
-            if (empty) empty.hidden = false;
-            return;
-        }
-
-        /* filters built from what actually exists */
-        var counts = {};
-        DATA.forEach(function (i) { counts[i.tag || 'other'] = (counts[i.tag || 'other'] || 0) + 1; });
-        var tags = ['all'].concat(Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; }));
-        if (filters) {
-            filters.innerHTML = tags.map(function (t, n) {
-                var c = t === 'all' ? DATA.length : counts[t];
-                return '<button class="gf-btn' + (n === 0 ? ' active' : '') + '" data-filter="' + t + '">'
-                     + (LABEL[t] || t) + ' <em>' + c + '</em></button>';
-            }).join('');
-            if (tags.length <= 2) filters.hidden = true;   // one category: no point filtering
-        }
-
-        /* path without extension — lets us offer the WebP derivative that
-           update-gallery.js generates alongside every source image. */
-        function stem(p) { return String(p).replace(/\.[a-z0-9]+$/i, ''); }
-        function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
-            return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c]; }); }
-
-        grid.innerHTML = DATA.map(function (i, n) {
-            var ratio = (i.w && i.h) ? ' width="' + i.w + '" height="' + i.h + '"' : '';
-            return '<button class="gal-item" role="listitem" data-i="' + n + '"'
-                 + ' data-tag="' + esc(i.tag || 'other') + '" aria-label="' + esc(i.title || 'Artwork') + '">'
-                 + '<span class="gal-tagpill">' + esc(LABEL[i.tag] || i.tag || 'Other') + '</span>'
-                 + '<picture>'
-                 +   '<source type="image/webp" srcset="' + esc(stem(i.src) + '-thumb.webp') + '"/>'
-                 +   '<img src="' + esc(i.src) + '" alt="' + esc(i.alt || i.title || '') + '"'
-                 +   ' loading="lazy" decoding="async" fetchpriority="low"' + ratio + '/>'
-                 + '</picture>'
-                 + '<span class="gal-cap">'
-                 +   '<span class="gal-cap-t">' + esc(i.title || '') + '</span>'
-                 +   (i.desc ? '<span class="gal-cap-m">' + esc(i.desc) + '</span>' : '')
-                 + '</span></button>';
-        }).join('');
-
-        /* filtering */
-        if (filters) filters.addEventListener('click', function (e) {
-            var b = e.target.closest('.gf-btn'); if (!b) return;
-            filters.querySelectorAll('.gf-btn').forEach(function (x) { x.classList.remove('active'); });
-            b.classList.add('active');
-            var f = b.dataset.filter;
-            grid.querySelectorAll('.gal-item').forEach(function (el) {
-                el.classList.toggle('hide', f !== 'all' && el.dataset.tag !== f);
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+                return ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' })[c];
             });
+        }
+        function stem(p) { return String(p).replace(/\.[a-z0-9]+$/i, ''); }
+        function appOf(item) { return APPREG[String(item.tag || '').toLowerCase()] || null; }
+        function appName(item) {
+            var a = appOf(item);
+            return a ? a.name : 'Hasnain Studio X';
+        }
+        function pad(n) { return ('0' + n).slice(-2); }
+
+        /* ── filters: only apps that actually have artwork ── */
+        var counts = {};
+        DATA.forEach(function (i) {
+            var k = String(i.tag || 'other').toLowerCase();
+            counts[k] = (counts[k] || 0) + 1;
+        });
+        var keys = Object.keys(counts).sort(function (a, b) {
+            return counts[b] - counts[a] || a.localeCompare(b);
         });
 
-        /* ── lightbox ── */
+        var current = 'all', view = DATA.slice(), pos = 0;
+
+        function buildFilters() {
+            if (!filters) return;
+            var html = '<button type="button" class="sc-fbtn" data-f="all" aria-pressed="true">'
+                     + 'All <span class="sc-fcount">' + DATA.length + '</span></button>';
+            keys.forEach(function (k) {
+                var label = APPREG[k] ? APPREG[k].name : (k === 'other' ? 'Other' : k);
+                html += '<button type="button" class="sc-fbtn" data-f="' + esc(k) + '" aria-pressed="false">'
+                      + esc(label) + ' <span class="sc-fcount">' + counts[k] + '</span></button>';
+            });
+            filters.innerHTML = html;
+            // one filter plus "All" is not a choice worth showing
+            if (keys.length < 2) filters.hidden = true;
+        }
+
+        function buildRail() {
+            rail.innerHTML = view.map(function (i, n) {
+                return '<button type="button" class="sc-thumb" role="tab" data-i="' + n + '"'
+                     + ' aria-selected="' + (n === pos) + '"'
+                     + ' aria-label="' + esc((i.title || 'Artwork') + ' — ' + appName(i)) + '">'
+                     + '<img src="' + esc(stem(i.src) + '-thumb.webp') + '" alt="" loading="lazy"'
+                     + ' decoding="async" onerror="this.src=\'' + esc(i.src) + '\'"/>'
+                     + '</button>';
+            }).join('');
+        }
+
+        function show(n, animate) {
+            if (!view.length) return;
+            pos = (n + view.length) % view.length;
+            var d = view[pos], a = appOf(d);
+
+            if (animate !== false) {
+                frame.classList.remove('is-swapping');
+                void frame.offsetWidth;                 // restart the sweep
+                frame.classList.add('is-swapping');
+                setTimeout(function () { frame.classList.remove('is-swapping'); }, 420);
+            }
+
+            webp.srcset = stem(d.src) + '.webp';
+            img.src     = d.src;
+            img.alt     = d.alt || d.title || 'AI artwork by Hasnain Studio X';
+            if (d.w && d.h) { img.width = d.w; img.height = d.h; }
+
+            idxEl.textContent   = pad(pos + 1) + ' / ' + pad(view.length);
+            appEl.textContent   = appName(d);
+            titleEl.textContent = d.title || 'Untitled';
+            descEl.textContent  = d.desc || (a ? a.blurb : 'Generated on local hardware — no cloud render, no upload.');
+
+            var specs = [['Made with', appName(d)]];
+            if (d.w && d.h) specs.push(['Resolution', d.w + ' × ' + d.h]);
+            specs.push(['Processing', '100% on-device']);
+            specs.push(['Cost per image', 'None']);
+            specsEl.innerHTML = specs.map(function (s) {
+                return '<dt>' + esc(s[0]) + '</dt><dd>' + esc(s[1]) + '</dd>';
+            }).join('');
+
+            ctaEl.innerHTML = a && a.store
+                ? '<a href="' + esc(a.store) + '" target="_blank" rel="noopener">Get ' + esc(a.name)
+                  + ' <span aria-hidden="true">&rarr;</span></a>'
+                : '<a href="Windows-apps.html#app-directory">Browse the AI tools <span aria-hidden="true">&rarr;</span></a>';
+
+            [].forEach.call(rail.children, function (el, n2) {
+                el.setAttribute('aria-selected', String(n2 === pos));
+            });
+            var active = rail.children[pos];
+            if (active && active.scrollIntoView) {
+                active.scrollIntoView({ block: 'nearest', inline: 'center' });
+            }
+            prevBtn.disabled = nextBtn.disabled = view.length < 2;
+        }
+
+        function applyFilter(f) {
+            current = f;
+            view = (f === 'all') ? DATA.slice()
+                 : DATA.filter(function (i) { return String(i.tag || 'other').toLowerCase() === f; });
+            if (!view.length) view = DATA.slice();
+            pos = 0;
+            buildRail();
+            show(0);
+        }
+
+        buildFilters();
+        applyFilter('all');
+
+        if (filters) filters.addEventListener('click', function (e) {
+            var b = e.target.closest('.sc-fbtn'); if (!b) return;
+            [].forEach.call(filters.children, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+            applyFilter(b.dataset.f);
+        });
+        rail.addEventListener('click', function (e) {
+            var t = e.target.closest('.sc-thumb'); if (!t) return;
+            show(+t.dataset.i);
+        });
+        prevBtn.addEventListener('click', function () { show(pos - 1); });
+        nextBtn.addEventListener('click', function () { show(pos + 1); });
+
+        /* ── full-size viewer ── */
         var lb    = document.getElementById('gal-lb'),
             lbImg = document.getElementById('gal-lb-img'),
+            lbW   = document.getElementById('gal-lb-webp'),
             lbT   = document.getElementById('gal-lb-title'),
             lbM   = document.getElementById('gal-lb-meta'),
-            lbI   = document.getElementById('gal-lb-idx');
-        var cur = 0, lastFocus = null;
+            lbI   = document.getElementById('gal-lb-idx'),
+            lastFocus = null;
 
-        function visible() {
-            return [].slice.call(grid.querySelectorAll('.gal-item:not(.hide)'))
-                     .map(function (el) { return +el.dataset.i; });
+        function paintLb() {
+            var d = view[pos];
+            lbW.srcset = stem(d.src) + '.webp';
+            lbImg.src  = d.src;
+            lbImg.alt  = d.alt || d.title || '';
+            lbT.textContent = d.title || 'Untitled';
+            lbM.textContent = appName(d);
+            lbI.textContent = pad(pos + 1) + ' / ' + pad(view.length);
         }
-        function show(n) {
-            var list = visible(); if (!list.length) return;
-            cur = (n + list.length) % list.length;
-            var d = DATA[list[cur]];
-            document.getElementById('gal-lb-webp').srcset = stem(d.src) + '.webp';
-            lbImg.src = d.src; lbImg.alt = d.alt || d.title || '';
-            lbT.textContent = d.title || '';
-            lbM.textContent = d.desc || '';
-            lbI.textContent = (cur + 1) + ' / ' + list.length;
-        }
-        function open(el) {
-            lastFocus = el;
-            var list = visible();
-            show(Math.max(0, list.indexOf(+el.dataset.i)));
-            lb.hidden = false; document.body.style.overflow = 'hidden';
+        function openLb() {
+            lastFocus = document.activeElement;
+            paintLb(); lb.hidden = false;
+            document.body.style.overflow = 'hidden';
             document.getElementById('gal-lb-close').focus();
         }
-        function close() {
+        function closeLb() {
             lb.hidden = true; document.body.style.overflow = '';
-            lbImg.removeAttribute('src');
-            if (lastFocus) lastFocus.focus();
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
         }
+        function stepLb(d) { show(pos + d, false); paintLb(); }
 
-        grid.addEventListener('click', function (e) {
-            var it = e.target.closest('.gal-item'); if (it) open(it);
-        });
-        document.getElementById('gal-lb-close').addEventListener('click', close);
-        document.getElementById('gal-prev').addEventListener('click', function () { show(cur - 1); });
-        document.getElementById('gal-next').addEventListener('click', function () { show(cur + 1); });
-        lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+        expand.addEventListener('click', openLb);
+        img.addEventListener('click', openLb);
+        img.style.cursor = 'zoom-in';
+        document.getElementById('gal-lb-close').addEventListener('click', closeLb);
+        document.getElementById('gal-prev').addEventListener('click', function () { stepLb(-1); });
+        document.getElementById('gal-next').addEventListener('click', function () { stepLb(1); });
+        lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+
         document.addEventListener('keydown', function (e) {
-            if (lb.hidden) return;
-            if (e.key === 'Escape') close();
-            if (e.key === 'ArrowLeft') show(cur - 1);
-            if (e.key === 'ArrowRight') show(cur + 1);
+            if (!lb.hidden) {
+                if (e.key === 'Escape')     closeLb();
+                if (e.key === 'ArrowLeft')  stepLb(-1);
+                if (e.key === 'ArrowRight') stepLb(1);
+                return;
+            }
+            if (!grid.contains(document.activeElement)) return;
+            if (e.key === 'ArrowLeft')  { e.preventDefault(); show(pos - 1); }
+            if (e.key === 'ArrowRight') { e.preventDefault(); show(pos + 1); }
         });
     })();
     </script>
