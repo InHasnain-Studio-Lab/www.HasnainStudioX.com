@@ -96,8 +96,26 @@ if (!fs.existsSync(IMG_DIR)) {
 }
 
 const prev = existing();
+/* Only real artwork belongs in the gallery. Skip:
+     - site furniture: og-* social cards, icon-* app icons
+     - derivatives:    *-thumb.*  and any .webp/.avif that optimise-images.py
+                       generated next to an original (the <picture> element
+                       already asks for those by name)                        */
+const SITE_ASSET = /^(og-|icon-|favicon|apple-touch-icon)/i;
+const DERIVATIVE = /-thumb\.[a-z0-9]+$/i;
+const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png', '.gif']);
+
+const allNames = new Set(fs.readdirSync(IMG_DIR));
+const hasSourceTwin = f => {
+  const base = path.basename(f, path.extname(f));
+  return [...SOURCE_EXT].some(e => allNames.has(base + e));
+};
+
 const files = fs.readdirSync(IMG_DIR)
   .filter(f => EXT.has(path.extname(f).toLowerCase()))
+  .filter(f => !SITE_ASSET.test(f))
+  .filter(f => !DERIVATIVE.test(f))
+  .filter(f => SOURCE_EXT.has(path.extname(f).toLowerCase()) || !hasSourceTwin(f))
   .sort((a, b) => fs.statSync(path.join(IMG_DIR, b)).mtimeMs -   // newest first
                   fs.statSync(path.join(IMG_DIR, a)).mtimeMs);
 
