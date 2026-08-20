@@ -34,6 +34,19 @@ const OUT_FILE = path.join(ROOT, 'gallery-data.js');
 const EXT      = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif']);
 const KNOWN    = new Set(['portrait', 'concept', 'video', 'product']);
 
+/* An image can also be tagged with the id of the app that generated it, e.g.
+   fototensor__Restored-Portrait.png -> filed under HSX FotoTensor. The valid
+   ids come from the registry build.js writes into HSXAIstudio.html, so the two
+   can never drift apart. */
+function appIds() {
+  try {
+    const page = fs.readFileSync(path.join(ROOT, 'HSXAIstudio.html'), 'utf8');
+    const m = page.match(/\/\*APPREG_START\*\/\s*var APPREG = ([\s\S]*?);\s*\/\*APPREG_END\*\//);
+    return new Set(Object.keys(JSON.parse(m[1])).map(k => k.toLowerCase()));
+  } catch (e) { return new Set(); }
+}
+const APP_IDS = appIds();
+
 function titleCase(s) {
   return s.replace(/[-_]+/g, ' ').trim()
           .replace(/\s+/g, ' ')
@@ -129,7 +142,7 @@ const items = files.map(f => {
   let tag = 'concept', title = titleCase(base), desc = '';
   if (bits.length >= 2) {
     const t = bits[0].toLowerCase();
-    tag = KNOWN.has(t) ? t : 'other';
+    tag = (APP_IDS.has(t) || KNOWN.has(t)) ? t : 'other';
     title = titleCase(bits[1]);
     if (bits[2]) desc = titleCase(bits[2]).replace(/\s+/g, ' ');
   }
