@@ -29,15 +29,15 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/QuantumGenAI-Image2.png</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/gallery/QuantumGenAI-Image2.png</image:loc>
       <image:title>QuantumGenAI Image2</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/QuantumGenAI-Image1.png</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/gallery/QuantumGenAI-Image1.png</image:loc>
       <image:title>QuantumGenAI Image1</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/QuantumGenAI-Image.png</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/gallery/QuantumGenAI-Image.png</image:loc>
       <image:title>QuantumGenAI Image</image:title>
     </image:image>
   </url>

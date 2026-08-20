@@ -27,7 +27,9 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT     = __dirname;
-const IMG_DIR  = path.join(ROOT, 'images');
+/* Artwork lives in its own folder so site assets - og-* social cards,
+   icon-* app icons, favicons - can never end up in the gallery. */
+const IMG_DIR  = path.join(ROOT, 'images', 'gallery');
 const OUT_FILE = path.join(ROOT, 'gallery-data.js');
 const EXT      = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif']);
 const KNOWN    = new Set(['portrait', 'concept', 'video', 'product']);
@@ -120,7 +122,7 @@ const files = fs.readdirSync(IMG_DIR)
                   fs.statSync(path.join(IMG_DIR, a)).mtimeMs);
 
 const items = files.map(f => {
-  const src  = 'images/' + f;
+  const src  = 'images/gallery/' + f;
   const base = path.basename(f, path.extname(f));
   const bits = base.split('__');
 

@@ -10,7 +10,7 @@
    ═══════════════════════════════════════════════════════════════════════ */
 window.GALLERY_IMAGES = [
   {
-    "src": "images/QuantumGenAI-Image2.png",
+    "src": "images/gallery/QuantumGenAI-Image2.png",
     "tag": "concept",
     "title": "QuantumGenAI Image2",
     "desc": "",
@@ -19,7 +19,7 @@ window.GALLERY_IMAGES = [
     "h": 1024
   },
   {
-    "src": "images/QuantumGenAI-Image1.png",
+    "src": "images/gallery/QuantumGenAI-Image1.png",
     "tag": "concept",
     "title": "QuantumGenAI Image1",
     "desc": "",
@@ -28,7 +28,7 @@ window.GALLERY_IMAGES = [
     "h": 1024
   },
   {
-    "src": "images/QuantumGenAI-Image.png",
+    "src": "images/gallery/QuantumGenAI-Image.png",
     "tag": "concept",
     "title": "QuantumGenAI Image",
     "desc": "",

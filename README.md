@@ -19,7 +19,8 @@ Static site for Hasnain Studio X. Hosted on GitHub Pages at
 |---|---|
 | `site.css` `site.js` `effects.js` `fluid.js` | styles and scripts |
 | `gallery-data.js` | AI Studio gallery list — generated, do not hand-edit |
-| `images/` | gallery artwork + the 6 social share cards + app icons |
+| `images/` | site assets only - the 6 social share cards and app icons |
+| `images/gallery/` | **AI Studio artwork.** Drop new PNGs here, nowhere else |
 | `favicon.svg` `favicon.ico` `apple-touch-icon.png` `site.webmanifest` | icons |
 
 ### Search engine files
@@ -40,7 +41,7 @@ Static site for Hasnain Studio X. Hosted on GitHub Pages at
 | | |
 |---|---|
 | `build.js` | app counts, structured data, static catalogue, sitemap |
-| `update-gallery.js` | rebuilds `gallery-data.js` from `images/` |
+| `update-gallery.js` | rebuilds `gallery-data.js` from `images/gallery/` |
 | `optimise-images.py` | makes WebP versions of new artwork |
 | `submit-indexnow.js` | pushes every URL to Bing, Yandex, Seznam, Naver |
 | `.github/workflows/` | runs all four on every push |
@@ -58,7 +59,8 @@ result, and tells Bing. **You never need to run anything on your PC.**
 
 To add or rename an app, edit the `APPS` array inside `Windows-apps.html` or
 `android-apps.html` — every count, schema entry and sitemap URL follows from it.
-To add gallery art, drop the PNG into `images/` and commit.
+To add gallery art, drop the PNG into `images/gallery/` and commit. Nothing
+else in `images/` is ever picked up.
 
 ## One-time setup
 

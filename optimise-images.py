@@ -1,6 +1,6 @@
 """Make the WebP versions the gallery serves.
 
-For every PNG you drop into images/ this writes:
+For every PNG you drop into images/gallery/ this writes:
     <name>.webp          full size, served to the lightbox
     <name>-thumb.webp    520 px, served to the grid
 The original PNG stays as the source of truth and the <img> fallback.
@@ -10,13 +10,11 @@ GitHub Actions runs this on every push. Already-processed images are skipped.
 import os, glob
 from PIL import Image
 
-IMG = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
+IMG = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images', 'gallery')
 rows = []
 
 for p in sorted(glob.glob(os.path.join(IMG, '*.png'))):
     name = os.path.basename(p)
-    if name.startswith(('og-', 'icon-')):
-        continue                                  # social cards and app icons
     stem = os.path.splitext(p)[0]
     if os.path.exists(stem + '.webp') and os.path.exists(stem + '-thumb.webp'):
         continue                                  # already done
