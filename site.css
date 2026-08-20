@@ -1564,3 +1564,101 @@ body.weather-rain .glass-condensation{opacity:.55;}
    still links somewhere useful before JavaScript upgrades it to a modal button. */
 a.tile-btn, a.tile-btn:link, a.tile-btn:visited { text-decoration: none; }
 a.tile-btn-details { display: inline-flex; align-items: center; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   About page — founder profile. Built on the site tokens so it reads as
+   part of the same system: holo accents, mono labels, clipped corners.
+   ══════════════════════════════════════════════════════════════════ */
+.ab-lead { font-size: 1.05rem; line-height: 1.7; color: var(--ink); margin: 0 0 1rem; }
+.ab-lead strong { color: var(--ink); }
+.ab-note { margin: 1.2rem 0 0; font-size: .88rem; color: var(--ink-soft); }
+.ab-note a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent-line); }
+.ab-note a:hover { border-bottom-color: currentColor; }
+
+/* what I build */
+.ab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: .9rem; }
+.ab-card {
+    position: relative; padding: 1.25rem 1.3rem 1.35rem;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: var(--r-md); backdrop-filter: var(--blur);
+    transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.ab-card:hover { transform: translateY(-3px); border-color: var(--accent-line); }
+.ab-idx {
+    font-family: var(--f-mono); font-size: .6rem; letter-spacing: .2em;
+    color: var(--ink-faint); display: block; margin-bottom: .5rem;
+}
+.ab-card h3 { font-family: var(--f-display); font-size: 1rem; margin: 0 0 .45rem; color: var(--ink); }
+.ab-card p { margin: 0 0 .5rem; font-size: .88rem; line-height: 1.6; color: var(--ink-soft); }
+.ab-apps {
+    font-family: var(--f-mono); font-size: .68rem; letter-spacing: .04em;
+    color: var(--gold); opacity: .78; margin: .65rem 0 0 !important; line-height: 1.7;
+}
+
+/* how I build it */
+.ab-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .9rem; }
+.ab-rule {
+    padding: 1.1rem 1.2rem; border-radius: var(--r-md);
+    background: rgba(255,255,255,.022); border: 1px solid var(--line);
+    border-left: 2px solid transparent; border-image: var(--holo) 1;
+    border-image-slice: 1; border-image-width: 0 0 0 2px;
+}
+.ab-rule h3 {
+    font-family: var(--f-mono); font-size: .7rem; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 .5rem;
+}
+.ab-rule p { margin: 0; font-size: .87rem; line-height: 1.6; color: var(--ink-soft); }
+
+/* name clarification */
+.ab-names {
+    margin: 0; display: grid; grid-template-columns: minmax(150px, auto) 1fr;
+    gap: .05rem 1.6rem; border-top: 1px solid var(--line);
+}
+.ab-names dt {
+    font-family: var(--f-display); font-size: .93rem; color: var(--ink);
+    padding: .85rem 0 .2rem; border-bottom: 1px solid var(--line);
+}
+.ab-names dd {
+    margin: 0; font-size: .88rem; color: var(--ink-soft); line-height: 1.6;
+    padding: .85rem 0 .85rem; border-bottom: 1px solid var(--line);
+}
+@media (max-width: 620px) {
+    .ab-names { grid-template-columns: 1fr; }
+    .ab-names dt { border-bottom: 0; padding-bottom: 0; }
+    .ab-names dd { padding-top: .3rem; }
+}
+
+/* where to find my work */
+.ab-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .75rem; }
+.ab-link {
+    display: flex; flex-direction: column; gap: .3rem; text-decoration: none;
+    padding: 1rem 1.15rem; border-radius: var(--r-md);
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    transition: transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease),
+                box-shadow var(--t-fast) var(--ease);
+}
+.ab-link:hover {
+    transform: translateY(-3px); border-color: var(--accent-line);
+    box-shadow: 0 14px 32px -18px rgba(199,165,247,.85);
+}
+.ab-link-k {
+    font-family: var(--f-mono); font-size: .61rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ink-faint);
+}
+.ab-link-v { font-size: .95rem; color: var(--ink); }
+
+/* common questions */
+.ab-faq { display: grid; gap: .85rem; }
+.ab-q {
+    padding: 1.05rem 1.2rem; border-radius: var(--r-md);
+    background: rgba(255,255,255,.022); border: 1px solid var(--line);
+}
+.ab-q h3 { font-family: var(--f-display); font-size: .95rem; margin: 0 0 .4rem; color: var(--ink); }
+.ab-q p  { margin: 0; font-size: .88rem; line-height: 1.65; color: var(--ink-soft); }
+
+@media (max-width: 700px) {
+    .stats-section { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Anchored sections must clear the sticky top bar when jumped to. */
+.section, [id^="app-"], .hero, h1[id], h2[id], h3[id] { scroll-margin-top: 6.5rem; }
