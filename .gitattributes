@@ -1,0 +1,6 @@
+# Normalise line endings so files stop showing as fully rewritten in every diff.
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.ico binary
+*.svg text eol=lf

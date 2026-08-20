@@ -1512,3 +1512,55 @@ body.weather-rain .glass-condensation{opacity:.55;}
 @media (max-width:640px){
     .ad-slot{padding:1.1rem 1rem 1.3rem;min-height:96px;}
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Static app directory — permanent, crawlable copy of the catalogue.
+   Rendered server-side (see update-site.js / hsx-prerender) so Bing,
+   DuckDuckGo and AI crawlers, which do not execute JavaScript, still
+   see every app name, description and privacy-policy link.
+   ══════════════════════════════════════════════════════════════════ */
+.app-directory { margin-top: 2.6rem; padding: 1.8rem 1.6rem 2rem; }
+.app-directory > h2 { font-size: 1.35rem; margin: 0 0 .5rem; letter-spacing: -.01em; }
+.app-directory .dir-intro { margin: 0 0 1.6rem; max-width: 62ch; opacity: .7; font-size: .93rem; line-height: 1.6; }
+.dir-group { margin: 0 0 2rem; }
+.dir-cat { font-size: 1.02rem; margin: 0 0 .2rem; letter-spacing: .01em; }
+.dir-cat-desc { margin: 0 0 1rem; font-size: .86rem; opacity: .55; }
+.dir-group { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem 1.4rem; }
+.dir-cat, .dir-cat-desc { grid-column: 1 / -1; }
+@media (max-width: 780px) { .dir-group { grid-template-columns: 1fr; } }
+.dir-app { padding: .9rem 1rem; border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
+           background: rgba(255,255,255,.018); }
+.dir-app-name { font-size: .97rem; margin: 0 0 .25rem; font-weight: 600; }
+.dir-soon { font-size: .68rem; font-weight: 500; opacity: .6; border: 1px solid currentColor;
+            border-radius: 999px; padding: .05rem .45rem; margin-left: .35rem; vertical-align: middle; }
+.dir-tagline { margin: 0 0 .45rem; font-size: .855rem; opacity: .82; }
+.dir-desc { margin: 0 0 .55rem; font-size: .83rem; opacity: .62; line-height: 1.55; }
+.dir-features { margin: 0 0 .6rem; padding-left: 1.05rem; font-size: .8rem; opacity: .58; line-height: 1.55; }
+.dir-features li { margin: .1rem 0; }
+.dir-links { margin: 0; font-size: .82rem; }
+.dir-links a { text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.18); padding-bottom: 1px; }
+.dir-links a:hover { border-bottom-color: currentColor; }
+.dir-sep { opacity: .35; margin: 0 .15rem; }
+
+/* Skip link — WCAG 2.4.1 bypass block */
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 9999;
+             background: #0b0a12; color: #E6F1F3; padding: .7rem 1.1rem;
+             border: 1px solid rgba(255,255,255,.25); border-radius: 0 0 8px 0;
+             font-size: .9rem; text-decoration: none; }
+.skip-link:focus { left: 0; outline: 2px solid #3ADCE6; outline-offset: 2px; }
+
+/* Privacy policy index */
+.policy-index { columns: 3; column-gap: 2rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
+@media (max-width: 900px) { .policy-index { columns: 2; } }
+@media (max-width: 560px) { .policy-index { columns: 1; } }
+.policy-index li { break-inside: avoid; margin: 0 0 .5rem; font-size: .88rem; }
+.policy-index a { text-decoration: none; opacity: .8; }
+.policy-index a:hover { opacity: 1; text-decoration: underline; }
+
+/* Gallery images: reserve space so lazy loading cannot shift layout */
+.gallery-item img, .gal-img { max-width: 100%; height: auto; }
+
+/* Static (no-JS) variant of the tile action: rendered as an anchor so the card
+   still links somewhere useful before JavaScript upgrades it to a modal button. */
+a.tile-btn, a.tile-btn:link, a.tile-btn:visited { text-decoration: none; }
+a.tile-btn-details { display: inline-flex; align-items: center; }

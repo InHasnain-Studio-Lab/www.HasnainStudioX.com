@@ -23,12 +23,45 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # ── build ──────────────────────────────────────────────────────────
+      # Regenerates the app counts, structured data, the static catalogue that
+      # non-JavaScript crawlers read, and sitemap.xml. Runs here so nothing has
+      # to be built on a PC before pushing.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: pip install --quiet "Pillow>=11"
+
+      - name: Refresh gallery list and WebP versions
+        run: |
+          node update-gallery.js || true
+          python optimise-images.py || true
+
+      - name: Build catalogue, structured data and sitemap
+        run: node build.js
+
+      # ── deploy ─────────────────────────────────────────────────────────
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # ── tell the search engines ────────────────────────────────────────
+      - name: Submit every URL to Bing, Yandex, Seznam and Naver
+        run: node submit-indexnow.js

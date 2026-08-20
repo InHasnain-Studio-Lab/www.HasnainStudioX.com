@@ -1,81 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>QuantumCast - Connect to a remote PC</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#05070F">
+<title>Remote link code - HSX CastVisuality</title>
+    <meta name="description" content="Hasnain Studio X — local-first Windows and Android software."/>
 <style>
-  :root{
-    --bright:#2F86FF; --mid:#0B3FA8; --base:#06091A;
-    --glass:rgba(255,255,255,.06); --border:rgba(255,255,255,.16);
-    --t1:rgba(255,255,255,.97); --t2:rgba(255,255,255,.62); --t3:rgba(255,255,255,.4);
+  /* Inline on purpose: this page is opened by a phone camera on an unknown
+     network and must render with nothing else alongside it. */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --ground: #05070F;
+    --card: #0C171C;
+    --line: #1D3138;
+    --ink: #E3EFF1;
+    --ink-soft: rgba(227,239,241,.72);
+    --ink-faint: rgba(227,239,241,.45);
+    --cyan: #3ADCE6;
+    --indigo: #8A93FF;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--base);color:var(--t1);min-height:100vh;
-       font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
-       display:flex;flex-direction:column;align-items:center;justify-content:center;
-       padding:28px 20px;text-align:center;overflow-x:hidden}
-  .glow{position:fixed;inset:0;pointer-events:none;
-        background:radial-gradient(60% 40% at 50% 0%,rgba(47,134,255,.22),transparent 70%),
-                   radial-gradient(50% 40% at 50% 100%,rgba(11,63,168,.28),transparent 70%)}
-  .wrap{position:relative;width:100%;max-width:420px}
-  .mark{font:700 13px/1 ui-monospace,Consolas,monospace;letter-spacing:.28em;color:var(--t3)}
-  h1{font-size:26px;font-weight:700;margin:18px 0 8px;letter-spacing:-.01em}
-  p{color:var(--t2);font-size:14.5px;line-height:1.6}
-  .code{margin:26px 0 8px;padding:20px 16px;border-radius:16px;
-        background:var(--glass);border:1px solid var(--border)}
-  .code span{display:block;font:700 30px/1 ui-monospace,Consolas,monospace;letter-spacing:.14em;
-             color:var(--bright);text-shadow:0 0 22px rgba(47,134,255,.5);word-break:break-all}
-  .code em{display:block;font-style:normal;font:600 10px/1 ui-monospace,monospace;
-           letter-spacing:.22em;color:var(--t3);margin-bottom:12px}
-  .btn{display:block;margin-top:16px;padding:16px 20px;border-radius:14px;text-decoration:none;
-       font-size:15px;font-weight:600;color:#fff;
-       background:linear-gradient(120deg,var(--bright),var(--mid));
-       box-shadow:0 12px 34px -12px var(--mid)}
-  .btn.ghost{background:var(--glass);border:1px solid var(--border);color:var(--t1);box-shadow:none}
-  .note{margin-top:22px;font-size:12.5px;color:var(--t3);line-height:1.7}
-  footer{margin-top:30px;font-size:11.5px;color:var(--t3)}
-  footer a{color:var(--bright);text-decoration:none}
+
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--ground);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    line-height: 1.55;
+  }
+
+  main {
+    width: 100%;
+    max-width: 460px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .brand {
+    font-size: 11.5px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    font-family: "Cascadia Mono", Consolas, ui-monospace, monospace;
+  }
+
+  h1 { font-size: 22px; line-height: 1.25; margin: 0; font-weight: 600; }
+
+  p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+  .code-label {
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .code {
+    font-family: "Cascadia Mono", Consolas, ui-monospace, monospace;
+    font-size: clamp(26px, 8vw, 38px);
+    letter-spacing: .12em;
+    color: var(--cyan);
+    word-break: break-all;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .code-box {
+    background: rgba(58,220,230,.06);
+    border: 1px solid rgba(58,220,230,.28);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .steps { margin: 0; padding-left: 20px; color: var(--ink-soft); font-size: 14.5px; display: flex; flex-direction: column; gap: 7px; }
+
+  .actions { display: flex; flex-direction: column; gap: 10px; }
+
+  a.btn, button.btn {
+    font: inherit;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    padding: 13px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    display: block;
+  }
+  a.btn.primary { background: var(--cyan); border-color: var(--cyan); color: #04191C; font-weight: 600; }
+  a.btn:hover, button.btn:hover { border-color: var(--cyan); }
+  a.btn:focus-visible, button.btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+  .note { font-size: 13px; color: var(--ink-faint); border-top: 1px solid var(--line); padding-top: 16px; }
+  .note a { color: var(--indigo); }
+
+  #nocode .code { color: var(--ink-faint); font-size: 17px; letter-spacing: normal; }
 </style>
 </head>
 <body>
-<div class="glow"></div>
-<div class="wrap">
-  <div class="mark">QUANTUMCAST</div>
-  <h1>Connect to this PC</h1>
-  <p>Open this session in the QuantumX app to watch the screen and take control from anywhere.</p>
+  <main>
+    <div class="brand">HSX CastVisuality</div>
 
-  <div class="code">
-    <em>REMOTE LINK CODE</em>
-    <span id="code">--------</span>
-  </div>
+    <div>
+      <h1>Remote link code</h1>
+      <p id="lede">Enter this code in HSX CastVisuality on the PC you want to view.</p>
+    </div>
 
-  <a class="btn" id="open" href="#">Open in QuantumX</a>
-  <a class="btn ghost" id="store"
-     href="https://play.google.com/store/apps/details?id=com.quantumx.quantumx">Get the QuantumX app</a>
+    <div class="code-box">
+      <div class="code-label">Your code</div>
+      <div class="code" id="code">no code in this link</div>
+    </div>
 
-  <p class="note">
-    No app? Install QuantumX, then type the code above on its Remote screen.
-    The screen stream is peer to peer - it never passes through a server.
-  </p>
+    <ol class="steps">
+      <li>Open HSX CastVisuality on the host PC.</li>
+      <li>Go to Broadcast and start the remote link.</li>
+      <li>Enter the code above to authorise this device.</li>
+    </ol>
 
-  <footer>
-    Developed by Hasnain Butt Akhtar &middot; Hasnain Studio X<br>
-    <a href="https://www.inhasnain.com">www.inhasnain.com</a>
-  </footer>
-</div>
+    <div class="actions">
+      <button class="btn" id="copy" type="button">Copy code</button>
+      <a class="btn primary" href="https://apps.microsoft.com/detail/9NTKDHQVR57X">Get HSX CastVisuality</a>
+    </div>
+
+    <p class="note">
+      The code authorises one session and nothing else. Screen, audio and file content
+      travel directly between your devices, never through this page.
+      <a href="HSXCastVisualityPrivacy.html">Privacy policy</a>
+    </p>
+  </main>
 
 <script>
-  // A custom scheme cannot be the QR payload (phone cameras reject non-URL data), but it works
-  // fine as a link the user taps here. This page is the bridge between the two.
-  var code = (new URLSearchParams(location.search).get("code") || "").trim().toUpperCase();
-  if (code) {
-    document.getElementById("code").textContent = code;
-    document.getElementById("open").href = "quantumx:link:" + encodeURIComponent(code);
-  } else {
-    document.getElementById("code").textContent = "NO CODE";
-    document.getElementById("open").style.display = "none";
-  }
+  (function () {
+    var code = new URLSearchParams(location.search).get('code');
+    var el = document.getElementById('code');
+    var copy = document.getElementById('copy');
+
+    if (code) {
+      el.textContent = code;
+    } else {
+      el.textContent = 'no code in this link';
+      el.style.color = 'rgba(227,239,241,.45)';
+      el.style.fontSize = '17px';
+      el.style.letterSpacing = 'normal';
+      document.getElementById('lede').textContent =
+        'This link did not carry a code. Scan the QR code shown in HSX CastVisuality again.';
+      copy.disabled = true;
+      copy.style.opacity = '.45';
+      copy.style.cursor = 'default';
+    }
+
+    copy.addEventListener('click', function () {
+      if (!code) return;
+      navigator.clipboard.writeText(code).then(function () {
+        copy.textContent = 'Copied';
+        setTimeout(function () { copy.textContent = 'Copy code'; }, 1500);
+      });
+    });
+  })();
 </script>
 </body>
 </html>
