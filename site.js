@@ -109,9 +109,11 @@
     }
 
     /* ── Contact form: async submit with inline status ─────────────────── */
-    var form = document.getElementById('contact-form');
-    if (form) {
-        var status = document.getElementById('contact-status');
+    /* Any form marked [data-async] posts without a page reload and reports
+       into the <p> named by its id + '-status'. */
+    document.querySelectorAll('form[data-async], #contact-form').forEach(function (form) {
+        var status = document.getElementById(form.id + '-status')
+                  || document.getElementById('contact-status');
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             var btn = form.querySelector('[type="submit"]');
@@ -124,7 +126,9 @@
             }).then(function (res) {
                 if (res.ok) {
                     form.reset();
-                    if (status) status.textContent = '✓ Message sent — we’ll reply within 2 business days.';
+                    if (status) status.textContent = form.id === 'contest-form'
+                        ? '✓ Entry received — good luck. Winners are announced on X.'
+                        : '✓ Message sent — we’ll reply within 2 business days.';
                 } else {
                     throw new Error('send failed');
                 }
@@ -137,7 +141,7 @@
                 if (btn) { btn.disabled = false; btn.style.opacity = ''; }
             });
         });
-    }
+    });
 
     /* ── Footer year auto-update ────────────────────────────────────────── */
     document.querySelectorAll('.footer-bottom span').forEach(function (s) {
@@ -244,3 +248,52 @@ window.AppViz = (function () {
         }
     } catch (e) { /* no-op */ }
 })();
+
+    /* ══ Made With HSX: monthly challenge countdown ══════════════════════
+       The deadline is the last moment of the current month, computed in the
+       visitor's own clock, so nothing needs editing month to month. Add an
+       entry to THEMES to name a month; anything unlisted shows "Open theme". */
+    (function () {
+        var wrap = document.getElementById('mw-count');
+        if (!wrap) return;
+
+        var THEMES = {
+            '2026-08': 'Open theme',
+            '2026-09': 'Machines and light',
+            '2026-10': 'Something in the dark',
+            '2026-11': 'Portraits of nobody',
+            '2026-12': 'Winter, rendered locally'
+        };
+
+        var d = document.getElementById('mw-d'), h = document.getElementById('mw-h'),
+            m = document.getElementById('mw-m'), s = document.getElementById('mw-s'),
+            themeEl = document.getElementById('mw-theme');
+
+        function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+        function deadline() {
+            var now = new Date();
+            return new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
+        }
+        function monthKey() {
+            var n = new Date();
+            return n.getFullYear() + '-' + pad(n.getMonth() + 1);
+        }
+        if (themeEl) themeEl.textContent = THEMES[monthKey()] || 'Open theme';
+
+        function tick() {
+            var left = deadline() - new Date();
+            if (left <= 0) {
+                wrap.innerHTML = '<p class="mw-closed">Entries closed for this month. '
+                                 + 'The next round opens on the 1st.</p>';
+                return;
+            }
+            var sec = Math.floor(left / 1000);
+            d.textContent = pad(Math.floor(sec / 86400));
+            h.textContent = pad(Math.floor(sec % 86400 / 3600));
+            m.textContent = pad(Math.floor(sec % 3600 / 60));
+            s.textContent = pad(sec % 60);
+            setTimeout(tick, 1000);
+        }
+        tick();
+    })();

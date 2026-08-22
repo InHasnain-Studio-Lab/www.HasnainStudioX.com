@@ -311,9 +311,9 @@ let sitemapMsg = '';
   // search engine ownership-verification pages - must exist, must not be indexed
   'naverebef151fc79df23c57d36c70e3b933cf.html', 'yandex_ec0348fbe6310d9f.html']);
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
-                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6' };
+                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','contest-rules.html':'0.5' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
-                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly' };
+                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','contest-rules.html':'monthly' };
 
     const pages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f))
@@ -443,6 +443,31 @@ function syncContactTopics() {
 }
 const topicsMsg = syncContactTopics();
 if (topicsMsg) sitemapMsg += '\n' + topicsMsg;
+
+
+/* ── 3c. Made With HSX: app picker in the contest entry form ──────────── */
+function syncContestApps() {
+  const file = 'HSXAIstudio.html';
+  if (!fs.existsSync(P(file))) return '';
+  let s = read(file);
+  const re = /(<!--MWAPPS_START-->)[\s\S]*?(<!--MWAPPS_END-->)/;
+  if (!re.test(s)) return '';
+  const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const live = a => a.status === 'live';
+  const grp = (label, apps) => apps.length
+    ? `                                    <optgroup label="${label}">\n`
+      + apps.slice().sort((a, b) => a.name.localeCompare(b.name))
+            .map(a => `                                        <option>${esc(a.name)}</option>`).join('\n')
+      + `\n                                    </optgroup>\n` : '';
+  const body = '\n' + grp('Windows Apps', win.filter(live)) + grp('Android Apps', and.filter(live))
+    + '                                    <optgroup label="Other">\n'
+    + '                                        <option>More than one app</option>\n'
+    + '                                    </optgroup>\n                                ';
+  write(file, s.replace(re, (m, a, b) => a + body + b));
+  return `  contest app picker    ${win.filter(live).length + and.filter(live).length} live apps`;
+}
+const contestMsg = syncContestApps();
+if (contestMsg) sitemapMsg += '\n' + contestMsg;
 
 /* ── 4. AI Studio gallery: refresh the app registry ──────────────────────
    The showcase filters images by the app that produced them. The names and
