@@ -181,9 +181,34 @@
             padding-right: 2.5rem;
             cursor: pointer;
         }
+        /* The native dropdown popup is painted by the OS, not the page.
+           Without color-scheme it renders light, so the optgroup label came
+           out white-on-white. Declaring the scheme plus explicit colours
+           fixes it in Chrome, Edge, Firefox and Safari. */
+        .form-group select { color-scheme: dark; }
         .form-group select option {
             background: #18141f;
-            color: #fff;
+            color: #f4f2ee;
+            padding: .4rem .6rem;
+        }
+        .form-group select optgroup {
+            background: #100d16;
+            color: #c7a5f7;
+            font-family: var(--f-mono, monospace);
+            font-size: .78em;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-style: normal;
+            font-weight: 600;
+        }
+        .form-group select optgroup option {
+            background: #18141f;
+            color: #f4f2ee;
+            font-family: var(--f-body, sans-serif);
+            font-size: 1rem;
+            letter-spacing: normal;
+            text-transform: none;
+            font-weight: 400;
         }
         .form-group input::placeholder,
         .form-group textarea::placeholder {
@@ -706,7 +731,7 @@
                     </a>
 
                     <!-- X / Twitter card -->
-                    <a href="https://x.com/InHasnain" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="--card-accent-color: var(--ice);">
+                    <a href="https://x.com/HasnainStudioX" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="--card-accent-color: var(--ice);">
                         <div class="card-icon-wrap">
                             <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M3 3l5.5 7.5L3 17h2l4.25-5.5L13.5 17H17l-5.75-7.75L16.5 3h-2l-3.75 4.75L10 3H3z" fill="var(--ice)"/>
@@ -714,7 +739,7 @@
                         </div>
                         <div class="card-text">
                             <div class="card-label">X · Twitter</div>
-                            <div class="card-value">@InHasnain</div>
+                            <div class="card-value">@HasnainStudioX</div>
                             <div class="card-sub">DMs open for quick questions</div>
                         </div>
                     </a>

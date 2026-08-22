@@ -8,6 +8,7 @@
 
 /* ── Tokens ────────────────────────────────────────────────────────────── */
 :root{
+    color-scheme: dark;   /* native selects, scrollbars and pickers follow the site */
     /* surfaces */
     --bg:            #08070c;
     --bg-soft:       #0d0c14;
@@ -534,7 +535,18 @@ a:hover{color:var(--accent);}
 .contact-form input::placeholder,
 .contact-form textarea::placeholder{color:var(--ink-faint);}
 .contact-form select{cursor:pointer;}
+.contact-form select{color-scheme:dark;}
 .contact-form select option{background:var(--bg-soft);color:var(--ink);}
+.contact-form select optgroup{
+    background:#100d16;color:var(--accent);
+    font-family:var(--f-mono);font-size:.78em;letter-spacing:.12em;
+    text-transform:uppercase;font-style:normal;font-weight:600;
+}
+.contact-form select optgroup option{
+    background:var(--bg-soft);color:var(--ink);
+    font-family:var(--f-body);font-size:1rem;
+    letter-spacing:normal;text-transform:none;font-weight:400;
+}
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus{
