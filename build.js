@@ -357,6 +357,41 @@ let sitemapMsg = '';
 sitemapMsg = '\n' + sitemapMsg.replace(/\n$/, '');
 
 
+
+/* ── 4. contact form: rebuild the app list from the catalogue ─────────────
+   The topic dropdown used to be hand-maintained and had drifted badly:
+   pre-rename names, only 19 of 69 Windows apps, and two Windows titles
+   filed under Android. It is now generated from the same APPS arrays as
+   everything else, alphabetically, so it cannot go stale again. */
+function syncContactTopics() {
+  const file = 'contact.html';
+  if (!fs.existsSync(P(file))) return '';
+  let s = read(file);
+  const re = /(<!--TOPICS_START-->)[\s\S]*?(<!--TOPICS_END-->)/;
+  if (!re.test(s)) return '  ! contact.html markers not found';
+
+  const esc = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const group = (label, apps) => {
+    if (!apps.length) return '';
+    const opts = apps
+      .slice()
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map(a => `                                        <option>${esc(a.name)}`
+                + `${a.status === 'soon' ? ' (coming soon)' : ''}</option>`)
+      .join('\n');
+    return `                                    <optgroup label="${label}">\n${opts}\n`
+         + `                                    </optgroup>\n`;
+  };
+
+  const body = '\n' + group('Windows Apps', win) + group('Android Apps', and)
+             + '                                    ';
+  s = s.replace(re, (m, open, close) => open + body + close);
+  write(file, s);
+  return `  contact topics        ${win.length} Windows + ${and.length} Android`;
+}
+const topicsMsg = syncContactTopics();
+if (topicsMsg) sitemapMsg += '\n' + topicsMsg;
+
 /* ── 4. AI Studio gallery: refresh the app registry ──────────────────────
    The showcase filters images by the app that produced them. The names and
    Store links come from the same APPS array as everything else, so a rename
