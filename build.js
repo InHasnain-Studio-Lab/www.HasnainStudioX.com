@@ -358,6 +358,58 @@ sitemapMsg = '\n' + sitemapMsg.replace(/\n$/, '');
 
 
 
+
+/* ── 3b. privacy policy index: rebuild from the files on disk ─────────────
+   Add a policy page and it appears here, in the count, and in the page's
+   ItemList structured data, with no hand editing. */
+function syncPolicyIndex() {
+  const file = 'privacy-policies.html';
+  if (!fs.existsSync(P(file))) return '';
+  let s = read(file);
+  if (!/<!--POLICIES_START-->/.test(s)) return '  ! privacy-policies.html markers not found';
+
+  const pages = fs.readdirSync(ROOT)
+    .filter(f => /privacy/i.test(f) && f.endsWith('.html') && f !== 'privacy-policies.html')
+    .filter(f => !read(f).includes('redirect-stub'))
+    .map(f => {
+      const t = (read(f).match(/<title>([\s\S]*?)<\/title>/) || [, f])[1];
+      return { file: f, name: t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim() };
+    })
+    .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+
+  const items = pages
+    .map(p2 => `\n                    <li><a href="${p2.file}">${p2.name}</a></li>`)
+    .join('') + '\n                ';
+  s = s.replace(/(<!--POLICIES_START-->)[\s\S]*?(<!--POLICIES_END-->)/, (m, a, b) => a + items + b);
+  s = s.replace(/(<!--PCOUNT-->)\d*(<!--\/PCOUNT-->)/, (m, a, b) => a + pages.length + b);
+  s = s.replace(/(Choose the app you are using[\s\S]{0,400}?)/, m => m);
+
+  // keep the ItemList structured data in step
+  const block2 = s.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  if (block2) {
+    try {
+      const d = JSON.parse(block2[1]);
+      for (const node of (d['@graph'] || [])) {
+        if (node.mainEntity && node.mainEntity['@type'] === 'ItemList') {
+          node.mainEntity.numberOfItems = pages.length;
+          node.mainEntity.itemListElement = pages.map((p2, i) => ({
+            '@type': 'ListItem', position: i + 1,
+            name: p2.name + ' privacy policy',
+            url: 'https://hasnainstudiox.com/' + p2.file
+          }));
+        }
+      }
+      s = s.slice(0, block2.index) + '<script type="application/ld+json">\n'
+        + JSON.stringify(d, null, 2) + '\n    </script>'
+        + s.slice(block2.index + block2[0].length);
+    } catch (e) { /* leave the schema alone if it will not parse */ }
+  }
+  write(file, s);
+  return `  policy index          ${pages.length} policies`;
+}
+const policyMsg = syncPolicyIndex();
+if (policyMsg) sitemapMsg += '\n' + policyMsg;
+
 /* ── 4. contact form: rebuild the app list from the catalogue ─────────────
    The topic dropdown used to be hand-maintained and had drifted badly:
    pre-rename names, only 19 of 69 Windows apps, and two Windows titles
