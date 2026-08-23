@@ -21,6 +21,13 @@ const P = f => path.join(ROOT, f);
 const read = f => fs.readFileSync(P(f), 'utf8');
 const write = (f, s) => fs.writeFileSync(P(f), s, 'utf8');
 const today = new Date().toISOString().slice(0, 10);
+/* must stay identical to slug() in gen-app-pages.js */
+const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+let DUPE_SLUGS = new Set();          // filled once both catalogues are read
+const appSlug = (name, platform) => {
+  const b = baseSlug(name);
+  return (platform === 'Android' && DUPE_SLUGS.has(b)) ? b + '-android' : b;
+};
 
 const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
                'Eleven','Twelve'];
@@ -63,6 +70,11 @@ function readApps(file) {
 
 const win = readApps('Windows-apps.html');
 const and = readApps('android-apps.html');
+DUPE_SLUGS = (() => {
+  const w = new Set(win.map(a => baseSlug(a.name))), d = new Set();
+  for (const a of and) if (w.has(baseSlug(a.name))) d.add(baseSlug(a.name));
+  return d;
+})();
 if (!win.length && !and.length) { console.log('\n  Nothing to do — no apps found.\n'); process.exit(1); }
 
 const live = a => a.filter(x => x.status === 'live');
@@ -160,6 +172,10 @@ let sitemapMsg = '';
   const _log = console.log;
   console.log = (...a) => { sitemapMsg += '    ' + a.join(' ').trim() + '\n'; };
   try {
+
+    /* ── app landing pages (apps/<slug>.html), one per live application ── */
+    require('./gen-app-pages.js');
+
     (function(){
     /* HSX pre-render: emits the app grid + a full text app directory as static HTML
        so non-JS crawlers (Bing, GPTBot, ClaudeBot, PerplexityBot) see the catalogue. */
@@ -258,6 +274,9 @@ let sitemapMsg = '';
               + '<p class="dir-desc">'+esc(a.description||'')+'</p>'
               + (a.features&&a.features.length ? '<ul class="dir-features">'+a.features.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul>' : '')
               + '<p class="dir-links">'
+              +   ((()=>{ const s = appSlug(a.name, platform);
+                      return fs.existsSync(P('apps/'+s+'.html'))
+                        ? '<a href="apps/'+s+'.html">'+esc(a.name)+' details</a> <span class="dir-sep">·</span> ' : ''; })())
               +   '<a href="'+a.storeUrl+'" target="_blank" rel="noopener">'+esc(a.storeLabel||'View on store')+'</a>'
               +   (priv ? ' <span class="dir-sep">·</span> <a href="'+priv+'">'+esc(a.name)+' privacy policy</a>' : '')
               + '</p></article>';
@@ -298,6 +317,7 @@ let sitemapMsg = '';
     build("android-apps.html");
 
     })();
+
     (function(){
     /* One sitemap. Pages + the AI Studio gallery images, in a single file.
        85 URLs — the sitemap limit is 50,000, so an index file would add nothing. */
@@ -315,10 +335,22 @@ let sitemapMsg = '';
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
                    'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','contest-rules.html':'monthly' };
 
-    const pages = fs.readdirSync(ROOT)
+    const rootPages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f))
       .filter(f => !/name="robots"[^>]*noindex/i.test(read(f)))
       .sort((a,b) => (+(PRIORITY[b]||0.3)) - (+(PRIORITY[a]||0.3)) || a.localeCompare(b));
+
+    /* the dedicated application pages under apps/ */
+    let appPages = [];
+    try {
+      appPages = fs.readdirSync(path.join(ROOT, 'apps'))
+        .filter(f => f.endsWith('.html'))
+        .map(f => 'apps/' + f)
+        .filter(f => !/name="robots"[^>]*noindex/i.test(read(f)))
+        .sort();
+    } catch (e) { /* no apps/ folder yet */ }
+
+    const pages = rootPages.concat(appPages);
 
     const esc = s => String(s == null ? '' : s)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -335,8 +367,9 @@ let sitemapMsg = '';
         ? imgs.map(i => `    <image:image>\n      <image:loc>${BASE}${esc(i.src)}</image:loc>\n`
             + `      <image:title>${esc(i.title || '')}</image:title>\n    </image:image>`).join('\n') + (imgs.length ? '\n' : '')
         : '';
+      const isApp = f.startsWith('apps/');
       return `  <url>\n    <loc>${BASE}${f}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
-           + `    <changefreq>${FREQ[f] || 'yearly'}</changefreq>\n    <priority>${PRIORITY[f] || '0.3'}</priority>\n`
+           + `    <changefreq>${FREQ[f] || (isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isApp ? '0.7' : '0.3')}</priority>\n`
            + extra + `  </url>`;
     }).join('\n\n');
 
@@ -346,7 +379,7 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + urls + '\n\n</urlset>\n', 'utf8');
 
-    console.log(`  sitemap.xml   ${pages.length} pages, ${imgs.length} images`);
+    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app pages), ${imgs.length} images`);
 
     })();
   } catch (e) {
@@ -407,6 +440,30 @@ function syncPolicyIndex() {
   write(file, s);
   return `  policy index          ${pages.length} policies`;
 }
+/* ── 3b. app id -> landing page map, consumed by the catalogue modal ──── */
+function syncAppPages() {
+  const map = {};
+  for (const [apps, platform] of [[win, 'Windows'], [and, 'Android']])
+    for (const a of apps) {
+      const s = appSlug(a.name, platform);
+      if (fs.existsSync(P('apps/' + s + '.html'))) map[a.id] = 'apps/' + s + '.html';
+    }
+  let n = 0;
+  for (const file of ['Windows-apps.html', 'android-apps.html']) {
+    let s = read(file);
+    const re = /\/\*APPPAGES_START\*\/[\s\S]*?\/\*APPPAGES_END\*\//;
+    if (!re.test(s)) { console.log('  ! ' + file + ' APPPAGES marker not found'); continue; }
+    const own = {};
+    for (const a of (file === 'Windows-apps.html' ? win : and)) if (map[a.id]) own[a.id] = map[a.id];
+    s = s.replace(re, '/*APPPAGES_START*/ var APPPAGES = ' + JSON.stringify(own) + '; /*APPPAGES_END*/');
+    write(file, s);
+    n += Object.keys(own).length;
+  }
+  return '  app page links       ' + n + ' modal buttons';
+}
+const appPagesMsg = syncAppPages();
+if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
+
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
 

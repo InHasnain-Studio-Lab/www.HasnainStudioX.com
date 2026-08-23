@@ -3,3 +3,4 @@ _archive/
 Thumbs.db
 desktop.ini
 .DS_Store
+*.tmp

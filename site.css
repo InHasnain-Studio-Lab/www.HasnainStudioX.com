@@ -1818,3 +1818,121 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: .4rem;
 }
 .mw-wcard-v { font-size: .9rem; color: var(--ink-soft); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HSX:APP-PAGES — dedicated application landing pages (/apps/*.html)
+   ══════════════════════════════════════════════════════════════════════ */
+.app-crumb{
+    font-family:var(--f-mono); font-size:.74rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-faint);
+    display:flex; flex-wrap:wrap; gap:.5rem; align-items:center;
+    padding:1.6rem 0 .2rem;
+}
+.app-crumb a{ color:var(--ink-soft); text-decoration:none; transition:color var(--t-fast) var(--ease); }
+.app-crumb a:hover{ color:var(--accent); }
+.app-crumb span[aria-hidden]{ color:var(--ink-faint); opacity:.5; }
+.app-crumb [aria-current]{ color:var(--gold); }
+
+.app-hero{ text-align:center; }
+.app-tagline{
+    font-family:var(--f-mono); font-size:clamp(.86rem,1.6vw,1rem);
+    letter-spacing:.02em; margin:.35rem auto .9rem; max-width:56ch;
+    background:var(--holo); -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+}
+.app-cta{ display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; margin:1.4rem 0 1.6rem; }
+
+.app-features{
+    list-style:none; margin:0; padding:0;
+    display:grid; gap:.7rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+.app-features li{
+    position:relative; padding:.95rem 1.1rem .95rem 2.5rem;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:var(--r-md); color:var(--ink);
+    clip-path:polygon(0 10px,10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%);
+    transition:border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.app-features li:hover{ border-color:var(--accent-line); transform:translateY(-2px); }
+.app-features li::before{
+    content:""; position:absolute; left:1.05rem; top:1.35rem;
+    width:9px; height:9px; border-radius:2px; background:var(--holo);
+}
+
+.app-lead{ font-size:1.06rem; color:var(--ink); max-width:70ch; }
+.section .app-lead + p{ color:var(--ink-soft); max-width:70ch; }
+
+.app-spec{
+    display:grid; grid-template-columns:minmax(150px,auto) 1fr;
+    gap:0; margin:0; border:1px solid var(--card-border);
+    border-radius:var(--r-md); overflow:hidden; background:var(--card-bg);
+}
+.app-spec dt{
+    font-family:var(--f-mono); font-size:.76rem; letter-spacing:.07em;
+    text-transform:uppercase; color:var(--ink-faint);
+    padding:.85rem 1.1rem; border-bottom:1px solid var(--line);
+}
+.app-spec dd{
+    margin:0; padding:.85rem 1.1rem; color:var(--ink);
+    border-bottom:1px solid var(--line); border-left:1px solid var(--line);
+}
+.app-spec dt:nth-last-of-type(1), .app-spec dd:nth-last-of-type(1){ border-bottom:0; }
+.app-spec dd a{ color:var(--accent); text-decoration:none; }
+.app-spec dd a:hover{ text-decoration:underline; }
+
+.app-faq{ display:grid; gap:.8rem; }
+.app-q{
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:var(--r-md); padding:1.1rem 1.25rem;
+}
+.app-q h3{
+    font-family:var(--f-display); font-size:1rem; font-weight:600;
+    margin:0 0 .45rem; color:var(--gold); letter-spacing:.01em;
+}
+.app-q p{ margin:0; color:var(--ink-soft); max-width:78ch; }
+
+.app-related{ display:grid; gap:.8rem; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+.app-rel{
+    display:block; text-decoration:none; padding:1.05rem 1.15rem;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:var(--r-md);
+    clip-path:polygon(0 12px,12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);
+    transition:border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.app-rel:hover{ border-color:var(--accent-line); background:var(--surface-2); transform:translateY(-3px); }
+.app-rel-n{ display:block; font-family:var(--f-display); font-weight:600; color:var(--ink); margin-bottom:.3rem; }
+.app-rel-t{ display:block; font-size:.86rem; color:var(--ink-soft); line-height:1.5; }
+
+.app-note{
+    font-family:var(--f-mono); font-size:.8rem; color:var(--ink-faint);
+    margin-top:1.2rem;
+}
+.app-note a{ color:var(--ink-soft); text-decoration:none; }
+.app-note a:hover{ color:var(--accent); }
+
+@media (max-width:640px){
+    .app-spec{ grid-template-columns:1fr; }
+    .app-spec dd{ border-left:0; padding-top:0; }
+    .app-spec dt{ border-bottom:0; padding-bottom:.2rem; }
+    .app-cta .btn{ width:100%; }
+}
+/* /HSX:APP-PAGES */
+
+/* HSX:BTN-GHOST — quiet third action, used in the app detail modal */
+.btn--ghost{
+    background:transparent;
+    border:1px solid var(--card-border);
+    color:var(--ink-soft);
+}
+.btn--ghost:hover{
+    border-color:var(--accent-line);
+    color:var(--ink);
+    background:var(--surface);
+}
+/* /HSX:BTN-GHOST */
+
+/* HSX:MODAL-ACTIONS — three actions need to sit on one row at modal width */
+.modal-actions{ display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; }
+.modal-actions .btn{ padding:.85rem 1.25rem; font-size:.72rem; letter-spacing:.09em; }
+@media (max-width:520px){ .modal-actions .btn{ flex:1 1 100%; } }
+/* /HSX:MODAL-ACTIONS */
