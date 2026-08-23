@@ -66,6 +66,8 @@ const CAT = {
               who: 'creators who want generative tooling on their own GPU, with no API keys, no queue and no per-image cost' },
   explore:  { label: 'Games & Explore',      schema: 'GameApplication',
               who: 'anyone who enjoys exploring simulated worlds without an always-on connection' },
+  dev:      { label: 'Developer Tools',      schema: 'DeveloperApplication',
+              who: 'developers who want their source, their history and their tooling to stay on their own machine' },
   photo:    { label: 'Photo & Imaging',      schema: 'DesignApplication',
               who: 'photographers, sellers and anyone finishing a folder of pictures who would rather not upload them to a subscription service' },
   files:    { label: 'Files & Transfer',     schema: 'UtilitiesApplication',
@@ -76,7 +78,7 @@ const CATMAP = eval('({' + grab(read('Windows-apps.html'), /var CATMAP = \{/, '\
    entry is never silently filed under System & Performance. */
 const CAT_FALLBACK = { utilities: 'system', media: 'media', productivity: 'creative', ai: 'ai', files: 'files', games: 'explore' };
 /* Apps whose catalogue category is too coarse for their page. */
-const CAT_OVERRIDE = { nanovisuality: 'photo', pixumbrastudio: 'photo',
+const CAT_OVERRIDE = { nanocodify: 'dev', nanovisuality: 'photo', pixumbrastudio: 'photo',
                        glowlab: 'photo', photovidix: 'photo', mediatidyultra: 'photo' };
 const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLBACK[a.category]] || CAT.system;
 
@@ -102,7 +104,7 @@ footerHTML = upify(footerHTML);
    false, so they get accurate wording instead. */
 const NETWORKED = new Set([
   'browsex', 'medialucent', 'moneyhalo', 'planetx', 'planetxearthexplorer',
-  'planetxinfinity', 'terraorbitix', 'earthos', 'quantumdrop'
+  'planetxinfinity', 'terraorbitix', 'earthos', 'quantumdrop', 'nanocodify'
 ]);
 const isOffline = a => !NETWORKED.has(a.id);
 
