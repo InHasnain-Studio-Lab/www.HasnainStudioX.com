@@ -163,7 +163,6 @@ let sitemapMsg = '';
 
     /* ── app landing pages (apps/<slug>.html), one per live application ── */
     require('./gen-app-pages.js');
-    require('./gen-articles.js');
 
     (function(){
     /* HSX pre-render: emits the app grid + a full text app directory as static HTML
@@ -336,12 +335,6 @@ let sitemapMsg = '';
         .filter(f => f.endsWith('.html')).map(f => 'privacy/' + f).sort();
     } catch (e) { /* no privacy/ folder */ }
 
-    /* long-form guides */
-    let guidePages = [];
-    try {
-      guidePages = fs.readdirSync(path.join(ROOT, 'guides'))
-        .filter(f => f.endsWith('.html')).map(f => 'guides/' + f).sort();
-    } catch (e) { /* no guides folder */ }
 
     /* the dedicated application pages under apps/ */
     let appPages = [];
@@ -353,7 +346,7 @@ let sitemapMsg = '';
         .sort();
     } catch (e) { /* no apps/ folder yet */ }
 
-    const pages = rootPages.concat(guidePages, privPages, appPages);
+    const pages = rootPages.concat(privPages, appPages);
 
     const esc = s => String(s == null ? '' : s)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -371,9 +364,8 @@ let sitemapMsg = '';
             + `      <image:title>${esc(i.title || '')}</image:title>\n    </image:image>`).join('\n') + (imgs.length ? '\n' : '')
         : '';
       const isApp = f.startsWith('apps/');
-      const isGuide = f.startsWith('guides/');
       return `  <url>\n    <loc>${BASE}${f}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
-           + `    <changefreq>${FREQ[f] || (isGuide ? 'monthly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isGuide ? '0.8' : isApp ? '0.7' : '0.3')}</priority>\n`
+           + `    <changefreq>${FREQ[f] || (isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isApp ? '0.7' : '0.3')}</priority>\n`
            + extra + `  </url>`;
     }).join('\n\n');
 
@@ -383,7 +375,7 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + urls + '\n\n</urlset>\n', 'utf8');
 
-    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app, ${privPages.length} policy, ${guidePages.length} guide), ${imgs.length} images`);
+    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app, ${privPages.length} policy), ${imgs.length} images`);
 
     })();
   } catch (e) {
