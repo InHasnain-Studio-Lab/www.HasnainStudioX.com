@@ -175,15 +175,15 @@
    ═══════════════════════════════════════════════════════════════════════ */
 window.AppViz = (function () {
     /* One animation per app, derived from that app's real feature set:
-       gauge    = junk cleanup + optimisation (HSX PC Tune, Mobile TuneX)
+       gauge    = junk cleanup + optimisation (PC TuneX, Mobile TuneX)
        qr       = QR design + export            (QR Creator Studio)
-       dock     = dock with live app pins       (HSX NimbusDock)
-       transfer = device-to-device Wi-Fi share  (HSX QuantumDrop)
-       seasons  = seasonal wallpaper cycle      (HSX Seasons)
-       spatial  = 3D positional audio field     (HSX Spatia / Mobile)
-       eq       = media player + visualizer     (HSX VAudio)
-       convert  = local media conversion        (HSX FlipStudio)
-       suite    = PDF / Word / spreadsheet docs (HSX WorkX Suite)
+       dock     = dock with live app pins       (NimbusDock)
+       transfer = device-to-device Wi-Fi share  (QuantumDrop)
+       seasons  = seasonal wallpaper cycle      (XSeasons)
+       spatial  = 3D positional audio field     (SpatiaX Ultra / Mobile)
+       eq       = media player + visualizer     (VAudio Elite)
+       convert  = local media conversion        (FlipX Studio)
+       suite    = PDF / Word / spreadsheet docs (HSX WorkX Suite, WorkX Suite)
        imagegen = GPU image generation render   (HSX StudioFlow)
        prompt   = structured prompt assembly    (HSX Promptalon)
        shell    = desktop shell + widgets       (SolsticeOS)
@@ -297,3 +297,39 @@ window.AppViz = (function () {
         }
         tick();
     })();
+
+    /* ── Prompt guide tabs (AI Studio) ─────────────────────────────────
+       Markup ships with every panel visible so crawlers and no-JS readers
+       get the whole guide; this turns it into a tabbed panel. */
+    (function promptGuideTabs() {
+        var wrap = document.querySelector('.pg-wrap');
+        if (!wrap) return;
+        var tabs   = [].slice.call(wrap.querySelectorAll('.pg-tab'));
+        var panels = [].slice.call(wrap.querySelectorAll('.pg-panel'));
+        if (!tabs.length || tabs.length !== panels.length) { wrap.classList.add('pg-plain'); return; }
+
+        function select(i, focus) {
+            tabs.forEach(function (t, n) {
+                var on = n === i;
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+                t.tabIndex = on ? 0 : -1;
+                if (on) panels[n].removeAttribute('data-inactive');
+                else panels[n].setAttribute('data-inactive', '');
+            });
+            if (focus) tabs[i].focus();
+        }
+
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { select(i); });
+            t.addEventListener('keydown', function (ev) {
+                var k = ev.key, n = null;
+                if (k === 'ArrowDown' || k === 'ArrowRight') n = (i + 1) % tabs.length;
+                else if (k === 'ArrowUp' || k === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
+                else if (k === 'Home') n = 0;
+                else if (k === 'End') n = tabs.length - 1;
+                if (n !== null) { ev.preventDefault(); select(n, true); }
+            });
+        });
+        select(0);
+    })();
+

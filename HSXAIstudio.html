@@ -1476,7 +1476,7 @@
                         <div class="sc-frame-in" id="sc-frame">
                             <picture>
                                 <source id="sc-webp" type="image/webp"/>
-                                <img id="sc-img" alt="" decoding="async" fetchpriority="high"/>
+                                <img id="sc-img" width="1200" height="800" alt="Artwork made with a Hasnain Studio X application" decoding="async" fetchpriority="high"/>
                             </picture>
                             <span class="sc-scan" aria-hidden="true"></span>
                             <span class="sc-tick tl" aria-hidden="true"></span>
@@ -1614,7 +1614,7 @@
             <figure class="gal-lb-stage">
                 <picture>
                     <source id="gal-lb-webp" type="image/webp"/>
-                    <img id="gal-lb-img" alt="" decoding="async"/>
+                    <img id="gal-lb-img" width="1600" height="1067" alt="Artwork made with a Hasnain Studio X application" decoding="async"/>
                 </picture>
                 <figcaption class="gal-lb-cap">
                     <div class="gal-lb-title" id="gal-lb-title"></div>
@@ -1637,132 +1637,171 @@
             <div class="section-header">
                 <div class="hero-eyebrow">Making images</div>
                 <h2 id="pg-title">How to write better prompts</h2>
-                <p class="gal-sub">A method that beats rewriting: start with the subject alone, build one layer
-                at a time, and change one thing per attempt until it lands.</p>
+                <p class="gal-sub">Eight things that make the difference, one at a time. Pick a topic.</p>
             </div>
-            <div class="art-body pg-body">
-                <p class="art-lead">Most disappointing results come from the same habit: writing one long prompt, not liking what
-                comes back, rewriting the whole thing, and starting over. There is a method that works better, and it takes less
-                effort than the rewriting does.</p>
-                
-                <h3 id="subject-first">Write the subject before the style</h3>
-                
-                <p>Start with what is in the frame and nothing else. One clear sentence: who or what, doing what, where.</p>
-                
-                <p><em>A snow leopard standing on a rock ledge at dawn.</em></p>
-                
-                <p>Generate that. It will look plain, and that is the point — you now know the subject is understood. Almost
-                every prompt that produces something unrecognisable failed at this step, buried under adjectives that were
-                competing for attention.</p>
-                
-                <p>The temptation is to write the finished vision immediately. Resist it for one generation. Thirty seconds
-                spent confirming the subject saves you twenty attempts at fixing the wrong thing.</p>
-                
-                <h3 id="build-up">Add one layer at a time</h3>
-                
-                <p>Now build, in this order, generating after each addition:</p>
-                
-                <ol class="art-steps">
-                  <li><strong>Light.</strong> The single biggest change you can make. <em>Low golden light from the left, long
-                  shadows.</em> Nothing transforms an image faster.</li>
-                  <li><strong>Framing.</strong> How close, and from where. <em>Close crop, slightly below eye level.</em></li>
-                  <li><strong>Medium.</strong> What kind of picture this is. <em>Photograph</em> gives you something very
-                  different from <em>oil painting</em> or <em>pencil study</em>, and it anchors everything after it.</li>
-                  <li><strong>Mood and palette.</strong> Last, and lightly. <em>Cold blues, quiet.</em></li>
-                </ol>
-                
-                <p>Adding one layer per generation means you always know which word did what. Add four at once and you learn
-                nothing — you have a different image and no idea which change produced it.</p>
-                
-                <h3 id="specific">Be specific about things, vague about quality</h3>
-                
-                <p>Words like <em>beautiful</em>, <em>stunning</em>, <em>masterpiece</em> and <em>8K</em> do very little. They
-                describe your opinion of the result rather than the result itself.</p>
-                
-                <p>Concrete detail does the work:</p>
-                
-                <div class="art-table-wrap">
-                <table class="art-table">
-                  <thead><tr><th>Weak</th><th>Strong</th></tr></thead>
-                  <tbody>
-                    <tr><td>beautiful lighting</td><td>single window light from the left, deep shadow on the right</td></tr>
-                    <tr><td>highly detailed</td><td>frost on the whiskers, individual hairs catching the light</td></tr>
-                    <tr><td>professional photo</td><td>shallow depth of field, background fully soft</td></tr>
-                    <tr><td>vibrant colours</td><td>warm amber and deep teal, nothing in between</td></tr>
-                    <tr><td>epic scene</td><td>the figure small in the frame, mountains filling the top two thirds</td></tr>
-                  </tbody>
-                </table>
+            <div class="pg-wrap">
+                <script>document.currentScript.parentNode.classList.add('pg-js');</script>
+                <div class="pg-tabs" role="tablist" aria-label="Prompt guide topics">
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-subject"
+                            aria-controls="pgp-pg-subject" aria-selected="true" tabindex="0">
+                        <span class="pg-tab-n">01</span>
+                        <span class="pg-tab-l">Subject first</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-layers"
+                            aria-controls="pgp-pg-layers" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">02</span>
+                        <span class="pg-tab-l">Build in layers</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-specific"
+                            aria-controls="pgp-pg-specific" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">03</span>
+                        <span class="pg-tab-l">Be specific</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-onechange"
+                            aria-controls="pgp-pg-onechange" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">04</span>
+                        <span class="pg-tab-l">One change at a time</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-batch"
+                            aria-controls="pgp-pg-batch" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">05</span>
+                        <span class="pg-tab-l">Generate a batch</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-reuse"
+                            aria-controls="pgp-pg-reuse" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">06</span>
+                        <span class="pg-tab-l">Save what works</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-finish"
+                            aria-controls="pgp-pg-finish" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">07</span>
+                        <span class="pg-tab-l">Finish the image</span>
+                    </button>
+                    <button type="button" role="tab" class="pg-tab" id="pgt-pg-habits"
+                            aria-controls="pgp-pg-habits" aria-selected="false" tabindex="-1">
+                        <span class="pg-tab-n">08</span>
+                        <span class="pg-tab-l">The checklist</span>
+                    </button>
                 </div>
-                
-                <p>If a word could describe a thousand different images, it is not earning its place.</p>
-                
-                <h3 id="one-change">Change one thing, keep the rest</h3>
-                
-                <p>Once something is close, stop rewriting and start adjusting. Keep the prompt and change a single element —
-                the light, the crop, one adjective. Generate. Compare.</p>
-                
-                <p>This is how you build an instinct for what actually moves the image, and it is much faster than it sounds,
-                because you are no longer starting over each time. Three targeted adjustments usually beat thirty rewrites.</p>
-                
-                <p>Keep the ones that nearly worked, too. A version you rejected at step three is often the better base once you
-                have learned something at step six.</p>
-                
-                <h3 id="batch">Generate several, then choose</h3>
-                
-                <p>The same prompt does not produce the same image twice. Once a prompt is working, run it several times rather
-                than once, and pick from the results.</p>
-                
-                <p>This is where working on your own machine changes how you work. There is no per-image cost and no credit
-                balance, so generating twelve and keeping one is simply how you work rather than an expensive decision. Most
-                people's best images come from a batch they nearly did not bother running.</p>
-                
-                <h3 id="reuse">Save what works</h3>
-                
-                <p>When you find a combination that consistently gives you the look you want — the lighting phrasing, the medium,
-                the palette — write it down and reuse it. That is a house style, and it is the difference between occasional
-                good results and a body of work that looks like it belongs together.</p>
-                
-                <p><a href="apps/hsx-promptalon.html">HSX Promptalon</a> builds prompts with guided structure so the layers
-                stay in order rather than turning into one long run-on sentence. In
-                <a href="apps/hsx-artgen-studio.html">HSX ArtGen Studio</a>, brand kits and type pairings save that look as
-                something you apply rather than retype, and batch merge runs it across a whole spreadsheet of variations at
-                once.</p>
-                
-                <h3 id="finish">Generating is not finishing</h3>
-                
-                <p>A generated image is a starting point. The gap between something you like and something you would actually
-                publish is usually a few minutes of work afterwards.</p>
-                
-                <ul class="art-steps">
-                  <li><strong>Faces</strong> repay attention more than anything else, because people look at them first.
-                  <a href="apps/hsx-fototensor.html">HSX FotoTensor</a> is built around portraits and face enhancement.</li>
-                  <li><strong>Cleanup and adjustment</strong> — tone, colour, removing the one distracting element.
-                  <a href="apps/hsx-glowcraft.html">HSX GlowCraft</a> handles this with on-device AI tools.</li>
-                  <li><strong>Size and export.</strong> Print, web and social all want different things. Getting this right at
-                  export is easier than fixing it later.</li>
-                  <li><strong>Motion.</strong> A still can become a short clip.
-                  <a href="apps/hsx-quantumgen-ai-studio.html">HSX QuantumGen AI Studio</a>,
-                  <a href="apps/hsx-dreamvivid-ai.html">HSX DreamVivid AI</a> and
-                  <a href="apps/hsx-infinitegen-studio.html">HSX InfiniteGen Studio</a> all produce clips as well as
-                  images.</li>
-                </ul>
-                
-                <h3 id="habits">The habits worth keeping</h3>
-                
-                <ol class="art-steps">
-                  <li>Subject first, alone, before any styling.</li>
-                  <li>One layer at a time, generating between each.</li>
-                  <li>Concrete nouns over quality adjectives.</li>
-                  <li>Adjust one element rather than rewriting.</li>
-                  <li>Batch and choose, rather than judging a single result.</li>
-                  <li>Save the combinations that work, and reuse them.</li>
-                  <li>Finish the image after you generate it.</li>
-                </ol>
-                
-                <p class="art-note">Every piece in the <a href="HSXAIstudio.html">AI Studio gallery</a> was made this way, on
-                an ordinary Windows PC, with the application that produced it named beside each one. Every AI application in the
-                <a href="Windows-apps.html">Hasnain Studio X catalogue</a> has a free trial through the Microsoft Store — the
-                quickest way to find out how this works in practice is to try one.</p>
+                <div class="pg-body art-body">
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-subject"
+                     aria-labelledby="pgt-pg-subject">
+                    <h3>Write the subject before the style</h3>
+                    <p>Start with what is in the frame and nothing else. One clear sentence: who or what, doing what, where.</p>
+                    <p class="pg-eg">A snow leopard standing on a rock ledge at dawn.</p>
+                    <p>Generate that. It will look plain, and that is the point &mdash; you now know the subject is understood.
+                    Almost every prompt that produces something unrecognisable failed at this step, buried under adjectives that
+                    were competing for attention.</p>
+                    <p>The temptation is to write the finished vision immediately. Resist it for one generation. Thirty seconds
+                    spent confirming the subject saves you twenty attempts at fixing the wrong thing.</p>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-layers"
+                     aria-labelledby="pgt-pg-layers">
+                    <h3>Add one layer at a time</h3>
+                    <p>Now build, in this order, generating after each addition.</p>
+                    <ol class="art-steps">
+                      <li><strong>Light.</strong> The single biggest change you can make. <em>Low golden light from the left, long
+                      shadows.</em> Nothing transforms an image faster.</li>
+                      <li><strong>Framing.</strong> How close, and from where. <em>Close crop, slightly below eye level.</em></li>
+                      <li><strong>Medium.</strong> What kind of picture this is. <em>Photograph</em> gives you something very
+                      different from <em>oil painting</em> or <em>pencil study</em>, and it anchors everything after it.</li>
+                      <li><strong>Mood and palette.</strong> Last, and lightly. <em>Cold blues, quiet.</em></li>
+                    </ol>
+                    <p>One layer per generation means you always know which word did what. Add four at once and you learn nothing
+                    &mdash; you have a different image and no idea which change produced it.</p>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-specific"
+                     aria-labelledby="pgt-pg-specific">
+                    <h3>Be specific about things, vague about quality</h3>
+                    <p>Words like <em>beautiful</em>, <em>stunning</em>, <em>masterpiece</em> and <em>8K</em> do very little. They
+                    describe your opinion of the result rather than the result itself. Concrete detail does the work.</p>
+                    <div class="art-table-wrap">
+                    <table class="art-table">
+                      <thead><tr><th>Weak</th><th>Strong</th></tr></thead>
+                      <tbody>
+                        <tr><td>beautiful lighting</td><td>single window light from the left, deep shadow on the right</td></tr>
+                        <tr><td>highly detailed</td><td>frost on the whiskers, individual hairs catching the light</td></tr>
+                        <tr><td>professional photo</td><td>shallow depth of field, background fully soft</td></tr>
+                        <tr><td>vibrant colours</td><td>warm amber and deep teal, nothing in between</td></tr>
+                        <tr><td>epic scene</td><td>the figure small in the frame, mountains filling the top two thirds</td></tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    <p>If a word could describe a thousand different images, it is not earning its place.</p>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-onechange"
+                     aria-labelledby="pgt-pg-onechange">
+                    <h3>Change one thing, keep the rest</h3>
+                    <p>Once something is close, stop rewriting and start adjusting. Keep the prompt and change a single element
+                    &mdash; the light, the crop, one adjective. Generate. Compare.</p>
+                    <p>This is how you build an instinct for what actually moves the image, and it is much faster than it sounds,
+                    because you are no longer starting over each time. Three targeted adjustments usually beat thirty rewrites.</p>
+                    <p>Keep the ones that nearly worked, too. A version you rejected at step three is often the better base once you
+                    have learned something at step six.</p>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-batch"
+                     aria-labelledby="pgt-pg-batch">
+                    <h3>Generate several, then choose</h3>
+                    <p>The same prompt does not produce the same image twice. Once a prompt is working, run it several times rather
+                    than once, and pick from the results.</p>
+                    <p>This is where working on your own machine changes how you work. There is no per-image cost and no credit
+                    balance, so generating twelve and keeping one is simply how you work rather than an expensive decision. Most
+                    people's best images come from a batch they nearly did not bother running.</p>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-reuse"
+                     aria-labelledby="pgt-pg-reuse">
+                    <h3>Save what works</h3>
+                    <p>When you find a combination that consistently gives you the look you want &mdash; the lighting phrasing, the
+                    medium, the palette &mdash; write it down and reuse it. That is a house style, and it is the difference between
+                    occasional good results and a body of work that looks like it belongs together.</p>
+                    <p><a href="apps/hsx-promptalon.html">HSX Promptalon</a> builds prompts with guided structure so the layers stay
+                    in order rather than turning into one long run-on sentence. In
+                    <a href="apps/hsx-artgen-studio.html">HSX ArtGen Studio</a>, brand kits and type pairings save that look as
+                    something you apply rather than retype, and batch merge runs it across a whole spreadsheet of variations at
+                    once.</p>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-finish"
+                     aria-labelledby="pgt-pg-finish">
+                    <h3>Generating is not finishing</h3>
+                    <p>A generated image is a starting point. The gap between something you like and something you would actually
+                    publish is usually a few minutes of work afterwards.</p>
+                    <ul class="art-steps">
+                      <li><strong>Faces</strong> repay attention more than anything else, because people look at them first.
+                      <a href="apps/hsx-fototensor.html">HSX FotoTensor</a> is built around portraits and face enhancement.</li>
+                      <li><strong>Cleanup and adjustment</strong> &mdash; tone, colour, removing the one distracting element.
+                      <a href="apps/hsx-glowcraft.html">HSX GlowCraft</a> handles this with on-device AI tools.</li>
+                      <li><strong>Size and export.</strong> Print, web and social all want different things. Getting this right at
+                      export is easier than fixing it later.</li>
+                      <li><strong>Motion.</strong> A still can become a short clip.
+                      <a href="apps/hsx-quantumgen-ai-studio.html">HSX QuantumGen AI Studio</a>,
+                      <a href="apps/hsx-dreamvivid-ai.html">HSX DreamVivid AI</a> and
+                      <a href="apps/hsx-infinitegen-studio.html">HSX InfiniteGen Studio</a> all produce clips as well as images.</li>
+                    </ul>
+                </div>
+
+                <div role="tabpanel" class="pg-panel" id="pgp-pg-habits"
+                     aria-labelledby="pgt-pg-habits">
+                    <h3>The habits worth keeping</h3>
+                    <ol class="art-steps">
+                      <li>Subject first, alone, before any styling.</li>
+                      <li>One layer at a time, generating between each.</li>
+                      <li>Concrete nouns over quality adjectives.</li>
+                      <li>Adjust one element rather than rewriting.</li>
+                      <li>Batch and choose, rather than judging a single result.</li>
+                      <li>Save the combinations that work, and reuse them.</li>
+                      <li>Finish the image after you generate it.</li>
+                    </ol>
+                    <p class="art-note">Every piece in the gallery above was made this way, on an ordinary Windows PC, with the
+                    application that produced it named beside each one. Every AI application in the
+                    <a href="Windows-apps.html">Hasnain Studio X catalogue</a> has a free trial through the Microsoft Store.</p>
+                </div>
+                </div>
             </div>
         </section>
         <!--PROMPTGUIDE_END-->
@@ -1880,10 +1919,8 @@
                                         <option>Hypersonus Ultra</option>
                                         <option>KatanicOS</option>
                                         <option>MediaTidy Ultra</option>
-                                        <option>MoneyHalo</option>
                                         <option>NimbusDock</option>
                                         <option>PC Archive Pro</option>
-                                        <option>PC DataCenterX</option>
                                         <option>PC Download Manager Ultra</option>
                                         <option>PC GuardX</option>
                                         <option>PC Screen Recorder Pro</option>
@@ -2164,7 +2201,7 @@
                     <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p>
                 </div>
                 <div>
-                    <h4 class="footer-heading">AI Studio</h4>
+                    <h2 class="footer-heading">AI Studio</h2>
                     <ul class="footer-links">
                         <li><a href="#apps-portfolio">App Portfolio</a></li>
                         <li><a href="#ai-gallery">AI Gallery</a></li>
@@ -2173,15 +2210,15 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="footer-heading">Products</h4>
+                    <h2 class="footer-heading">Products</h2>
                     <ul class="footer-links">
-                        <li><a href="Windows-apps.html">Windows Apps</a></li>
-                        <li><a href="android-apps.html">Android Apps</a></li>
-                        <li><a href="index.html">Home</a></li>
-                    </ul>
+                            <li><a href="Windows-apps.html">Windows Apps</a></li>
+                            <li><a href="android-apps.html">Android Apps</a></li>
+                            <li><a href="HSXAIstudio.html">AI Studio</a></li>
+                        </ul>
                 </div>
                 <div>
-                    <h4 class="footer-heading">Contact</h4>
+                    <h2 class="footer-heading">Contact</h2>
                     <ul class="footer-links">
                         <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
                         <li>England, United Kingdom</li>

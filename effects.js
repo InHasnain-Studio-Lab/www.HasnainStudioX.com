@@ -821,7 +821,7 @@
         var term = document.getElementById('hsx-term'), body = document.getElementById('hsx-term-body'), inp = document.getElementById('hsx-term-input');
         var open = false;
         function print(text, cls) { var p = document.createElement('p'); p.className = 't-line' + (cls ? ' ' + cls : ''); p.textContent = text; body.appendChild(p); body.scrollTop = body.scrollHeight; }
-        function welcome() { print('InHasnain Studio X Terminal', 'ok'); print('Type help to see available commands.', ''); }
+        function welcome() { print('Hasnain Studio X Terminal', 'ok'); print('Type help to see available commands.', ''); }
         var COMMANDS = {
             help: function () { print('Available commands:', 'warn'); print('  about     about this studio', ''); print('  apps      list the apps', ''); print('  privacy   our privacy stance', ''); print('  clear     clear the terminal', ''); print('  close     close the terminal', ''); },
             clear: function () { body.innerHTML = ''; },
@@ -829,9 +829,22 @@
             about: function () { print('Hasnain Studio X is an independent one-person studio in England, UK. It builds privacy-first Windows and Android tools, plus AI Studio workflows.', ''); },
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
-                print('Windows (13 live): HSX PC Tune, HSX PC Guard, HSX NimbusDock, SolsticeOS, QR Creator Studio, HSX QuantumDrop, HSX Seasons, HSX Spatia, HSX VAudio, HSX FlipStudio, HSX WorkX Suite, HSX Promptalon, HSX StudioFlow', '');
-                print('Coming to Windows: HSX Pocktium, HSX PhotoVidix, HSX CastVisuality', '');
-                print('Android: Mobile TuneX (live). Coming: XCipher, SpatiaX Mobile, HSX FlipStudio, DocsMining', '');
+                /*TERMAPPS_START*/
+                print('Hasnain Studio X - 62 applications live, 16 in development', 'ok');
+                print('', '');
+                print('WINDOWS (57)', 'warn');
+                print('  AI tools: HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX NovaDiffux, HSX Pocktium, HSX Promptalon, HSX QuantumGen AI Studio, HSX StudioFlow', '');
+                print('  Audio & video: HSX BeatGrid, HSX DepthStudio 3D, HSX GlowCraft, HSX MediaLucent, HSX PhotoVidix, HSX PrimeCut Ultra, HSX SenseCapture, Hypersonus Ultra, MediaTidy Ultra, PC Screen Recorder Pro, SpatiaX Ultra, VAudio Elite', '');
+                print('  Creative & documents: HSX ArtGen Studio, HSX CreatorStudio, HSX DocMento, HSX ExeCrafter, HSX SpillFrame, HSX WebX Studio, HSX WorkX Suite, QR Creator Studio', '');
+                print('  Files & transfer: FileGuardian Ultra, FlipX Studio, HSX ConvertStudio, PC Archive Pro, PC Download Manager Ultra, QuantumDrop', '');
+                print('  Games & explore: HSX GameFabrix, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
+                print('  System & performance: FocusRoom Ultra, HSX Automafy, HSX BootForge, HSX Browse, HSX EarthShell, HSX SmartClicker, KatanicOS, NimbusDock, PC GuardX, PC SenseX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
+                print('', '');
+                print('ANDROID (5)', 'warn');
+                print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');
+                print('', '');
+                print('In development: 16 more. Full catalogue at hasnainstudiox.com', '');
+                /*TERMAPPS_END*/
             }
         };
         function run(raw) { var cmd = raw.trim().toLowerCase(); if (!cmd) return; print('hsx> ' + cmd, 'cmd'); if (COMMANDS[cmd]) COMMANDS[cmd](); else print('Unknown command: "' + cmd + '". Type help.', 'err'); }

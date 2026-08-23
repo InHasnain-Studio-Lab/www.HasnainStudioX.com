@@ -239,7 +239,7 @@ let sitemapMsg = '';
           shown++;
           return '<section class="cat-sec">'
             + '<div class="cat-head"><span class="cat-idx">'+('00'+(ci+1)).slice(-3)+'</span>'
-            + '<h3>'+esc(c.t)+'</h3><span class="cat-rule"></span><span class="cat-cnt">'+items.length+'</span></div>'
+            + '<h2>'+esc(c.t)+'</h2><span class="cat-rule"></span><span class="cat-cnt">'+items.length+'</span></div>'
             + '<div class="apps-grid" role="list">'+items.map(tile).join('')+'</div>'
             + '</section>';
         }).join('');
@@ -251,13 +251,13 @@ let sitemapMsg = '';
       const byCat = CATS.map(c=>({c, items: APPS.filter(a=>a.cat===c.k)})).filter(x=>x.items.length);
       const dirBody = byCat.map(({c,items})=>
           '<div class="dir-group">'
-        + '<h3 class="dir-cat">'+esc(c.t)+'</h3>'
+        + '<h2 class="dir-cat">'+esc(c.t)+'</h2>'
         + '<p class="dir-cat-desc">'+esc(c.d||'')+'</p>'
         + items.map(a=>{
             const priv = rel(a.privacyUrl);
             const soon = a.status === 'soon';
             return '<article class="dir-app" id="app-'+a.id+'">'
-              + '<h4 class="dir-app-name">'+esc(a.name)+(soon?' <span class="dir-soon">In development</span>':'')+'</h4>'
+              + '<h3 class="dir-app-name">'+esc(a.name)+(soon?' <span class="dir-soon">In development</span>':'')+'</h3>'
               + '<p class="dir-tagline">'+esc(a.tagline)+'</p>'
               + '<p class="dir-desc">'+esc(a.description||'')+'</p>'
               + (a.features&&a.features.length ? '<ul class="dir-features">'+a.features.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul>' : '')
@@ -563,6 +563,154 @@ function syncGalleryStatic() {
 }
 const galStaticMsg = syncGalleryStatic();
 if (galStaticMsg) sitemapMsg += '\n' + galStaticMsg;
+
+/* ── 3d. prompt guide, rendered as a tabbed panel on the AI Studio page ── */
+function syncPromptGuide() {
+  const file = 'HSXAIstudio.html';
+  const src  = 'articles-src/prompt-guide.html';
+  if (!fs.existsSync(P(file)) || !fs.existsSync(P(src))) return '';
+  let s = read(file);
+  if (!/<!--PROMPTGUIDE_START-->/.test(s)) return '  ! HSXAIstudio.html prompt-guide marker not found';
+
+  const body = read(src);
+  const e = t => String(t == null ? '' : t).replace(/&(?![a-z#0-9]+;)/gi, '&amp;')
+                   .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  /* split on the section headings; each becomes one tab */
+  const parts = [];
+  const re = /<h2 id="([^"]+)" data-tab="([^"]+)">([\s\S]*?)<\/h2>/g;
+  let m, last = null;
+  while ((m = re.exec(body))) {
+    if (last) last.html = body.slice(last.end, m.index).trim();
+    last = { id: m[1], tab: m[2], title: m[3].trim(), end: re.lastIndex };
+    parts.push(last);
+  }
+  if (last) last.html = body.slice(last.end).trim();
+  if (!parts.length) return '  ! prompt-guide.html has no tabbed sections';
+
+  const tabs = parts.map((p2, i) => `
+                    <button type="button" role="tab" class="pg-tab" id="pgt-${e(p2.id)}"
+                            aria-controls="pgp-${e(p2.id)}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">
+                        <span class="pg-tab-n">${String(i + 1).padStart(2, '0')}</span>
+                        <span class="pg-tab-l">${e(p2.tab)}</span>
+                    </button>`).join('');
+
+  const panels = parts.map((p2, i) => `
+                <div role="tabpanel" class="pg-panel" id="pgp-${e(p2.id)}"
+                     aria-labelledby="pgt-${e(p2.id)}">
+                    <h3>${p2.title}</h3>
+${p2.html.split('\n').map(l => '                    ' + l).join('\n')}
+                </div>`).join('\n');
+
+  const block = `<!--PROMPTGUIDE_START-->
+        <section class="section reveal" id="prompt-guide" aria-labelledby="pg-title">
+            <div class="section-header">
+                <div class="hero-eyebrow">Making images</div>
+                <h2 id="pg-title">How to write better prompts</h2>
+                <p class="gal-sub">Eight things that make the difference, one at a time. Pick a topic.</p>
+            </div>
+            <div class="pg-wrap">
+                <script>document.currentScript.parentNode.classList.add('pg-js');</script>
+                <div class="pg-tabs" role="tablist" aria-label="Prompt guide topics">${tabs}
+                </div>
+                <div class="pg-body art-body">${panels}
+                </div>
+            </div>
+        </section>
+        <!--PROMPTGUIDE_END-->`;
+
+  s = s.replace(/<!--PROMPTGUIDE_START-->[\s\S]*?<!--PROMPTGUIDE_END-->/, block);
+  write(file, s);
+  return '  prompt guide          ' + parts.length + ' topics';
+}
+const pgMsg = syncPromptGuide();
+if (pgMsg) sitemapMsg += '\n' + pgMsg;
+
+/* ── 3e. terminal `apps` command, generated from the catalogue ─────────── */
+function syncTerminalApps() {
+  const file = 'effects.js';
+  if (!fs.existsSync(P(file))) return '';
+  let s = read(file);
+  if (!/\/\*TERMAPPS_START\*\//.test(s)) return '  ! effects.js TERMAPPS marker not found';
+
+  const q = t => "'" + String(t).replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
+  const nameList = a => a.map(x => x.name).sort((x, y) => x.localeCompare(y)).join(', ');
+  const line = (t, cls) => "                print(" + q(t) + ", " + q(cls || '') + ");";
+
+  const wl = live(win), ws = soon(win), al = live(and), as = soon(and);
+  const CATN = { system: 'System & performance', media: 'Audio & video', creative: 'Creative & documents',
+                 ai: 'AI tools', explore: 'Games & explore', files: 'Files & transfer' };
+  let CM = {};
+  try {
+    const src = read('Windows-apps.html');
+    const m = src.match(/var CATMAP = \{/);
+    CM = eval('({' + src.slice(m.index + m[0].length, src.indexOf('\n        };', m.index)) + '})');
+  } catch (e) { /* fall back to one flat list */ }
+
+  const groups = {};
+  for (const a of wl) (groups[CATN[CM[a.id]] || 'Other'] = groups[CATN[CM[a.id]] || 'Other'] || []).push(a.name);
+
+  const out = [
+    line('Hasnain Studio X - ' + (wl.length + al.length) + ' applications live, '
+         + (ws.length + as.length) + ' in development', 'ok'),
+    line(''),
+    line('WINDOWS (' + wl.length + ')', 'warn'),
+    ...Object.keys(groups).sort().map(g =>
+      line('  ' + g + ': ' + groups[g].sort((x, y) => x.localeCompare(y)).join(', '))),
+    line(''),
+    line('ANDROID (' + al.length + ')', 'warn'),
+    line('  ' + al.map(x => x.name).sort((x, y) => x.localeCompare(y)).join(', ')),
+    line(''),
+    line('In development: ' + (ws.length + as.length) + ' more. Full catalogue at hasnainstudiox.com', '')
+  ].filter(Boolean).join('\r\n');
+
+  const nl = s.indexOf('\r\n') >= 0 ? '\r\n' : '\n';
+  s = s.replace(/\/\*TERMAPPS_START\*\/[\s\S]*?\/\*TERMAPPS_END\*\//,
+    '/*TERMAPPS_START*/' + nl + out.split('\r\n').join(nl) + nl + '                /*TERMAPPS_END*/');
+  write(file, s);
+  return '  terminal catalogue    ' + (wl.length + al.length) + ' live, ' + (ws.length + as.length) + ' coming';
+}
+const termMsg = syncTerminalApps();
+if (termMsg) sitemapMsg += '\n' + termMsg;
+
+/* ── 3f. one footer product list on every page, and no retired app names ── */
+function syncFooters() {
+  const WANT = ['Windows-apps.html|Windows Apps', 'android-apps.html|Android Apps', 'HSXAIstudio.html|AI Studio'];
+  /* names that used to appear in hand-written copy and are not real products */
+  const RETIRED = ['HSX PC Tune', 'HSX PC Guard', 'HSX Seasons', 'HSX Spatia', 'HSX VAudio',
+                   'HSX FlipStudio', 'HSX NimbusDock', 'HSX QuantumDrop', 'SpatiaX Mobile',
+                   'InHasnain Studio X'];
+  let fixed = 0, flagged = [];
+  const walkDir = d => {
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src'].includes(ent.name)) continue;
+      const p = path.join(d, ent.name);
+      if (ent.isDirectory()) { walkDir(p); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+      let s = fs.readFileSync(p, 'utf8');
+      if (s.includes('HSX:PRIVACY-REDIRECT')) continue;
+      const up = path.relative(ROOT, d) ? '../' : '';
+      const want = WANT.map(x => { const [h, l] = x.split('|');
+        return '<li><a href="' + up + h + '">' + l + '</a></li>'; })
+        .join('\n                            ');
+      const re = /(<h2 class="footer-heading">Products<\/h2>\s*<ul class="footer-links">)([\s\S]*?)(<\/ul>)/;
+      const m = s.match(re);
+      if (m && m[2].trim() !== want) {
+        s = s.replace(re, (_, a, b, c) => a + '\n                            ' + want + '\n                        ' + c);
+        fs.writeFileSync(p, s, 'utf8'); fixed++;
+      }
+      for (const bad of RETIRED)
+        if (s.includes(bad)) flagged.push(path.relative(ROOT, p) + ' -> "' + bad + '"');
+    }
+  };
+  walkDir(ROOT);
+  let msg = '  footers               ' + (fixed ? fixed + ' normalised' : 'consistent');
+  if (flagged.length) msg += '\n  ! RETIRED APP NAME    ' + flagged.slice(0, 5).join('; ')
+                           + (flagged.length > 5 ? ' (+' + (flagged.length - 5) + ' more)' : '');
+  return msg;
+}
+const footerMsg = syncFooters();
+if (footerMsg) sitemapMsg += '\n' + footerMsg;
 
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
