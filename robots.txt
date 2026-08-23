@@ -61,3 +61,6 @@ Allow: /
 
 # Submit this same URL in Google Search Console and Bing Webmaster Tools.
 Sitemap: https://hasnainstudiox.com/sitemap.xml
+
+# Atom feed for the guides
+# https://hasnainstudiox.com/guides/feed.xml

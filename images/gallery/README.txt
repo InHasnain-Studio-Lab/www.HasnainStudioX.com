@@ -13,8 +13,8 @@ using hyphens instead of spaces:
     category__Title__How-it-was-made.jpg
 
 Examples:
-    portrait__Neon-Rain__StudioFlow-SDXL.jpg
-    concept__Obsidian-City__Vanta-Local-GPU.png
+    portrait__Neon-Rain__Low-Key-Studio-Light.jpg
+    concept__Obsidian-City__Wide-Angle-Concept.png
     video__Motion-Study-01__Stillmotion.jpg
 
 Categories that get their own filter button:

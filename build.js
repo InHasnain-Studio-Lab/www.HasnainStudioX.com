@@ -116,30 +116,18 @@ function syncSchema(file, apps, listName, osName) {
   catch (e) { console.log(`  ! structured data in ${file} is not valid JSON — skipped`); return 0; }
   if (!data['@graph']) return 0;
 
+  /* Each application now has its own canonical page carrying the full
+     SoftwareApplication entity. Repeating all of it here would duplicate those
+     entities across two URLs and add ~70 KB to the page, so the catalogue
+     publishes the Google-documented summary pattern instead: a list that points
+     at the detail pages. */
+  const platform = /android/i.test(file) ? 'Android' : 'Windows';
   const items = apps
-    // only real product pages go into Google's data — placeholder/publisher
-    // links are skipped so nothing is claimed before it has a store listing
     .filter(a => a.status === 'live')
     .map((a, i) => ({
       '@type': 'ListItem', position: i + 1,
-      item: {
-        '@type': 'SoftwareApplication',
-        name: a.name,
-        applicationCategory: SCHEMA_CAT[a.id] || 'UtilitiesApplication',
-        operatingSystem: osName,
-        description: a.description,
-        isAccessibleForFree: true,
-        offers: { '@type':'Offer', price:'0', priceCurrency:'GBP',
-                  availability:'https://schema.org/InStock', url: a.storeUrl },
-        publisher: { '@id': 'https://hasnainstudiox.com/#organization' },
-        author:    { '@id': 'https://hasnainstudiox.com/#organization' },
-        url: a.storeUrl,
-        downloadUrl: a.storeUrl,
-        installUrl: a.storeUrl,
-        privacyPolicy: a.privacyUrl
-          ? 'https://hasnainstudiox.com/' + String(a.privacyUrl).replace(/^https?:\/\/(www\.)?hasnainstudiox\.com\//, '')
-          : undefined,
-      }
+      name: a.name,
+      url: 'https://hasnainstudiox.com/apps/' + appSlug(a.name, platform) + '.html'
     }));
 
   let found = false;
@@ -175,6 +163,7 @@ let sitemapMsg = '';
 
     /* ── app landing pages (apps/<slug>.html), one per live application ── */
     require('./gen-app-pages.js');
+    require('./gen-articles.js');
 
     (function(){
     /* HSX pre-render: emits the app grid + a full text app directory as static HTML
@@ -347,6 +336,13 @@ let sitemapMsg = '';
         .filter(f => f.endsWith('.html')).map(f => 'privacy/' + f).sort();
     } catch (e) { /* no privacy/ folder */ }
 
+    /* long-form guides */
+    let guidePages = [];
+    try {
+      guidePages = fs.readdirSync(path.join(ROOT, 'guides'))
+        .filter(f => f.endsWith('.html')).map(f => 'guides/' + f).sort();
+    } catch (e) { /* no guides folder */ }
+
     /* the dedicated application pages under apps/ */
     let appPages = [];
     try {
@@ -357,7 +353,7 @@ let sitemapMsg = '';
         .sort();
     } catch (e) { /* no apps/ folder yet */ }
 
-    const pages = rootPages.concat(privPages, appPages);
+    const pages = rootPages.concat(guidePages, privPages, appPages);
 
     const esc = s => String(s == null ? '' : s)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -375,8 +371,9 @@ let sitemapMsg = '';
             + `      <image:title>${esc(i.title || '')}</image:title>\n    </image:image>`).join('\n') + (imgs.length ? '\n' : '')
         : '';
       const isApp = f.startsWith('apps/');
+      const isGuide = f.startsWith('guides/');
       return `  <url>\n    <loc>${BASE}${f}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
-           + `    <changefreq>${FREQ[f] || (isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isApp ? '0.7' : '0.3')}</priority>\n`
+           + `    <changefreq>${FREQ[f] || (isGuide ? 'monthly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isGuide ? '0.8' : isApp ? '0.7' : '0.3')}</priority>\n`
            + extra + `  </url>`;
     }).join('\n\n');
 
@@ -386,7 +383,7 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + urls + '\n\n</urlset>\n', 'utf8');
 
-    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app, ${privPages.length} policy), ${imgs.length} images`);
+    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app, ${privPages.length} policy, ${guidePages.length} guide), ${imgs.length} images`);
 
     })();
   } catch (e) {
@@ -469,6 +466,111 @@ function syncAppPages() {
 }
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
+
+/* ── 3c. static gallery, so non-JavaScript crawlers read the artwork ───── */
+function syncGalleryStatic() {
+  const file = 'HSXAIstudio.html';
+  if (!fs.existsSync(P(file))) return '';
+  let s = read(file);
+  if (!/<!--GALLERY_STATIC_START-->/.test(s)) return '  ! HSXAIstudio.html gallery marker not found';
+
+  let items = [];
+  try {
+    const gd = read('gallery-data.js');
+    items = JSON.parse(gd.slice(gd.indexOf('['), gd.lastIndexOf(']') + 1)).filter(i => i && i.src);
+  } catch (e) { return '  ! gallery-data.js not parsed: ' + e.message; }
+
+  let REG = {};
+  try {
+    const m = s.match(/var APPREG = \{/);
+    const from = m.index + m[0].length;
+    REG = eval('({' + s.slice(from, s.indexOf('\n        };', from)) + '})');
+  } catch (e) { console.log('  ! APPREG not parsed: ' + e.message); }
+
+  const e = t => String(t == null ? '' : t)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  const altFor = (i, appName) => {
+    const bits = [i.title, i.desc].filter(Boolean).join(' - ');
+    return bits ? `${bits}, generated with ${appName}` : `AI artwork generated with ${appName}`;
+  };
+
+  const cards = items.map(i => {
+    const app = REG[String(i.tag || '').toLowerCase()];
+    const name = app ? app.name : 'Hasnain Studio X';
+    const webp = i.src.replace(/\.[a-z0-9]+$/i, '.webp');
+    return `
+                <li class="gs-item">
+                    <figure>
+                        <picture>
+                            <source srcset="${e(webp)}" type="image/webp"/>
+                            <img src="${e(i.src)}" width="${i.w || ''}" height="${i.h || ''}" loading="lazy" decoding="async"
+                                 alt="${e(altFor(i, name))}"/>
+                        </picture>
+                        <figcaption>
+                            <h3>${e(i.title || 'Untitled')}</h3>
+                            <p class="gs-desc">${e(i.desc || '')}</p>
+                            <p class="gs-app">Made with ${app && app.store
+                              ? `<a href="${e(app.store)}" target="_blank" rel="noopener">${e(name)}</a>`
+                              : e(name)}${app && app.blurb ? ' &mdash; ' + e(app.blurb) : ''}</p>
+                        </figcaption>
+                    </figure>
+                </li>`;
+  }).join('');
+
+  const block = `<!--GALLERY_STATIC_START-->
+            <div class="gal-static" id="gal-static">
+              <h3 class="gs-head">Every piece in this gallery</h3>
+              <p class="gs-sub">${items.length} artworks, each generated on a Windows PC with a Hasnain Studio X application. No cloud render, no external service, no upload.</p>
+              <ul class="gs-list">${cards}
+              </ul>
+            </div>
+            <!--GALLERY_STATIC_END-->`;
+  s = s.replace(/<!--GALLERY_STATIC_START-->[\s\S]*?<!--GALLERY_STATIC_END-->/, block);
+
+  /* ImageObject nodes so the artwork can be understood, not just crawled */
+  const blk = s.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  if (blk) {
+    try {
+      const d = JSON.parse(blk[1]);
+      const g = d['@graph'] || [];
+      const keep = g.filter(n => n['@type'] !== 'ImageObject');
+      for (const i of items) {
+        const app = REG[String(i.tag || '').toLowerCase()];
+        keep.push({
+          '@type': 'ImageObject',
+          '@id': 'https://hasnainstudiox.com/HSXAIstudio.html#' + i.src.replace(/[^a-z0-9]+/gi, '-'),
+          contentUrl: 'https://hasnainstudiox.com/' + i.src,
+          name: i.title, description: i.desc,
+          width: i.w || undefined, height: i.h || undefined,
+          creditText: 'Hasnain Studio X',
+          creator: { '@id': 'https://hasnainstudiox.com/#organization' },
+          copyrightNotice: 'Hasnain Studio X',
+          acquireLicensePage: 'https://hasnainstudiox.com/contact.html',
+          isPartOf: { '@id': 'https://hasnainstudiox.com/HSXAIstudio.html#webpage' },
+          creativeWorkStatus: app ? 'Generated with ' + app.name : undefined
+        });
+      }
+      d['@graph'] = keep;
+      s = s.slice(0, blk.index) + '<script type="application/ld+json">\n'
+        + JSON.stringify(d, null, 2) + '\n    </script>' + s.slice(blk.index + blk[0].length);
+    } catch (err) { /* leave the schema alone if it will not parse */ }
+  }
+
+  /* keep the visible subhead truthful about which apps produced the artwork */
+  const usedApps = [...new Set(items.map(i => (REG[String(i.tag || '').toLowerCase()] || {}).name).filter(Boolean))];
+  if (usedApps.length) {
+    const list = usedApps.length === 1 ? usedApps[0]
+      : usedApps.slice(0, -1).join(', ') + ' and ' + usedApps[usedApps.length - 1];
+    s = s.replace(/(<p class="gal-sub">)[\s\S]*?(<\/p>)/,
+      (m, a, b2) => a + 'Generated locally with ' + list + '. No cloud render, no external service, no upload.' + b2);
+  }
+
+  write(file, s);
+  return '  gallery (static)      ' + items.length + ' artworks pre-rendered';
+}
+const galStaticMsg = syncGalleryStatic();
+if (galStaticMsg) sitemapMsg += '\n' + galStaticMsg;
 
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;

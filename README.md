@@ -3,6 +3,19 @@
 Static site for Hasnain Studio X. Hosted on GitHub Pages at
 **https://hasnainstudiox.com**.
 
+## Public copy rule
+
+Nothing published on this site describes how the applications work internally.
+
+**Never publish:** model or engine names, checkpoint or weight formats, precision
+or quantisation detail, VRAM figures, GPU API names, or any other implementation
+detail of an app's engine.
+
+**Publish freely:** what an app does, what it is for, how to get better results
+from it, how to use its features, and what it does not do with your data.
+
+Applies to every page, meta description, structured-data field and guide.
+
 ## Every file in the root, and why it is there
 
 ### Pages — 88 .html files

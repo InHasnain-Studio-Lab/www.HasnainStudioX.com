@@ -9,7 +9,7 @@
    ───────────────────────────────────────────
    The tool reads the filename to fill in the title and category:
 
-       portrait__Neon-Rain__StudioFlow-SDXL.jpg
+       portrait__Neon-Rain__StudioFlow.jpg
        └ category   └ title      └ how it was made
 
    Use double underscores "__" between the three parts, and single

@@ -25,7 +25,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/about.html</loc>
-    <lastmod>2026-08-22</lastmod>
+    <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -80,6 +80,20 @@
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/guides/how-to-write-better-ai-image-prompts.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/guides/index.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
