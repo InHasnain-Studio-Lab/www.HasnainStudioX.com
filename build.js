@@ -44,7 +44,7 @@ const SCHEMA_CAT = {
   planetx:'EducationalApplication', planetxinfinity:'EducationalApplication',
   planetxearthexplorer:'EducationalApplication', terraorbitix:'EducationalApplication',
   infinityjungle:'GameApplication',
-  conjureai:'DesignApplication', dreammintai:'MultimediaApplication',
+  artgenstudio:'DesignApplication', dreammintai:'MultimediaApplication',
   quantumxai:'MultimediaApplication', pcscreenrecorderpro:'MultimediaApplication',
   mediatidyultra:'MultimediaApplication', earthos:'EducationalApplication',
   titanmlstudio:'DeveloperApplication', mobileservicelab:'UtilitiesApplication',
@@ -481,7 +481,7 @@ function syncGalleryApps() {
   // creative tool.
   const AI_APPS = new Set([
     'hsxstudioflow', 'fototensor', 'photovidix', 'novadiffux', 'quantumxai',
-    'conjureai', 'infinitegenai', 'dreamgenaiultra', 'dreammintai',
+    'artgenstudio', 'infinitegenai', 'dreamgenaiultra', 'dreammintai',
     'screenaistudio', 'glowlab', 'image3dx', 'aiscenexultra',
     'astramorphstudio', 'forgexpro', 'pocktium'
   ]);
