@@ -340,6 +340,13 @@ let sitemapMsg = '';
       .filter(f => !/name="robots"[^>]*noindex/i.test(read(f)))
       .sort((a,b) => (+(PRIORITY[b]||0.3)) - (+(PRIORITY[a]||0.3)) || a.localeCompare(b));
 
+    /* the policies live in privacy/; the root files are redirect stubs */
+    let privPages = [];
+    try {
+      privPages = fs.readdirSync(path.join(ROOT, 'privacy'))
+        .filter(f => f.endsWith('.html')).map(f => 'privacy/' + f).sort();
+    } catch (e) { /* no privacy/ folder */ }
+
     /* the dedicated application pages under apps/ */
     let appPages = [];
     try {
@@ -350,7 +357,7 @@ let sitemapMsg = '';
         .sort();
     } catch (e) { /* no apps/ folder yet */ }
 
-    const pages = rootPages.concat(appPages);
+    const pages = rootPages.concat(privPages, appPages);
 
     const esc = s => String(s == null ? '' : s)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -379,7 +386,7 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + urls + '\n\n</urlset>\n', 'utf8');
 
-    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app pages), ${imgs.length} images`);
+    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app, ${privPages.length} policy), ${imgs.length} images`);
 
     })();
   } catch (e) {
@@ -401,12 +408,11 @@ function syncPolicyIndex() {
   let s = read(file);
   if (!/<!--POLICIES_START-->/.test(s)) return '  ! privacy-policies.html markers not found';
 
-  const pages = fs.readdirSync(ROOT)
-    .filter(f => /privacy/i.test(f) && f.endsWith('.html') && f !== 'privacy-policies.html')
-    .filter(f => !read(f).includes('redirect-stub'))
+  const pages = fs.readdirSync(path.join(ROOT, 'privacy'))
+    .filter(f => f.endsWith('.html'))
     .map(f => {
-      const t = (read(f).match(/<title>([\s\S]*?)<\/title>/) || [, f])[1];
-      return { file: f, name: t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim() };
+      const t = (read('privacy/' + f).match(/<title>([\s\S]*?)<\/title>/) || [, f])[1];
+      return { file: 'privacy/' + f, name: t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim() };
     })
     .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 

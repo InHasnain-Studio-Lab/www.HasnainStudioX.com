@@ -1862,23 +1862,6 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .app-lead{ font-size:1.06rem; color:var(--ink); max-width:70ch; }
 .section .app-lead + p{ color:var(--ink-soft); max-width:70ch; }
 
-.app-spec{
-    display:grid; grid-template-columns:minmax(150px,auto) 1fr;
-    gap:0; margin:0; border:1px solid var(--card-border);
-    border-radius:var(--r-md); overflow:hidden; background:var(--card-bg);
-}
-.app-spec dt{
-    font-family:var(--f-mono); font-size:.76rem; letter-spacing:.07em;
-    text-transform:uppercase; color:var(--ink-faint);
-    padding:.85rem 1.1rem; border-bottom:1px solid var(--line);
-}
-.app-spec dd{
-    margin:0; padding:.85rem 1.1rem; color:var(--ink);
-    border-bottom:1px solid var(--line); border-left:1px solid var(--line);
-}
-.app-spec dt:nth-last-of-type(1), .app-spec dd:nth-last-of-type(1){ border-bottom:0; }
-.app-spec dd a{ color:var(--accent); text-decoration:none; }
-.app-spec dd a:hover{ text-decoration:underline; }
 
 .app-faq{ display:grid; gap:.8rem; }
 .app-q{
@@ -1911,9 +1894,6 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .app-note a:hover{ color:var(--accent); }
 
 @media (max-width:640px){
-    .app-spec{ grid-template-columns:1fr; }
-    .app-spec dd{ border-left:0; padding-top:0; }
-    .app-spec dt{ border-bottom:0; padding-bottom:.2rem; }
     .app-cta .btn{ width:100%; }
 }
 /* /HSX:APP-PAGES */
@@ -1936,3 +1916,53 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .modal-actions .btn{ padding:.85rem 1.25rem; font-size:.72rem; letter-spacing:.09em; }
 @media (max-width:520px){ .modal-actions .btn{ flex:1 1 100%; } }
 /* /HSX:MODAL-ACTIONS */
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HSX:APP-SPEC — technical detail cells on an application page
+   ══════════════════════════════════════════════════════════════════════ */
+.app-spec{
+    display:grid; gap:.7rem; margin:0;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+}
+.app-spec .spec-cell{
+    position:relative; overflow:hidden;
+    padding:1rem 1.15rem 1.05rem;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:var(--r-md);
+    clip-path:polygon(0 11px,11px 0,100% 0,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%);
+    transition:border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.app-spec .spec-cell::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:2px;
+    background:var(--holo); opacity:.28;
+}
+.app-spec .spec-cell:hover{ border-color:var(--accent-line); transform:translateY(-2px); }
+.app-spec .spec-cell:hover::before{ opacity:.75; }
+.app-spec dt{
+    font-family:var(--f-mono); font-size:.66rem; font-weight:600;
+    letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-faint); margin:0 0 .45rem;
+}
+.app-spec dd{
+    margin:0; font-family:var(--f-display); font-weight:500;
+    font-size:.98rem; line-height:1.35; color:var(--ink);
+    display:flex; align-items:center; gap:.5rem;
+}
+.app-spec dd a{ color:var(--accent); text-decoration:none; border-bottom:1px solid transparent; }
+.app-spec dd a:hover{ border-bottom-color:var(--accent-line); }
+
+/* state dot: green = the reassuring answer, amber = a caveat worth reading */
+.app-spec .spec-dot{
+    flex:0 0 auto; width:7px; height:7px; border-radius:50%;
+    background:var(--ink-faint); box-shadow:0 0 0 3px rgba(255,255,255,.04);
+}
+.spec-cell--good .spec-dot{ background:var(--mint); box-shadow:0 0 10px 0 rgba(159,232,214,.55); }
+.spec-cell--note .spec-dot{ background:var(--gold); box-shadow:0 0 10px 0 rgba(242,223,184,.5); }
+.spec-cell--wait .spec-dot{ background:var(--rose); box-shadow:0 0 10px 0 rgba(243,179,207,.5); }
+.spec-cell--good{ border-color:rgba(159,232,214,.22); }
+.spec-cell--good::before{ background:linear-gradient(180deg,var(--mint),var(--ice)); opacity:.5; }
+
+@media (max-width:520px){
+    .app-spec{ grid-template-columns:1fr; }
+}
+/* /HSX:APP-SPEC */

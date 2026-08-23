@@ -81,7 +81,11 @@ const CAT_OVERRIDE = { nanovisuality: 'photo', pixumbrastudio: 'photo',
 const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLBACK[a.category]] || CAT.system;
 
 /* ── page shell, borrowed from an existing page so styling matches ── */
-const TPL = read('HSXStudioFlowPrivacy.html');
+/* Page shell borrowed from a policy page. That page sits one folder down, so
+   its links are already ../ prefixed; flatten them back to root-relative first
+   and let upify() re-anchor them for apps/. */
+const TPL = read('privacy/HSXStudioFlowPrivacy.html')
+  .replace(/(href|src)="\.\.\//g, '$1="');
 const headOpen = TPL.slice(0, TPL.indexOf('<body>'));
 const afterBody = TPL.slice(TPL.indexOf('<body>'));
 let headerHTML = afterBody.slice(0, afterBody.indexOf('<main'));
@@ -297,14 +301,14 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
         <section class="section" aria-labelledby="tech-title">
             <div class="section-header"><h2 id="tech-title">Technical details</h2></div>
             <dl class="app-spec">
-                <dt>Platform</dt><dd>${esc(osFull)}</dd>
-                <dt>Distribution</dt><dd>${esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play')}${out ? '' : (cert ? ' &mdash; submitted for certification' : ' &mdash; when released')}</dd>
-                <dt>Availability</dt><dd>${out ? 'Available now' : (cert ? 'Submitted for certification' : 'In development')}</dd>
-                <dt>Licence</dt><dd>Free trial, then a one-time purchase</dd>
-                <dt>Network required</dt><dd>${isOffline(a) ? 'No' : 'Yes, for online content only'}</dd>
-                <dt>Account required</dt><dd>No</dd>
-                <dt>Telemetry</dt><dd>None</dd>
-                <dt>Publisher</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a>, Hasnain Studio X</dd>
+                <div class="spec-cell"><dt>Platform</dt><dd>${esc(osFull)}</dd></div>
+                <div class="spec-cell"><dt>Distribution</dt><dd>${esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play')}</dd></div>
+                <div class="spec-cell spec-cell--${out ? 'good' : 'wait'}"><dt>Availability</dt><dd><span class="spec-dot" aria-hidden="true"></span>${out ? 'Available now' : (cert ? 'In certification' : 'In development')}</dd></div>
+                <div class="spec-cell"><dt>Licence</dt><dd>Free trial, then one purchase</dd></div>
+                <div class="spec-cell spec-cell--${isOffline(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
+                <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
+                <div class="spec-cell spec-cell--good"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
+                <div class="spec-cell"><dt>Publisher</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a></dd></div>
             </dl>
         </section>
 
