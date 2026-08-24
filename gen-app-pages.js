@@ -108,6 +108,24 @@ const NETWORKED = new Set([
 ]);
 const isOffline = a => !NETWORKED.has(a.id);
 
+/* ── Trademarks ────────────────────────────────────────────────────────────
+   COINED are invented words owned outright by the studio; the mark is the
+   bare word, not the product name it sits inside (HSX NovaDiffux -> NovaDiffux).
+   Every other application asserts its full product name as the mark.
+   TM is used throughout: it asserts an unregistered mark and needs no
+   registration. The registered symbol is reserved for Hasnain Studio X alone.
+   ──────────────────────────────────────────────────────────────────────── */
+const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
+  'Promptalon', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
+  'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
+  'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
+  'KatanicOS', 'MoneyHalo', 'VectalonOS', 'SolsticeOS', 'XCipher', 'NimbusDock', 'DocMento',
+  'ExeCrafter', 'SpillFrame', 'EarthShell', 'AstraMorph', 'VDroidX', 'DreamMint'];
+const tmNorm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
+/* the mark this application asserts */
+const markFor = a => COINED.find(c => tmNorm(a.name).includes(tmNorm(c))) || a.name;
+const isCoined = a => COINED.some(c => tmNorm(a.name).includes(tmNorm(c)));
+
 const isOut   = a => a.status === 'live';                 // already released
 const isCert  = a => a.stage === 'certification';        // submitted, awaiting store approval
 const storeOf = a => a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store';
@@ -196,11 +214,12 @@ function pageFor(a) {
       { '@type': 'WebSite', '@id': BASE + '#website', url: BASE, name: 'Hasnain Studio X',
         publisher: { '@id': BASE + '#organization' }, inLanguage: 'en-GB' },
       { '@type': 'SoftwareApplication', '@id': url + '#app', name: a.name,
-        alternateName: a.name.replace(/^HSX /, ''),
+        alternateName: [...new Set([a.name.replace(/^HSX /, ''), markFor(a)])],
         description: a.description, applicationCategory: c.schema,
         operatingSystem: osFull, softwareVersion: a.version || undefined,
         url, downloadUrl: out ? a.storeUrl : undefined, installUrl: out ? a.storeUrl : undefined,
         featureList: a.features, applicationSuite: 'Hasnain Studio X',
+        brand: { '@type': 'Brand', name: markFor(a), owner: { '@id': BASE + '#organization' } },
         privacyPolicy: priv ? BASE + priv : undefined,
         publisher: { '@id': BASE + '#organization' },
         author: { '@id': BASE + '#founder' },
@@ -349,6 +368,12 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
             <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; <a href="${catalogue}">Full catalogue</a></p>
+            <p class="app-tm">${
+              markFor(a) === a.name
+                ? `${esc(a.name)}&trade; is a trademark of Hasnain Studio X.`
+                : `${esc(a.name)}&trade; and ${esc(markFor(a))}&trade; are trademarks of Hasnain Studio X.`
+            }${isCoined(a) ? ` ${esc(markFor(a))}&trade; is a coined term originated by Hasnain Studio X.` : ''}
+            Hasnain Studio X&reg; is a registered trademark.</p>
         </section>
     </main>`;
 

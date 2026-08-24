@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/index.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -181,8 +181,8 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/privacy/HSXBrowsePrivacy.html</loc>
-    <lastmod>2026-08-23</lastmod>
+    <loc>https://hasnainstudiox.com/privacy/HSXBrowserPrivacy.html</loc>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -741,7 +741,7 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-browse.html</loc>
+    <loc>https://hasnainstudiox.com/apps/hsx-browser.html</loc>
     <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

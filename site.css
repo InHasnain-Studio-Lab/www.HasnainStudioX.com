@@ -2132,3 +2132,34 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     .pg-body{ padding:1.2rem 1.15rem 1.4rem; }
 }
 /* /HSX:PROMPT-GUIDE */
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HSX:TRADEMARKS — attribution line on app pages, register on About
+   ══════════════════════════════════════════════════════════════════════ */
+.app-tm{
+    margin-top:.9rem; padding-top:.9rem; border-top:1px solid var(--line);
+    font-size:.78rem; line-height:1.65; color:var(--ink-faint); max-width:78ch;
+}
+.tm-sub{
+    font-family:var(--f-mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); margin:1.6rem 0 .4rem;
+}
+.tm-sub:first-of-type{ margin-top:.4rem; }
+.tm-lead{ margin:0 0 1rem; font-size:.92rem; color:var(--ink-soft); max-width:70ch; }
+.tm-list{
+    list-style:none; margin:0 0 .6rem; padding:0;
+    display:grid; gap:.45rem; grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+}
+.tm-list--wide{ grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); }
+.tm-list li{
+    font-family:var(--f-mono); font-size:.82rem; color:var(--ink);
+    padding:.5rem .7rem; background:var(--card-bg);
+    border:1px solid var(--card-border); border-radius:8px;
+}
+.tm-note{
+    margin-top:1.4rem; padding:1rem 1.15rem; font-size:.86rem; line-height:1.7;
+    color:var(--ink-soft); background:var(--surface);
+    border:1px solid var(--card-border); border-radius:var(--r-md); max-width:80ch;
+}
+.tm-note strong{ color:var(--ink); }
+/* /HSX:TRADEMARKS */

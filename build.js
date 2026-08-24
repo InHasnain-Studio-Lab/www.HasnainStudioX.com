@@ -332,7 +332,8 @@ let sitemapMsg = '';
     let privPages = [];
     try {
       privPages = fs.readdirSync(path.join(ROOT, 'privacy'))
-        .filter(f => f.endsWith('.html')).map(f => 'privacy/' + f).sort();
+        .filter(f => f.endsWith('.html')).map(f => 'privacy/' + f)
+        .filter(f => !/name="robots"[^>]*noindex/i.test(read(f))).sort();
     } catch (e) { /* no privacy/ folder */ }
 
 
@@ -399,6 +400,7 @@ function syncPolicyIndex() {
 
   const pages = fs.readdirSync(path.join(ROOT, 'privacy'))
     .filter(f => f.endsWith('.html'))
+    .filter(f => !/HSX:RENAME-REDIRECT/.test(read('privacy/' + f)))
     .map(f => {
       const t = (read('privacy/' + f).match(/<title>([\s\S]*?)<\/title>/) || [, f])[1];
       return { file: 'privacy/' + f, name: t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim() };
@@ -711,6 +713,124 @@ function syncFooters() {
 }
 const footerMsg = syncFooters();
 if (footerMsg) sitemapMsg += '\n' + footerMsg;
+
+/* ── 3g. the studio's trademark register, on the About page ───────────── */
+function syncTrademarks() {
+  const file = 'about.html';
+  if (!fs.existsSync(P(file))) return '';
+  let s = read(file);
+  if (!/<!--TRADEMARKS_START-->/.test(s)) return '  ! about.html trademark marker not found';
+
+  const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
+    'Promptalon', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
+    'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
+    'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
+    'KatanicOS', 'MoneyHalo', 'VectalonOS', 'SolsticeOS', 'XCipher', 'NimbusDock', 'DocMento',
+    'ExeCrafter', 'SpillFrame', 'EarthShell', 'AstraMorph', 'VDroidX', 'DreamMint'];
+  const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const apps = win.concat(and);
+  const other = [...new Set(apps
+    .filter(a => !COINED.some(c => nm(a.name).includes(nm(c))))
+    .map(a => a.name))].sort((a, b) => a.localeCompare(b));
+  const coined = COINED.slice().sort((a, b) => a.localeCompare(b));
+  const e = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  const block = `<!--TRADEMARKS_START-->
+        <section class="section" aria-labelledby="tm-title">
+            <div class="section-header">
+                <h2 id="tm-title">Trademarks</h2>
+                <p>The following marks are used by Hasnain Studio X in relation to its software.</p>
+            </div>
+
+            <h3 class="tm-sub">Coined marks</h3>
+            <p class="tm-lead">Invented terms originated by the studio. Each is used as a trademark in
+            product names and is claimed as an unregistered mark of Hasnain Studio X.</p>
+            <ul class="tm-list">${coined.map(c => `
+                <li>${e(c)}&trade;</li>`).join('')}
+            </ul>
+
+            <h3 class="tm-sub">Product marks</h3>
+            <p class="tm-lead">Product names used as trademarks of Hasnain Studio X.</p>
+            <ul class="tm-list tm-list--wide">${other.map(o => `
+                <li>${e(o)}&trade;</li>`).join('')}
+            </ul>
+
+            <p class="tm-note"><strong>Hasnain Studio X&reg;</strong> is a registered trademark.
+            All other marks shown on this page are unregistered trademarks used
+            by the studio; the &trade; symbol asserts those rights and does not indicate registration.
+            Any third-party names mentioned elsewhere on this site are the property of their
+            respective owners.</p>
+        </section>
+        <!--TRADEMARKS_END-->`;
+  s = s.replace(/<!--TRADEMARKS_START-->[\s\S]*?<!--TRADEMARKS_END-->/, block);
+
+  /* the same register, machine-readable, on the Organization node */
+  const blk = s.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  if (blk) {
+    try {
+      const d = JSON.parse(blk[1]);
+      for (const node of d['@graph'] || [])
+        if (node['@type'] === 'Organization')
+          node.brand = coined.concat(other).map(n => ({ '@type': 'Brand', name: n }));
+      s = s.slice(0, blk.index) + '<script type="application/ld+json">\n'
+        + JSON.stringify(d, null, 2) + '\n    </script>' + s.slice(blk.index + blk[0].length);
+    } catch (e) { /* leave the schema alone if it will not parse */ }
+  }
+  write(file, s);
+  return '  trademark register    ' + coined.length + ' coined + ' + other.length + ' product marks';
+}
+const tmMsg = syncTrademarks();
+if (tmMsg) sitemapMsg += '\n' + tmMsg;
+
+/* ── 3h. every policy also answers at its root URL ─────────────────────────
+   Store listings point at the root form (hasnainstudiox.com/XPrivacy.html).
+   Those URLs serve the full policy text plus an instant redirect to the
+   canonical copy in privacy/, so a certification checker that does not follow
+   the redirect still reads a complete policy. Regenerated every build so a new
+   or renamed policy can never be missing its root URL. ─────────────────── */
+function syncPrivacyStubs() {
+  const dir = path.join(ROOT, 'privacy');
+  if (!fs.existsSync(dir)) return '';
+  const MARK = '<!--HSX:PRIVACY-REDIRECT-->';
+  let written = 0, skipped = 0;
+
+  for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.html'))) {
+    const full = read('privacy/' + f);
+    if (/HSX:RENAME-REDIRECT/.test(full)) { skipped++; continue; }   // retired name
+    const target = 'privacy/' + f;
+    const title = (full.match(/<title>([^<]*)<\/title>/) || [, f])[1];
+    const m = full.match(/<main[\s\S]*?<\/main>/);
+    const inner = m ? m[0].replace(/(href|src)="\.\.\//g, '$1="') : '';
+    const stub = `<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+${MARK}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://hasnainstudiox.com/${target}">
+<meta http-equiv="refresh" content="0; url=https://hasnainstudiox.com/${target}">
+<link rel="stylesheet" href="site.css"/>
+<script>location.replace('https://hasnainstudiox.com/${target}');</script>
+</head>
+<body>
+<p style="font-family:sans-serif;padding:1rem">
+  This policy now lives at <a href="https://hasnainstudiox.com/${target}">https://hasnainstudiox.com/${target}</a>.
+  The full text is reproduced below.
+</p>
+${inner}
+</body>
+</html>
+`;
+    const at = P(f);
+    if (!fs.existsSync(at) || fs.readFileSync(at, 'utf8') !== stub) { fs.writeFileSync(at, stub, 'utf8'); written++; }
+  }
+  return '  policy root URLs      ' + written + ' written'
+       + (skipped ? ', ' + skipped + ' retired name' + (skipped === 1 ? '' : 's') + ' left redirecting' : '');
+}
+const stubMsg = syncPrivacyStubs();
+if (stubMsg) sitemapMsg += '\n' + stubMsg;
 
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
