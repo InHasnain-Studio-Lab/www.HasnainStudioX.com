@@ -832,6 +832,46 @@ ${inner}
 const stubMsg = syncPrivacyStubs();
 if (stubMsg) sitemapMsg += '\n' + stubMsg;
 
+/* ── 3i. dateModified must be a full ISO 8601 datetime ──────────────────
+   Google reported "Invalid datetime value for 'dateModified'" because the
+   value was date-only (2026-08-20). Schema date properties accept a bare
+   date, but ProfilePage and Article types want a datetime with an offset.
+   Rewritten here for every page, and only when the date actually changes,
+   so a rebuild on the same day produces no diff. ────────────────────── */
+function syncDateModified() {
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const stamp = now.getUTCFullYear() + '-' + pad(now.getUTCMonth() + 1) + '-' + pad(now.getUTCDate())
+    + 'T' + pad(now.getUTCHours()) + ':' + pad(now.getUTCMinutes()) + ':00+00:00';
+  const today = stamp.slice(0, 10);
+  let fixed = 0, ok = 0;
+
+  const visit = d => {
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src'].includes(ent.name)) continue;
+      const p = path.join(d, ent.name);
+      if (ent.isDirectory()) { visit(p); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+      let s = fs.readFileSync(p, 'utf8');
+      if (!/"dateModified"/.test(s)) continue;
+
+      let changed = false;
+      s = s.replace(/"dateModified"\s*:\s*"([^"]*)"/g, (m, v) => {
+        /* already a valid datetime for today -> leave it alone */
+        if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/.test(v) && v.slice(0, 10) === today) { ok++; return m; }
+        changed = true;
+        return '"dateModified": "' + stamp + '"';
+      });
+      if (changed) { fs.writeFileSync(p, s, 'utf8'); fixed++; }
+    }
+  };
+  visit(ROOT);
+  return '  dateModified          ' + (fixed ? fixed + ' page' + (fixed === 1 ? '' : 's') + ' stamped ' + stamp
+                                             : 'all ' + ok + ' already current');
+}
+const dateMsg = syncDateModified();
+if (dateMsg) sitemapMsg += '\n' + dateMsg;
+
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
 
