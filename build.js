@@ -82,6 +82,10 @@ const soon = a => a.filter(x => x.status === 'soon');
 
 const COUNTS = {
   'total':      win.length + and.length,
+  /* the number actually on sale. "total" includes titles that are finished or
+     in certification but not yet purchasable, so it must never be used in a
+     sentence that says "live" or "published on the store". */
+  'live':       live(win).length + live(and).length,
   'win-total':  win.length,
   'win-live':   live(win).length,
   'win-soon':   soon(win).length,
@@ -597,6 +601,76 @@ function syncSocialMeta() {
   return `  social cards          ${scanned} checked, ${stale} inherited card${stale === 1 ? '' : 's'} rebuilt, ${unescaped} double-escaped repaired`;
 }
 const socialMsg = syncSocialMeta();
+
+/* ── 3b4. one primary navigation, on every page ───────────────────────────
+   The header had drifted into three different shapes: 170 pages offered a
+   single "Apps" link that went to Windows only, four offered Windows and
+   Android separately, and the AI Studio page had lost its About link
+   altogether. Beyond looking broken as you move around the site, it meant
+   android-apps.html had no primary-nav link on 170 of 175 pages.
+   The nav is now generated, so it cannot drift again. */
+function syncNav() {
+  const ITEMS = [
+    ['Home',      'index.html'],
+    ['Windows',   'Windows-apps.html'],
+    ['Android',   'android-apps.html'],
+    ['AI Studio', 'HSXAIstudio.html'],
+    ['About',     'about.html'],
+    ['Contact',   'contact.html']
+  ];
+  const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
+    .concat(['apps', 'privacy'].flatMap(d => {
+      try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
+      catch (e) { return []; }
+    }));
+
+  let done = 0, skipped = 0;
+  for (const f of targets) {
+    let src = read(f);
+    const m = src.match(/([ \t]*)<nav aria-label="Primary"([^>]*)>[\s\S]*?<\/nav>/);
+    if (!m) { skipped++; continue; }
+    const [whole, indent, attrs] = m;
+    const deep = f.includes('/');
+    const up = deep ? '../' : '';
+    /* the active state is only claimed on the six pages themselves; a page
+       under apps/ or privacy/ says where it is with its breadcrumb instead */
+    const links = ITEMS.map(([label, href]) => {
+      const to = href === 'index.html' ? (deep ? '../' : './') : up + href;
+      const active = !deep && f === href ? ' class="active"' : '';
+      return `${indent}    <a href="${to}"${active}>${label}</a>`;
+    }).join('\n');
+    const rebuilt = `${indent}<nav aria-label="Primary"${attrs}>\n${links}\n${indent}</nav>`;
+    if (rebuilt === whole) continue;
+    write(f, src.replace(whole, rebuilt));
+    done++;
+  }
+  return `  primary nav           ${ITEMS.length} links, ${done} page${done === 1 ? '' : 's'} rebuilt`
+       + (skipped ? `, ${skipped} without a nav` : '');
+}
+const navMsg = syncNav();
+
+/* ── 3b5. counts written into prose ───────────────────────────────────────
+   The catalogue size appears inside sentences as well as in the stat blocks,
+   where data-count cannot reach it. Those sentences went stale at 76 while
+   the catalogue grew. */
+function syncProseCounts() {
+  const total = COUNTS['total'];
+  /* the catalogue size is written into sentences and social card copy as well
+     as into the stat blocks, where data-count cannot reach it */
+  const RE = /\b\d{1,3}(?=\s+local-first\b)/g;
+  const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
+    .concat((() => { try { return fs.readdirSync(P('apps')).filter(f => /\.html$/.test(f)).map(f => 'apps/' + f); }
+                     catch (e) { return []; } })());
+  let hits = 0, files = 0;
+  for (const f of targets) {
+    const src = read(f);
+    let n = 0;
+    const out = src.replace(RE, () => { n++; return String(total); });
+    if (n && out !== src) { write(f, out); files++; hits += n; }
+  }
+  return `  prose counts          ${hits} phrase${hits === 1 ? '' : 's'} set to ${total} across ${files} file${files === 1 ? '' : 's'}`;
+}
+const proseMsg = syncProseCounts();
 
 const catStripMsg = syncCategoryStrip();
 
@@ -1114,6 +1188,8 @@ const galleryMsg = syncGalleryApps();
 if (galleryMsg) sitemapMsg += '\n' + galleryMsg;
 if (catStripMsg) sitemapMsg += '\n' + catStripMsg;
 if (socialMsg) sitemapMsg += '\n' + socialMsg;
+if (navMsg) sitemapMsg += '\n' + navMsg;
+if (proseMsg) sitemapMsg += '\n' + proseMsg;
 
 /* ── report ── */
 console.log(`
