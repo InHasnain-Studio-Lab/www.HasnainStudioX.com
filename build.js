@@ -537,6 +537,7 @@ function syncGalleryStatic() {
           contentUrl: 'https://hasnainstudiox.com/' + i.src,
           name: i.title, description: i.desc,
           width: i.w || undefined, height: i.h || undefined,
+          license: 'https://hasnainstudiox.com/HSXAIstudio.html#image-licence',
           creditText: 'Hasnain Studio X',
           creator: { '@id': 'https://hasnainstudiox.com/#organization' },
           copyrightNotice: 'Hasnain Studio X',
