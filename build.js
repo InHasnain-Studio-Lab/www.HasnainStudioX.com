@@ -162,6 +162,8 @@ let sitemapMsg = '';
   try {
 
     /* ── app landing pages (apps/<slug>.html), one per live application ── */
+    /* category hub pages first: the app pages link up into them */
+    require('./gen-category-pages.js');
     require('./gen-app-pages.js');
 
     (function(){
@@ -313,7 +315,27 @@ let sitemapMsg = '';
     const ROOT = __dirname, P = f => path.join(ROOT, f);
     const BASE = 'https://hasnainstudiox.com/';
     const read = f => fs.readFileSync(P(f), 'utf8');
-    const iso  = f => new Date(fs.statSync(P(f)).mtime).toISOString().slice(0, 10);
+    /* lastmod must be the date the page's content actually changed. File mtime
+       is useless here: a CI checkout stamps every file with the run time, so
+       every URL would claim to have changed on every deploy and the engines
+       would rightly ignore the signal. The last commit that touched the file is
+       the real answer. Needs fetch-depth: 0 on the checkout step. */
+    const GITDATE = (() => {
+      const map = {};
+      try {
+        const out = require('child_process')
+          .execSync('git log --pretty=format:%x00%cI --name-only', { cwd: ROOT, maxBuffer: 128 * 1024 * 1024 })
+          .toString();
+        let when = null;
+        for (const line of out.split('\n')) {
+          if (line.startsWith('\0')) { when = line.slice(1, 11); continue; }
+          const f = line.trim();
+          if (f && when && !(f in map)) map[f] = when;   // git log is newest first
+        }
+      } catch (e) { /* no git history available - fall back to mtime */ }
+      return map;
+    })();
+    const iso = f => GITDATE[f] || new Date(fs.statSync(P(f)).mtime).toISOString().slice(0, 10);
 
     const SKIP = new Set(['card.html', 'qx-link.html', '404.html',
   // search engine ownership-verification pages - must exist, must not be indexed
@@ -347,6 +369,7 @@ let sitemapMsg = '';
         .sort();
     } catch (e) { /* no apps/ folder yet */ }
 
+    const HUBSLUGS_N = require('./hsx-taxonomy.js').HUBS.length;
     const pages = rootPages.concat(privPages, appPages);
 
     const esc = s => String(s == null ? '' : s)
@@ -364,9 +387,16 @@ let sitemapMsg = '';
         ? imgs.map(i => `    <image:image>\n      <image:loc>${BASE}${esc(i.src)}</image:loc>\n`
             + `      <image:title>${esc(i.title || '')}</image:title>\n    </image:image>`).join('\n') + (imgs.length ? '\n' : '')
         : '';
-      const isApp = f.startsWith('apps/');
-      return `  <url>\n    <loc>${BASE}${f}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
-           + `    <changefreq>${FREQ[f] || (isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isApp ? '0.7' : '0.3')}</priority>\n`
+      /* the category hubs are the entry points for category searches, so they
+         rank above individual app pages and below the catalogue itself */
+      const HUBSLUGS = new Set(require('./hsx-taxonomy.js').HUBS.map(h => 'apps/' + h.slug + '.html'));
+      const isHub = HUBSLUGS.has(f);
+      const isApp = !isHub && f.startsWith('apps/');
+      /* the homepage answers at the bare root - that is what every inbound
+         link points at, so that is the URL that must be canonical */
+      const loc = (f === 'index.html') ? BASE : BASE + f;
+      return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
+           + `    <changefreq>${FREQ[f] || (isHub ? 'weekly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isHub ? '0.85' : isApp ? '0.7' : '0.3')}</priority>\n`
            + extra + `  </url>`;
     }).join('\n\n');
 
@@ -376,7 +406,7 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + urls + '\n\n</urlset>\n', 'utf8');
 
-    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length} app, ${privPages.length} policy), ${imgs.length} images`);
+    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length - HUBSLUGS_N} app, ${HUBSLUGS_N} hub, ${privPages.length} policy), ${imgs.length} images`);
 
     })();
   } catch (e) {
@@ -458,6 +488,118 @@ function syncAppPages() {
   }
   return '  app page links       ' + n + ' modal buttons';
 }
+/* ── 3b2. browse-by-category strip ────────────────────────────────────────
+   The hub pages are only worth having if they are linked. This puts them on
+   both catalogue pages and the homepage, as real markup rather than script
+   output, so a crawler that does not run JavaScript still follows them. */
+function syncCategoryStrip() {
+  const HUBS = require('./hsx-taxonomy.js').HUBS;
+  const escq = s => String(s).replace(/&(?![a-zA-Z#0-9]+;)/g, '&amp;')
+                             .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const chips = HUBS.map(h =>
+    `                    <a href="apps/${h.slug}.html">${escq(h.nav)}</a>`).join('\n');
+
+  const STRIP = `
+            <nav class="cat-strip" aria-label="Browse applications by category">
+${chips}
+            </nav>
+`;
+  const SECTION = `
+            <section class="section reveal" aria-labelledby="browse-title">
+                <div class="section-header"><h2 id="browse-title">Browse by category</h2></div>
+                <p style="max-width:720px;margin:0 auto 1.1rem;color:var(--ink-soft);text-align:center;">
+                    Every application is grouped by the job it does, with what to look for before you buy.</p>
+                <div class="cat-siblings">
+${HUBS.map(h => `                    <a class="cat-sib" href="apps/${h.slug}.html"><span class="cat-sib-n">${escq(h.nav)}</span><span class="cat-sib-t">${escq(h.h1)}</span></a>`).join('\n')}
+                </div>
+            </section>
+`;
+  const TARGETS = [['Windows-apps.html', STRIP], ['android-apps.html', STRIP], ['index.html', SECTION]];
+  let done = 0, missing = [];
+  for (const [file, html] of TARGETS) {
+    let src = read(file);
+    const re = /(<!--CATSTRIP_START-->)[\s\S]*?(<!--CATSTRIP_END-->)/;
+    if (!re.test(src)) { missing.push(file); continue; }
+    src = src.replace(re, (m, o, c) => o + html + '            ' + c);
+    write(file, src);
+    done++;
+  }
+  return missing.length
+    ? `  category strip        ${done} placed, markers missing in ${missing.join(', ')}`
+    : `  category strip        ${HUBS.length} hubs linked from ${done} pages`;
+}
+/* ── 3b3. social cards must describe their own page ───────────────────────
+   Pages built by copying another page inherit its og: and twitter: tags. That
+   is how contest-rules.html came to advertise a privacy policy: the title,
+   description and preview image shown on every share were another page's.
+
+   This repairs a card only when it is demonstrably wrong — when og:url points
+   at a different page than the canonical does, or when a value has been double
+   escaped (&amp;amp;) by an earlier pass. Hand-written social copy that
+   legitimately differs from the <title> is left exactly as it is. */
+function syncSocialMeta() {
+  const OGIMG = {
+    'index.html': 'og-home.png', 'Windows-apps.html': 'og-windows.png',
+    'android-apps.html': 'og-android.png', 'HSXAIstudio.html': 'og-aistudio.png',
+    'about.html': 'og-about.png', 'contact.html': 'og-contact.png',
+    'contest-rules.html': 'og-home.png', 'privacy-policies.html': 'og-privacy.png',
+    '404.html': 'og-home.png'
+  };
+  const escq = v => String(v).replace(/"/g, '&quot;');
+  const norm = u => String(u || '').replace(/index\.html$/, '');
+  const files = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
+    .concat(['privacy', 'apps'].flatMap(d => {
+      try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
+      catch (e) { return []; }
+    }));
+
+  let scanned = 0, stale = 0, unescaped = 0;
+  for (const f of files) {
+    let h = read(f);
+    if (/name="robots"[^>]*noindex/i.test(h)) continue;
+    const title = (h.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1];
+    const desc  = (h.match(/<meta[^>]+name="description"[^>]+content="([^"]*)"/i) || [])[1];
+    const canon = (h.match(/<link[^>]+rel="canonical"[^>]+href="([^"]*)"/i) || [])[1];
+    if (!title || !desc || !canon) continue;
+    scanned++;
+    const before = h;
+    const set = (attr, key, v) => {
+      const re = new RegExp('(<meta\\s+' + attr + '="' + key.replace(/[:.]/g, m => '\\' + m) + '"\\s+content=")[^"]*(")', 'g');
+      h = h.replace(re, (m, x, y) => x + escq(v) + y);
+    };
+    const ogUrl = (h.match(/<meta[^>]+property="og:url"[^>]+content="([^"]*)"/i) || [])[1];
+
+    /* the card was inherited from another page: rebuild it from this one */
+    if (ogUrl && norm(ogUrl) !== norm(canon)) {
+      stale++;
+      set('property', 'og:title', title);
+      set('name',     'twitter:title', title);
+      set('property', 'og:description', desc);
+      set('name',     'twitter:description', desc);
+      set('property', 'og:image:alt', title);
+      set('name',     'twitter:image:alt', title);
+      if (OGIMG[f]) {
+        const img = 'https://hasnainstudiox.com/images/' + OGIMG[f];
+        set('property', 'og:image', img);
+        set('property', 'og:image:secure_url', img);
+        set('name',     'twitter:image', img);
+      }
+    }
+    /* og:url always tracks the canonical */
+    set('property', 'og:url', canon);
+    /* repair double-escaped entities left by an earlier pass */
+    const fixEnt = h.replace(/(<meta\s+(?:name|property)="[^"]+"\s+content=")([^"]*)(")/g,
+      (m, x, v, y) => x + v.replace(/&amp;(amp|lt|gt|quot|#\d+);/g, '&$1;') + y);
+    if (fixEnt !== h) { unescaped++; h = fixEnt; }
+
+    if (h !== before) write(f, h);
+  }
+  return `  social cards          ${scanned} checked, ${stale} inherited card${stale === 1 ? '' : 's'} rebuilt, ${unescaped} double-escaped repaired`;
+}
+const socialMsg = syncSocialMeta();
+
+const catStripMsg = syncCategoryStrip();
+
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
 
@@ -970,6 +1112,8 @@ function syncGalleryApps() {
 }
 const galleryMsg = syncGalleryApps();
 if (galleryMsg) sitemapMsg += '\n' + galleryMsg;
+if (catStripMsg) sitemapMsg += '\n' + catStripMsg;
+if (socialMsg) sitemapMsg += '\n' + socialMsg;
 
 /* ── report ── */
 console.log(`

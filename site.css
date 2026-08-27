@@ -2179,3 +2179,89 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .gal-licence a{ color:var(--accent); text-decoration:none; }
 .gal-licence a:hover{ text-decoration:underline; }
 /* /HSX:IMAGE-LICENCE */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HSX:CATEGORY-HUB — the per-category landing pages under apps/
+   Built from the same tokens as the app pages so a hub reads as part of
+   the same catalogue rather than a bolted-on section.
+   ═══════════════════════════════════════════════════════════════════ */
+.cat-grid{
+    display:grid; gap:.85rem;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+.cat-app{
+    display:flex; flex-direction:column; gap:.4rem;
+    text-decoration:none; padding:1.15rem 1.25rem;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:var(--r-md);
+    clip-path:polygon(0 12px,12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%);
+    transition:border-color var(--t-fast) var(--ease),
+               transform var(--t-fast) var(--ease),
+               background var(--t-fast) var(--ease);
+}
+.cat-app:hover,.cat-app:focus-visible{
+    border-color:var(--accent-line); background:var(--surface-2); transform:translateY(-3px);
+}
+.cat-app-h{ display:flex; align-items:baseline; justify-content:space-between; gap:.6rem; flex-wrap:wrap; }
+.cat-app-n{ font-family:var(--f-display); font-weight:600; color:var(--ink); }
+.cat-app-p{
+    font-family:var(--f-mono); font-size:.7rem; letter-spacing:.04em;
+    text-transform:uppercase; color:var(--ink-faint); white-space:nowrap;
+}
+.cat-app-t{ font-size:.9rem; color:var(--ink-soft); line-height:1.55; margin-bottom:.25rem; }
+.cat-app-f{
+    display:block; position:relative; padding-left:1rem;
+    font-size:.82rem; color:var(--ink-faint); line-height:1.5;
+}
+.cat-app-f::before{
+    content:""; position:absolute; left:0; top:.6em;
+    width:5px; height:5px; border-radius:50%; background:var(--mint); opacity:.7;
+}
+.cat-app-go{
+    margin-top:.55rem; font-family:var(--f-mono); font-size:.75rem;
+    letter-spacing:.05em; color:var(--accent);
+}
+.cat-app--soon{ opacity:.82; }
+.cat-app--soon .cat-app-p{ color:var(--gold); }
+.cat-app--soon .cat-app-f::before{ background:var(--gold); }
+
+.cat-check{ display:grid; gap:.75rem; }
+.cat-check-row{
+    padding:1rem 1.15rem;
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-left:2px solid var(--accent-line); border-radius:var(--r-md);
+}
+.cat-check-row dt{
+    font-family:var(--f-display); font-weight:600; color:var(--ink);
+    margin-bottom:.3rem; font-size:.98rem;
+}
+.cat-check-row dd{ margin:0; color:var(--ink-soft); font-size:.9rem; line-height:1.6; max-width:78ch; }
+
+.cat-siblings{
+    display:grid; gap:.7rem;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+}
+.cat-sib{
+    display:block; text-decoration:none; padding:.9rem 1rem;
+    background:var(--surface-2); border:1px solid var(--card-border);
+    border-radius:var(--r-md);
+    transition:border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.cat-sib:hover,.cat-sib:focus-visible{ border-color:var(--accent-line); background:var(--card-bg); }
+.cat-sib-n{ display:block; font-family:var(--f-display); font-weight:600; color:var(--ink); font-size:.95rem; }
+.cat-sib-t{ display:block; font-size:.8rem; color:var(--ink-faint); line-height:1.45; margin-top:.2rem; }
+
+/* the strip that sends the catalogue pages and the homepage into the hubs */
+.cat-strip{
+    display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center;
+    margin:0 0 1.6rem;
+}
+.cat-strip a{
+    display:inline-block; text-decoration:none;
+    padding:.5rem .95rem; font-family:var(--f-mono); font-size:.78rem;
+    letter-spacing:.03em; color:var(--ink-soft);
+    background:var(--surface-2); border:1px solid var(--card-border);
+    border-radius:999px;
+    transition:border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.cat-strip a:hover,.cat-strip a:focus-visible{ border-color:var(--accent-line); color:var(--accent); }

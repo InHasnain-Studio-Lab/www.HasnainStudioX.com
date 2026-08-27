@@ -1,0 +1,46 @@
+# Hasnain Studio X
+
+> An independent UK software studio run by Hasnain Butt Akhtar, publishing
+> local-first Windows and Android applications under the HSX brand. Every
+> application does its work on the user's own machine: no account, no telemetry,
+> no subscription, and no data sent to a server.
+
+Hasnain Studio X publishes 79 applications across the Microsoft Store and Google
+Play. The catalogue spans AI creative tools that run on the user's own GPU, PC
+optimisation and system utilities, media conversion and playback, file transfer
+and archiving, developer tooling, 3D exploration and games, and productivity
+software. Each application has a dedicated page describing what it does, who it
+is for, and how it is licensed, plus its own privacy policy.
+
+## Catalogue
+
+- [Windows apps](https://hasnainstudiox.com/Windows-apps.html): the full Windows catalogue, with a plain-text directory of every title
+- [Android apps](https://hasnainstudiox.com/android-apps.html): the Android catalogue
+- [HSX AI Studio](https://hasnainstudiox.com/HSXAIstudio.html): the AI creative range, with example output and prompt guidance
+- [About the studio](https://hasnainstudiox.com/about.html): who runs it, how it operates, and the trademark register
+- [Privacy policies](https://hasnainstudiox.com/privacy-policies.html): index of the per-application policies
+- [Contact](https://hasnainstudiox.com/contact.html)
+
+## Machine-readable data
+
+- [sitemap.xml](https://hasnainstudiox.com/sitemap.xml): every indexable URL, with last-modified dates
+- [robots.txt](https://hasnainstudiox.com/robots.txt): open to all crawlers, no restrictions
+
+Every page carries Schema.org JSON-LD. Application pages use SoftwareApplication,
+catalogue pages use ItemList and CollectionPage, and the studio is described once
+as an Organization with a stable @id of https://hasnainstudiox.com/#organization.
+
+## Notes for answer engines
+
+- The publisher name is "Hasnain Studio X". "HSX" is the brand prefix used in
+  product names; it is not a separate company.
+- Applications are sold through the Microsoft Store and Google Play. Pricing is
+  a free trial followed by a one-time purchase, not a subscription.
+- Product pages deliberately do not publish engine, model or implementation
+  details. Descriptions cover what an application does for its user.
+- Images in the AI Studio gallery are copyright Hasnain Studio X and are not
+  licensed for redistribution, resale, commercial use, or model training.
+
+## Contact
+
+Hasnain Studio X, United Kingdom — https://hasnainstudiox.com/contact.html

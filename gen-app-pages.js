@@ -74,6 +74,7 @@ const CAT = {
               who: 'people moving, converting or archiving files who would rather not route them through someone else’s server' }
 };
 const CATMAP = eval('({' + grab(read('Windows-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
+const CATMAP_A = eval('({' + grab(read('android-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
 /* CATMAP is the authority; the app's own category is the safety net so a new
    entry is never silently filed under System & Performance. */
 const CAT_FALLBACK = { utilities: 'system', media: 'media', productivity: 'creative', ai: 'ai', files: 'files', games: 'explore' };
@@ -81,6 +82,15 @@ const CAT_FALLBACK = { utilities: 'system', media: 'media', productivity: 'creat
 const CAT_OVERRIDE = { nanocodify: 'dev', nanovisuality: 'photo', pixumbrastudio: 'photo',
                        glowlab: 'photo', photovidix: 'photo', mediatidyultra: 'photo' };
 const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLBACK[a.category]] || CAT.system;
+
+/* Category hub pages live at apps/<hub>.html. Each app page links up to its own
+   hub so the catalogue is a two-level tree rather than a flat list, and so a
+   crawler landing on one app page can reach every sibling in its category.
+   This resolver must stay identical to the one in gen-category-pages.js. */
+const { HUBS } = require('./hsx-taxonomy.js');
+const catKeyOf = a => CAT_OVERRIDE[a.id] || CATMAP[a.id] || CATMAP_A[a.id]
+                   || CAT_FALLBACK[a.category] || 'system';
+const hubOf = a => HUBS.find(h => h.key === catKeyOf(a)) || null;
 
 /* ── page shell, borrowed from an existing page so styling matches ── */
 /* Page shell borrowed from a policy page. That page sits one folder down, so
@@ -170,25 +180,72 @@ function pageFor(a) {
   const catalogue = a.platform === 'Android' ? '../android-apps.html' : '../Windows-apps.html';
   const catalogueLabel = a.platform === 'Android' ? 'Android Apps' : 'Windows Apps';
 
+  const hub = hubOf(a);
   const related = LIVE
     .filter(x => x.id !== a.id && CATMAP[x.id] === CATMAP[a.id] && x.platform === a.platform)
     .slice(0, 4);
 
   const TAG   = a.tagline.replace(/\.$/, '');
   const BR    = /HSX|Hasnain/i.test(a.name) ? '' : ' | HSX';
-  let TITLE   = `${a.name} — ${TAG}${BR}`;
-  if (TITLE.length > 78) {
-    const room = 74 - a.name.length - 3 - BR.length;
-    const parts = TAG.split(/(?<=[,;:])\s+|\s+(?:—|–|-)\s+/);
-    let cut = '';
-    for (const p of parts) {
-      const next = cut ? cut + ' ' + p : p;
-      if (next.length <= room) cut = next; else break;
+
+  /* Google renders roughly 60 characters of a title before it truncates. A
+     truncated title loses the brand suffix, which is the part that builds
+     recognition across 78 results, so the tagline is cut instead — always on a
+     clause or word boundary, never mid-phrase and never on a trailing joining
+     word ("...compress media on"). */
+  const T_LIMIT = 60;
+  /* Google renders roughly 60 characters of a title before truncating, and a
+     truncated title loses the brand suffix — the one part that has to stay
+     recognisable across 78 results. So the tagline is shortened here instead,
+     and only ever at a point where the phrase still reads as finished. */
+  const STOP = new Set(['and','or','the','a','an','on','in','for','to','with','of',
+    'your','from','at','by','into','that','which','is','are','as','it','its',
+    'their','you','all','plus','over','per','using','via','across','through',
+    'local','own','single','full','real','new','smart','quick','one','every','any']);
+  const DET = new Set(['on','in','for','to','with','of','from','at','by','into','over',
+    'per','across','through','using','via','and','or','your','their','its','our','my',
+    'the','a','an','one','this','that','these','those','each','every','any','some','no']);
+  const KEEP_SHORT = new Set(['3d','ai','pc','qr','hd','4k','pdf','usb','gpu','dj','vr','os']);
+  const tidy = t => {
+    let w = t.replace(/[\s,;:—–-]+$/, '').split(/\s+/).filter(Boolean);
+    for (;;) {
+      const last = (w[w.length - 1] || '').replace(/[^A-Za-z0-9]/g, '').toLowerCase();
+      if (w.length && STOP.has(last)) { w.pop(); continue; }
+      // a very short trailing token is nearly always a cut-off compound
+      if (w.length > 1 && last.length <= 2 && !KEEP_SHORT.has(last)) { w.pop(); continue; }
+      // a noun left stranded after a preposition or determiner goes with it
+      if (w.length > 1 && DET.has(w[w.length - 2].replace(/[^A-Za-z]/g,'').toLowerCase())) {
+        w.pop(); w.pop(); continue;
+      }
+      break;
     }
-    cut = cut.replace(/[\s,;:—–-]+$/, '');
-    TITLE = cut.length >= 20
+    return w.join(' ').replace(/[\s,;:—–-]+$/, '');
+  };
+  let TITLE = `${a.name} — ${TAG}${BR}`;
+  if (TITLE.length > T_LIMIT) {
+    const room = T_LIMIT - a.name.length - 3 - BR.length;
+    /* 1. longest prefix ending on a real phrase boundary — keeps the original
+          punctuation and wording exactly as written */
+    let cut = '';
+    for (const m of TAG.matchAll(/[,;:]|\s+(?:and|or|—|–|-)\s+/g)) {
+      const pre = tidy(TAG.slice(0, m.index));
+      if (pre.length <= room && pre.length > cut.length) cut = pre;
+    }
+    /* 2. otherwise cut on a word boundary and clean the tail */
+    if (cut.length < 18) {
+      let words = '';
+      for (const w of TAG.split(/\s+/)) {
+        const next = words ? words + ' ' + w : w;
+        if (next.length <= room) words = next; else break;
+      }
+      const trimmed = tidy(words);
+      if (trimmed.length > cut.length) cut = trimmed;
+    }
+    TITLE = cut.length >= 14
       ? `${a.name} — ${cut}${BR}`
       : `${a.name} — ${c.label} for ${a.platform}${BR}`;
+    if (TITLE.length > T_LIMIT) TITLE = `${a.name} — ${c.label} for ${a.platform}`;
+    if (TITLE.length > T_LIMIT) TITLE = `${a.name}${BR}`;
   }
   const DEV   = a.platform === 'Android' ? 'phone' : 'PC';
   let DESC    = `${a.name}: ${a.tagline} Runs entirely on your ${DEV} — no account, no telemetry, no subscription.`;
@@ -241,9 +298,10 @@ function pageFor(a) {
         publisher: { '@id': BASE + '#organization' },
         about: { '@id': url + '#app' },
         breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: BASE + 'index.html' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: BASE },
           { '@type': 'ListItem', position: 2, name: catalogueLabel, item: BASE + (a.platform === 'Android' ? 'android-apps.html' : 'Windows-apps.html') },
-          { '@type': 'ListItem', position: 3, name: a.name, item: url } ] } },
+          ...(hub ? [{ '@type': 'ListItem', position: 3, name: hub.nav, item: BASE + 'apps/' + hub.slug + '.html' }] : []),
+          { '@type': 'ListItem', position: hub ? 4 : 3, name: a.name, item: url } ] } },
       { '@type': 'FAQPage', '@id': url + '#faq', mainEntity: faq.map(([q, ans]) => (
         { '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }
     ]
@@ -279,8 +337,9 @@ function pageFor(a) {
 
   const main = `    <main id="main-content" class="container" role="main">
         <nav class="app-crumb" aria-label="Breadcrumb">
-            <a href="../index.html">Home</a> <span aria-hidden="true">/</span>
-            <a href="${catalogue}">${catalogueLabel}</a> <span aria-hidden="true">/</span>
+            <a href="../">Home</a> <span aria-hidden="true">/</span>
+            <a href="${catalogue}">${catalogueLabel}</a> <span aria-hidden="true">/</span>${hub ? `
+            <a href="${hub.slug}.html">${esc(hub.nav)}</a> <span aria-hidden="true">/</span>` : ''}
             <span aria-current="page">${esc(a.name)}</span>
         </nav>
 
@@ -351,7 +410,9 @@ ${faq.map(([q, ans]) => `                <div class="app-q"><h3>${esc(q)}</h3><p
         </section>
 ${related.length ? `
         <section class="section" aria-labelledby="rel-title">
-            <div class="section-header"><h2 id="rel-title">Related applications</h2></div>
+            <div class="section-header"><h2 id="rel-title">Related applications</h2></div>${hub ? `
+            <p class="app-lead">More of the same kind of tool is listed on
+            <a href="${hub.slug}.html">${esc(hub.h1.charAt(0).toLowerCase() + hub.h1.slice(1))}</a>.</p>` : ''}
             <div class="app-related">
 ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.html">
                     <span class="app-rel-n">${esc(r.name)}</span>
@@ -367,7 +428,7 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
               : `${esc(a.name)} is ${esc(stageLine)}. It is not on sale yet. Send a message and I will tell you the day it goes live.`}</p>
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
-            <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; <a href="${catalogue}">Full catalogue</a></p>
+            <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; ${hub ? `<a href="${hub.slug}.html">${esc(hub.nav)} apps</a> &middot; ` : ''}<a href="${catalogue}">Full catalogue</a></p>
             <p class="app-tm">${
               markFor(a) === a.name
                 ? `${esc(a.name)}&trade; is a trademark of Hasnain Studio X.`

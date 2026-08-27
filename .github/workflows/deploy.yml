@@ -22,7 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        # full history: sitemap lastmod is taken from each file's last commit
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # ── build ──────────────────────────────────────────────────────────
       # Regenerates the app counts, structured data, the static catalogue that
@@ -52,6 +55,15 @@ jobs:
       # ── deploy ─────────────────────────────────────────────────────────
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      # Build inputs are not part of the published site. Left in place they are
+      # served as real URLs - articles-src/prompt-guide.html in particular is a
+      # raw fragment whose text is duplicated inside the AI Studio page.
+      - name: Strip build sources from the published site
+        run: |
+          rm -rf articles-src
+          rm -f build.js gen-app-pages.js update-gallery.js optimise-images.py \
+                make-icons.py README.md
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
