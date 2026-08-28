@@ -830,20 +830,21 @@
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
                 /*TERMAPPS_START*/
-                print('Hasnain Studio X - 62 applications live, 17 in development', 'ok');
+                print('Hasnain Studio X - 64 applications live, 15 in development', 'ok');
                 print('', '');
-                print('WINDOWS (57)', 'warn');
-                print('  AI tools: HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX NovaDiffux, HSX Pocktium, HSX Promptalon, HSX QuantumGen AI Studio, HSX StudioFlow', '');
+                print('WINDOWS (59)', 'warn');
+                print('  AI tools: HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX NovaDiffux, HSX Pocktium, HSX PromptKinetics, HSX QuantumGen AI Studio, HSX StudioFlow', '');
                 print('  Audio & video: HSX BeatGrid, HSX DepthStudio 3D, HSX GlowCraft, HSX MediaLucent, HSX PhotoVidix, HSX PrimeCut Ultra, HSX SenseCapture, Hypersonus Ultra, MediaTidy Ultra, PC Screen Recorder Pro, SpatiaX Ultra, VAudio Elite', '');
                 print('  Creative & documents: HSX ArtGen Studio, HSX CreatorStudio, HSX DocMento, HSX ExeCrafter, HSX SpillFrame, HSX WebX Studio, HSX WorkX Suite, QR Creator Studio', '');
                 print('  Files & transfer: FileGuardian Ultra, FlipX Studio, HSX ConvertStudio, PC Archive Pro, PC Download Manager Ultra, QuantumDrop', '');
                 print('  Games & explore: HSX GameFabrix, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
+                print('  Other: HSX NanoVisuality, Pixumbra Studio', '');
                 print('  System & performance: FocusRoom Ultra, HSX Automafy, HSX BootForge, HSX Browser, HSX EarthShell, HSX SmartClicker, KatanicOS, NimbusDock, PC GuardX, PC SenseX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
                 print('', '');
                 print('ANDROID (5)', 'warn');
                 print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');
                 print('', '');
-                print('In development: 17 more. Full catalogue at hasnainstudiox.com', '');
+                print('In development: 15 more. Full catalogue at hasnainstudiox.com', '');
                 /*TERMAPPS_END*/
             }
         };

@@ -897,6 +897,7 @@ function syncFooters() {
   const WANT = ['Windows-apps.html|Windows Apps', 'android-apps.html|Android Apps', 'HSXAIstudio.html|AI Studio'];
   /* names that used to appear in hand-written copy and are not real products */
   const RETIRED = ['HSX PC Tune', 'HSX PC Guard', 'HSX Seasons', 'HSX Spatia', 'HSX VAudio',
+                   'HSX Promptalon',
                    'HSX FlipStudio', 'HSX NimbusDock', 'HSX QuantumDrop', 'SpatiaX Mobile',
                    'InHasnain Studio X'];
   let fixed = 0, flagged = [];
@@ -908,6 +909,9 @@ function syncFooters() {
       if (!ent.name.endsWith('.html')) continue;
       let s = fs.readFileSync(p, 'utf8');
       if (s.includes('HSX:PRIVACY-REDIRECT')) continue;
+      /* a rename redirect has to name the old product - that sentence is the
+         whole point of the page - so it is not a stale reference */
+      if (s.includes('HSX:RENAME-REDIRECT')) continue;
       const up = path.relative(ROOT, d) ? '../' : '';
       const want = WANT.map(x => { const [h, l] = x.split('|');
         return '<li><a href="' + up + h + '">' + l + '</a></li>'; })
@@ -939,7 +943,7 @@ function syncTrademarks() {
   if (!/<!--TRADEMARKS_START-->/.test(s)) return '  ! about.html trademark marker not found';
 
   const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
-    'Promptalon', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
+    'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
     'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
     'KatanicOS', 'MoneyHalo', 'VectalonOS', 'SolsticeOS', 'XCipher', 'NimbusDock', 'DocMento',
