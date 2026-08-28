@@ -733,6 +733,40 @@ function syncHeroes() {
   const n = Object.keys(map).length, total = win.length + and.length;
   return '  hero artwork          ' + n + ' of ' + total + ' apps illustrated';
 }
+/* ── 3b7. cache-busted asset URLs ─────────────────────────────────────────
+   Cloudflare caches .css and .js at the edge but does not cache .html. A deploy
+   therefore ships new markup against a stale stylesheet, which is how the hero
+   tiles went out unstyled. Appending a content hash to each asset URL makes a
+   changed file a different URL, so the edge cannot serve yesterday's copy and
+   an unchanged file stays cached exactly as before. */
+function syncAssetVersions() {
+  const crypto = require('crypto');
+  const ASSETS = ['site.css', 'site.js', 'effects.js', 'fluid.js', 'gallery-data.js'];
+  const ver = {};
+  for (const a of ASSETS) {
+    try {
+      ver[a] = crypto.createHash('sha1')
+        .update(fs.readFileSync(P(a))).digest('hex').slice(0, 8);
+    } catch (e) { /* asset not present */ }
+  }
+  const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
+    .concat(['apps', 'privacy'].flatMap(d => {
+      try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
+      catch (e) { return []; }
+    }));
+  let files = 0, refs = 0;
+  for (const f of targets) {
+    const src = read(f);
+    let out = src;
+    for (const [asset, hash] of Object.entries(ver)) {
+      const re = new RegExp('((?:href|src)="(?:\\.\\./)?' + asset.replace('.', '\\.') + ')(?:\\?v=[0-9a-f]+)?(")', 'g');
+      out = out.replace(re, (m, head, tail) => { refs++; return head + '?v=' + hash + tail; });
+    }
+    if (out !== src) { write(f, out); files++; }
+  }
+  return '  asset versions        ' + Object.keys(ver).length + ' assets, ' + refs
+       + ' references across ' + targets.length + ' pages';
+}
 const heroesMsg = syncHeroes();
 
 const appPagesMsg = syncAppPages();
@@ -1256,6 +1290,12 @@ if (socialMsg) sitemapMsg += '\n' + socialMsg;
 if (navMsg) sitemapMsg += '\n' + navMsg;
 if (proseMsg) sitemapMsg += '\n' + proseMsg;
 if (heroesMsg) sitemapMsg += '\n' + heroesMsg;
+
+/* Runs last on purpose: several steps above rewrite whole pages (the privacy
+   stubs and the generated app pages among them), so versioning earlier would
+   be undone by them. */
+const assetMsg = syncAssetVersions();
+if (assetMsg) sitemapMsg += '\n' + assetMsg;
 
 /* ── report ── */
 console.log(`
