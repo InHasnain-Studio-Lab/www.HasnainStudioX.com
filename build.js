@@ -734,20 +734,28 @@ function syncHeroes() {
   return '  hero artwork          ' + n + ' of ' + total + ' apps illustrated';
 }
 /* ── 3b7. cache-busted asset URLs ─────────────────────────────────────────
-   Cloudflare caches .css and .js at the edge but does not cache .html. A deploy
-   therefore ships new markup against a stale stylesheet, which is how the hero
-   tiles went out unstyled. Appending a content hash to each asset URL makes a
-   changed file a different URL, so the edge cannot serve yesterday's copy and
-   an unchanged file stays cached exactly as before. */
+   Cloudflare caches .css and .js at the edge but does not cache .html, so a
+   deploy ships new markup against a stale stylesheet. A ?v= query string does
+   not fix that on its own: with the cache level set to ignore query strings,
+   every variant collapses onto the same cache entry, which is exactly what
+   happened here - a hash the edge had never seen still returned the old file.
+
+   So the hash goes in the filename. site.<hash>.css is a different path, and a
+   path is something no cache policy can ignore. The hashed copies are written
+   at build time and are gitignored; CI checks out fresh, so only the current
+   hash is ever published. The originals stay in place as the source files. */
 function syncAssetVersions() {
   const crypto = require('crypto');
   const ASSETS = ['site.css', 'site.js', 'effects.js', 'fluid.js', 'gallery-data.js'];
-  const ver = {};
+  const map = {};
   for (const a of ASSETS) {
-    try {
-      ver[a] = crypto.createHash('sha1')
-        .update(fs.readFileSync(P(a))).digest('hex').slice(0, 8);
-    } catch (e) { /* asset not present */ }
+    let buf;
+    try { buf = fs.readFileSync(P(a)); } catch (e) { continue; }
+    const hash = crypto.createHash('sha1').update(buf).digest('hex').slice(0, 10);
+    const dot = a.lastIndexOf('.');
+    const hashed = a.slice(0, dot) + '.' + hash + a.slice(dot);
+    if (!fs.existsSync(P(hashed))) fs.writeFileSync(P(hashed), buf);
+    map[a] = hashed;
   }
   const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
     .concat(['apps', 'privacy'].flatMap(d => {
@@ -758,13 +766,16 @@ function syncAssetVersions() {
   for (const f of targets) {
     const src = read(f);
     let out = src;
-    for (const [asset, hash] of Object.entries(ver)) {
-      const re = new RegExp('((?:href|src)="(?:\\.\\./)?' + asset.replace('.', '\\.') + ')(?:\\?v=[0-9a-f]+)?(")', 'g');
-      out = out.replace(re, (m, head, tail) => { refs++; return head + '?v=' + hash + tail; });
+    for (const [asset, hashed] of Object.entries(map)) {
+      const stem = asset.slice(0, asset.lastIndexOf('.')).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const ext  = asset.slice(asset.lastIndexOf('.') + 1);
+      // matches site.css, site.css?v=abc and site.<oldhash>.css
+      const re = new RegExp('((?:href|src)="(?:\\.\\./)?)' + stem + '(?:\\.[0-9a-f]{6,})?\\.' + ext + '(?:\\?v=[0-9a-f]+)?(")', 'g');
+      out = out.replace(re, (m, head, tail) => { refs++; return head + hashed + tail; });
     }
     if (out !== src) { write(f, out); files++; }
   }
-  return '  asset versions        ' + Object.keys(ver).length + ' assets, ' + refs
+  return '  asset filenames       ' + Object.keys(map).length + ' hashed, ' + refs
        + ' references across ' + targets.length + ' pages';
 }
 const heroesMsg = syncHeroes();
