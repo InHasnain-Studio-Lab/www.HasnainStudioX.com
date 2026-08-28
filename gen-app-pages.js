@@ -87,10 +87,13 @@ const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLB
    hub so the catalogue is a two-level tree rather than a flat list, and so a
    crawler landing on one app page can reach every sibling in its category.
    This resolver must stay identical to the one in gen-category-pages.js. */
-const { HUBS } = require('./hsx-taxonomy.js');
+const { HUBS, GPU_VRAM, INTENT } = require('./hsx-taxonomy.js');
 const catKeyOf = a => CAT_OVERRIDE[a.id] || CATMAP[a.id] || CATMAP_A[a.id]
                    || CAT_FALLBACK[a.category] || 'system';
 const hubOf = a => HUBS.find(h => h.key === catKeyOf(a)) || null;
+/* a second, cross-cutting hub an app may also belong to (spatial audio,
+   privacy tools) - listed as an extra route in, never as its breadcrumb */
+const alsoHubsOf = a => HUBS.filter(h => h.crossCut && (h.ids || []).includes(a.id));
 
 /* ── page shell, borrowed from an existing page so styling matches ── */
 /* Page shell borrowed from a policy page. That page sits one folder down, so
@@ -197,7 +200,12 @@ function pageFor(a) {
   const catalogue = a.platform === 'Android' ? '../android-apps.html' : '../Windows-apps.html';
   const catalogueLabel = a.platform === 'Android' ? 'Android Apps' : 'Windows Apps';
 
+  const also = alsoHubsOf(a);
   const hero = heroOf(a);
+  const vram = GPU_VRAM[a.id] || null;
+  /* Microsoft Store product id, for the native protocol link */
+  const pidM = String(a.storeUrl || '').match(/apps\.microsoft\.com\/detail\/([A-Z0-9]{12})/i);
+  const pid  = (out && a.platform !== 'Android' && pidM) ? pidM[1] : null;
   const hub = hubOf(a);
   const related = LIVE
     .filter(x => x.id !== a.id && CATMAP[x.id] === CATMAP[a.id] && x.platform === a.platform)
@@ -244,8 +252,22 @@ function pageFor(a) {
     }
     return w.join(' ').replace(/[\s,;:—–-]+$/, '');
   };
-  let TITLE = `${a.name} — ${TAG}${BR}`;
-  if (TITLE.length > T_LIMIT) {
+  /* A search-intent phrase leads the title where one is written for this app,
+     with the product name after it. Sized so the whole title survives the ~60
+     characters Google renders. Apps without a phrase keep the tagline form. */
+  let TITLE;
+  if (INTENT[a.id]) {
+    TITLE = `${INTENT[a.id]} | ${a.name}`;
+    /* the product name is not optional - if the phrase is too long for it to
+       fit, that is a phrase to shorten, not a name to drop */
+    if (TITLE.length > T_LIMIT) {
+      console.log('  ! intent phrase too long for "' + a.name + '" ('
+        + TITLE.length + ' chars) - shorten it in hsx-taxonomy.js');
+    }
+  } else {
+    TITLE = `${a.name} — ${TAG}${BR}`;
+  }
+  if (!INTENT[a.id] && TITLE.length > T_LIMIT) {
     const room = T_LIMIT - a.name.length - 3 - BR.length;
     /* 1. longest prefix ending on a real phrase boundary — keeps the original
           punctuation and wording exactly as written */
@@ -297,6 +319,7 @@ function pageFor(a) {
         alternateName: [...new Set([a.name.replace(/^HSX /, ''), markFor(a)])],
         description: a.description, applicationCategory: c.schema,
         operatingSystem: osFull, softwareVersion: a.version || undefined,
+        memoryRequirements: vram ? vram + ' GB dedicated GPU VRAM (minimum)' : undefined,
         url, downloadUrl: out ? a.storeUrl : undefined, installUrl: out ? a.storeUrl : undefined,
         featureList: a.features, applicationSuite: 'Hasnain Studio X',
         image: hero ? [BASE + 'images/apps/' + hero + '-og.jpg',
@@ -397,14 +420,23 @@ ${hero ? `
             <div class="app-cta">
                 <a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                     ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a>
-                <a class="btn btn--secondary" href="${catalogue}">All ${esc(catalogueLabel)}</a>
+                <a class="btn btn--secondary" href="${catalogue}">All ${esc(catalogueLabel)}</a>${pid ? `
+                <a class="btn btn--ghost store-native" data-pid="${pid}" href="${escA(a.storeUrl)}" hidden>
+                    Open in the Store app</a>` : ''}
             </div>
             <div class="proof-chips" style="justify-content:center;">
                 <span class="proof-chip">No account</span>
                 <span class="proof-chip">No telemetry</span>
                 <span class="proof-chip">No subscription</span>
                 <span class="proof-chip">${isLinked(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
-            </div>
+            </div>${vram ? `
+            <p class="gpu-badge">
+                <span class="gpu-badge-ico" aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><rect x="7" y="10" width="5" height="4" rx="1"/><path d="M16 10v4M7 18v2M17 18v2"/></svg>
+                </span>
+                <span class="gpu-badge-k">Minimum graphics</span>
+                <span class="gpu-badge-v">${vram} GB+ dedicated VRAM</span>
+            </p>` : ''}
         </section>
 
         <section class="section" aria-labelledby="f-title">
@@ -442,7 +474,8 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
                 <div class="spec-cell"><dt>Platform</dt><dd>${esc(osFull)}</dd></div>
                 <div class="spec-cell"><dt>Distribution</dt><dd>${esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play')}</dd></div>
                 <div class="spec-cell spec-cell--${out ? 'good' : 'wait'}"><dt>Availability</dt><dd><span class="spec-dot" aria-hidden="true"></span>${out ? 'Available now' : (cert ? 'In certification' : 'In development')}</dd></div>
-                <div class="spec-cell"><dt>Licence</dt><dd>Free trial, then one purchase</dd></div>
+                <div class="spec-cell"><dt>Licence</dt><dd>Free trial, then one purchase</dd></div>${vram ? `
+                <div class="spec-cell"><dt>Graphics</dt><dd>${vram} GB+ dedicated VRAM</dd></div>` : ''}
                 <div class="spec-cell spec-cell--${isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
@@ -476,7 +509,8 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
               : `${esc(a.name)} is ${esc(stageLine)}. It is not on sale yet. Send a message and I will tell you the day it goes live.`}</p>
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
-            <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; ${hub ? `<a href="${hub.slug}.html">${esc(hub.nav)} apps</a> &middot; ` : ''}<a href="${catalogue}">Full catalogue</a></p>
+${also.length ? `            <p class="app-lead">Also listed under ${also.map(h => `<a href="${h.slug}.html">${esc(h.nav.toLowerCase())}</a>`).join(' and ')}.</p>
+` : ''}            <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; ${hub ? `<a href="${hub.slug}.html">${esc(hub.nav)} apps</a> &middot; ` : ''}<a href="${catalogue}">Full catalogue</a></p>
             <p class="app-tm">${
               markFor(a) === a.name
                 ? `${esc(a.name)}&trade; is a trademark of Hasnain Studio X.`
@@ -499,3 +533,6 @@ for (const a of PAGES) {
   n++;
 }
 console.log(`  app pages   ${n} generated in apps/`);
+
+/* which generated pages are Windows titles - used to split the sitemap */
+module.exports.windowsSlugs = PAGES.filter(a => a.platform === 'Windows').map(a => slug(a));

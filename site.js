@@ -333,3 +333,53 @@ window.AppViz = (function () {
         select(0);
     })();
 
+
+/* ── Native Microsoft Store links ──────────────────────────────────────────
+   On Windows, ms-windows-store://pdp/?ProductId=... opens the Store app
+   straight on the product page, removing the browser hop and the second
+   click. It is added only when the visitor is actually on Windows: elsewhere
+   the protocol has no handler and the click would do nothing, so the link
+   stays hidden and the ordinary web link remains the only route.
+   ────────────────────────────────────────────────────────────────────── */
+(function () {
+  var links = document.querySelectorAll('a.store-native[data-pid]');
+  if (!links.length) return;
+  var ua = navigator.userAgentData;
+  var onWindows = ua && ua.platform
+    ? ua.platform === 'Windows'
+    : /Win(dows|32|64)/i.test(navigator.userAgent || '');
+  if (!onWindows) return;
+  Array.prototype.forEach.call(links, function (el) {
+    el.setAttribute('href', 'ms-windows-store://pdp/?ProductId=' + el.dataset.pid);
+    el.removeAttribute('hidden');
+  });
+})();
+
+/* ── Pillar page section navigation ───────────────────────────────────────
+   Marks whichever section is currently in view. Runs only on pages that
+   actually have the bar, and does nothing at all without JavaScript beyond
+   leaving a working row of anchor links.
+   ────────────────────────────────────────────────────────────────────── */
+(function () {
+  var bar = document.getElementById('pillar-nav');
+  if (!bar || !('IntersectionObserver' in window)) return;
+  var links = Array.prototype.slice.call(bar.querySelectorAll('a[href^="#"]'));
+  var maps = links.map(function (a) {
+    return { link: a, section: document.getElementById(a.getAttribute('href').slice(1)) };
+  }).filter(function (m) { return m.section; });
+  if (!maps.length) return;
+
+  var visible = new Set();
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target);
+    });
+    var current = null;
+    for (var i = 0; i < maps.length; i++) if (visible.has(maps[i].section)) { current = maps[i]; break; }
+    maps.forEach(function (m) {
+      if (m === current) m.link.setAttribute('aria-current', 'true');
+      else m.link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-160px 0px -55% 0px', threshold: 0 });
+  maps.forEach(function (m) { io.observe(m.section); });
+})();

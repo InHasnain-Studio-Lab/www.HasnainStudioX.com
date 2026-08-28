@@ -409,7 +409,7 @@ let sitemapMsg = '';
       imgs = JSON.parse(gd.slice(gd.indexOf('['), gd.lastIndexOf(']') + 1)).filter(i => i && i.src);
     } catch (e) { console.log('  ! gallery-data.js not parsed:', e.message); }
 
-    const urls = pages.map(f => {
+    const entryFor = f => {
       /* each application page declares its own artwork, so every hero enters the
          image index exactly once, on the page it belongs to */
       let appImg = '';
@@ -437,15 +437,52 @@ let sitemapMsg = '';
       return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
            + `    <changefreq>${FREQ[f] || (isHub ? 'weekly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isHub ? '0.85' : isApp ? '0.7' : '0.3')}</priority>\n`
            + extra + `  </url>`;
-    }).join('\n\n');
+    };
 
-    fs.writeFileSync(P('sitemap.xml'),
-      '<?xml version="1.0" encoding="UTF-8"?>\n'
+    /* ── one sitemap index, four section files ────────────────────────────
+       Search Console reports coverage per submitted sitemap, so splitting by
+       section turns "12 pages not indexed" into "12 of the Windows app pages
+       are not indexed", which is the difference between a number and a lead.
+       sitemap.xml stays the index, so robots.txt and anything already
+       submitted keeps working. */
+    const WINSET = new Set(require('./gen-app-pages.js').windowsSlugs || []);
+    const HUBS_S = new Set(require('./hsx-taxonomy.js').HUBS.map(h => 'apps/' + h.slug + '.html'));
+    const section = f => {
+      if (f.startsWith('privacy/')) return 'policies';
+      if (f.startsWith('apps/')) {
+        if (HUBS_S.has(f)) return 'main';
+        return WINSET.has(f.slice(5, -5)) ? 'windows' : 'android';
+      }
+      return 'main';
+    };
+    const groups = { main: [], windows: [], android: [], policies: [] };
+    for (const f of pages) groups[section(f)].push(f);
+
+    const wrap = body =>
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
       + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
-      + urls + '\n\n</urlset>\n', 'utf8');
+      + body + '\n\n</urlset>\n';
 
-    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length - HUBSLUGS_N} app, ${HUBSLUGS_N} hub, ${privPages.length} policy), ${imgs.length + nAppImgs} images`);
+    const FILES = { main: 'sitemap-main.xml', windows: 'sitemap-windows-apps.xml',
+                    android: 'sitemap-android-apps.xml', policies: 'sitemap-policies.xml' };
+    const written = [];
+    for (const [key, file] of Object.entries(FILES)) {
+      const list = groups[key];
+      if (!list.length) continue;
+      fs.writeFileSync(P(file), wrap(list.map(entryFor).join('\n\n')), 'utf8');
+      const newest = list.map(iso).sort().pop();
+      written.push({ file, n: list.length, lastmod: newest });
+    }
+    fs.writeFileSync(P('sitemap.xml'),
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+      + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+      + written.map(w => `  <sitemap>\n    <loc>${BASE}${w.file}</loc>\n`
+          + `    <lastmod>${w.lastmod}</lastmod>\n  </sitemap>`).join('\n')
+      + '\n</sitemapindex>\n', 'utf8');
+
+    console.log('  sitemap index  ' + pages.length + ' pages, ' + (imgs.length + nAppImgs) + ' images, in '
+      + written.map(w => w.file.replace('sitemap-', '').replace('.xml', '') + ' ' + w.n).join(', '));
 
     })();
   } catch (e) {

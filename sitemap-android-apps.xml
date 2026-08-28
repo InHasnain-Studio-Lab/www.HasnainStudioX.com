@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/convertmaster-ultra.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/convertmaster-ultra-og.jpg</image:loc>
+      <image:title>Offline Media Converter for Android</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/docsmining.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/docsmining-og.jpg</image:loc>
+      <image:title>Offline Document Scanner and OCR for Android</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/flipx-studio-android.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/mobile-tunex.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/mobile-tunex-og.jpg</image:loc>
+      <image:title>Android Phone Cleaner and Storage Manager</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/spatiax-ultra-mobile.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/spatiax-ultra-mobile-og.jpg</image:loc>
+      <image:title>3D Spatial Audio App for Android</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/workx-suite.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/workx-suite-og.jpg</image:loc>
+      <image:title>Offline PDF and Document Suite for Android</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/xcipher.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

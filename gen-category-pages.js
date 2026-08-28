@@ -81,7 +81,9 @@ const OGIMG = BASE + 'images/og-windows.png';
 
 function pageFor(hub) {
   const url = BASE + 'apps/' + hub.slug + '.html';
-  const apps = ALL.filter(a => keyOf(a) === hub.key && hasPage(a))
+  /* a cross-cutting hub lists its applications explicitly; the category hubs
+     take whatever the catalogue files under their key */
+  const apps = ALL.filter(a => (hub.ids ? hub.ids.includes(a.id) : keyOf(a) === hub.key) && hasPage(a))
     .sort((x, y) => (x.status === 'live' ? 0 : 1) - (y.status === 'live' ? 0 : 1)
                  || x.name.localeCompare(y.name));
   const live = apps.filter(a => a.status === 'live');

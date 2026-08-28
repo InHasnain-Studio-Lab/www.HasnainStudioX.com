@@ -160,3 +160,178 @@ module.exports.HUBS = [
     ]
   }
 ];
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Minimum graphics requirement, in GB of dedicated VRAM.
+
+   Only the applications that do real work on the GPU carry this — the AI
+   generation range, the coding studio and the on-device assistants. It is a
+   buyer's question ("will this run on my machine?"), not an internal detail,
+   and every figure here is taken verbatim from the studio's own Microsoft
+   Store listing. An app with no entry shows no badge: a guessed requirement
+   is worse than none, because a refund is the cost of getting it wrong.
+
+   To add one, quote the figure from that app's Store listing.
+   ═══════════════════════════════════════════════════════════════════ */
+module.exports.GPU_VRAM = {
+  hsxstudioflow: 4,   // "dedicated GPU (NVIDIA, AMD, or Intel with 4 GB+ VRAM)"
+  novadiffux:    4,   // "dedicated GPU (NVIDIA, AMD, or Intel with 4 GB+ VRAM)"
+  quantumxai:    4,   // "Powered entirely by your local graphics hardware (4 GB+ VRAM)"
+  infinitegenai: 4,   // "Runs locally on dedicated GPUs with 4 GB+ VRAM"
+  nanocodify:    4,   // "Powered entirely by your local dedicated GPU ... 4 GB+ VRAM"
+  fototensor:    6    // "Running directly on your dedicated GPU (6GB+ VRAM)"
+};
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Search-intent titles.
+
+   An app page used to be titled the way the studio thinks of the product
+   ("HSX StudioFlow - Local AI image studio"). Nobody searches that. They
+   search for the job ("offline AI image generator windows"). The phrase
+   below leads the title tag; the product name follows it, so the page can
+   still be recognised once someone knows the brand.
+
+   Each phrase is sized so that "<phrase> | <product name>" stays inside the
+   ~60 characters Google renders before truncating. An app with no entry
+   falls back to the tagline-derived title.
+   ═══════════════════════════════════════════════════════════════════ */
+module.exports.INTENT = {
+  /* system and performance */
+  pctunex:                'Windows PC Cleaner and Startup Manager',
+  pcturboxultra:          'Windows RAM and CPU Optimiser for Gaming',
+  pcguardx:               'Windows Privacy Settings Dashboard, Offline',
+  pcvisionbulwark:        'Blue Light and Eye Comfort App for PC',
+  pcsensex:               'Offline Voice Control for Windows, On-Device',
+  nimbusdock:             'Customisable Desktop Dock for Windows 11',
+  xseasons:               'Live Seasonal Wallpaper App for Windows 11',
+  horizonos:              'Private Desktop Shell and Launcher for Windows',
+  nexusos:                'Synthwave Desktop Shell for Windows',
+  quantumos:              'Desktop Command Console for Windows',
+  focusroomultra:         'Offline Focus and Productivity Timer',
+  automafy:               'Offline Task Automation Software for PC',
+  autoclickx:             'Auto Clicker and Macro Recorder for PC',
+  bootforge:              'Create Bootable USB Drives on Windows',
+  earthos:                'Live World Map Desktop Wallpaper',
+  browsex:                'Privacy Browser for Windows, No Tracking',
+  aetheris:               'Unified Game Launcher for Windows',
+
+  /* files and transfer */
+  quantumdrop:            'Send Files Between Devices Over Wi-Fi',
+  flipxstudio:            'Offline Media Converter for Windows',
+  convertxpro:            'Offline File Converter for Windows',
+  pcarchivepro:           'Zip, Extract and Encrypt Files on Windows',
+  pcdownloadmanagerultra: 'Fast Resumable Download Manager',
+  fileguardianultra:      'Offline File Backup and Version History',
+
+  /* audio and video */
+  spatiaxultra:           '3D Spatial Audio Software for Windows',
+  hypersonusultra:        'Surround Sound Equaliser for Windows',
+  vaudioelite:            'Media Player with Spatial Audio for Windows',
+  medialucent:            'Streaming Hub and Media Player for PC',
+  primecut:               'Offline Video Editor for Windows',
+  beatxpro:               'Offline DJ Mixing Software for Windows',
+  sensecapture:           'Sound-Triggered Camera and Voice Recorder',
+  pcscreenrecorderpro:    'Screen Recorder with Step Guides',
+  castvisuality:          'Screen Mirroring & Remote Control for PC',
+  image3dx:               'Turn Photos into 3D Models, Offline',
+
+  /* creative, documents and web */
+  workxsuite:             'Offline PDF, Word and Spreadsheet Suite',
+  webxstudio:             'Offline Drag-and-Drop Website Builder',
+  creatorxstudio:         'Offline Creative Suite for Windows',
+  docmento:               'Offline PDF Editor and Translator',
+  spillframe:             'Drawing and Animation Studio for Windows',
+  execrafter:             'Build Windows Apps Without Coding',
+  qrcreatorstudio:        'Offline QR Code Generator for Windows',
+  gamefabrix:             'Make 2D Games Without Coding, Offline',
+
+  /* AI generation and assistants */
+  hsxstudioflow:          'Offline AI Image Generator for Windows',
+  novadiffux:             'Offline AI Image Generator, No Subscription',
+  fototensor:             'Local AI Portrait Generator & Enhancer',
+  artgenstudio:           'Offline AI Design and Poster Studio',
+  quantumxai:             'Offline AI Image and Clip Maker',
+  dreamgenaiultra:        'High-Res Offline AI Image Generator',
+  infinitegenai:          'Unlimited Offline AI Image Maker',
+  forgexpro:              'AI Prompt Builder for Windows, Offline',
+  pocktium:               'Offline AI Assistant for Windows, No Account',
+  docclarity:             'On-Device AI Document Analyser for PC',
+  nanocodify:             'Private Offline Code Editor for Windows',
+
+  /* photo and imaging */
+  glowlab:                'Offline Photo Editor with AI Tools',
+  photovidix:             'Local Photo and Video Organiser for PC',
+  nanovisuality:          'AI Photo Enhancer and 4K Upscaler',
+  pixumbrastudio:         'Batch Photo Editor with AI Cutout',
+  mediatidyultra:         'Find Duplicate Photos and Free Disk Space',
+
+  /* 3D and exploring */
+  planetx:                '3D Space and Universe Explorer for Windows',
+  planetxearthexplorer:   'Interactive 3D Earth Globe for PC',
+  planetxinfinity:        'Offline Solar System Simulator for PC',
+  terraorbitix:           '3D Globe and Earth Explorer for PC',
+
+  /* Android */
+  mobiletunex:            'Android Phone Cleaner and Storage Manager',
+  spatiaxmobile:          '3D Spatial Audio App for Android',
+  docsmining:             'Offline Document Scanner and OCR for Android',
+  convertmasterultra:     'Offline Media Converter for Android',
+  workxsuiteandroid:      'Offline PDF and Document Suite for Android'
+};
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Cross-cutting hubs.
+
+   The seven hubs above follow the catalogue's own categories. These two do
+   not: spatial audio sits inside Audio & Video, and privacy tools are spread
+   across four categories. Both are real search demands in their own right,
+   so they list apps explicitly by id. An app can appear in one of these as
+   well as in its category hub - that is a second route in, not a duplicate,
+   because the canonical description of every app still lives on its own page.
+   ═══════════════════════════════════════════════════════════════════ */
+module.exports.HUBS.push(
+  {
+    key: 'spatial', crossCut: true,
+    ids: ['spatiaxultra', 'hypersonusultra', 'vaudioelite', 'medialucent', 'spatiaxmobile'],
+    slug: 'spatial-audio-apps',
+    nav: 'Spatial audio',
+    h1: 'Spatial audio software for Windows and Android',
+    title: '3D Spatial Audio Software for Windows | HSX',
+    desc: 'Real-time 3D spatial audio, surround processing and equalisation for Windows and Android. Runs on your own device, with no account and no subscription.',
+    lead: 'Sound that has a direction and a distance to it, produced on your own machine in real time rather than baked into a file somewhere else.',
+    body: 'Spatial audio is one of the few things that genuinely has to happen locally. Processing has to keep up with playback, frame by frame, so a round trip to a server is not an option at any price. That makes this part of the catalogue the clearest example of why local processing is a capability rather than only a privacy position.',
+    check: [
+      ['Whether it works across every application', 'A spatial effect that only applies inside one media player is far less useful than one that sits under everything you play.'],
+      ['Whether it needs particular headphones', 'Some systems only work with specific hardware. Anything here works with ordinary stereo headphones and speakers.'],
+      ['What it does to latency', 'Real-time processing has to stay in step with the picture. Anything that adds noticeable delay is unusable for video and games.']
+    ],
+    faq: [
+      ['Do I need special headphones for spatial audio?', 'No. Everything in this range works with ordinary stereo headphones and speakers, and each application states what it supports on its own page.'],
+      ['Does it work with every app, or only a media player?', 'That varies by title and each one says so plainly. Some process everything the system plays; others work inside their own player.'],
+      ['Is any of this processed in the cloud?', 'No. Real-time audio cannot survive a round trip to a server, so every part of the processing happens on your own device.'],
+      ['Is there a subscription?', 'No. Free trial, then a single purchase.']
+    ]
+  },
+  {
+    key: 'privacy', crossCut: true,
+    ids: ['pcguardx', 'browsex', 'fileguardianultra', 'xcipher', 'focusroomultra', 'horizonos'],
+    slug: 'privacy-utilities',
+    nav: 'Privacy tools',
+    h1: 'Zero-telemetry privacy utilities for Windows',
+    title: 'Zero Telemetry Privacy Tools for Windows | HSX',
+    desc: 'Windows privacy controls, a tracking-free browser, encrypted file protection and a private desktop shell. No account, no telemetry, no data leaving your machine.',
+    lead: 'Tools whose entire job is to reduce what leaves your machine — and which, reasonably enough, collect nothing themselves.',
+    body: 'A privacy tool that phones home is not a privacy tool. Everything in this group is built so there is nothing to send and nowhere to send it: no account system, no analytics, no crash reporting, no licence server. What it finds and what it protects stays on the machine it runs on, and the per-application privacy policy says so in plain terms.',
+    check: [
+      ['What the tool itself collects', 'Ask this first. A great many free privacy utilities are funded by the data they gather about the people using them.'],
+      ['Whether it needs an account', 'An account is a record of you held by someone else. None of these ask for one.'],
+      ['Whether you can verify the claim', 'Every application here publishes its own privacy policy, and works with the network disconnected so you can check for yourself.']
+    ],
+    faq: [
+      ['Do these tools collect any data about me?', 'No. There is no telemetry, no analytics and no crash reporting in any application in the catalogue, and no account to attach data to.'],
+      ['Do I have to trust you on that?', 'Not entirely. Each application publishes its own privacy policy, and you can disconnect the network and confirm the tool still does its job.'],
+      ['Is my encrypted data recoverable if I lose the key?', 'No. Keys never leave your device and are never held by the studio, which also means there is no recovery service. Keep a backup of your key.'],
+      ['Do they work on Windows 11?', 'Yes. Each application states its requirements on its own page.']
+    ]
+  }
+);
