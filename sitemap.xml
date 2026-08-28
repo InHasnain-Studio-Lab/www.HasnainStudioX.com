@@ -665,7 +665,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/audio-and-video-apps.html</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -710,6 +710,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/fileguardian-ultra-og.jpg</image:loc>
+      <image:title>FileGuardian Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -724,6 +728,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/flipx-studio-og.jpg</image:loc>
+      <image:title>FlipX Studio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -731,6 +739,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/focusroom-ultra-og.jpg</image:loc>
+      <image:title>FocusRoom Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -745,6 +757,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-artgen-studio-og.jpg</image:loc>
+      <image:title>HSX ArtGen Studio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -752,6 +768,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-automafy-og.jpg</image:loc>
+      <image:title>HSX Automafy</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -759,6 +779,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-beatgrid-og.jpg</image:loc>
+      <image:title>HSX BeatGrid</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -766,6 +790,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-bootforge-og.jpg</image:loc>
+      <image:title>HSX BootForge</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -773,6 +801,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-browser-og.jpg</image:loc>
+      <image:title>HSX Browser</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -780,6 +812,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-castvisuality-og.jpg</image:loc>
+      <image:title>HSX CastVisuality</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -787,6 +823,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-convertstudio-og.jpg</image:loc>
+      <image:title>HSX ConvertStudio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -794,6 +834,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-creatorstudio-og.jpg</image:loc>
+      <image:title>HSX CreatorStudio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -801,6 +845,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-depthstudio-3d-og.jpg</image:loc>
+      <image:title>HSX DepthStudio 3D</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -808,6 +856,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-docclarity-og.jpg</image:loc>
+      <image:title>HSX DocClarity</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -815,6 +867,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-docmento-og.jpg</image:loc>
+      <image:title>HSX DocMento</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -822,6 +878,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-dreamvivid-ai-og.jpg</image:loc>
+      <image:title>HSX DreamVivid AI</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -829,6 +889,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-earthshell-og.jpg</image:loc>
+      <image:title>HSX EarthShell</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -836,6 +900,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-execrafter-og.jpg</image:loc>
+      <image:title>HSX ExeCrafter</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -843,6 +911,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-fototensor-og.jpg</image:loc>
+      <image:title>HSX FotoTensor</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -850,6 +922,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-gamefabrix-og.jpg</image:loc>
+      <image:title>HSX GameFabrix</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -857,6 +933,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-glowcraft-og.jpg</image:loc>
+      <image:title>HSX GlowCraft</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -864,6 +944,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-infinitegen-studio-og.jpg</image:loc>
+      <image:title>HSX InfiniteGen Studio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -871,6 +955,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-launchharbor-og.jpg</image:loc>
+      <image:title>HSX LaunchHarbor</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -878,6 +966,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-medialucent-og.jpg</image:loc>
+      <image:title>HSX MediaLucent</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -892,6 +984,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nanocodify-og.jpg</image:loc>
+      <image:title>HSX NanoCodify</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -899,6 +995,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nanovisuality-og.jpg</image:loc>
+      <image:title>HSX NanoVisuality</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -906,6 +1006,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-novadiffux-og.jpg</image:loc>
+      <image:title>HSX NovaDiffux</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -913,6 +1017,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-photovidix-og.jpg</image:loc>
+      <image:title>HSX PhotoVidix</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -920,6 +1028,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-planetx-og.jpg</image:loc>
+      <image:title>HSX PlanetX</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -927,6 +1039,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-pocktium-og.jpg</image:loc>
+      <image:title>HSX Pocktium</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -934,6 +1050,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-primecut-ultra-og.jpg</image:loc>
+      <image:title>HSX PrimeCut Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -941,6 +1061,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-promptkinetics-og.jpg</image:loc>
+      <image:title>HSX PromptKinetics</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -948,6 +1072,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-quantumgen-ai-studio-og.jpg</image:loc>
+      <image:title>HSX QuantumGen AI Studio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -962,6 +1090,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-sensecapture-og.jpg</image:loc>
+      <image:title>HSX SenseCapture</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -969,6 +1101,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-smartclicker-og.jpg</image:loc>
+      <image:title>HSX SmartClicker</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -976,6 +1112,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-spillframe-og.jpg</image:loc>
+      <image:title>HSX SpillFrame</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -983,6 +1123,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-studioflow-og.jpg</image:loc>
+      <image:title>HSX StudioFlow</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -990,6 +1134,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-terraorbitix-3d-og.jpg</image:loc>
+      <image:title>HSX TerraOrbitix 3D</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -997,13 +1145,21 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-webx-studio-og.jpg</image:loc>
+      <image:title>HSX WebX Studio</image:title>
+    </image:image>
   </url>
 
   <url>
     <loc>https://hasnainstudiox.com/apps/hsx-workx-suite.html</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-workx-suite-og.jpg</image:loc>
+      <image:title>HSX WorkX Suite</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1011,6 +1167,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hypersonus-ultra-og.jpg</image:loc>
+      <image:title>Hypersonus Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1025,6 +1185,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/katanicos-og.jpg</image:loc>
+      <image:title>KatanicOS</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1039,6 +1203,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/mediatidy-ultra-og.jpg</image:loc>
+      <image:title>MediaTidy Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1060,13 +1228,21 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nimbusdock-og.jpg</image:loc>
+      <image:title>NimbusDock</image:title>
+    </image:image>
   </url>
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-archive-pro.html</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-archive-pro-og.jpg</image:loc>
+      <image:title>PC Archive Pro</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1081,6 +1257,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-download-manager-ultra-og.jpg</image:loc>
+      <image:title>PC Download Manager Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1088,6 +1268,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-guardx-og.jpg</image:loc>
+      <image:title>PC GuardX</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1099,9 +1283,13 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-screen-recorder-pro.html</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-screen-recorder-pro-og.jpg</image:loc>
+      <image:title>PC Screen Recorder Pro</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1109,6 +1297,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-sensex-og.jpg</image:loc>
+      <image:title>PC SenseX</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1116,6 +1308,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-tunex-og.jpg</image:loc>
+      <image:title>PC TuneX</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1123,6 +1319,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-turbox-ultra-og.jpg</image:loc>
+      <image:title>PC TurboX Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1130,6 +1330,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-visionbulwark-og.jpg</image:loc>
+      <image:title>PC VisionBulwark</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1144,6 +1348,10 @@
     <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pixumbra-studio-og.jpg</image:loc>
+      <image:title>Pixumbra Studio</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1151,6 +1359,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/planetx-earth-explorer-og.jpg</image:loc>
+      <image:title>PlanetX: Earth Explorer</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1158,6 +1370,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/planetx-infinity-og.jpg</image:loc>
+      <image:title>PlanetX: Infinity</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1165,13 +1381,21 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/qr-creator-studio-og.jpg</image:loc>
+      <image:title>QR Creator Studio</image:title>
+    </image:image>
   </url>
 
   <url>
     <loc>https://hasnainstudiox.com/apps/quantumdrop.html</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-08-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/quantumdrop-og.jpg</image:loc>
+      <image:title>QuantumDrop</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1186,6 +1410,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/solsticeos-og.jpg</image:loc>
+      <image:title>SolsticeOS</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1200,6 +1428,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/spatiax-ultra-og.jpg</image:loc>
+      <image:title>SpatiaX Ultra</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1214,6 +1446,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/vaudio-elite-og.jpg</image:loc>
+      <image:title>VAudio Elite</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1228,6 +1464,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/vectalonos-og.jpg</image:loc>
+      <image:title>VectalonOS</image:title>
+    </image:image>
   </url>
 
   <url>
@@ -1249,6 +1489,10 @@
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/xseasons-og.jpg</image:loc>
+      <image:title>XSeasons</image:title>
+    </image:image>
   </url>
 
 </urlset>

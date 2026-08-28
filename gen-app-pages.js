@@ -143,6 +143,13 @@ const tmNorm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 const markFor = a => COINED.find(c => tmNorm(a.name).includes(tmNorm(c))) || a.name;
 const isCoined = a => COINED.some(c => tmNorm(a.name).includes(tmNorm(c)));
 
+/* Store artwork, when the studio has supplied it. Drives the page hero, the
+   social card and the image fields in the structured data. */
+const heroOf = a => {
+  const b = slug(a);
+  return fs.existsSync(P('images/apps/' + b + '-hero.webp')) ? b : null;
+};
+
 const isOut   = a => a.status === 'live';                 // already released
 const isCert  = a => a.stage === 'certification';        // submitted, awaiting store approval
 const storeOf = a => a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store';
@@ -190,6 +197,7 @@ function pageFor(a) {
   const catalogue = a.platform === 'Android' ? '../android-apps.html' : '../Windows-apps.html';
   const catalogueLabel = a.platform === 'Android' ? 'Android Apps' : 'Windows Apps';
 
+  const hero = heroOf(a);
   const hub = hubOf(a);
   const related = LIVE
     .filter(x => x.id !== a.id && CATMAP[x.id] === CATMAP[a.id] && x.platform === a.platform)
@@ -291,6 +299,9 @@ function pageFor(a) {
         operatingSystem: osFull, softwareVersion: a.version || undefined,
         url, downloadUrl: out ? a.storeUrl : undefined, installUrl: out ? a.storeUrl : undefined,
         featureList: a.features, applicationSuite: 'Hasnain Studio X',
+        image: hero ? [BASE + 'images/apps/' + hero + '-og.jpg',
+                       BASE + 'images/apps/' + hero + '-hero.webp'] : undefined,
+        screenshot: hero ? BASE + 'images/apps/' + hero + '-hero.webp' : undefined,
         brand: { '@type': 'Brand', name: markFor(a), owner: { '@id': BASE + '#organization' } },
         privacyPolicy: priv ? BASE + priv : undefined,
         publisher: { '@id': BASE + '#organization' },
@@ -309,6 +320,15 @@ function pageFor(a) {
                  'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X',
                  'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X'] },
       { '@type': 'WebPage', '@id': url + '#webpage', url, name: TITLE, description: DESC,
+        primaryImageOfPage: hero ? { '@type': 'ImageObject',
+          '@id': url + '#primaryimage',
+          contentUrl: BASE + 'images/apps/' + hero + '-og.jpg',
+          url: BASE + 'images/apps/' + hero + '-og.jpg',
+          width: 1200, height: 630,
+          caption: a.name + ' for ' + a.platform + ' by Hasnain Studio X',
+          creditText: 'Hasnain Studio X',
+          creator: { '@id': BASE + '#organization' },
+          copyrightNotice: 'Hasnain Studio X' } : undefined,
         inLanguage: 'en-GB', isPartOf: { '@id': BASE + '#website' },
         publisher: { '@id': BASE + '#organization' },
         about: { '@id': url + '#app' },
@@ -322,7 +342,9 @@ function pageFor(a) {
     ]
   };
 
-  const OGIMG = BASE + 'images/' + (a.platform === 'Android' ? 'og-android.png' : 'og-windows.png');
+  /* every app page used to share one of two pictures; now each has its own */
+  const OGIMG = hero ? BASE + 'images/apps/' + hero + '-og.jpg'
+                     : BASE + 'images/' + (a.platform === 'Android' ? 'og-android.png' : 'og-windows.png');
   let h = headOpen;
   h = h.replace(/<title>[\s\S]*?<\/title>/, `<title>${escA(TITLE)}</title>`);
   // rewrite every meta whose name/property matches, wherever it appears in the head
@@ -336,6 +358,7 @@ function pageFor(a) {
   setMeta('og:url', url);
   setMeta('og:image', OGIMG);
   setMeta('og:image:secure_url', OGIMG);
+  setMeta('og:image:type', hero ? 'image/jpeg' : 'image/png');
   setMeta('og:image:alt', a.name + ' by Hasnain Studio X');
   setMeta('twitter:title', TITLE);
   setMeta('twitter:description', DESC);
@@ -358,6 +381,14 @@ function pageFor(a) {
             <span aria-current="page">${esc(a.name)}</span>
         </nav>
 
+${hero ? `
+        <figure class="app-hero-art">
+            <img src="../images/apps/${hero}-hero.webp"
+                 srcset="../images/apps/${hero}-hero-sm.webp 400w, ../images/apps/${hero}-hero.webp 720w"
+                 sizes="(max-width:900px) 94vw, 900px"
+                 width="720" height="405" fetchpriority="high" decoding="async"
+                 alt="${escA(a.name)} for ${esc(a.platform)} by Hasnain Studio X">
+        </figure>` : ''}
         <section class="hero hero--single app-hero" aria-labelledby="app-title">
             <div class="hero-eyebrow">${esc(c.label)} &middot; ${esc(a.platform)} &middot; ${out ? esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play') : (cert ? 'In certification' : 'In development')}</div>
             <h1 id="app-title">${esc(a.name)}</h1>

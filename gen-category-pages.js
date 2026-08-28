@@ -57,6 +57,11 @@ const slug = a => {
 const hasRealCopy = a => Array.isArray(a.features) && a.features.length >= 3
   && !a.features.some(f => /to be announced/i.test(f));
 const hasPage = a => a.status === 'live' || (a.status === 'soon' && hasRealCopy(a));
+/* Store artwork, when it exists for this app */
+const heroOf = a => {
+  const b = slug(a);
+  return fs.existsSync(P('images/apps/' + b + '-hero.webp')) ? b : null;
+};
 
 const esc  = s => String(s == null ? '' : s)
   .replace(/&(?![a-zA-Z#0-9]+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -145,7 +150,17 @@ function pageFor(hub) {
     '<script type="application/ld+json">\n' + JSON.stringify(graph, null, 2) + '\n    </script>');
   h = upify(h);
 
-  const card = a => `                <a class="cat-app${a.status === 'live' ? '' : ' cat-app--soon'}" href="${slug(a)}.html">
+  const card = a => {
+    const hero = heroOf(a);
+    const art = hero ? `
+                    <span class="cat-app-hero">
+                        <img src="../images/apps/${hero}-hero-sm.webp"
+                             srcset="../images/apps/${hero}-hero-sm.webp 400w, ../images/apps/${hero}-hero.webp 720w"
+                             sizes="(max-width:640px) 92vw, 320px"
+                             width="720" height="405" loading="lazy" decoding="async"
+                             alt="${escA(a.name)} for ${esc(a.platform)} by Hasnain Studio X">
+                    </span>` : '';
+    return `                <a class="cat-app${a.status === 'live' ? '' : ' cat-app--soon'}${hero ? ' cat-app--hero' : ''}" href="${slug(a)}.html">${art}
                     <span class="cat-app-h">
                         <span class="cat-app-n">${esc(a.name)}</span>
                         <span class="cat-app-p">${esc(a.platform)}${a.status === 'live' ? '' : ' &middot; coming soon'}</span>
@@ -154,6 +169,7 @@ function pageFor(hub) {
 ${(a.features || []).slice(0, 3).map(f => `                    <span class="cat-app-f">${esc(f)}</span>`).join('\n')}
                     <span class="cat-app-go">Full details <span aria-hidden="true">&rarr;</span></span>
                 </a>`;
+  };
 
   const main = `    <main id="main-content" class="container" role="main">
         <nav class="app-crumb" aria-label="Breadcrumb">

@@ -210,13 +210,33 @@ let sitemapMsg = '';
       /* Static tile: byte-identical to the JS tile, except the Details control is a
          real anchor to the app's privacy page so it works without JS and so the
          79 policy pages stop being orphans. JS re-renders it to a modal button. */
+      const PLAT = file === 'android-apps.html' ? 'Android' : 'Windows';
+      const slugOf = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      /* the artwork basename for an app, or null when it has none yet */
+      function heroOf(a){
+        const b = slugOf(a.name);
+        if (PLAT === 'Android' && fs.existsSync(P('images/apps/'+b+'-android-hero.webp'))) return b+'-android';
+        return fs.existsSync(P('images/apps/'+b+'-hero.webp')) ? b : null;
+      }
       function tile(a){
         const soon = a.status === 'soon';
         const ext  = a.storeUrl.indexOf('http') === 0;
         const priv = rel(a.privacyUrl);
-        return '<article class="app-tile c-'+a.cat+'" role="listitem" tabindex="0" data-id="'+a.id+'"'
+        const hero = heroOf(a);
+        const heroHTML = hero
+          ? '<div class="tile-hero">'
+            + '<img src="images/apps/'+hero+'-hero-sm.webp"'
+            +   ' srcset="images/apps/'+hero+'-hero-sm.webp 400w, images/apps/'+hero+'-hero.webp 720w"'
+            +   ' sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 31vw"'
+            +   ' width="720" height="405" loading="lazy" decoding="async"'
+            +   ' alt="'+escAttr(a.name+' for '+PLAT+' by Hasnain Studio X')+'">'
+            + '<span class="tile-hero-scrim"></span>'
+            + '</div>'
+          : '';
+        return '<article class="app-tile c-'+a.cat+(hero?' app-tile--hero':'')+'" role="listitem" tabindex="0" data-id="'+a.id+'"'
           + ' aria-label="'+escAttr(a.name+' — '+a.tagline)+'">'
           + '<div class="tile-in">'
+          +   heroHTML
           +   '<div class="tile-top">'+viz(a)
           +     '<div class="tile-name">'+esc(a.name)+(soon?' <span class="badge-soon">Soon</span>':'')+'</div>'
           +     '<div class="tile-num">'+a.no+'</div>'
@@ -341,16 +361,18 @@ let sitemapMsg = '';
     })();
     const iso = f => GITDATE[f] || new Date(fs.statSync(P(f)).mtime).toISOString().slice(0, 10);
 
-    const SKIP = new Set(['card.html', 'qx-link.html', '404.html',
-  // search engine ownership-verification pages - must exist, must not be indexed
-  'naverebef151fc79df23c57d36c70e3b933cf.html', 'yandex_ec0348fbe6310d9f.html']);
+    const SKIP = new Set(['card.html', 'qx-link.html', '404.html']);
+    /* Search-engine ownership tokens must exist and must never be indexed.
+       Matched by shape rather than by name, so adding another one to the repo
+       cannot quietly put it in the sitemap. */
+    const TOKEN = /^(naver[0-9a-f]{16,}\.html|yandex_[0-9a-f]{8,}\.html|google[0-9a-f]{8,}\.html|BingSiteAuth\.xml)$/i;
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
                        'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','contest-rules.html':'0.5' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
                    'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','contest-rules.html':'monthly' };
 
     const rootPages = fs.readdirSync(ROOT)
-      .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f))
+      .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f) && !TOKEN.test(f))
       .filter(f => !/name="robots"[^>]*noindex/i.test(read(f)))
       .sort((a,b) => (+(PRIORITY[b]||0.3)) - (+(PRIORITY[a]||0.3)) || a.localeCompare(b));
 
@@ -374,6 +396,7 @@ let sitemapMsg = '';
     } catch (e) { /* no apps/ folder yet */ }
 
     const HUBSLUGS_N = require('./hsx-taxonomy.js').HUBS.length;
+    let nAppImgs = 0;
     const pages = rootPages.concat(privPages, appPages);
 
     const esc = s => String(s == null ? '' : s)
@@ -387,7 +410,19 @@ let sitemapMsg = '';
     } catch (e) { console.log('  ! gallery-data.js not parsed:', e.message); }
 
     const urls = pages.map(f => {
-      const extra = (f === 'HSXAIstudio.html')
+      /* each application page declares its own artwork, so every hero enters the
+         image index exactly once, on the page it belongs to */
+      let appImg = '';
+      if (f.startsWith('apps/')) {
+        const b = f.slice(5, -5);
+        if (fs.existsSync(P('images/apps/' + b + '-og.jpg'))) {
+          const t = (read(f).match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || b;
+          nAppImgs++;
+          appImg = `    <image:image>\n      <image:loc>${BASE}images/apps/${b}-og.jpg</image:loc>\n`
+                 + `      <image:title>${esc(t.split(' — ')[0].split(' | ')[0])}</image:title>\n    </image:image>\n`;
+        }
+      }
+      const extra = appImg ? appImg : (f === 'HSXAIstudio.html')
         ? imgs.map(i => `    <image:image>\n      <image:loc>${BASE}${esc(i.src)}</image:loc>\n`
             + `      <image:title>${esc(i.title || '')}</image:title>\n    </image:image>`).join('\n') + (imgs.length ? '\n' : '')
         : '';
@@ -410,7 +445,7 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + urls + '\n\n</urlset>\n', 'utf8');
 
-    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length - HUBSLUGS_N} app, ${HUBSLUGS_N} hub, ${privPages.length} policy), ${imgs.length} images`);
+    console.log(`  sitemap.xml   ${pages.length} pages (${appPages.length - HUBSLUGS_N} app, ${HUBSLUGS_N} hub, ${privPages.length} policy), ${imgs.length + nAppImgs} images`);
 
     })();
   } catch (e) {
@@ -673,6 +708,32 @@ function syncProseCounts() {
 const proseMsg = syncProseCounts();
 
 const catStripMsg = syncCategoryStrip();
+
+/* ── 3b6. hero artwork ────────────────────────────────────────────────────
+   The Microsoft Store artwork for each application, kept in images/apps/ as
+   <slug>-hero.webp and <slug>-hero-sm.webp. The map is rebuilt from the files
+   that actually exist, so dropping a new tile into the folder is all it takes
+   to illustrate an app, and an app with no tile keeps the plain card. */
+function syncHeroes() {
+  const map = {};
+  for (const [apps, platform] of [[win, 'Windows'], [and, 'Android']])
+    for (const a of apps) {
+      const s = appSlug(a.name, platform);
+      if (fs.existsSync(P('images/apps/' + s + '-hero.webp'))) map[a.id] = s;
+    }
+  for (const file of ['Windows-apps.html', 'android-apps.html']) {
+    let src = read(file);
+    const re = /\/\*HEROES_START\*\/[\s\S]*?\/\*HEROES_END\*\//;
+    if (!re.test(src)) { console.log('  ! ' + file + ' HEROES marker not found'); continue; }
+    const own = {};
+    for (const a of (file === 'Windows-apps.html' ? win : and)) if (map[a.id]) own[a.id] = map[a.id];
+    src = src.replace(re, '/*HEROES_START*/ var HEROES = ' + JSON.stringify(own) + '; /*HEROES_END*/');
+    write(file, src);
+  }
+  const n = Object.keys(map).length, total = win.length + and.length;
+  return '  hero artwork          ' + n + ' of ' + total + ' apps illustrated';
+}
+const heroesMsg = syncHeroes();
 
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
@@ -1194,6 +1255,7 @@ if (catStripMsg) sitemapMsg += '\n' + catStripMsg;
 if (socialMsg) sitemapMsg += '\n' + socialMsg;
 if (navMsg) sitemapMsg += '\n' + navMsg;
 if (proseMsg) sitemapMsg += '\n' + proseMsg;
+if (heroesMsg) sitemapMsg += '\n' + heroesMsg;
 
 /* ── report ── */
 console.log(`
