@@ -114,9 +114,16 @@ footerHTML = upify(footerHTML);
    false, so they get accurate wording instead. */
 const NETWORKED = new Set([
   'browsex', 'medialucent', 'moneyhalo', 'planetx', 'planetxearthexplorer',
-  'planetxinfinity', 'terraorbitix', 'earthos', 'quantumdrop', 'nanocodify'
+  'planetxinfinity', 'terraorbitix', 'earthos', 'nanocodify'
 ]);
-const isOffline = a => !NETWORKED.has(a.id);
+/* A third case, and the one the two-way split got wrong: applications that
+   link two of the user's own devices over their own Wi-Fi or a hotspot. They
+   never touch the internet, so describing them as reaching online content is
+   false; but they are not standalone either, so "works with the network
+   switched off" is false too. They get their own wording. */
+const LOCAL_LINK = new Set(['castvisuality', 'quantumdrop']);
+const isLinked  = a => LOCAL_LINK.has(a.id);
+const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a);
 
 /* ── Trademarks ────────────────────────────────────────────────────────────
    COINED are invented words owned outright by the studio; the mark is the
@@ -145,7 +152,10 @@ const stageOf = a => isCert(a)
 
 function faqFor(a) {
   const os = a.platform === 'Android' ? 'Android' : 'Windows 10 and Windows 11';
-  const net = isOffline(a)
+  const net = isLinked(a)
+    ? [`Does ${a.name} need an internet connection?`,
+       `No. ${a.name} works over your own Wi-Fi, or your laptop's hotspot where there is no Wi-Fi at all. Your devices talk to each other directly, so nothing is routed through a server and nothing needs an internet connection.`]
+    : isOffline(a)
     ? [`Does ${a.name} need an internet connection?`,
        `No. ${a.name} does its work on your own device. You can install it, disconnect, and it keeps functioning. A connection is only used by the store itself, for installation and licence checks.`]
     : [`Does ${a.name} need an internet connection?`,
@@ -206,11 +216,16 @@ function pageFor(a) {
     'per','across','through','using','via','and','or','your','their','its','our','my',
     'the','a','an','one','this','that','these','those','each','every','any','some','no']);
   const KEEP_SHORT = new Set(['3d','ai','pc','qr','hd','4k','pdf','usb','gpu','dj','vr','os']);
-  const tidy = t => {
+  /* `deep` is only for a cut made mid-sentence at an arbitrary word boundary,
+     where the tail really can be a fragment. A cut made at a clause boundary
+     already ends where the author ended a thought, so the aggressive rules
+     would eat good words - they turned "Turn any phone" into "Turn". */
+  const tidy = (t, deep) => {
     let w = t.replace(/[\s,;:—–-]+$/, '').split(/\s+/).filter(Boolean);
     for (;;) {
       const last = (w[w.length - 1] || '').replace(/[^A-Za-z0-9]/g, '').toLowerCase();
       if (w.length && STOP.has(last)) { w.pop(); continue; }
+      if (!deep) break;
       // a very short trailing token is nearly always a cut-off compound
       if (w.length > 1 && last.length <= 2 && !KEEP_SHORT.has(last)) { w.pop(); continue; }
       // a noun left stranded after a preposition or determiner goes with it
@@ -228,7 +243,7 @@ function pageFor(a) {
           punctuation and wording exactly as written */
     let cut = '';
     for (const m of TAG.matchAll(/[,;:]|\s+(?:and|or|—|–|-)\s+/g)) {
-      const pre = tidy(TAG.slice(0, m.index));
+      const pre = tidy(TAG.slice(0, m.index), false);
       if (pre.length <= room && pre.length > cut.length) cut = pre;
     }
     /* 2. otherwise cut on a word boundary and clean the tail */
@@ -238,7 +253,7 @@ function pageFor(a) {
         const next = words ? words + ' ' + w : w;
         if (next.length <= room) words = next; else break;
       }
-      const trimmed = tidy(words);
+      const trimmed = tidy(words, true);
       if (trimmed.length > cut.length) cut = trimmed;
     }
     TITLE = cut.length >= 14
@@ -357,7 +372,7 @@ function pageFor(a) {
                 <span class="proof-chip">No account</span>
                 <span class="proof-chip">No telemetry</span>
                 <span class="proof-chip">No subscription</span>
-                <span class="proof-chip">${isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
+                <span class="proof-chip">${isLinked(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
             </div>
         </section>
 
@@ -380,7 +395,9 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
             <div class="section-header"><h2 id="local-title">Local-first, by design</h2></div>
             <p>Most software in this category sends your files somewhere to be handled. ${esc(a.name)} does not.
             Processing runs on your ${a.platform === 'Android' ? 'phone’s own processor' : 'CPU or GPU'},
-            and your files stay in the folders you put them in.${isOffline(a)
+            and your files stay in the folders you put them in.${isLinked(a)
+              ? ` ${esc(a.name)} does need your devices to be on the same network, but that is the only link involved: it runs over your own Wi-Fi or a hotspot, with nothing routed through a server and no internet connection required.`
+              : isOffline(a)
               ? ' The application keeps working with the network switched off.'
               : ` ${esc(a.name)} does reach the internet for the content it displays, but nothing about you or your files travels the other way.`}</p>
             <p>That is not a setting you enable. It is how the application is built, and it is why there is no
@@ -395,7 +412,7 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
                 <div class="spec-cell"><dt>Distribution</dt><dd>${esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play')}</dd></div>
                 <div class="spec-cell spec-cell--${out ? 'good' : 'wait'}"><dt>Availability</dt><dd><span class="spec-dot" aria-hidden="true"></span>${out ? 'Available now' : (cert ? 'In certification' : 'In development')}</dd></div>
                 <div class="spec-cell"><dt>Licence</dt><dd>Free trial, then one purchase</dd></div>
-                <div class="spec-cell spec-cell--${isOffline(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
+                <div class="spec-cell spec-cell--${isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
                 <div class="spec-cell"><dt>Publisher</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a></dd></div>
