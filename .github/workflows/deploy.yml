@@ -62,7 +62,8 @@ jobs:
       - name: Strip build sources from the published site
         run: |
           rm -rf articles-src
-          rm -f build.js gen-app-pages.js update-gallery.js optimise-images.py \
+          rm -f build.js gen-app-pages.js gen-category-pages.js hsx-taxonomy.js \
+                update-gallery.js optimise-images.py make-app-art.py \
                 make-icons.py README.md
 
       - name: Upload artifact
