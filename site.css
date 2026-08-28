@@ -2288,27 +2288,39 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     aspect-ratio:16/9; overflow:hidden;
     background:linear-gradient(135deg,rgba(199,165,247,.14),rgba(159,232,214,.07));
 }
+/* The colour grade is baked into the WebP at build time rather than applied
+   here: a CSS filter on 61 images is 61 filter passes on every paint, and
+   animating one repaints the image on every frame of the hover. Transform is
+   composited on the GPU and is the only thing that moves. */
 .tile-hero img{
     width:100%; height:100%; object-fit:cover; display:block;
     transform:scale(1.02);
-    transition:transform .55s var(--ease), filter .55s var(--ease);
-    filter:saturate(.92) contrast(1.02) brightness(.94);
+    /* deliberately no will-change: it would promote all 61 images to permanent
+       compositing layers, which is the problem this change exists to remove.
+       A transform transition is composited on the GPU without it. */
+    transition:transform .55s var(--ease);
 }
 .app-tile--hero:hover .tile-hero img,
-.app-tile--hero:focus-within .tile-hero img{
-    transform:scale(1.07); filter:saturate(1.04) contrast(1.04) brightness(1);
-}
+.app-tile--hero:focus-within .tile-hero img{ transform:scale(1.07); }
 /* the artwork fades into the card so the name never fights it */
 .tile-hero-scrim{
     position:absolute; inset:auto 0 -1px 0; height:66%; pointer-events:none;
     background:linear-gradient(to top,#0c0b13 4%,rgba(12,11,19,.72) 42%,rgba(12,11,19,0));
 }
 .app-tile--hero .tile-top{ margin-top:-2.55rem; z-index:2; }
+/* A catalogue page is 72 cards tall. Skip painting the ones nowhere near the
+   viewport; the intrinsic size keeps the scrollbar length honest so nothing
+   jumps as they come into view. */
+.app-tile{ content-visibility:auto; contain-intrinsic-size:auto 340px; }
+
+/* No backdrop-filter here on purpose. This rule matches once per card, so a
+   catalogue page carried 61 of them: 61 separate compositing layers, each
+   re-blurring its backdrop whenever anything above it repaints - which, with a
+   cursor effect on the page, is constantly. The logo sits on an opaque scrim,
+   so a solid fill is visually identical and costs nothing. */
 .app-tile--hero .app-logo{
-    background:rgba(11,10,16,.82);
+    background:#12111b;
     border-color:rgba(255,255,255,.2);
-    backdrop-filter:blur(10px) saturate(1.3);
-    -webkit-backdrop-filter:blur(10px) saturate(1.3);
     box-shadow:0 8px 20px -10px rgba(0,0,0,.95);
 }
 .app-tile--hero .tile-name{ text-shadow:0 2px 12px rgba(8,7,12,.9); }
@@ -2327,10 +2339,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 .cat-app-hero img{
     width:100%; height:100%; object-fit:cover; display:block;
-    filter:saturate(.92) brightness(.92);
-    transition:filter var(--t-fast) var(--ease);
 }
-.cat-app:hover .cat-app-hero img{ filter:saturate(1.03) brightness(1); }
 .cat-app-hero::after{
     content:""; position:absolute; inset:auto 0 -1px 0; height:52%; pointer-events:none;
     background:linear-gradient(to top,var(--card-bg),rgba(12,11,19,.35),transparent);

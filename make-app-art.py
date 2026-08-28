@@ -20,7 +20,7 @@ piece rather than as a picture on a flat bar.
 build.js picks up whatever exists in images/apps/, so nothing else needs editing.
 """
 import os, re, sys, json, subprocess
-from PIL import Image, ImageFilter, ImageEnhance
+from PIL import Image, ImageFilter, ImageEnhance, ImageOps
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT  = os.path.join(ROOT, 'images', 'apps')
@@ -57,7 +57,16 @@ def render(im, W, H):
     s2 = min(W / bw, H / bh)
     fg = im.resize((round(bw * s2), round(bh * s2)), Image.LANCZOS)
     bg.paste(fg, ((W - fg.width) // 2, (H - fg.height) // 2))
-    return bg
+    return grade(bg)
+
+def grade(im):
+    """The slight desaturation and darkening the cards want, baked in here
+    rather than applied as a CSS filter. A filter on 61 images is 61 filter
+    passes on every paint; doing it once at build time is free."""
+    im = ImageEnhance.Color(im).enhance(0.92)
+    im = ImageEnhance.Contrast(im).enhance(1.02)
+    im = ImageEnhance.Brightness(im).enhance(0.94)
+    return im
 
 def main(src):
     apps = slugs()
@@ -72,7 +81,18 @@ def main(src):
         key = norm(os.path.splitext(f)[0])
         slug = by_slug.get(key) or by_name.get(key) or by_short.get(key)
         if not slug:
-            skipped.append(f); continue
+            # Store artwork is often named with the product's short form
+            # ("HSX QuantumGen.jpg" for HSX QuantumGen AI Studio). Accept a
+            # prefix, but only when exactly one application matches - two
+            # candidates means the filename is genuinely ambiguous and a wrong
+            # match would put the wrong picture on a product page.
+            hits = {v for k, v in list(by_name.items()) + list(by_short.items())
+                    if k.startswith(key) and len(key) >= 6}
+            if len(hits) == 1:
+                slug = hits.pop()
+            else:
+                skipped.append(f + ('  (ambiguous: matches %d apps)' % len(hits) if hits else ''))
+                continue
         im = Image.open(os.path.join(src, f)).convert('RGB')
         for W, H, suffix, q, fmt in SIZES:
             out = render(im, W, H)
