@@ -1076,7 +1076,62 @@ function syncFooters() {
   return msg;
 }
 const footerMsg = syncFooters();
+
+/* ── Copyright and trademark line ──────────────────────────────────────
+   One sentence, everywhere, in the studio's name rather than the founder's:
+   the studio is the publisher and the mark holder, and he is the founder and
+   developer (which the About page and the schema both already say).
+   An app page or an app's policy names that product's mark; every other page
+   makes the general claim, because naming one product on the contact page
+   would be arbitrary. ® is reserved for Hasnain Studio X - the registered
+   mark - and ™ is used for the product names, which are claimed but not
+   separately registered.                                                */
+function syncCopyright() {
+  const NAME_BY_APPPAGE = {}, NAME_BY_POLICY = {};
+  for (const a of win.concat(and))
+    NAME_BY_APPPAGE['apps/' + appSlug(a.name, a.platform) + '.html'] = a.name;
+  try {
+    for (const f of fs.readdirSync(P('privacy')).filter(f => f.endsWith('.html'))) {
+      const t = (read('privacy/' + f).match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1];
+      const n = t.replace(/\s+/g, ' ').replace(/\s*[-–—]\s*Privacy Policy.*$/i, '').trim();
+      if (n) NAME_BY_POLICY['privacy/' + f] = n;
+    }
+  } catch (e) { /* no privacy/ folder */ }
+
+  const LINE = mark => '&copy; 2026 Hasnain Studio X. All rights reserved. ' + (mark
+    ? mark.replace(/&/g, '&amp;') + '&trade; and all related marks are trademarks of Hasnain Studio X&reg;.'
+    : 'All product names and related marks are trademarks of Hasnain Studio X&reg;.');
+
+  let n = 0;
+  const walk = d => {
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src'].includes(ent.name)) continue;
+      const full = path.join(d, ent.name);
+      if (ent.isDirectory()) { walk(full); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+      let s = fs.readFileSync(full, 'utf8');
+      /* the root policy stubs are rebuilt from privacy/ further down */
+      if (s.includes('HSX:PRIVACY-REDIRECT')) continue;
+      const key = path.relative(ROOT, full).replace(/\\/g, '/');
+      const line = LINE(NAME_BY_APPPAGE[key] || NAME_BY_POLICY[key] || null);
+      const before = s;
+
+      /* footer strapline */
+      s = s.replace(/(<footer[\s\S]*?)<span>(?:&copy;|©)\s*2026[\s\S]{0,400}?<\/span>/,
+                    (m, head) => head + '<span>' + line + '</span>');
+      /* the closing line of a policy's contact card */
+      s = s.replace(/(<p(?:\s+style="margin-top:1rem;")?>)(?:&copy;|&#169;|©)\s*2026[\s\S]{0,300}?(<\/p>)/,
+                    (m, a, b) => a + line + b);
+
+      if (s !== before) { fs.writeFileSync(full, s, 'utf8'); n++; }
+    }
+  };
+  walk(ROOT);
+  return '  copyright line        ' + n + ' pages set';
+}
+const copyMsg = syncCopyright();
 if (footerMsg) sitemapMsg += '\n' + footerMsg;
+if (copyMsg)   sitemapMsg += '\n' + copyMsg;
 
 /* ── 3g. the studio's trademark register, on the About page ───────────── */
 function syncTrademarks() {
