@@ -196,6 +196,7 @@ module.exports.GPU_VRAM = {
    falls back to the tagline-derived title.
    ═══════════════════════════════════════════════════════════════════ */
 module.exports.INTENT = {
+  writedesk:      'Offline AI Writing Assistant for Windows',
   /* system and performance */
   pctunex:                'Windows PC Cleaner and Startup Manager',
   pcturboxultra:          'Windows RAM and CPU Optimiser for Gaming',

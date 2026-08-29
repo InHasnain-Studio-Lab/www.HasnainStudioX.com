@@ -63,7 +63,7 @@ const CAT = {
   creative: { label: 'Creative & Documents', schema: 'DesignApplication',
               who: 'designers, writers and small studios who need professional output without a monthly bill' },
   ai:       { label: 'AI Tools',             schema: 'MultimediaApplication',
-              who: 'creators who want generative tooling on their own GPU, with no API keys, no queue and no per-image cost' },
+              who: 'creators who want generative tooling on their own GPU, with no API keys, no queue and nothing metered per use' },
   explore:  { label: 'Games & Explore',      schema: 'GameApplication',
               who: 'anyone who enjoys exploring simulated worlds without an always-on connection' },
   dev:      { label: 'Developer Tools',      schema: 'DeveloperApplication',
@@ -73,6 +73,11 @@ const CAT = {
   files:    { label: 'Files & Transfer',     schema: 'UtilitiesApplication',
               who: 'people moving, converting or archiving files who would rather not route them through someone else’s server' }
 };
+/* A handful of titles do not fit their category's stock sentence. Overriding
+   one line is better than inventing a category for a single application. */
+const WHO_OVERRIDE = {
+  writedesk: 'writers, students and professionals who want drafting and rewriting help that never sends a word of their work to anyone else'
+};
 const CATMAP = eval('({' + grab(read('Windows-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
 const CATMAP_A = eval('({' + grab(read('android-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
 /* CATMAP is the authority; the app's own category is the safety net so a new
@@ -81,6 +86,7 @@ const CAT_FALLBACK = { utilities: 'system', media: 'media', productivity: 'creat
 /* Apps whose catalogue category is too coarse for their page. */
 const CAT_OVERRIDE = { nanocodify: 'dev', nanovisuality: 'photo', pixumbrastudio: 'photo',
                        glowlab: 'photo', photovidix: 'photo', mediatidyultra: 'photo' };
+const whoOf = a => WHO_OVERRIDE[a.id] || catOf(a).who;
 const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLBACK[a.category]] || CAT.system;
 
 /* Category hub pages live at apps/<hub>.html. Each app page links up to its own
@@ -448,7 +454,7 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
 
         <section class="section" aria-labelledby="who-title">
             <div class="section-header"><h2 id="who-title">Who it is for</h2></div>
-            <p class="app-lead">${esc(a.name)} is built for ${esc(c.who)}.</p>
+            <p class="app-lead">${esc(a.name)} is built for ${esc(whoOf(a))}.</p>
             <p>It sits in the ${esc(c.label.toLowerCase())} part of the Hasnain Studio X catalogue, and it follows
             the same rule as every other title in the range: the work happens on your own hardware. Nothing is
             uploaded for processing, because there is no server to upload it to.</p>
