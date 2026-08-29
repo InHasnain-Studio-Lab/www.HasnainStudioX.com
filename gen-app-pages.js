@@ -485,7 +485,8 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
                 <div class="spec-cell spec-cell--${isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
-                <div class="spec-cell"><dt>Publisher</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a></dd></div>
+                <div class="spec-cell"><dt>Publisher</dt><dd>Hasnain Studio X</dd></div>
+                <div class="spec-cell"><dt>Developer</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a></dd></div>
             </dl>
         </section>
 
