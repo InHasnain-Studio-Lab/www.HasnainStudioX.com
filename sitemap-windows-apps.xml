@@ -328,6 +328,17 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/hsx-pixunica.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-pixunica-og.jpg</image:loc>
+      <image:title>Offline 4K AI Image Generator for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/hsx-planetx.html</loc>
     <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
