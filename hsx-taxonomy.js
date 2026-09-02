@@ -196,6 +196,7 @@ module.exports.GPU_VRAM = {
    falls back to the tagline-derived title.
    ═══════════════════════════════════════════════════════════════════ */
 module.exports.INTENT = {
+  nostalgicel:    'Offline Retro Anime Image Generator',
   pixunica:       'Offline 4K AI Image Generator for Windows',
   writedesk:      'Offline AI Writing Assistant for Windows',
   /* system and performance */
