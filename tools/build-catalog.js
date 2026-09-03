@@ -318,4 +318,18 @@ console.log(withBuild
 console.log(`  contact form ${catalogue.ct.e ? 'found' : 'not found'}`);
 if (bundling) console.log(`\nbundled   ${BUNDLED}`);
 console.log(`published ${PUBLISHED}`);
+
+/* Keep the copy the site rebuilds itself with identical to this one. */
+const CI_COPY = path.join(SITE, 'tools', 'build-catalog.js');
+try {
+    if (fs.existsSync(path.dirname(CI_COPY))) {
+        const here = fs.readFileSync(__filename, 'utf8');
+        if (!fs.existsSync(CI_COPY) || fs.readFileSync(CI_COPY, 'utf8') !== here) {
+            fs.writeFileSync(CI_COPY, here, 'utf8');
+            console.log(`refreshed ${CI_COPY}`);
+        }
+    }
+} catch (error) {
+    console.log('the site copy of this tool could not be refreshed');
+}
 console.log(`${(payload.length / 1024).toFixed(0)} KB`);
