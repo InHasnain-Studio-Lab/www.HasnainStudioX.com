@@ -179,6 +179,7 @@ module.exports.GPU_VRAM = {
   quantumxai:    4,   // "Powered entirely by your local graphics hardware (4 GB+ VRAM)"
   infinitegenai: 4,   // "Runs locally on dedicated GPUs with 4 GB+ VRAM"
   nanocodify:    4,   // "Powered entirely by your local dedicated GPU ... 4 GB+ VRAM"
+  dreammintai:   4,   // "Fully offline generation (dedicated 4 GB+ VRAM)" - hero tile
   fototensor:    6    // "Running directly on your dedicated GPU (6GB+ VRAM)"
 };
 
@@ -196,6 +197,7 @@ module.exports.GPU_VRAM = {
    falls back to the tagline-derived title.
    ═══════════════════════════════════════════════════════════════════ */
 module.exports.INTENT = {
+  dreammintai:    'Offline AI Image and Video Generator',
   nostalgicel:    'Offline Retro Anime Image Generator',
   pixunica:       'Offline 4K AI Image Generator for Windows',
   writedesk:      'Offline AI Writing Assistant for Windows',
