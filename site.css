@@ -2483,3 +2483,80 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 @media (max-width:760px){ .pillar-nav{ top:74px; } .pillar-nav .pillar-nav-cta{ margin-left:0; } }
 /* in-page jumps must not land under the sticky bars */
 :target{ scroll-margin-top:150px; }
+
+/* ── HSX Apps Hub promo banner ──────────────────────────────────────────
+   The download nudge that sits above the app grid. Built from the same
+   devices as .hero-card so it reads as part of the page, not an advert
+   dropped onto it: prismatic top edge, holo headline, pearl accents.     */
+.hub-burst{
+    position:relative;overflow:hidden;isolation:isolate;
+    border-radius:28px;border:1px solid var(--card-border);
+    background:linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 55%);
+    -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+    box-shadow:0 40px 90px -40px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.08);
+    display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);align-items:center;
+    margin-block:clamp(2rem,5vh,3.2rem);
+}
+.hub-burst::before{
+    content:'';position:absolute;top:0;left:6%;right:6%;height:1px;z-index:3;
+    background:var(--holo);background-size:300% 100%;
+    animation:holoShift 6s linear infinite;opacity:.9;
+}
+.burst-copy{padding:clamp(2.2rem,4vw,3.4rem) clamp(1.6rem,3vw,3rem);}
+.burst-stage{position:relative;align-self:stretch;min-height:340px;overflow:hidden;}
+.burst-stage img{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:12% center;
+}
+/* the art dissolves into the card instead of ending on a hard edge */
+.burst-stage::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(90deg,
+        var(--bg-soft) 0%, rgba(13,12,20,.86) 14%, rgba(13,12,20,.45) 34%, rgba(13,12,20,0) 66%);
+}
+.burst-stage::before{
+    content:'';position:absolute;width:420px;height:420px;right:-140px;top:-160px;z-index:2;
+    border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle, rgba(199,165,247,.18), rgba(159,232,214,.06) 50%, transparent 70%);
+}
+.burst-eyebrow{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-family:var(--f-mono);font-size:.66rem;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--mint);
+    padding:.42rem .95rem;border-radius:var(--r-pill);
+    background:rgba(159,232,214,.09);border:1px solid rgba(159,232,214,.3);
+}
+.burst-title{
+    font-family:var(--f-display);font-weight:600;
+    font-size:clamp(1.9rem,3.6vw,2.9rem);line-height:1.06;letter-spacing:-.01em;
+    margin:1.25rem 0 0;color:var(--ink);
+}
+.burst-title em{
+    font-style:normal;
+    background:var(--holo);background-size:200% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.burst-lead{
+    font-family:var(--f-body);font-size:clamp(.95rem,1.15vw,1.05rem);line-height:1.62;
+    color:var(--ink-soft);margin:.9rem 0 0;max-width:46ch;
+}
+.burst-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem;}
+.burst-facts{
+    display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;margin-top:1.5rem;
+    padding-top:1.2rem;border-top:1px solid var(--line);
+    font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-faint);
+}
+.burst-facts b{color:var(--ink);font-weight:600;}
+@media (max-width:860px){
+    .hub-burst{grid-template-columns:1fr;}
+    .burst-stage{min-height:210px;order:-1;}
+    .burst-stage img{object-position:center 18%;}
+    .burst-stage::after{
+        background:linear-gradient(180deg, rgba(13,12,20,0) 35%, rgba(13,12,20,.8) 78%, var(--bg-soft) 100%);
+    }
+    .burst-stage::before{right:-180px;top:-220px;}
+}
+@media (prefers-reduced-motion:reduce){
+    .hub-burst::before{animation:none;}
+}
