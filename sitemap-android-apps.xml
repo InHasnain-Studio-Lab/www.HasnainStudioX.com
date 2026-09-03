@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/convertmaster-ultra.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -15,7 +15,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/docsmining.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -25,15 +25,8 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/flipx-studio-android.html</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
     <loc>https://hasnainstudiox.com/apps/mobile-tunex.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -44,7 +37,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/spatiax-ultra-mobile.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -55,20 +48,13 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/workx-suite.html</loc>
-    <lastmod>2026-09-02</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/workx-suite-og.jpg</image:loc>
       <image:title>Offline PDF and Document Suite for Android</image:title>
     </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/xcipher.html</loc>
-    <lastmod>2026-09-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
 </urlset>

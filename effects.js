@@ -830,7 +830,7 @@
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
                 /*TERMAPPS_START*/
-                print('Hasnain Studio X - 68 applications live, 14 in development', 'ok');
+                print('Hasnain Studio X - 68 applications live, 2 in development', 'ok');
                 print('', '');
                 print('WINDOWS (63)', 'warn');
                 print('  AI tools: DreamMint AI, HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX NovaDiffux, HSX Pocktium, HSX PromptKinetics, HSX QuantumGen AI Studio, HSX StudioFlow, HSX WriteDesk', '');
@@ -844,7 +844,7 @@
                 print('ANDROID (5)', 'warn');
                 print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');
                 print('', '');
-                print('In development: 14 more. Full catalogue at hasnainstudiox.com', '');
+                print('In development: 2 more. Full catalogue at hasnainstudiox.com', '');
                 /*TERMAPPS_END*/
             }
         };

@@ -319,7 +319,7 @@ module.exports.HUBS.push(
   },
   {
     key: 'privacy', crossCut: true,
-    ids: ['pcguardx', 'browsex', 'fileguardianultra', 'xcipher', 'focusroomultra', 'horizonos'],
+    ids: ['pcguardx', 'browsex', 'fileguardianultra', 'focusroomultra', 'horizonos'],
     slug: 'privacy-utilities',
     nav: 'Privacy tools',
     h1: 'Zero-telemetry privacy utilities for Windows',

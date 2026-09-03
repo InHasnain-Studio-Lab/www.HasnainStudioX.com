@@ -197,11 +197,10 @@ window.AppViz = (function () {
         xseasons: 'seasons',
         spatiaxultra: 'spatial', spatiaxmobile: 'spatial',
         vaudioelite: 'eq',
-        flipxstudio: 'convert', flipxandroid: 'convert',
+        flipxstudio: 'convert',
         workxsuite: 'suite', hsxstudioflow: 'imagegen',
         forgexpro: 'prompt', horizonos: 'shell',
         docsmining: 'docs',
-        xcipher: 'lock',
         pcguardx: 'guard',      /* privacy toggles dashboard */
         pocktium: 'chat',    /* local AI chat */
         photovidix: 'gallery', /* photo + video library */

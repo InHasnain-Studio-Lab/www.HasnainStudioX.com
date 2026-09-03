@@ -122,7 +122,7 @@ footerHTML = upify(footerHTML);
    still local-first about your data, but claiming they "work offline" would be
    false, so they get accurate wording instead. */
 const NETWORKED = new Set([
-  'browsex', 'medialucent', 'moneyhalo', 'planetx', 'planetxearthexplorer',
+  'browsex', 'medialucent', 'planetx', 'planetxearthexplorer',
   'planetxinfinity', 'terraorbitix', 'earthos', 'nanocodify'
 ]);
 /* A third case, and the one the two-way split got wrong: applications that

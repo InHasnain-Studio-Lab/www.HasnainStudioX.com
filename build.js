@@ -35,7 +35,7 @@ const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','N
 /* schema.org category per app id — extend when you add an app.
    Anything not listed falls back to UtilitiesApplication. */
 const SCHEMA_CAT = {
-  pcguardx:'SecurityApplication', browsex:'SecurityApplication', xcipher:'SecurityApplication',
+  pcguardx:'SecurityApplication', browsex:'SecurityApplication',
   spatiaxultra:'MultimediaApplication', hypersonusultra:'MultimediaApplication',
   vaudioelite:'MultimediaApplication', medialucent:'MultimediaApplication',
   primecut:'MultimediaApplication', photovidix:'MultimediaApplication',
@@ -47,14 +47,12 @@ const SCHEMA_CAT = {
   pocktium:'BusinessApplication', docclarity:'BusinessApplication',
   docsmining:'BusinessApplication',
   creatorxstudio:'DesignApplication', webxstudio:'DesignApplication', drop2qr:'DesignApplication',
-  forgexpro:'DeveloperApplication', vdroidx:'DeveloperApplication',
+  forgexpro:'DeveloperApplication',
   planetx:'EducationalApplication', planetxinfinity:'EducationalApplication',
   planetxearthexplorer:'EducationalApplication', terraorbitix:'EducationalApplication',
-  infinityjungle:'GameApplication',
   artgenstudio:'DesignApplication', dreammintai:'MultimediaApplication',
   quantumxai:'MultimediaApplication', pcscreenrecorderpro:'MultimediaApplication',
   mediatidyultra:'MultimediaApplication', earthos:'EducationalApplication',
-  titanmlstudio:'DeveloperApplication', mobileservicelab:'UtilitiesApplication',
   convertmasterultra:'MultimediaApplication', workxsuiteandroid:'BusinessApplication',
 };
 
@@ -1144,8 +1142,8 @@ function syncTrademarks() {
     'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
     'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-    'KatanicOS', 'MoneyHalo', 'VectalonOS', 'SolsticeOS', 'XCipher', 'NimbusDock', 'DocMento',
-    'ExeCrafter', 'SpillFrame', 'EarthShell', 'AstraMorph', 'VDroidX', 'DreamMint'];
+    'KatanicOS', 'VectalonOS', 'SolsticeOS', 'NimbusDock', 'DocMento',
+    'ExeCrafter', 'SpillFrame', 'EarthShell', 'DreamMint'];
   const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const apps = win.concat(and);
   const other = [...new Set(apps
@@ -1365,9 +1363,7 @@ function syncGalleryApps() {
   // creative tool.
   const AI_APPS = new Set([
     'hsxstudioflow', 'fototensor', 'photovidix', 'novadiffux', 'quantumxai',
-    'artgenstudio', 'infinitegenai', 'dreamgenaiultra', 'dreammintai',
-    'screenaistudio', 'glowlab', 'image3dx', 'aiscenexultra',
-    'astramorphstudio', 'forgexpro', 'pocktium'
+    'artgenstudio', 'infinitegenai', 'dreamgenaiultra', 'dreammintai', 'glowlab', 'image3dx', 'forgexpro', 'pocktium'
   ]);
   const reg = {};
   for (const a of win) {
