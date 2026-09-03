@@ -52,6 +52,13 @@ jobs:
       - name: Build catalogue, structured data and sitemap
         run: node build.js
 
+      # The catalogue HSX Apps Hub reads. Built here so the published file always
+      # matches the app pages in this same commit.
+      - name: Build the Hub catalogue
+        run: |
+          node tools/build-catalog.js "$GITHUB_WORKSPACE"
+          node -e "console.log('hub catalogue holds', require('./hub-catalog.json').ps.length, 'apps')"
+
       # ── deploy ─────────────────────────────────────────────────────────
       - name: Setup Pages
         uses: actions/configure-pages@v5
