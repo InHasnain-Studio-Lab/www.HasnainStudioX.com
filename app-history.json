@@ -1,0 +1,485 @@
+{
+  "built": "2026-09-03T02:06:28.314Z",
+  "events": [
+    {
+      "i": "live-dreammintai",
+      "d": "2026-09-03",
+      "k": "release",
+      "t": "DreamMint AI is live",
+      "b": "Sixteen makers across five creative lanes, offline",
+      "p": "dreammintai"
+    },
+    {
+      "i": "add-nostalgicel",
+      "d": "2026-09-02",
+      "k": "soon",
+      "t": "HSX Nostalgicel is on the way",
+      "b": "Restore the soul of classic anime, offline",
+      "p": "nostalgicel"
+    },
+    {
+      "i": "live-writedesk",
+      "d": "2026-09-02",
+      "k": "release",
+      "t": "HSX WriteDesk is live",
+      "b": "Offline writing desk that rewrites on your own PC",
+      "p": "writedesk"
+    },
+    {
+      "i": "add-pixunica",
+      "d": "2026-08-30",
+      "k": "soon",
+      "t": "HSX PixUnica is on the way",
+      "b": "Offline AI image generator with 4K+ output",
+      "p": "pixunica"
+    },
+    {
+      "i": "add-writedesk",
+      "d": "2026-08-29",
+      "k": "soon",
+      "t": "HSX WriteDesk is on the way",
+      "b": "Offline writing desk that rewrites on your own PC",
+      "p": "writedesk"
+    },
+    {
+      "i": "name-forgexpro-HSX PromptKinetics",
+      "d": "2026-08-28",
+      "k": "note",
+      "t": "HSX Promptalon is now HSX PromptKinetics",
+      "b": "Build elite AI prompts with guided structure",
+      "p": "forgexpro"
+    },
+    {
+      "i": "live-nanovisuality",
+      "d": "2026-08-28",
+      "k": "release",
+      "t": "HSX NanoVisuality is live",
+      "b": "Seventeen photo finishing tools on one local deck",
+      "p": "nanovisuality"
+    },
+    {
+      "i": "live-pixumbrastudio",
+      "d": "2026-08-28",
+      "k": "release",
+      "t": "Pixumbra Studio is live",
+      "b": "Batch photo workroom with cutout, repair and recipes",
+      "p": "pixumbrastudio"
+    },
+    {
+      "i": "live-castvisuality",
+      "d": "2026-08-28",
+      "k": "release",
+      "t": "HSX CastVisuality is live",
+      "b": "Mirror your PC screen to a phone or TV",
+      "p": "castvisuality"
+    },
+    {
+      "i": "live-nanocodify",
+      "d": "2026-08-28",
+      "k": "release",
+      "t": "HSX NanoCodify is live",
+      "b": "Private code and creation studio for Windows",
+      "p": "nanocodify"
+    },
+    {
+      "i": "add-nanocodify",
+      "d": "2026-08-24",
+      "k": "soon",
+      "t": "HSX NanoCodify is on the way",
+      "b": "Private code and creation studio for Windows",
+      "p": "nanocodify"
+    },
+    {
+      "i": "name-browsex-HSX Browser",
+      "d": "2026-08-24",
+      "k": "note",
+      "t": "HSX Browse is now HSX Browser",
+      "b": "Privacy-first Windows browser",
+      "p": "browsex"
+    },
+    {
+      "i": "add-artgenstudio",
+      "d": "2026-08-23",
+      "k": "release",
+      "t": "HSX ArtGen Studio is available",
+      "b": "Local AI design studio with brand kits and batch merge",
+      "p": "artgenstudio"
+    },
+    {
+      "i": "add-nanovisuality",
+      "d": "2026-08-23",
+      "k": "soon",
+      "t": "HSX NanoVisuality is on the way",
+      "b": "Seventeen photo finishing tools on one local deck",
+      "p": "nanovisuality"
+    },
+    {
+      "i": "add-pixumbrastudio",
+      "d": "2026-08-23",
+      "k": "soon",
+      "t": "Pixumbra Studio is on the way",
+      "b": "Batch photo workroom with cutout, repair and recipes",
+      "p": "pixumbrastudio"
+    },
+    {
+      "i": "live-spatiaxmobile",
+      "d": "2026-08-23",
+      "k": "release",
+      "t": "SpatiaX Ultra Mobile is live",
+      "b": "Real-time 3D spatial audio for Android",
+      "p": "spatiaxmobile"
+    },
+    {
+      "i": "live-workxsuiteandroid",
+      "d": "2026-08-20",
+      "k": "release",
+      "t": "WorkX Suite is live",
+      "b": "PDF, documents and maths in one Android suite",
+      "p": "workxsuiteandroid"
+    },
+    {
+      "i": "add-medialucent",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX MediaLucent is available",
+      "b": "Streaming hub + media player with cinematic grade & DSP engines",
+      "p": "medialucent"
+    },
+    {
+      "i": "add-fototensor",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX FotoTensor is available",
+      "b": "AI portrait and image generation with face enhancement",
+      "p": "fototensor"
+    },
+    {
+      "i": "add-pocktium",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX Pocktium is available",
+      "b": "Chat, documents, and images with local AI",
+      "p": "pocktium"
+    },
+    {
+      "i": "add-photovidix",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX PhotoVidix is available",
+      "b": "Organise, edit, and export photos and videos",
+      "p": "photovidix"
+    },
+    {
+      "i": "add-castvisuality",
+      "d": "2026-08-18",
+      "k": "soon",
+      "t": "HSX CastVisuality is on the way",
+      "b": "New Windows app, in development",
+      "p": "castvisuality"
+    },
+    {
+      "i": "add-docmento",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX DocMento is available",
+      "b": "Offline PDF, document translation and 300 DPI canvas studio",
+      "p": "docmento"
+    },
+    {
+      "i": "add-pcvisionbulwark",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "PC VisionBulwark is available",
+      "b": "Local display comfort engine for Windows",
+      "p": "pcvisionbulwark"
+    },
+    {
+      "i": "add-terraorbitix",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX TerraOrbitix 3D is available",
+      "b": "Orbit-to-street 3D globe and Earth explorer",
+      "p": "terraorbitix"
+    },
+    {
+      "i": "add-novadiffux",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX NovaDiffux is available",
+      "b": "Offline AI image and text-to-art generation studio",
+      "p": "novadiffux"
+    },
+    {
+      "i": "add-spillframe",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX SpillFrame is available",
+      "b": "Drawing and animation studio",
+      "p": "spillframe"
+    },
+    {
+      "i": "add-execrafter",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX ExeCrafter is available",
+      "b": "Drag-and-drop Windows app creator",
+      "p": "execrafter"
+    },
+    {
+      "i": "add-automafy",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX Automafy is available",
+      "b": "Offline automation studio for Windows",
+      "p": "automafy"
+    },
+    {
+      "i": "add-gamefabrix",
+      "d": "2026-08-18",
+      "k": "release",
+      "t": "HSX GameFabrix is available",
+      "b": "Visual 2D game maker",
+      "p": "gamefabrix"
+    },
+    {
+      "i": "add-pctunex",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "PC TuneX is available",
+      "b": "One-click cleanup and startup optimisation",
+      "p": "pctunex"
+    },
+    {
+      "i": "add-nimbusdock",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "NimbusDock is available",
+      "b": "Smart customisable dock for your Windows desktop",
+      "p": "nimbusdock"
+    },
+    {
+      "i": "add-quantumdrop",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "QuantumDrop is available",
+      "b": "Fast local file sharing over Wi-Fi - no cables",
+      "p": "quantumdrop"
+    },
+    {
+      "i": "add-xseasons",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "XSeasons is available",
+      "b": "Dynamic seasonal wallpapers that change with the year",
+      "p": "xseasons"
+    },
+    {
+      "i": "add-spatiaxultra",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "SpatiaX Ultra is available",
+      "b": "Real-time 3D spatial audio engine for Windows",
+      "p": "spatiaxultra"
+    },
+    {
+      "i": "add-flipxstudio",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "FlipX Studio is available",
+      "b": "Convert audio, video, images, and PDFs locally",
+      "p": "flipxstudio"
+    },
+    {
+      "i": "add-vaudioelite",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "VAudio Elite is available",
+      "b": "Media player with spatial audio and visualizers",
+      "p": "vaudioelite"
+    },
+    {
+      "i": "add-workxsuite",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "HSX WorkX Suite is available",
+      "b": "PDF, Word, and spreadsheets - all fully local",
+      "p": "workxsuite"
+    },
+    {
+      "i": "add-forgexpro",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "HSX Promptalon is available",
+      "b": "Build elite AI prompts with guided structure",
+      "p": "forgexpro"
+    },
+    {
+      "i": "add-hsxstudioflow",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "HSX StudioFlow is available",
+      "b": "Local AI image studio powered by your own GPU",
+      "p": "hsxstudioflow"
+    },
+    {
+      "i": "add-horizonos",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "SolsticeOS is available",
+      "b": "Private Windows desktop shell and launcher",
+      "p": "horizonos"
+    },
+    {
+      "i": "add-pcdatacenterx",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "PC DataCenterX is available",
+      "b": "Turn the drives you already own into a private data centre",
+      "p": "pcdatacenterx"
+    },
+    {
+      "i": "add-moneyhalo",
+      "d": "2026-08-14",
+      "k": "release",
+      "t": "MoneyHalo is available",
+      "b": "Watchlists, signals and market calendars in one calm dashboard",
+      "p": "moneyhalo"
+    },
+    {
+      "i": "name-spatiaxmobile-SpatiaX Ultra Mobile",
+      "d": "2026-08-13",
+      "k": "note",
+      "t": "HSX Spatia Mobile is now SpatiaX Ultra Mobile",
+      "b": "Real-time 3D spatial audio for Android",
+      "p": "spatiaxmobile"
+    },
+    {
+      "i": "name-flipxandroid-FlipX Studio",
+      "d": "2026-08-13",
+      "k": "note",
+      "t": "HSX FlipStudio is now FlipX Studio",
+      "b": "Convert audio, video, and images on Android",
+      "p": "flipxandroid"
+    },
+    {
+      "i": "name-workxsuiteandroid-WorkX Suite",
+      "d": "2026-08-13",
+      "k": "note",
+      "t": "HSX WorkSuite is now WorkX Suite",
+      "b": "PDF, documents and maths in one Android suite",
+      "p": "workxsuiteandroid"
+    },
+    {
+      "i": "name-pctunex-HSX PC Tune",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "PC TuneX is now HSX PC Tune",
+      "b": "One-click cleanup and startup optimisation",
+      "p": "pctunex"
+    },
+    {
+      "i": "name-nimbusdock-HSX NimbusDock",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "NimbusDock is now HSX NimbusDock",
+      "b": "Smart customisable dock for your Windows desktop",
+      "p": "nimbusdock"
+    },
+    {
+      "i": "name-quantumdrop-HSX QuantumDrop",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "QuantumDrop is now HSX QuantumDrop",
+      "b": "Fast local file sharing over Wi-Fi - no cables",
+      "p": "quantumdrop"
+    },
+    {
+      "i": "name-xseasons-HSX Seasons",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "XSeasons is now HSX Seasons",
+      "b": "Dynamic seasonal wallpapers that change with the year",
+      "p": "xseasons"
+    },
+    {
+      "i": "name-pcturboxultra-HSX PC Turbo",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "PC TurboX Ultra is now HSX PC Turbo",
+      "b": "Full PC optimisation with Turbo Boost and Game Mode",
+      "p": "pcturboxultra"
+    },
+    {
+      "i": "name-spatiaxultra-HSX Spatia",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "SpatiaX Ultra is now HSX Spatia",
+      "b": "Real-time 3D spatial audio engine for Windows",
+      "p": "spatiaxultra"
+    },
+    {
+      "i": "name-flipxstudio-HSX FlipStudio",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "FlipX Studio is now HSX FlipStudio",
+      "b": "Convert audio, video, images, and PDFs locally",
+      "p": "flipxstudio"
+    },
+    {
+      "i": "name-vaudioelite-HSX VAudio",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "VAudio Elite is now HSX VAudio",
+      "b": "Media player with spatial audio and visualizers",
+      "p": "vaudioelite"
+    },
+    {
+      "i": "name-hypersonusultra-HSX Hypersonus",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "Hypersonus Ultra is now HSX Hypersonus",
+      "b": "Cinematic surround, Hyper 3D, and 10-band EQ for every app",
+      "p": "hypersonusultra"
+    },
+    {
+      "i": "name-mediaxultra-HSX MediaX",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "MediaX Ultra is now HSX MediaX",
+      "b": "Streaming hub + media player with cinematic grade & DSP engines",
+      "p": "mediaxultra"
+    },
+    {
+      "i": "name-workxsuite-HSX WorkSuite",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "WorkX Suite is now HSX WorkSuite",
+      "b": "PDF, Word, and spreadsheets - all fully local",
+      "p": "workxsuite"
+    },
+    {
+      "i": "name-webxstudio-HSX WebStudio",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "WebX Studio is now HSX WebStudio",
+      "b": "Visual drag-and-drop website builder for Windows",
+      "p": "webxstudio"
+    },
+    {
+      "i": "name-forgexpro-HSX ForgeStudio",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "ForgeX Pro is now HSX ForgeStudio",
+      "b": "Build elite AI prompts with guided structure",
+      "p": "forgexpro"
+    },
+    {
+      "i": "name-horizonos-HSX HorizonOS",
+      "d": "2026-08-12",
+      "k": "note",
+      "t": "HorizonOS is now HSX HorizonOS",
+      "b": "Private Windows desktop shell and launcher",
+      "p": "horizonos"
+    }
+  ]
+}

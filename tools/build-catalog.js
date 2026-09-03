@@ -236,6 +236,106 @@ function build(app, index, platform, siteCategory, marks, heroes, pages) {
     };
 }
 
+/* ── feed ───────────────────────────────────────────────────────────────
+   Every entry is a change this run can prove: an app that appeared, one that
+   went live, or a build recorded in the release feed. The previous state comes
+   from the copy already published, so nothing has to be tracked by hand.
+   ──────────────────────────────────────────────────────────────────────── */
+
+const KEEP_EVENTS = 40;
+
+function fetchJson(url) {
+    try {
+        const out = execFileSync(process.execPath, ['-e', `
+            fetch(${JSON.stringify(url)})
+                .then(r => r.ok ? r.text() : '')
+                .then(t => process.stdout.write(t))
+                .catch(() => process.stdout.write(''));
+        `], { encoding: 'utf8', timeout: 20000 });
+        return out ? JSON.parse(out) : null;
+    } catch {
+        return null;
+    }
+}
+
+function today() {
+    return new Date().toISOString().slice(0, 10);
+}
+
+function seeded() {
+    try {
+        const file = path.join(SITE, 'app-history.json');
+        if (!fs.existsSync(file)) return [];
+        const parsed = JSON.parse(fs.readFileSync(file, 'utf8'));
+        return Array.isArray(parsed.events) ? parsed.events : [];
+    } catch {
+        return [];
+    }
+}
+
+function events(products, releases) {
+    const previous = fetchJson('https://hasnainstudiox.com/hub-catalog.json');
+    const live = Array.isArray(previous && previous.ns) ? previous.ns : [];
+    const history = [...live, ...seeded().filter(e => !live.some(k => k.i === e.i))];
+    const seen = new Set(history.map(e => e.i));
+    const fresh = [];
+
+    const add = (key, kind, title, body, product, suite) => {
+        if (seen.has(key)) return;
+        seen.add(key);
+        fresh.push({ i: key, d: today(), k: kind, t: clean(title), b: clean(body), p: product, s: suite });
+    };
+
+    if (previous && Array.isArray(previous.ps)) {
+        const before = new Map(previous.ps.map(p => [p.i, p]));
+
+        for (const product of products) {
+            const was = before.get(product.i);
+
+            if (!was) {
+                add(`add-${product.i}`, product.st === 'live' ? 'release' : 'soon',
+                    product.st === 'live' ? `${product.n} is available` : `${product.n} is on the way`,
+                    product.t, product.i, product.s);
+                continue;
+            }
+
+            if (was.st !== 'live' && product.st === 'live') {
+                add(`live-${product.i}`, 'release', `${product.n} is live`, product.t, product.i, product.s);
+            }
+
+            if (was.n !== product.n) {
+                add(`name-${product.i}-${product.n}`, 'note', `${was.n} is now ${product.n}`,
+                    product.t, product.i, product.s);
+            }
+        }
+
+        for (const was of previous.ps) {
+            if (!products.some(p => p.i === was.i)) {
+                add(`gone-${was.i}`, 'note', `${was.n} has been retired`,
+                    'It is no longer part of the library.', null, was.s);
+            }
+        }
+    }
+
+    for (const product of products) {
+        const record = releases[product.i];
+        if (!record || !record.version) continue;
+
+        const note = (record.notes || [])[0];
+        add(`build-${product.i}-${record.version}`, 'update',
+            `${product.n} ${record.version}`,
+            note && note.t ? note.t : `Build ${record.version} is published.`,
+            product.i, product.s);
+    }
+
+    const suiteOf = new Map(products.map(p => [p.i, p.s]));
+
+    return [...fresh, ...history]
+        .map(event => event.s || !event.p ? event : { ...event, s: suiteOf.get(event.p) || null })
+        .sort((a, b) => String(b.d).localeCompare(String(a.d)))
+        .slice(0, KEEP_EVENTS);
+}
+
 const catmap = readMap('Windows-apps.html', 'CATMAP');
 const winMarks = readMarks('Windows-apps.html');
 const andMarks = readMarks('android-apps.html');
@@ -281,6 +381,7 @@ const catalogue = {
     })).filter(bundle => bundle.i && bundle.ks.length),
     cs: SUITES,
     ps: products,
+    ns: events(products, releases),
 };
 
 const payload = JSON.stringify(catalogue);
