@@ -1451,15 +1451,7 @@
 
             <div class="app-count" id="app-count"></div>
 
-            <!-- Ad: banner above the app grid — premium, always-visible placement -->
-            <div class="ad-slot ad-slot--banner" aria-label="Advertisement">
-                <span class="ad-slot-label">Advertisement</span>
-                <span class="ad-slot-placeholder">Ad space reserved — activates once AdSense review completes</span>
-                <!-- Replace this comment with your unit once approved:
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1992140091770378" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                -->
-            </div>
+            <!--HSX:AD-SLOT reserved placement; insert the unit here once AdSense approves-->
 
             <!--CATSTRIP_START-->
             <nav class="cat-strip" aria-label="Browse applications by category">
@@ -3541,13 +3533,8 @@ features: [
             }
 
             var shownSecs = 0;
-            var AD_INFEED = '<div class="ad-slot ad-slot--infeed" aria-label="Advertisement">'
-                          +   '<span class="ad-slot-label">Advertisement</span>'
-                          +   '<span class="ad-slot-placeholder">Ad space reserved — activates once AdSense review completes</span>'
-                          +   '<!-- Replace with your unit once approved:'
-                          +   '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1992140091770378" data-ad-slot="XXXXXXXXXX" data-ad-format="fluid" data-ad-layout-key="-XXX+X-XX-X" data-full-width-responsive="true"></ins>'
-                          +   '<script>(adsbygoogle = window.adsbygoogle || []).push({});</scr' + 'ipt> -->'
-                          + '</div>';
+            var AD_INFEED = '            <!--HSX:AD-SLOT reserved placement; insert the unit here once AdSense approves-->
+';
             host.innerHTML = CATS.map(function (c, ci) {
                 var items = visible.filter(function (a) { return a.cat === c.k; });
                 if (!items.length) return '';

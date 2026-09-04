@@ -1390,6 +1390,105 @@ if (navMsg) sitemapMsg += '\n' + navMsg;
 if (proseMsg) sitemapMsg += '\n' + proseMsg;
 if (heroesMsg) sitemapMsg += '\n' + heroesMsg;
 
+/* ── AdSense placement guard ──────────────────────────────────────────────
+   Google does not allow ads on screens without publisher content: error
+   pages, pages that immediately redirect, and near-empty utility pages are
+   named cases, and ads on pure legal boilerplate is the placement pattern
+   reviewers associate with thin sites.
+
+   The generated app and category pages inherit their HTML shell from
+   privacy/HSXStudioFlowPrivacy.html, so the ad snippet used to spread from
+   that one policy to everything the generators touched. Rather than police
+   that by hand, this step decides per page and rewrites either way, so a
+   rebuild can neither drop the snippet from a real content page nor
+   reintroduce it onto a policy, a stub or an error page. */
+const AD_CLIENT = 'ca-pub-1992140091770378';
+const AD_TAG = '    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='
+  + AD_CLIENT + '" crossorigin="anonymous"></script>\n';
+const AD_RE = /[ \t]*<script[^>]*googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^>]*><\/script>[ \t]*\r?\n?/g;
+/* Pages that are legal or navigational in purpose regardless of length. */
+const AD_DENY = new Set(['privacy-policies.html']);
+const AD_MIN_WORDS = 300;
+
+/* Placeholder slots that render a visible "Ad space reserved" box. Empty
+   labelled ad frames on a site under review read as a site built for ads
+   rather than for readers, so the box is removed and the intended placement
+   is kept as a source marker for when real units go in. */
+const AD_SLOT_RE = /[ \t]*(?:<!--\s*Ad:[^]*?-->[ \t]*\r?\n)?[ \t]*<div class="ad-slot[^"]*"[^>]*>[\s\S]*?<\/div>[ \t]*\r?\n?/g;
+const AD_SLOT_MARK = '            <!--HSX:AD-SLOT reserved placement; insert the unit here once AdSense approves-->\n';
+
+function syncAdPlacement() {
+  let added = 0, removed = 0, kept = 0, refused = 0, slots = 0;
+
+  const bodyWords = s => {
+    let t = s.replace(/<script[\s\S]*?<\/script>/gi, ' ')
+             .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+             .replace(/<!--[\s\S]*?-->/g, ' ')
+             .replace(/<[^>]+>/g, ' ');
+    return t.split(/\s+/).filter(Boolean).length;
+  };
+
+  const eligible = (rel, s) => {
+    if (AD_DENY.has(rel)) return false;
+    /* redirect stubs: the ad would load on a page that replaces itself */
+    if (/HSX:(PRIVACY|RENAME)-REDIRECT/.test(s)) return false;
+    /* every privacy policy, at either path */
+    if (rel.startsWith('privacy/') || /Privacy[^/]*\.html$/.test(rel)) return false;
+    /* error pages, previews and anything deliberately kept out of the index */
+    if (/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(s)) return false;
+    return bodyWords(s) >= AD_MIN_WORDS;
+  };
+
+  const visit = d => {
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src'].includes(ent.name)) continue;
+      const p = path.join(d, ent.name);
+      if (ent.isDirectory()) { visit(p); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+
+      const rel = path.relative(ROOT, p).split(path.sep).join('/');
+      let s = fs.readFileSync(p, 'utf8');
+      let dirty = false;
+
+      if (AD_SLOT_RE.test(s)) {
+        AD_SLOT_RE.lastIndex = 0;
+        s = s.replace(AD_SLOT_RE, AD_SLOT_MARK);
+        dirty = true; slots++;
+      }
+      AD_SLOT_RE.lastIndex = 0;
+
+      const has = AD_RE.test(s); AD_RE.lastIndex = 0;
+      const want = eligible(rel, s);
+
+      if (want === has) {
+        if (dirty) fs.writeFileSync(p, s, 'utf8');
+        if (want) kept++; else refused++;
+        continue;
+      }
+
+      if (want) {
+        if (!s.includes('</head>')) { refused++; continue; }
+        s = s.replace('</head>', AD_TAG + '</head>');
+        added++;
+      } else {
+        s = s.replace(AD_RE, '');
+        removed++;
+      }
+      fs.writeFileSync(p, s, 'utf8');
+    }
+  };
+  visit(ROOT);
+
+  const bits = [`${kept + added} page${kept + added === 1 ? '' : 's'} serving`];
+  if (added) bits.push(`${added} added`);
+  if (removed) bits.push(`${removed} stripped`);
+  if (slots) bits.push(`${slots} placeholder slot${slots === 1 ? '' : 's'} cleared`);
+  bits.push(`${refused} withheld`);
+  return '  adsense placement     ' + bits.join(', ');
+}
+const adMsg = syncAdPlacement();
+if (adMsg) sitemapMsg += '\n' + adMsg;
+
 /* Runs last on purpose: several steps above rewrite whole pages (the privacy
    stubs and the generated app pages among them), so versioning earlier would
    be undone by them. */
