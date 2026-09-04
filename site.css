@@ -2560,3 +2560,21 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 @media (prefers-reduced-motion:reduce){
     .hub-burst::before{animation:none;}
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HSX:GUIDE-PAGE — standalone articles under guides/
+
+   .art-body was written for the prompt guide, which lives inside a narrow
+   panel on the AI Studio page and so never needed a measure of its own. A
+   guide is the whole page, and at desktop width that same rule ran to about
+   130 characters a line. These rules only constrain the reading column; the
+   tables and the card sections below the article keep the full width.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.guide-article { max-width: 44rem; margin-inline: auto; }
+.guide-article .art-table-wrap { max-width: none; }
+@media (min-width: 1100px) {
+    /* let a wide table use the space the prose gives up, without letting it
+       escape the container on smaller screens */
+    .guide-article .art-table-wrap { margin-inline: -5rem; }
+}

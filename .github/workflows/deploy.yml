@@ -65,12 +65,13 @@ jobs:
 
       # Build inputs are not part of the published site. Left in place they are
       # served as real URLs - articles-src/prompt-guide.html in particular is a
-      # raw fragment whose text is duplicated inside the AI Studio page.
+      # raw fragment whose text is duplicated inside the AI Studio page, and
+      # every guides-src fragment is duplicated inside its generated page.
       - name: Strip build sources from the published site
         run: |
-          rm -rf articles-src
-          rm -f build.js gen-app-pages.js gen-category-pages.js hsx-taxonomy.js \
-                update-gallery.js optimise-images.py make-app-art.py \
+          rm -rf articles-src guides-src
+          rm -f build.js gen-app-pages.js gen-category-pages.js gen-guide-pages.js \
+                hsx-taxonomy.js update-gallery.js optimise-images.py make-app-art.py \
                 make-icons.py README.md
 
       - name: Upload artifact

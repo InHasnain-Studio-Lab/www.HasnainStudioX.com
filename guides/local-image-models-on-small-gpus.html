@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <title>Running local image models on a 4 GB or 6 GB GPU | Hasnain Studio X</title>
+        <meta name="description" content="Why diffusion models exhaust VRAM on 4 GB and 6 GB cards, what each memory-saving setting really does, and a working recipe for each card size."/>
+        <link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" sizes="any"/>
+        <link rel="canonical" href="https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Running local image models on a 4 GB or 6 GB GPU | Hasnain Studio X"/>
+        <meta property="og:description" content="Why diffusion models exhaust VRAM on 4 GB and 6 GB cards, what each memory-saving setting really does, and a working recipe for each card size."/>
+        <meta property="og:url" content="https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html"/>
+        <meta property="og:site_name" content="Hasnain Studio X"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="../site.4a42d12730.css"/>
+    <!-- HSX:SEO -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large"/>
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large"/>
+    <link rel="alternate" hreflang="en-GB" href="https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html"/>
+    <link rel="alternate" hreflang="x-default" href="https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html"/>
+    <meta property="og:locale" content="en_GB"/>
+    <meta property="og:image" content="https://hasnainstudiox.com/images/og-home.png"/>
+    <meta property="og:image:secure_url" content="https://hasnainstudiox.com/images/og-home.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Running local image models on a 4 GB or 6 GB GPU | Hasnain Studio X"/>
+    <meta name="twitter:site" content="@HasnainStudioX"/>
+    <meta name="twitter:creator" content="@HasnainStudioX"/>
+    <meta name="twitter:title" content="Running local image models on a 4 GB or 6 GB GPU | Hasnain Studio X"/>
+    <meta name="twitter:description" content="Why diffusion models exhaust VRAM on 4 GB and 6 GB cards, what each memory-saving setting really does, and a working recipe for each card size."/>
+    <meta name="twitter:image" content="https://hasnainstudiox.com/images/og-home.png"/>
+    <meta name="twitter:image:alt" content="Running local image models on a 4 GB or 6 GB GPU | Hasnain Studio X"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"/>
+    <link rel="manifest" href="../site.webmanifest"/>
+    <!-- /HSX:SEO -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hasnainstudiox.com/#organization",
+      "name": "Hasnain Studio X",
+      "url": "https://hasnainstudiox.com/",
+      "alternateName": [
+        "InHasnain",
+        "HSX",
+        "Hasnain StudioX",
+        "HasnainStudioX",
+        "Hasnain Studio"
+      ],
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hasnainstudiox.com/images/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "founder": {
+        "@type": "Person",
+        "@id": "https://hasnainstudiox.com/#founder",
+        "name": "Hasnain Butt Akhtar"
+      },
+      "sameAs": [
+        "https://x.com/HasnainStudioX",
+        "https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X",
+        "https://play.google.com/store/apps/developer?id=Hasnain+Studio+X"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hasnainstudiox.com/#website",
+      "url": "https://hasnainstudiox.com/",
+      "name": "Hasnain Studio X",
+      "publisher": {
+        "@id": "https://hasnainstudiox.com/#organization"
+      },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html#article",
+      "headline": "Running local image models on a 4 GB or 6 GB GPU",
+      "description": "Why diffusion models exhaust VRAM on 4 GB and 6 GB cards, what each memory-saving setting really does, and a working recipe for each card size.",
+      "inLanguage": "en-GB",
+      "url": "https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html",
+      "datePublished": "2026-09-04",
+      "dateModified": "2026-09-04T23:52:00+00:00",
+      "wordCount": 1157,
+      "author": {
+        "@type": "Person",
+        "@id": "https://hasnainstudiox.com/#founder",
+        "name": "Hasnain Butt Akhtar",
+        "jobTitle": "Founder and developer",
+        "worksFor": {
+          "@id": "https://hasnainstudiox.com/#organization"
+        },
+        "url": "https://hasnainstudiox.com/about.html"
+      },
+      "publisher": {
+        "@id": "https://hasnainstudiox.com/#organization"
+      },
+      "isPartOf": {
+        "@id": "https://hasnainstudiox.com/#website"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html#webpage"
+      },
+      "articleSection": "Local AI"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html#webpage",
+      "url": "https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html",
+      "name": "Running local image models on a 4 GB or 6 GB GPU",
+      "description": "Why diffusion models exhaust VRAM on 4 GB and 6 GB cards, what each memory-saving setting really does, and a working recipe for each card size.",
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@id": "https://hasnainstudiox.com/#website"
+      },
+      "publisher": {
+        "@id": "https://hasnainstudiox.com/#organization"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://hasnainstudiox.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Guides",
+            "item": "https://hasnainstudiox.com/guides/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Running local image models on a 4 GB or 6 GB GPU",
+            "item": "https://hasnainstudiox.com/guides/local-image-models-on-small-gpus.html"
+          }
+        ]
+      }
+    }
+  ]
+}
+    </script>
+    <meta name="keywords" content="Running local image models on a 4 GB or 6 GB GPU, 4GB VRAM image generation, 6GB VRAM Stable Diffusion, out of memory diffusion model, low VRAM AI image generation, SDXL on 6GB, Hasnain Studio X, HSX guides"/>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1992140091770378" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="page-transition" id="pg-transition"></div>
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <header class="top-bar" role="banner" aria-label="Top navigation">
+        <div class="brand">
+            <div class="logo" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/><path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+            <div class="title">
+                <div class="name">Hasnain</div>
+                <div class="sub">Studio X</div>
+            </div>
+        </div>
+        <nav aria-label="Primary" role="navigation">
+            <a href="../">Home</a>
+            <a href="../Windows-apps.html">Windows</a>
+            <a href="../android-apps.html">Android</a>
+            <a href="../HSXAIstudio.html">AI Studio</a>
+            <a href="../guides/">Guides</a>
+            <a href="../about.html">About</a>
+            <a href="../contact.html">Contact</a>
+        </nav>
+    </header>
+
+                    <main id="main-content" class="container" role="main">
+        <nav class="app-crumb" aria-label="Breadcrumb">
+            <a href="../">Home</a> <span aria-hidden="true">/</span>
+            <a href="./">Guides</a> <span aria-hidden="true">/</span>
+            <span aria-current="page">Image models on small GPUs</span>
+        </nav>
+
+        <article class="section guide-article" aria-labelledby="guide-title">
+            <header class="hero hero--single app-hero">
+                <div class="hero-eyebrow">Local AI &middot; 5 min read</div>
+                <h1 id="guide-title">Running local image models on a 4 GB or 6 GB GPU</h1>
+                <p class="app-tagline">Why your card runs out of memory, what actually fixes it, and the settings that matter in the order they matter.</p>
+                <p class="app-note">By <a href="../about.html">Hasnain Butt Akhtar</a>, founder and developer
+                &middot; <time datetime="2026-09-04">4 September 2026</time></p>
+            </header>
+
+            <div class="art-body">
+                <p class="art-lead">Almost every "CUDA out of memory" on a small card comes down to three numbers most tools
+                never show you: how big the model is, how many pixels you asked for, and whether anything is being kept in
+                memory that does not need to be. Fix them in that order and a 4 GB card is a perfectly serviceable image
+                generator.</p>
+
+                <h2>Where the memory actually goes</h2>
+
+                <p>A diffusion model does not load as one lump. Three things compete for the same VRAM, and only the first
+                is the number people quote.</p>
+
+                <p><strong>The weights.</strong> These are fixed and predictable. An SD 1.5-class UNet is about 860 million
+                parameters, which at half precision is roughly 1.7 GB. An SDXL-class UNet is 2.6 billion parameters, or about
+                5.2 GB at the same precision — before the text encoders, which on SDXL are another 1.4 GB or so because there
+                are two of them. That arithmetic alone tells you why SDXL is painful on a 6 GB card and impossible on a 4 GB
+                one, and no clever setting changes it.</p>
+
+                <p><strong>The activations.</strong> This is the part that surprises people, because it scales with
+                resolution far worse than you would expect. The model works on a latent image one eighth the size of the
+                output, and the attention layers compare every latent position with every other one. At 512&times;512 that is
+                a 64&times;64 latent, or 4,096 positions. At 1024&times;1024 it is 128&times;128, or 16,384 positions — four
+                times the pixels, but sixteen times the attention matrix. Doubling the side of your image does not double
+                the memory. It quadruples the pixel count and, in a naive implementation, multiplies the peak attention
+                allocation by sixteen.</p>
+
+                <p><strong>The decode.</strong> Once denoising finishes, the VAE turns the latent back into pixels, and it does
+                that in one pass at full resolution. On a big image this single step can spike over a gigabyte on its own.
+                If your generation gets to 100% and <em>then</em> crashes, this is what killed it, not the model.</p>
+
+                <h2>What each setting really does</h2>
+
+                <p>Most tools expose the same handful of switches under different names. They are not interchangeable, and
+                they do not cost the same.</p>
+
+                <div class="art-table-wrap">
+                <table class="art-table">
+                  <thead><tr><th>Setting</th><th>What it does</th><th>Costs you</th></tr></thead>
+                  <tbody>
+                    <tr><td>Half precision (fp16 / bf16)</td><td>Stores weights in 16 bits instead of 32, halving the model's footprint</td><td>Nothing visible. Use it always.</td></tr>
+                    <tr><td>Memory-efficient attention</td><td>Computes attention in blocks so the full matrix never exists at once — kills the quadratic spike</td><td>Nothing, and it is often <em>faster</em></td></tr>
+                    <tr><td>Attention slicing</td><td>Older, cruder version of the above: processes attention heads in sequence</td><td>Perhaps 10&ndash;20% speed</td></tr>
+                    <tr><td>VAE tiling</td><td>Decodes the final image in overlapping tiles instead of one pass</td><td>A little speed; very occasionally a faint seam</td></tr>
+                    <tr><td>Model offloading</td><td>Keeps parts of the model in system RAM and moves them to the GPU only when needed</td><td>Real speed &mdash; often 2&ndash;3&times; slower</td></tr>
+                    <tr><td>Sequential offloading</td><td>The aggressive version: one submodule on the GPU at a time</td><td>A lot of speed. Last resort.</td></tr>
+                  </tbody>
+                </table>
+                </div>
+
+                <p>The order matters. Half precision and memory-efficient attention are free, so they should already be on.
+                VAE tiling is nearly free and solves the crash-at-100% problem specifically. Offloading is the only one that
+                genuinely hurts, so it belongs last, and only if the model is simply too large for the card.</p>
+
+                <h2>The setting nobody mentions: resolution</h2>
+
+                <p>Generating far outside a model's training resolution does not merely cost memory, it costs quality. An
+                SD 1.5-class model was trained at 512&times;512. Ask it for 1024&times;1024 directly and you will frequently
+                get duplicated heads, a second torso, or a figure with three arms — the model has no concept of a composition
+                that large, so it tiles what it does know. People often blame the prompt for this. The prompt is fine.</p>
+
+                <p>The fix is the same thing professional pipelines do anyway: generate at the model's native size, then
+                enlarge. A 512&times;512 generation followed by a 2&times; upscale gives you a coherent 1024&times;1024 image
+                using a fraction of the memory, and it will beat a direct 1024 generation from the same model almost every
+                time. On an SDXL-class model, the native size is 1024, and the same logic applies from there.</p>
+
+                <h2>A working recipe, by card</h2>
+
+                <ol class="art-steps">
+                  <li><strong>4 GB.</strong> SD 1.5-class model, half precision, memory-efficient attention on, VAE tiling on,
+                  batch size 1, generate at 512&times;512 (or 512&times;768 for portraits), then upscale 2&times;. This runs
+                  comfortably and does not need offloading. Do not attempt SDXL here; it is not a settings problem.</li>
+                  <li><strong>6 GB.</strong> Everything above, and SDXL becomes possible with model offloading enabled — expect
+                  it to be considerably slower. Try it, time it, and be honest about whether the result justifies the wait.
+                  For a lot of work, SD 1.5 at native resolution plus a good upscaler finishes sooner and looks better.</li>
+                  <li><strong>8 GB and up.</strong> SDXL at 1024 without offloading, batch size 1. The advice stops being
+                  interesting here, which is the point at which you can ignore most of this page.</li>
+                </ol>
+
+                <h2>Two Windows-specific traps</h2>
+
+                <p><strong>Your card is not the only thing using it.</strong> A browser with hardware acceleration on can hold
+                several hundred megabytes to a gigabyte of VRAM, and on a 4 GB card that is the difference between working and
+                not. Close Chrome or Edge before a long run. It is an unglamorous fix that resolves a surprising share of
+                out-of-memory reports.</p>
+
+                <p><strong>Windows will not always crash — it will crawl.</strong> Modern drivers spill past dedicated VRAM
+                into system RAM rather than failing outright, so instead of an error you get a generation that takes eight
+                minutes instead of forty seconds. Open Task Manager, go to Performance, select your GPU, and watch the two
+                figures separately: <em>Dedicated GPU memory</em> and <em>Shared GPU memory</em>. If shared memory is climbing
+                during a run, you are not out of memory in the sense that anything will tell you about — you are quietly
+                running the model over the PCIe bus. Lower the resolution or enable tiling until shared memory stays flat.</p>
+
+                <h2>How to diagnose it in one pass</h2>
+
+                <p>When something fails, the timing tells you which of the three consumers ran out.</p>
+
+                <div class="art-table-wrap">
+                <table class="art-table">
+                  <thead><tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+                  <tbody>
+                    <tr><td>Fails before the first step</td><td>Weights do not fit</td><td>Smaller model, or enable offloading</td></tr>
+                    <tr><td>Fails partway through denoising</td><td>Attention spike at this resolution</td><td>Memory-efficient attention; lower resolution</td></tr>
+                    <tr><td>Reaches 100%, then fails</td><td>VAE decode</td><td>Enable VAE tiling</td></tr>
+                    <tr><td>Completes, but takes minutes</td><td>Spilling into shared memory</td><td>Free VRAM, or reduce resolution until shared stays flat</td></tr>
+                    <tr><td>Completes, but the anatomy is wrong</td><td>Generating above native resolution</td><td>Generate native, then upscale</td></tr>
+                  </tbody>
+                </table>
+                </div>
+
+                <p class="art-note">None of this is specific to any one application. The three consumers — weights,
+                activations, decode — are properties of how diffusion models work, so the same reasoning applies whichever
+                tool you run them in, and the same five symptoms map to the same five fixes. If a tool does not let you
+                control tiling and attention, that is worth knowing before you conclude your card is the problem.</p>
+            </div>
+        </article>
+
+        <section class="section" aria-labelledby="guide-apps-title">
+            <div class="section-header"><h2 id="guide-apps-title">Software mentioned in this guide</h2></div>
+            <div class="cat-siblings">
+                <a class="cat-sib" href="../apps/dreammint-ai.html"><span class="cat-sib-n">HSX DreamMint AI</span><span class="cat-sib-t">Runs on 4 GB, with the memory settings below applied by default</span></a>
+                <a class="cat-sib" href="../apps/hsx-pixunica.html"><span class="cat-sib-n">HSX PixUnica</span><span class="cat-sib-t">Offline generation with face refinement and 2x enlargement</span></a>
+                <a class="cat-sib" href="../apps/hsx-novadiffux.html"><span class="cat-sib-n">HSX NovaDiffux</span><span class="cat-sib-t">Local diffusion with a plain-language prompt front end</span></a>
+            </div>
+            <p class="app-note">Listed because they are relevant to the subject, not because the guide was
+            written to sell them. Everything above works the same whatever software you choose.</p>
+        </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">Hasnain Studio X</div>
+                    <p class="footer-sub">Strategic digital products for modern productivity, combining lightweight apps and practical AI tooling.</p>
+                </div>
+                <div>
+                    <h2 class="footer-heading">Products</h2>
+                    <ul class="footer-links">
+                            <li><a href="../Windows-apps.html">Windows Apps</a></li>
+                            <li><a href="../android-apps.html">Android Apps</a></li>
+                            <li><a href="../HSXAIstudio.html">AI Studio</a></li>
+                        </ul>
+                </div>
+                <div>
+                    <h2 class="footer-heading">Company</h2>
+                    <ul class="footer-links">
+                            <li><a href="../contest-rules.html">Competition Rules</a></li>
+                            <li><a href="../about.html">About Hasnain Butt Akhtar</a></li>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    
+                            <li></li>
+                        <li><a href="../privacy-policies.html">Privacy Policies</a></li>
+                        </ul>
+                </div>
+                <div>
+                    <h2 class="footer-heading">Contact</h2>
+                    <ul class="footer-links">
+                        <li><a href="mailto:Hasnain@outlook.at">Hasnain@outlook.at</a></li>
+                        <li>England, United Kingdom</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Hasnain Studio X. All rights reserved. All product names and related marks are trademarks of Hasnain Studio X&reg;.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../fluid.aa87c86663.js" defer></script>
+    <script src="../site.0d71ff57bb.js" defer></script>
+    <script src="../effects.6893330383.js" defer></script>
+</body>
+</html>

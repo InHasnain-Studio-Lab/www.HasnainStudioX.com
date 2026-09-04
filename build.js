@@ -167,6 +167,7 @@ let sitemapMsg = '';
     /* category hub pages first: the app pages link up into them */
     require('./gen-category-pages.js');
     require('./gen-app-pages.js');
+    require('./gen-guide-pages.js');
 
     (function(){
     /* HSX pre-render: emits the app grid + a full text app directory as static HTML
@@ -393,9 +394,20 @@ let sitemapMsg = '';
         .sort();
     } catch (e) { /* no apps/ folder yet */ }
 
+    /* the guides: the only pages here that are written rather than generated */
+    let guidePages = [];
+    try {
+      guidePages = fs.readdirSync(path.join(ROOT, 'guides'))
+        .filter(f => f.endsWith('.html'))
+        .map(f => 'guides/' + f)
+        .filter(f => !/name="robots"[^>]*noindex/i.test(read(f)))
+        .sort((a, b) => (a.endsWith('/index.html') ? 0 : 1) - (b.endsWith('/index.html') ? 0 : 1)
+                     || a.localeCompare(b));
+    } catch (e) { /* no guides/ folder yet */ }
+
     const HUBSLUGS_N = require('./hsx-taxonomy.js').HUBS.length;
     let nAppImgs = 0;
-    const pages = rootPages.concat(privPages, appPages);
+    const pages = rootPages.concat(privPages, appPages, guidePages);
 
     const esc = s => String(s == null ? '' : s)
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -429,11 +441,16 @@ let sitemapMsg = '';
       const HUBSLUGS = new Set(require('./hsx-taxonomy.js').HUBS.map(h => 'apps/' + h.slug + '.html'));
       const isHub = HUBSLUGS.has(f);
       const isApp = !isHub && f.startsWith('apps/');
-      /* the homepage answers at the bare root - that is what every inbound
-         link points at, so that is the URL that must be canonical */
-      const loc = (f === 'index.html') ? BASE : BASE + f;
+      /* a guide is the page someone with no knowledge of the studio lands on,
+         so it outranks the product pages it sits beside */
+      const isGuide = f.startsWith('guides/');
+      const isGuideIx = f === 'guides/index.html';
+      /* a directory index answers at its directory URL - that is what every
+         inbound link points at, and what Pages serves, so that is the URL
+         that must be canonical. The homepage is the same rule at the root. */
+      const loc = f.endsWith('index.html') ? BASE + f.slice(0, -'index.html'.length) : BASE + f;
       return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
-           + `    <changefreq>${FREQ[f] || (isHub ? 'weekly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isHub ? '0.85' : isApp ? '0.7' : '0.3')}</priority>\n`
+           + `    <changefreq>${FREQ[f] || (isGuideIx ? 'weekly' : isGuide ? 'monthly' : isHub ? 'weekly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isGuideIx ? '0.9' : isGuide ? '0.8' : isHub ? '0.85' : isApp ? '0.7' : '0.3')}</priority>\n`
            + extra + `  </url>`;
     };
 
@@ -446,6 +463,7 @@ let sitemapMsg = '';
     const WINSET = new Set(require('./gen-app-pages.js').windowsSlugs || []);
     const HUBS_S = new Set(require('./hsx-taxonomy.js').HUBS.map(h => 'apps/' + h.slug + '.html'));
     const section = f => {
+      if (f.startsWith('guides/')) return 'guides';
       if (f.startsWith('privacy/')) return 'policies';
       if (f.startsWith('apps/')) {
         if (HUBS_S.has(f)) return 'main';
@@ -453,7 +471,7 @@ let sitemapMsg = '';
       }
       return 'main';
     };
-    const groups = { main: [], windows: [], android: [], policies: [] };
+    const groups = { main: [], guides: [], windows: [], android: [], policies: [] };
     for (const f of pages) groups[section(f)].push(f);
 
     const wrap = body =>
@@ -462,7 +480,8 @@ let sitemapMsg = '';
       + '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n'
       + body + '\n\n</urlset>\n';
 
-    const FILES = { main: 'sitemap-main.xml', windows: 'sitemap-windows-apps.xml',
+    const FILES = { main: 'sitemap-main.xml', guides: 'sitemap-guides.xml',
+                    windows: 'sitemap-windows-apps.xml',
                     android: 'sitemap-android-apps.xml', policies: 'sitemap-policies.xml' };
     const written = [];
     for (const [key, file] of Object.entries(FILES)) {
@@ -622,7 +641,7 @@ function syncSocialMeta() {
   const escq = v => String(v).replace(/"/g, '&quot;');
   const norm = u => String(u || '').replace(/index\.html$/, '');
   const files = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
-    .concat(['privacy', 'apps'].flatMap(d => {
+    .concat(['privacy', 'apps', 'guides'].flatMap(d => {
       try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
       catch (e) { return []; }
     }));
@@ -685,11 +704,12 @@ function syncNav() {
     ['Windows',   'Windows-apps.html'],
     ['Android',   'android-apps.html'],
     ['AI Studio', 'HSXAIstudio.html'],
+    ['Guides',    'guides/'],
     ['About',     'about.html'],
     ['Contact',   'contact.html']
   ];
   const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
-    .concat(['apps', 'privacy'].flatMap(d => {
+    .concat(['apps', 'privacy', 'guides'].flatMap(d => {
       try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
       catch (e) { return []; }
     }));
@@ -702,8 +722,9 @@ function syncNav() {
     const [whole, indent, attrs] = m;
     const deep = f.includes('/');
     const up = deep ? '../' : '';
-    /* the active state is only claimed on the six pages themselves; a page
-       under apps/ or privacy/ says where it is with its breadcrumb instead */
+    /* the active state is only claimed on the top-level pages themselves; a
+       page under apps/, privacy/ or guides/ says where it is with its
+       breadcrumb instead */
     const links = ITEMS.map(([label, href]) => {
       const to = href === 'index.html' ? (deep ? '../' : './') : up + href;
       const active = !deep && f === href ? ' class="active"' : '';
@@ -793,7 +814,7 @@ function syncAssetVersions() {
     map[a] = hashed;
   }
   const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
-    .concat(['apps', 'privacy'].flatMap(d => {
+    .concat(['apps', 'privacy', 'guides'].flatMap(d => {
       try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
       catch (e) { return []; }
     }));
