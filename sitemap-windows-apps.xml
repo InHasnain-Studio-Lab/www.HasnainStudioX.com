@@ -234,6 +234,17 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/hsx-handsfree-pc.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/hsx-handsfree-pc-og.jpg</image:loc>
+      <image:title>Offline Voice Control for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/hsx-infinitegen-studio.html</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -560,17 +571,6 @@
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/pc-screen-recorder-pro-og.jpg</image:loc>
       <image:title>Screen Recorder with Step Guides</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/pc-sensex.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-sensex-og.jpg</image:loc>
-      <image:title>Offline Voice Control for Windows, On-Device</image:title>
     </image:image>
   </url>
 

@@ -185,6 +185,13 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/privacy/HSXHandsFreePCPrivacy.html</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/privacy/HSXInfiniteGenStudioPrivacy.html</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>yearly</changefreq>
@@ -396,13 +403,6 @@
 
   <url>
     <loc>https://hasnainstudiox.com/privacy/PCScreenRecorderProPrivacy.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/privacy/PCSenseXPrivacy.html</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
