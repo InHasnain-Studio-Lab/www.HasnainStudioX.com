@@ -1,46 +1,41 @@
-"""Regenerate the app icons straight from favicon.svg so every surface
-   (browser tab, home screen, PWA, Windows tile) shows the same mark.
+"""Regenerate the app icons from the studio mark.
 
-   favicon.svg geometry, 32x32 viewBox:
-     rounded rect  rx=7            fill  #0a0c11
-     hexagon       stroke 1.2      #cdb892 at 55% opacity
-     H bars        stroke 2.2      #eef1f6, round caps
+   images/brand-icon-master.png is the same artwork the HSX Apps Hub ships,
+   so the browser tab, the home screen, the PWA and the Windows tile all
+   show the icon people already associate with the apps.
+
+   The master is trimmed to its artwork before scaling, otherwise the
+   transparent margin around it makes every generated icon look small.
 """
 import sys, os
-from PIL import Image, ImageDraw
+from PIL import Image
 
-BG   = (10, 12, 17)          # #0a0c11
-GOLD = (205, 184, 146)       # #cdb892
-INK  = (238, 241, 246)       # #eef1f6
+MASTER = 'brand-icon-master.png'
+FLAT_BG = (12, 10, 20)          # iOS ignores transparency, so flatten on this
 
-def icon(size, ss=8, rounded=True):
-    S = size * ss
-    k = S / 32.0                                    # viewBox scale
-    im = Image.new('RGBA', (S, S), (0, 0, 0, 0))
-    d  = ImageDraw.Draw(im, 'RGBA')
+def load(root):
+    im = Image.open(os.path.join(root, MASTER)).convert('RGBA')
+    bb = im.getbbox()
+    return im.crop(bb) if bb else im
 
-    r = 7 * k if rounded else 0
-    d.rounded_rectangle([0, 0, S - 1, S - 1], radius=r, fill=BG + (255,))
-
-    hexa = [(16*k,3*k), (27*k,9.5*k), (27*k,22.5*k), (16*k,29*k), (5*k,22.5*k), (5*k,9.5*k)]
-    # repeat the first two points so the closing join renders seamlessly
-    d.line(hexa + [hexa[0], hexa[1]], fill=GOLD + (140,),
-           width=max(1, round(1.2*k)), joint='curve')
-
-    w = max(2, round(2.2 * k))
-    for a, b in [((11*k,11*k),(11*k,21*k)), ((21*k,11*k),(21*k,21*k)), ((11*k,16*k),(21*k,16*k))]:
-        d.line([a, b], fill=INK + (255,), width=w)
-        for pt in (a, b):                            # stroke-linecap="round"
-            d.ellipse([pt[0]-w/2, pt[1]-w/2, pt[0]+w/2, pt[1]+w/2], fill=INK + (255,))
-
-    return im.resize((size, size), Image.LANCZOS)
+def square(im, size, pad=0.0, bg=None):
+    """Fit the mark into a square canvas, optionally padded and flattened."""
+    inner = round(size * (1 - 2 * pad))
+    w, h = im.size
+    scale = inner / max(w, h)
+    art = im.resize((max(1, round(w * scale)), max(1, round(h * scale))), Image.LANCZOS)
+    canvas = Image.new('RGBA', (size, size), (bg + (255,)) if bg else (0, 0, 0, 0))
+    canvas.alpha_composite(art, ((size - art.width) // 2, (size - art.height) // 2))
+    return canvas
 
 for ROOT in sys.argv[1:]:
     P = lambda f: os.path.join(ROOT, f)
-    icon(180).convert('RGB').save(P('apple-touch-icon.png'), 'PNG', optimize=True)
-    icon(192).save(P('images/icon-192.png'), 'PNG', optimize=True)
-    icon(512).save(P('images/icon-512.png'), 'PNG', optimize=True)
-    # .ico: square, no rounding - Windows and browser tabs mask it themselves
-    icon(64, rounded=False).save(P('favicon.ico'), format='ICO',
-                                 sizes=[(16,16),(32,32),(48,48),(64,64)])
-    print('icons rebuilt from favicon.svg in', os.path.basename(ROOT))
+    mark = load(ROOT)
+    # Apple adds its own rounding and puts the icon on an opaque tile
+    square(mark, 180, pad=0.08, bg=FLAT_BG).convert('RGB').save(
+        P('apple-touch-icon.png'), 'PNG', optimize=True)
+    square(mark, 192).save(P('images/icon-192.png'), 'PNG', optimize=True)
+    square(mark, 512).save(P('images/icon-512.png'), 'PNG', optimize=True)
+    square(mark, 64).save(P('favicon.ico'), format='ICO',
+                          sizes=[(16, 16), (32, 32), (48, 48), (64, 64)])
+    print('icons rebuilt from the studio mark in', os.path.basename(ROOT))
