@@ -1463,12 +1463,21 @@ function syncAdPlacement() {
       let s = fs.readFileSync(p, 'utf8');
       let dirty = false;
 
-      if (AD_SLOT_RE.test(s)) {
+      /* Only touch markup. A page can also hold this block inside a script,
+         as a string it injects later, and rewriting that breaks the string
+         and takes the whole page's JavaScript down with it. */
+      const scripts = [];
+      let body = s.replace(/<script[\s\S]*?<\/script>/gi, m => {
+        scripts.push(m); return '\u0000SCRIPT' + (scripts.length - 1) + '\u0000';
+      });
+
+      if (AD_SLOT_RE.test(body)) {
         AD_SLOT_RE.lastIndex = 0;
-        s = s.replace(AD_SLOT_RE, AD_SLOT_MARK);
+        body = body.replace(AD_SLOT_RE, AD_SLOT_MARK);
         dirty = true; slots++;
       }
       AD_SLOT_RE.lastIndex = 0;
+      s = body.replace(/\u0000SCRIPT(\d+)\u0000/g, (m, i) => scripts[+i]);
 
       const has = AD_RE.test(s); AD_RE.lastIndex = 0;
       const want = eligible(rel, s);
