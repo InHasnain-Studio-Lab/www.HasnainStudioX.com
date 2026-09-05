@@ -48,7 +48,8 @@ manifest, apps, written = {}, 0, 0
 for d in sorted(glob.glob(os.path.join(SRC, '*'))):
     if not os.path.isdir(d): continue
     slug = os.path.basename(d)
-    chosen = pick(sorted(glob.glob(os.path.join(d, '*.jpg'))))
+    chosen = pick(sorted(glob.glob(os.path.join(d, '*.jpg'))
+                       + glob.glob(os.path.join(d, '*.png'))))
     if not chosen: continue
     for i, src in enumerate(chosen, 1):
         im = Image.open(src).convert('RGB')

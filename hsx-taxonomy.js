@@ -199,6 +199,7 @@ module.exports.GPU_VRAM = {
 module.exports.INTENT = {
   dreammintai:    'Offline AI Image and Video Generator',
   nostalgicel:    'Offline Retro Anime Image Generator',
+  morphlora:      'Offline AI Photo Restyler for Windows',
   pixunica:       'Offline 4K AI Image Generator for Windows',
   writedesk:      'Offline AI Writing Assistant for Windows',
   /* system and performance */
