@@ -1,0 +1,101 @@
+<!--HSX:GUIDE {
+  "title": "Why a video file will not play, and how to fix it",
+  "nav": "When a video will not play",
+  "h1": "Why a video file will not play, and how to fix it",
+  "standfirst": "Almost always the file is fine and your player is missing one piece. Here is how to tell which piece, and the fix that does not cost you quality.",
+  "description": "Containers, codecs and why a video plays on one device but not another, with fixes for no picture, no sound, stutter and colour artefacts.",
+  "section": "Media",
+  "published": "2026-09-05",
+  "keywords": ["video file will not play Windows", "MP4 no sound fix", "HEVC codec Windows", "MKV wont play", "convert video for TV"],
+  "apps": [
+    { "name": "HSX ConvertStudio", "href": "apps/hsx-convertstudio.html", "note": "Converts and repackages video on your own machine" },
+    { "name": "HSX MediaLucent", "href": "apps/hsx-medialucent.html", "note": "Media handling and playback tools" },
+    { "name": "HSX PrimeCut Ultra", "href": "apps/hsx-primecut-ultra.html", "note": "Video editing and export with format control" }
+  ]
+}-->
+
+<p class="art-lead">A video that will not play is rarely a damaged file. Nearly always it is a file your
+player does not know how to read, and the fix takes a minute once you know which part is missing.</p>
+
+<h2>The one idea that explains most of it</h2>
+
+<p>A video file is a box with things inside it, and the box and the contents have separate names.</p>
+
+<p><strong>The box is the container.</strong> MP4, MKV, MOV, AVI and WebM are containers. The container holds
+the video, the audio, the subtitles and the chapter marks, and keeps them lined up with each other. It is the
+part you see in the file name.</p>
+
+<p><strong>The contents are the codecs.</strong> H.264, H.265, AV1 and VP9 are ways of compressing the
+picture. AAC, MP3, AC3 and Opus are ways of compressing the sound. These are what your player actually has to
+understand.</p>
+
+<p>Two files can both be called MP4 and contain completely different things. That is why one MP4 plays fine
+and another does not, and why renaming a file to .mp4 never fixes anything. You have relabelled the box
+without changing what is inside.</p>
+
+<h2>What the symptom tells you</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>What happens</th><th>What it means</th><th>Fix</th></tr></thead>
+  <tbody>
+    <tr><td>Sound plays, screen is black</td><td>The video codec is not supported, the audio one is</td><td>Install the video codec, or use a player that includes it</td></tr>
+    <tr><td>Picture plays, no sound</td><td>The audio codec is not supported</td><td>Same, for audio. AC3 and DTS are the usual ones missing.</td></tr>
+    <tr><td>Nothing plays, error message</td><td>Neither is supported, or the container is unfamiliar</td><td>Use a player with codecs built in</td></tr>
+    <tr><td>Plays but stutters badly</td><td>Decoding in software instead of hardware, usually 4K or H.265</td><td>Update graphics drivers, or convert to H.264</td></tr>
+    <tr><td>Green or pink blocks across the picture</td><td>A hardware decoding fault</td><td>Turn off hardware acceleration in the player</td></tr>
+    <tr><td>Plays on the PC, not on the TV</td><td>The TV supports fewer codecs than your computer</td><td>Convert to H.264 and AAC in an MP4</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>The fixes, cheapest first</h2>
+
+<ol class="art-steps">
+  <li><strong>Try a player that brings its own codecs.</strong> This solves the great majority of cases
+  instantly and changes nothing about your file. Players like VLC include support for nearly everything, so
+  they do not depend on what Windows has installed. If the file plays there, the file was never the problem.</li>
+
+  <li><strong>Add the missing codec to Windows.</strong> If you would rather keep using the built in player,
+  Windows can be extended. H.265, also called HEVC, is the one people most often lack, because it carries
+  licensing costs and is not always included by default. The extension is available from the Microsoft Store
+  and takes a moment to install. After that, files that failed everywhere will open normally.</li>
+
+  <li><strong>Repackage without re-encoding.</strong> This one is worth knowing about because it is nearly
+  instant and loses nothing. If the contents are supported but the container is not, you can move the video
+  and audio into a different box without touching them. Converting an MKV to an MP4 this way takes seconds
+  rather than an hour, and the picture is bit for bit identical. Tools describe it as remuxing, copying
+  streams, or converting without re-encoding.</li>
+
+  <li><strong>Re-encode, as a last resort.</strong> If the codec genuinely is not supported by the device you
+  need it on, the picture has to be rebuilt in a format it understands. This takes real time and costs some
+  quality, because you are compressing an already compressed video. Do it only when the first three options do
+  not apply, and keep the original.</li>
+</ol>
+
+<h2>The combination that plays everywhere</h2>
+
+<p>If you are making a file for someone else, or for a television, a phone, a projector or a car, there is one
+safe answer: an MP4 container, H.264 video and AAC audio.</p>
+
+<p>It is not the most efficient combination available. H.265 and AV1 both produce smaller files at the same
+quality. But H.264 in an MP4 has been supported by essentially every device made in the last fifteen years,
+and it will still be playing when the newer formats have moved on. For anything you are handing to another
+person, that reliability is worth more than the file size.</p>
+
+<p>Keep the efficient formats for your own storage, where you control what plays them.</p>
+
+<h2>When it really is the file</h2>
+
+<p>Occasionally a video genuinely is damaged, usually from an interrupted download or a recording that stopped
+badly. The signs are distinctive: it plays perfectly up to a certain point and then stops, or the length shown
+is wrong, or it works in one player and fails at the same moment in every other.</p>
+
+<p>A partial download is worth simply fetching again. A recording that was cut off mid-write can sometimes be
+repaired, because the picture data is usually intact and only the index describing it is missing. Several
+tools can rebuild that index from a working file recorded by the same device, which is the trick worth knowing
+if a camera or recorder shut down unexpectedly.</p>
+
+<p class="art-note">One habit saves most of this trouble. When a file matters, check that it opens before you
+delete the source, close the recorder, or hand the drive back. Almost every unrecoverable video story starts
+with someone confirming the file exists rather than confirming it plays.</p>

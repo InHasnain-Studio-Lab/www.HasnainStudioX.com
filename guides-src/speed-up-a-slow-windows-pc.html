@@ -1,0 +1,121 @@
+<!--HSX:GUIDE {
+  "title": "Why your Windows PC feels slow, and what actually helps",
+  "nav": "Why your PC feels slow",
+  "h1": "Why your Windows PC feels slow, and what actually helps",
+  "standfirst": "Work out which part is slow before you change anything. The fix is usually one of five things, and several popular remedies do nothing at all.",
+  "description": "How to diagnose a slow Windows PC properly, the five causes that account for most cases, and the common advice that makes no difference.",
+  "section": "Windows",
+  "published": "2026-09-05",
+  "keywords": ["slow Windows PC fix", "speed up Windows 11", "PC takes long time to start", "why is my computer slow", "Windows performance tips"],
+  "apps": [
+    { "name": "PC TuneX", "href": "apps/pc-tunex.html", "note": "Cleanup and startup control, showing what it will change first" },
+    { "name": "PC TurboX Ultra", "href": "apps/pc-turbox-ultra.html", "note": "Performance tuning and resource monitoring" }
+  ]
+}-->
+
+<p class="art-lead">Slow means different things. A machine that takes four minutes to reach the desktop has a
+different problem from one that boots quickly and then stutters in the browser. Working out which kind of slow
+you have takes about two minutes and saves you from trying fixes that were never going to help.</p>
+
+<h2>Start by naming the problem</h2>
+
+<p>Ask yourself which of these matches your machine, because each one points somewhere different.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>What is slow</th><th>Usually means</th></tr></thead>
+  <tbody>
+    <tr><td>Startup takes minutes, then it settles</td><td>Too many programs launching with Windows</td></tr>
+    <tr><td>Everything is slow, all the time</td><td>A mechanical hard drive, or a drive that is nearly full</td></tr>
+    <tr><td>Fine until you open a few things, then it crawls</td><td>Not enough memory</td></tr>
+    <tr><td>Only the browser is slow</td><td>Extensions, tabs, or the browser cache</td></tr>
+    <tr><td>Fast at first, slow after twenty minutes of load</td><td>Heat, and the machine reducing its own speed to cope</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Task Manager will confirm it. Press Ctrl, Shift and Escape together, then look at the Performance tab while
+the machine is being slow. Whichever of CPU, memory or disk is sitting near 100 per cent is your answer.</p>
+
+<h2>The five things that actually help</h2>
+
+<ol class="art-steps">
+  <li><strong>Cut what starts with Windows.</strong> In Task Manager, open the Startup apps tab. It lists
+  every program that launches at boot, with a rating of how much it costs you. Anything marked High impact
+  that you do not need immediately can be disabled. Chat apps, game launchers, updaters and printer utilities
+  are the usual offenders. Disabling here does not uninstall anything, and you can still open the program
+  normally afterwards.</li>
+
+  <li><strong>Give the drive room to breathe.</strong> A solid state drive slows down noticeably when it gets
+  close to full, because it needs spare space to shuffle data around. Aim to keep at least 10 to 15 per cent
+  free. If your system drive is showing red in File Explorer, this alone may be your whole problem.</li>
+
+  <li><strong>Check what kind of drive you have.</strong> In Task Manager, under Performance, your drives are
+  listed with their type. If it says HDD, you have a mechanical disk, and replacing it with an SSD will
+  transform the machine more than any other single change. Nothing you do in software comes close. On an older
+  laptop this is often the difference between replacing the machine and keeping it for another three years.</li>
+
+  <li><strong>See whether you are short of memory.</strong> In Task Manager, under Performance, select Memory
+  and use the machine normally for a while. If it sits above about 80 per cent during ordinary work, Windows
+  is constantly moving things to disk to cope, and everything feels sluggish as a result. More memory is a
+  cheap fix on a desktop and often possible on a laptop.</li>
+
+  <li><strong>Update the graphics and chipset drivers.</strong> Windows Update handles most drivers, but it
+  often supplies an older graphics driver than the manufacturer offers. If display, video or games feel wrong,
+  get the driver directly from AMD, Intel or NVIDIA. This fixes stutter that no amount of cleaning will
+  touch.</li>
+</ol>
+
+<h2>When it is heat, not software</h2>
+
+<p>If your machine is quick from cold and slows down after twenty minutes of real work, particularly if the
+fan is loud, the problem is temperature. Processors deliberately reduce their own speed when they get too hot,
+which protects the hardware and costs you performance.</p>
+
+<p>On a laptop the cause is almost always blocked airflow. Dust in the vents, or using it on a bed or a sofa
+where the intakes are covered. Compressed air through the vents and a hard flat surface fixes a surprising
+number of these. On an older machine the thermal paste between the processor and its cooler dries out over
+several years, and replacing it is a job worth paying for if the machine is otherwise good.</p>
+
+<p>You can confirm it before spending anything. Watch the CPU speed in Task Manager under Performance while
+the machine is being slow. If the clock speed drops well below the rated figure while the load is high, the
+machine is protecting itself from heat.</p>
+
+<h2>What does not help</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Common advice</th><th>Why it does not work</th></tr></thead>
+  <tbody>
+    <tr><td>Registry cleaning</td><td>Registry size has no measurable effect on speed, and removing entries can break working software</td></tr>
+    <tr><td>Memory optimisers and RAM boosters</td><td>They force Windows to discard cached data it deliberately kept, which usually makes things slower</td></tr>
+    <tr><td>Defragmenting an SSD</td><td>Solid state drives do not benefit from it, and Windows already maintains them correctly on its own</td></tr>
+    <tr><td>Disabling services from a list found online</td><td>Saves a few megabytes at best, and breaks features in ways that surface weeks later</td></tr>
+    <tr><td>Turning off the page file</td><td>Some programs rely on it. If the drive is short of room, move it rather than removing it.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>The smaller adjustments worth making</h2>
+
+<p>Once the five main causes are dealt with, these are worth a few minutes each.</p>
+
+<p><strong>Browser extensions.</strong> Every extension runs on every page. If browsing specifically is slow,
+disable them all, confirm the browser is quick again, then re-enable them one at a time. The culprit usually
+announces itself within a couple of minutes.</p>
+
+<p><strong>Power settings.</strong> On a desktop, check that you are not on a power saving plan. On a laptop
+running on battery, reduced performance is intentional, so compare like with like by testing while plugged
+in.</p>
+
+<p><strong>Visual effects.</strong> On older hardware, setting Windows to adjust for best performance in the
+advanced system settings gives a modest but genuine improvement in how responsive the interface feels. On a
+modern machine it makes no real difference and simply looks worse.</p>
+
+<p><strong>A malware scan.</strong> Worth doing once, with the built in Windows Security, before you conclude
+it is a hardware problem. Something using your processor in the background looks exactly like a slow computer.</p>
+
+<p class="art-note">If you work through all of this and the machine is still slow, the honest answer may be
+that it is old. A processor from ten years ago is slower than a current one at everything, and no amount of
+tuning changes that. Knowing you have ruled out the fixable causes is still worth the twenty minutes, because
+it turns a vague frustration into a clear decision about whether to upgrade.</p>

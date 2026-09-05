@@ -1,0 +1,120 @@
+<!--HSX:GUIDE {
+  "title": "Backing up properly, and why sync is not a backup",
+  "nav": "Backing up properly",
+  "h1": "Backing up properly, and why sync is not a backup",
+  "standfirst": "Cloud sync protects you from a broken laptop. It does not protect you from a mistake, and the difference is the whole point of backing up.",
+  "description": "Why cloud sync is not a backup, what the three copy rule means in practice, and a straightforward setup that covers the ways files are actually lost.",
+  "section": "Files",
+  "published": "2026-09-05",
+  "keywords": ["is cloud sync a backup", "3-2-1 backup rule", "how to back up Windows files", "OneDrive backup difference", "ransomware backup protection"],
+  "apps": [
+    { "name": "FileGuardian Ultra", "href": "apps/fileguardian-ultra.html", "note": "File protection and encryption on your own machine" },
+    { "name": "PC Archive Pro", "href": "apps/pc-archive-pro.html", "note": "Compresses and packages folders for storage" },
+    { "name": "QuantumDrop", "href": "apps/quantumdrop.html", "note": "Moves files between your own devices directly" }
+  ]
+}-->
+
+<p class="art-lead">Most people believe they are backed up because their files are in OneDrive, Google Drive
+or Dropbox. Those services are genuinely useful and they will save you if your laptop is stolen. They will not
+save you from the far more common way people lose files, which is doing something to them and not noticing for
+a fortnight.</p>
+
+<h2>The difference in one sentence</h2>
+
+<p>Sync copies your current files to another place. Backup keeps earlier versions of them.</p>
+
+<p>That distinction is everything. If you delete a folder, sync obediently deletes it everywhere. If a file
+becomes corrupted, sync copies the corrupted version over the good one. If ransomware encrypts your documents,
+sync uploads the encrypted versions and overwrites what was there. In each case the service worked exactly as
+designed, and your files are gone from every device at once.</p>
+
+<p>A backup keeps yesterday's copy, and last week's, so a mistake made today is recoverable.</p>
+
+<p>Most sync services do have some version history, which softens this. It is usually limited to thirty days,
+often applies only to files rather than whole deleted folders, and the recovery process is awkward when you
+need to restore thousands of files at once. It is a safety net rather than a backup, and it is worth knowing
+which one you are relying on.</p>
+
+<h2>How files are actually lost</h2>
+
+<p>It helps to design around the real causes rather than the dramatic ones.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>How it happens</th><th>Does sync save you?</th><th>What does</th></tr></thead>
+  <tbody>
+    <tr><td>Deleted by accident, noticed months later</td><td>No</td><td>Backup with long version history</td></tr>
+    <tr><td>Overwrote the good version with a bad edit</td><td>Sometimes, within the retention window</td><td>Versioned backup</td></tr>
+    <tr><td>Drive fails</td><td>Yes</td><td>Sync or backup, either works</td></tr>
+    <tr><td>Laptop stolen or lost</td><td>Yes</td><td>Sync or offsite backup</td></tr>
+    <tr><td>Ransomware</td><td>No, it syncs the damage</td><td>An offline copy the malware cannot reach</td></tr>
+    <tr><td>Fire, flood or theft of the whole room</td><td>Yes, if the copy is elsewhere</td><td>An offsite copy</td></tr>
+    <tr><td>The service closes your account</td><td>No</td><td>A copy you physically hold</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Look down that middle column. Sync handles hardware failure and theft well, and handles nothing else. Those
+are real risks, but they are not the common ones.</p>
+
+<h2>The three copy rule</h2>
+
+<p>The standard advice, and it has lasted because it is simple: three copies of anything you care about, on
+two different kinds of storage, with one of them somewhere else.</p>
+
+<p>In practice, for a normal household, that looks like this:</p>
+
+<ol class="art-steps">
+  <li><strong>The working copy.</strong> The files on your computer, the ones you use every day. This is copy
+  one.</li>
+  <li><strong>A local backup.</strong> An external drive that keeps versions, not just a mirror. This is what
+  you restore from when you delete something by accident, and it is fast because the drive is right there.
+  This is copy two, on a different kind of storage.</li>
+  <li><strong>An offsite copy.</strong> Either a cloud backup service, or a second external drive that lives
+  somewhere other than your home and gets swapped every month or two. This is copy three, and it is the one
+  that survives a fire or a burglary.</li>
+</ol>
+
+<p>Windows includes File History, which handles the second copy without extra software. Turn it on in Settings
+under System and Storage, point it at an external drive, and it keeps versions of your libraries
+automatically. It is not the most capable tool available, but it is already there and it is far better than
+nothing.</p>
+
+<h2>The detail that catches people out</h2>
+
+<p><strong>An external drive left permanently plugged in is only half a backup.</strong> Ransomware encrypts
+attached drives too, and a power surge takes out whatever is connected. If you use a single external drive,
+unplug it between backups. It is a small habit that changes what the backup actually protects against.</p>
+
+<p><strong>Check what is included.</strong> Backup tools usually cover your user folders by default and miss
+things stored elsewhere. Game saves, email stored locally, browser bookmarks, licence files, and anything you
+keep on a second drive are commonly left out. Spend five minutes confirming what is in the set rather than
+finding out later.</p>
+
+<p><strong>Encrypt anything that leaves the house.</strong> A drive kept at a relative's house or in a desk
+drawer at work will eventually be lost or looked at. Windows can encrypt an external drive with BitLocker in a
+couple of clicks, and it costs you nothing in convenience once it is set up.</p>
+
+<h2>Test it, or you do not have one</h2>
+
+<p>This is the step everyone skips, and it is the one that separates a backup from a folder of hope.</p>
+
+<p>Once a backup is running, pick a file at random and restore it somewhere else. Open it. Confirm it is the
+right version and the content is intact. Do this when you set the backup up, and again every few months.</p>
+
+<p>People discover broken backups at the worst possible moment: the drive was full for eight months, the
+scheduled task stopped after an update, the folder they assumed was included never was. All of those are
+obvious the first time you try a restore, and invisible until then.</p>
+
+<h2>A setup that is enough for most people</h2>
+
+<p>If you want a straightforward answer rather than a menu:</p>
+
+<p>Keep working files where you already keep them. Turn on File History pointed at an external drive, and
+unplug that drive when it is not backing up. Keep your cloud sync running for convenience and for the phone
+photos it collects. Add one cloud backup service, or a second external drive kept elsewhere, for the offsite
+copy. Then restore one file to prove the whole thing works.</p>
+
+<p class="art-note">That covers accidental deletion, a bad edit, drive failure, theft, ransomware and fire, in
+about an hour of setup and a few pounds a month. The photographs alone are usually worth considerably more
+than that, and unlike almost everything else on a computer, they cannot be replaced at any price.</p>
