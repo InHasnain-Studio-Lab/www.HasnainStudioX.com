@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ═══════════════════════════════════════════════════════════════════════
-   HSX app landing pages — one per live application, generated from the
+   HSX app landing pages: one per live application, generated from the
    APPS arrays that already drive the catalogue, schema and sitemap.
 
    Output:  apps/<slug>.html
@@ -263,12 +263,12 @@ function pageFor(a) {
 
   /* Google renders roughly 60 characters of a title before it truncates. A
      truncated title loses the brand suffix, which is the part that builds
-     recognition across 78 results, so the tagline is cut instead — always on a
+     recognition across 78 results, so the tagline is cut instead, always on a
      clause or word boundary, never mid-phrase and never on a trailing joining
      word ("...compress media on"). */
   const T_LIMIT = 60;
   /* Google renders roughly 60 characters of a title before truncating, and a
-     truncated title loses the brand suffix — the one part that has to stay
+     truncated title loses the brand suffix, the one part that has to stay
      recognisable across 78 results. So the tagline is shortened here instead,
      and only ever at a point where the phrase still reads as finished. */
   const STOP = new Set(['and','or','the','a','an','on','in','for','to','with','of',
@@ -312,11 +312,11 @@ function pageFor(a) {
         + TITLE.length + ' chars) - shorten it in hsx-taxonomy.js');
     }
   } else {
-    TITLE = `${a.name} — ${TAG}${BR}`;
+    TITLE = `${a.name}: ${TAG}${BR}`;
   }
   if (!INTENT[a.id] && TITLE.length > T_LIMIT) {
     const room = T_LIMIT - a.name.length - 3 - BR.length;
-    /* 1. longest prefix ending on a real phrase boundary — keeps the original
+    /* 1. longest prefix ending on a real phrase boundary, keeps the original
           punctuation and wording exactly as written */
     let cut = '';
     for (const m of TAG.matchAll(/[,;:]|\s+(?:and|or|—|–|-)\s+/g)) {
@@ -334,14 +334,17 @@ function pageFor(a) {
       if (trimmed.length > cut.length) cut = trimmed;
     }
     TITLE = cut.length >= 14
-      ? `${a.name} — ${cut}${BR}`
-      : `${a.name} — ${c.label} for ${a.platform}${BR}`;
-    if (TITLE.length > T_LIMIT) TITLE = `${a.name} — ${c.label} for ${a.platform}`;
+      ? `${a.name}: ${cut}${BR}`
+      : `${a.name}: ${c.label} for ${a.platform}${BR}`;
+    if (TITLE.length > T_LIMIT) TITLE = `${a.name}: ${c.label} for ${a.platform}`;
     if (TITLE.length > T_LIMIT) TITLE = `${a.name}${BR}`;
   }
   const DEV   = a.platform === 'Android' ? 'phone' : 'PC';
-  let DESC    = `${a.name}: ${a.tagline} Runs entirely on your ${DEV} — no account, no telemetry, no subscription.`;
-  if (DESC.length > 158) DESC = `${a.name}: ${a.tagline} Runs on your ${DEV} — no account, no telemetry.`;
+  /* taglines are written without a closing full stop, so add one before
+     the sentence that follows */
+  const TAGP = /[.!?]$/.test(a.tagline.trim()) ? a.tagline.trim() : a.tagline.trim() + '.';
+  let DESC    = `${a.name}: ${TAGP} Runs entirely on your ${DEV} with no account, no telemetry and no subscription.`;
+  if (DESC.length > 158) DESC = `${a.name}: ${TAGP} Runs on your ${DEV} with no account and no telemetry.`;
   if (DESC.length > 158) DESC = `${a.name}: ${a.tagline} Local-first, no account needed.`;
   if (DESC.length > 158) DESC = DESC.slice(0, 155).replace(/[\s,;—-]+$/, '') + '...';
   const KEYS  = [a.name, `${a.name} ${a.platform}`, `${a.name} download`,

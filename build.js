@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X — Site sync
+   HASNAIN STUDIO X: Site sync
 
    Run this after adding, removing or renaming an app.
    It reads the APPS list inside Windows-apps.html and android-apps.html
@@ -9,7 +9,7 @@
 
      1. Every visible app count on every page
      2. The SoftwareApplication structured data Google reads
-     3. sitemap.xml — adds new pages, drops deleted ones, refreshes dates
+     3. sitemap.xml, adds new pages, drops deleted ones, refreshes dates
 
    Double-click update-site.bat. Nothing else to remember.
    ═══════════════════════════════════════════════════════════════════════ */
@@ -32,7 +32,7 @@ const appSlug = (name, platform) => {
 const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
                'Eleven','Twelve'];
 
-/* schema.org category per app id — extend when you add an app.
+/* schema.org category per app id. Extend when you add an app.
    Anything not listed falls back to UtilitiesApplication. */
 const SCHEMA_CAT = {
   pcguardx:'SecurityApplication', browsex:'SecurityApplication',
@@ -73,7 +73,7 @@ DUPE_SLUGS = (() => {
   for (const a of and) if (w.has(baseSlug(a.name))) d.add(baseSlug(a.name));
   return d;
 })();
-if (!win.length && !and.length) { console.log('\n  Nothing to do — no apps found.\n'); process.exit(1); }
+if (!win.length && !and.length) { console.log('\n  Nothing to do, no apps found.\n'); process.exit(1); }
 
 const live = a => a.filter(x => x.status === 'live');
 const soon = a => a.filter(x => x.status === 'soon');
@@ -115,7 +115,7 @@ function syncSchema(file, apps, listName, osName) {
   if (!block) { console.log(`  ! no structured data block in ${file}`); return 0; }
   let data;
   try { data = JSON.parse(block[1]); }
-  catch (e) { console.log(`  ! structured data in ${file} is not valid JSON — skipped`); return 0; }
+  catch (e) { console.log(`  ! structured data in ${file} is not valid JSON, skipped`); return 0; }
   if (!data['@graph']) return 0;
 
   /* Each application now has its own canonical page carrying the full
@@ -233,7 +233,7 @@ let sitemapMsg = '';
             + '</div>'
           : '';
         return '<article class="app-tile c-'+a.cat+(hero?' app-tile--hero':'')+'" role="listitem" tabindex="0" data-id="'+a.id+'"'
-          + ' aria-label="'+escAttr(a.name+' — '+a.tagline)+'">'
+          + ' aria-label="'+escAttr(a.name+': '+a.tagline)+'">'
           + '<div class="tile-in">'
           +   heroHTML
           +   '<div class="tile-top">'+viz(a)
@@ -246,7 +246,7 @@ let sitemapMsg = '';
           +     '<span class="tile-acts">'
           +       (priv ? '<a class="tile-btn tile-btn-details" href="'+priv+'" aria-label="'+escAttr('Details and privacy policy for '+a.name)+'">Details</a>' : '')
           +       '<a class="tile-btn tile-btn-get" href="'+a.storeUrl+'"'+(ext?' target="_blank" rel="noopener"':'')
-          +         ' aria-label="'+escAttr(a.storeLabel+' — '+a.name)+'">'+(soon?'Notify':'Get')+' &rarr;</a>'
+          +         ' aria-label="'+escAttr(a.storeLabel+': '+a.name)+'">'+(soon?'Notify':'Get')+' &rarr;</a>'
           +     '</span>'
           +   '</div>'
           + '</div></article>';
@@ -300,7 +300,7 @@ let sitemapMsg = '';
           '\n            <!--APPS_DIRECTORY_START-->\n'
         + '            <section class="section app-directory" id="app-directory" aria-labelledby="app-directory-title">\n'
         + '              <h2 id="app-directory-title">Full '+platform+' app directory</h2>\n'
-        + '              <p class="dir-intro">Every '+platform+' application published by Hasnain Studio X on '+store+', with what it does and a direct link to its privacy policy. All '+APPS.length+' entries below are plain text and always available — no JavaScript required.</p>\n'
+        + '              <p class="dir-intro">Every '+platform+' application published by Hasnain Studio X on '+store+', with what it does and a direct link to its privacy policy. All '+APPS.length+' entries below are plain text and always available, with no JavaScript required.</p>\n'
         + '              ' + dirBody + '\n'
         + '            </section>\n'
         + '            <!--APPS_DIRECTORY_END-->\n';
@@ -333,7 +333,7 @@ let sitemapMsg = '';
 
     (function(){
     /* One sitemap. Pages + the AI Studio gallery images, in a single file.
-       85 URLs — the sitemap limit is 50,000, so an index file would add nothing. */
+       85 URLs, and the sitemap limit is 50,000, so an index file would add nothing. */
     const fs = require('fs'), path = require('path');
     const ROOT = __dirname, P = f => path.join(ROOT, f);
     const BASE = 'https://hasnainstudiox.com/';
@@ -624,7 +624,7 @@ ${HUBS.map(h => `                    <a class="cat-sib" href="apps/${h.slug}.htm
    is how contest-rules.html came to advertise a privacy policy: the title,
    description and preview image shown on every share were another page's.
 
-   This repairs a card only when it is demonstrably wrong — when og:url points
+   This repairs a card only when it is demonstrably wrong, when og:url points
    at a different page than the canonical does, or when a value has been double
    escaped (&amp;amp;) by an earlier pass. Hand-written social copy that
    legitimately differs from the <title> is left exactly as it is. */

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ═══════════════════════════════════════════════════════════════════════
-   HSX category hub pages — one indexable landing page per catalogue
+   HSX category hub pages: one indexable landing page per catalogue
    category, generated from the same APPS arrays as everything else.
 
    Output: apps/<hub-slug>.html
@@ -138,11 +138,11 @@ function pageFor(hub) {
   setMeta('og:url', url);
   setMeta('og:image', OGIMG);
   setMeta('og:image:secure_url', OGIMG);
-  setMeta('og:image:alt', hub.h1 + ' — Hasnain Studio X');
+  setMeta('og:image:alt', hub.h1 + ' | Hasnain Studio X');
   setMeta('twitter:title', hub.title);
   setMeta('twitter:description', hub.desc);
   setMeta('twitter:image', OGIMG);
-  setMeta('twitter:image:alt', hub.h1 + ' — Hasnain Studio X');
+  setMeta('twitter:image:alt', hub.h1 + ' | Hasnain Studio X');
   h = h.replace(/(<link rel="canonical" href=")[\s\S]*?(")/, (m, x, y) => x + url + y);
   h = h.replace(/hreflang="en-GB" href="[^"]*"/, `hreflang="en-GB" href="${url}"`);
   h = h.replace(/hreflang="x-default" href="[^"]*"/, `hreflang="x-default" href="${url}"`);
