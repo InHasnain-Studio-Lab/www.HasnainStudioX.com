@@ -166,6 +166,33 @@ const stageOf = a => isCert(a)
   ? `with ${storeOf(a)}, going through certification`
   : 'in active development at the studio';
 
+/* What each application actually works on. The local-first section used to
+   say "your files" on all seventy pages; naming the real subject makes each
+   page describe its own application instead of repeating the same sentence.
+   Matched against the name, tagline and description so it stays right as the
+   catalogue changes. */
+const SUBJECT_RULES = [
+  [/screen ?record|screen ?capture|screenshot/i, 'your recordings',   'the recordings you make'],
+  [/game launcher|game librar|launcher/i,        'your installed games', 'the games you have installed'],
+  [/\bphoto|image|picture|raw\b/i,               'your photographs',  'the photographs you open'],
+  [/video|footage|clip|film/i,                   'your video files',  'the clips you work on'],
+  [/audio|sound|music|spatial|voice/i,           'your audio files',  'the tracks you play'],
+  [/document|\bpdf\b|\bdoc\b|write|text|note/i, 'your documents',    'the documents you open'],
+  [/\bcode|script|develop|programming/i,          'your source files', 'the projects you open'],
+  [/model|prompt|generat|diffus/i,               'the images you generate', 'the images you generate'],
+  [/file|convert|archive|transfer|backup/i,      'your files',        'the files you point it at'],
+];
+/* Every phrase is plural so the surrounding sentences agree without special
+   cases. */
+function subjectOf(a) {
+  const hay = [a.name, a.tagline, a.description].filter(Boolean).join(' ');
+  for (const [re, short, long] of SUBJECT_RULES) if (re.test(hay)) return { short, long };
+  return { short: 'your files', long: 'the files you point it at' };
+}
+
+/* "AI Tools" must not become "ai tools" in the middle of a sentence. */
+const catPhrase = c => c.label.toLowerCase().replace(/\bai\b/g, 'AI');
+
 function faqFor(a) {
   const os = a.platform === 'Android' ? 'Android' : 'Windows 10 and Windows 11';
   const net = isLinked(a)
@@ -179,13 +206,18 @@ function faqFor(a) {
   const release = a.status === 'live' ? null :
     [`When is ${a.name} released?`,
      `${a.name} is ${stageOf(a)}. No date is promised${isCert(a) ? ' until it clears' : ''}. This page will carry the store link the moment it goes live.`];
+  const gpu = GPU_VRAM[a.id] ? [
+    `Does ${a.name} need a dedicated graphics card?`,
+    `Yes. ${a.name} runs its processing on your own GPU and needs at least ${GPU_VRAM[a.id]} GB of dedicated graphics memory. Shared or integrated graphics below that will either refuse to start or fall back to a much slower path.`
+  ] : null;
   return [
     ...(release ? [release] : []),
     net,
+    ...(gpu ? [gpu] : []),
     [`Does ${a.name} require an account?`,
      `No. There is no registration, no sign-in and no online identity. You install the application and use it.`],
     [`What data does ${a.name} collect?`,
-     `None. There is no analytics SDK, no usage tracking and no crash reporting that leaves your device. The full detail is in the ${a.name} privacy policy.`],
+     `None. There is no analytics, no usage tracking and no crash reporting that leaves your device, and ${subjectOf(a).short} are never uploaded. The full detail is in the ${a.name} privacy policy.`],
     [`Is ${a.name} a subscription?`,
      `No. ${a.name} is a free trial followed by a one-time purchase through ${a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store'}. There is no recurring fee.`],
     [`Which versions of ${a.platform} does it support?`,
@@ -455,22 +487,24 @@ ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
         <section class="section" aria-labelledby="who-title">
             <div class="section-header"><h2 id="who-title">Who it is for</h2></div>
             <p class="app-lead">${esc(a.name)} is built for ${esc(whoOf(a))}.</p>
-            <p>It sits in the ${esc(c.label.toLowerCase())} part of the Hasnain Studio X catalogue, and it follows
-            the same rule as every other title in the range: the work happens on your own hardware. Nothing is
-            uploaded for processing, because there is no server to upload it to.</p>
+            <p>It sits in the ${esc(catPhrase(c))} part of the catalogue, and ${esc(subjectOf(a).short)}
+            never leave the machine to be processed. There is no server behind ${esc(a.name)} to send them to.</p>
         </section>
 
         <section class="section" aria-labelledby="local-title">
             <div class="section-header"><h2 id="local-title">Local-first, by design</h2></div>
-            <p>Most software in this category sends your files somewhere to be handled. ${esc(a.name)} does not.
+            <p>Plenty of the alternatives send ${esc(subjectOf(a).short)} to a server to be
+            handled. ${esc(a.name)} does not.
             Processing runs on your ${a.platform === 'Android' ? 'phone’s own processor' : 'CPU or GPU'},
-            and your files stay in the folders you put them in.${isLinked(a)
+            and ${esc(subjectOf(a).long)} stay where you put them.${isLinked(a)
               ? ` ${esc(a.name)} does need your devices to be on the same network, but that is the only link involved: it runs over your own Wi-Fi or a hotspot, with nothing routed through a server and no internet connection required.`
               : isOffline(a)
               ? ' The application keeps working with the network switched off.'
               : ` ${esc(a.name)} does reach the internet for the content it displays, but nothing about you or your files travels the other way.`}</p>
-            <p>That is not a setting you enable. It is how the application is built, and it is why there is no
-            account to create, no profile to build and no subscription to lapse. Full detail is in the
+            <p>That is not a setting you enable, it is how ${esc(a.name)} is built, which is why there is no
+            account to create and no subscription to lapse.${vram ? ` It does ask for a graphics card with at
+            least ${vram} GB of dedicated memory, because the work it would otherwise send to a server happens
+            on that card instead.` : ''} Full detail is in the
             ${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a>` : 'privacy policy'}.</p>
         </section>
 
@@ -512,7 +546,7 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
         <section class="section" aria-labelledby="get-title">
             <div class="section-header"><h2 id="get-title">Get ${esc(a.name)}</h2></div>
             <p class="app-lead">${out
-              ? `Available now on ${esc(storeName)}. Try it free, then a single purchase unlocks it for good &mdash; no subscription, no account.`
+              ? `Available now on ${esc(storeName)}. Try it free, then a single purchase unlocks it for good with no subscription and no account.`
               : `${esc(a.name)} is ${esc(stageLine)}. It is not on sale yet. Send a message and I will tell you the day it goes live.`}</p>
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
