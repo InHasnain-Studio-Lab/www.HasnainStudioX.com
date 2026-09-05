@@ -1,0 +1,114 @@
+<!--HSX:GUIDE {
+  "title": "Automating the repetitive jobs on your PC",
+  "nav": "Automating repetitive jobs",
+  "h1": "Automating the repetitive jobs on your PC",
+  "standfirst": "Which tasks are worth automating, which are not, and the tools already on your machine that handle most of them.",
+  "description": "How to decide what is worth automating on Windows, the built in tools that cover most cases, and the mistakes that make automation more trouble than doing it by hand.",
+  "section": "Productivity",
+  "published": "2026-09-05",
+  "keywords": ["automate tasks Windows", "batch rename files Windows", "Task Scheduler guide", "PowerToys features", "automate repetitive work PC"],
+  "apps": [
+    { "name": "HSX Automafy", "href": "apps/hsx-automafy.html", "note": "Automates file and system tasks locally" },
+    { "name": "HSX SmartClicker", "href": "apps/hsx-smartclicker.html", "note": "Automates repeated clicks and input sequences" },
+    { "name": "HSX HandsFree PC", "href": "apps/hsx-handsfree-pc.html", "note": "Voice control for hands free operation" }
+  ]
+}-->
+
+<p class="art-lead">Automation has a reputation for being either trivial or a programming project. Most of the
+genuinely useful cases sit between the two, take under half an hour to set up, and use tools that are already
+installed.</p>
+
+<h2>Deciding whether it is worth it</h2>
+
+<p>The honest test is simple arithmetic. If a task takes two minutes and you do it weekly, that is roughly
+ninety minutes a year. Spending three hours automating it is a loss, however satisfying.</p>
+
+<p>Three things make a task genuinely worth automating:</p>
+
+<p><strong>It happens often.</strong> Daily or weekly, not twice a year.</p>
+
+<p><strong>The rules never change.</strong> Every file goes to the same place, every time. If you have to
+think about each case, automation will keep getting it wrong.</p>
+
+<p><strong>Forgetting it has a cost.</strong> This is the strongest reason of all. A backup that runs
+automatically is better than one you remember to do, not because it saves five minutes, but because you will
+eventually stop remembering.</p>
+
+<p>And one that makes it a bad idea: if the task involves judgement, leave it alone. Deciding which photos are
+worth keeping, which emails matter, or which files are safe to delete are all things people try to automate
+and then quietly spend longer fixing.</p>
+
+<h2>What is already on your machine</h2>
+
+<p><strong>Task Scheduler</strong> runs anything on a schedule: daily, weekly, at startup, or when you log in.
+It is not attractive but it is capable and it has been in Windows for decades. Search for it in the Start
+menu, create a basic task, and point it at a program or script. This is how you make a backup or a cleanup
+happen without you.</p>
+
+<p><strong>PowerToys</strong> is a free set of utilities from Microsoft, and two of its tools cover most
+day-to-day repetition. PowerRename does find and replace across hundreds of file names at once, with a preview
+before it commits. Keyboard Manager remaps keys and shortcuts. Both are worth the download on their own.</p>
+
+<p><strong>File Explorer</strong> handles bulk renaming more capably than people realise. Select a group of
+files, press F2, type a name, and Windows numbers them in sequence. Crude, but it takes three seconds.</p>
+
+<p><strong>Storage Sense</strong>, in the Settings app, clears temporary files and empties the recycle bin on
+a schedule without any setup beyond switching it on.</p>
+
+<h2>The jobs that repay the effort</h2>
+
+<ol class="art-steps">
+  <li><strong>Backups on a schedule.</strong> The single highest value automation on any machine, for the
+  reason given above. Set it once and stop relying on your memory.</li>
+
+  <li><strong>Sorting incoming files.</strong> If your Downloads folder is chaos, a rule that moves files by
+  type into subfolders keeps it manageable with no ongoing effort.</li>
+
+  <li><strong>Batch renaming.</strong> Photos with camera names, documents with inconsistent prefixes,
+  anything where you want a date at the front so sorting works. PowerRename does this with a preview, which
+  means you can see exactly what will happen before it happens.</li>
+
+  <li><strong>Text you type constantly.</strong> An address, a bank detail, a standard reply, an email
+  signature. A text expander turns a short trigger into the full text, and it saves more time over a year than
+  almost anything else on this list.</li>
+
+  <li><strong>Format conversion in bulk.</strong> Resizing a folder of images for a website, or converting a
+  set of videos. Doing thirty files by hand is tedious and error prone. Doing them in one operation is neither.</li>
+</ol>
+
+<h2>Click automation, and why it breaks</h2>
+
+<p>Tools that record your mouse and keyboard and replay them look like the answer to everything, and they have
+one serious weakness worth understanding before you rely on one.</p>
+
+<p>They usually work by position. Click at these coordinates, then those. That holds until something moves: a
+window opens at a different size, an update rearranges a toolbar, you connect a second monitor, or a dialogue
+appears that was not there when you recorded. The automation carries on clicking regardless, now on whatever
+happens to be underneath.</p>
+
+<p>That makes them fine for genuinely repetitive work in a program that never changes, and poor for anything
+important running unattended. If you use one, keep the sequence short, avoid recording anything destructive,
+and watch it the first several times.</p>
+
+<p>Where a program offers a proper way in, such as a command line option or its own batch feature, that is
+always more reliable than clicking at it from outside.</p>
+
+<h2>Doing it safely</h2>
+
+<p><strong>Do it by hand first, several times.</strong> You cannot automate a process you have not fully
+understood, and the edge cases only appear once you have met them. What happens when a file with that name
+already exists? When the folder is empty? When the network drive is not connected?</p>
+
+<p><strong>Test on copies.</strong> Point the automation at a duplicate folder until you are confident. This
+is not excessive caution. A rename that goes wrong across two thousand files is genuinely difficult to undo.</p>
+
+<p><strong>Make it visible.</strong> Have it write a short log, or leave a file with a timestamp, so you can
+tell it ran. Automation that fails silently is worse than no automation, because you stop checking.</p>
+
+<p><strong>Never automate deletion.</strong> Move to a holding folder instead, and clear that out yourself
+occasionally. It costs a little space and removes the only outcome you cannot reverse.</p>
+
+<p class="art-note">Start with one task. Pick the thing you do most often that annoys you most, automate just
+that, and live with it for a fortnight before adding another. People who try to automate everything in one
+weekend generally end up with a collection of half-working scripts they no longer trust, which is worse than
+where they started.</p>

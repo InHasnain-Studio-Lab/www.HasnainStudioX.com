@@ -1,0 +1,115 @@
+<!--HSX:GUIDE {
+  "title": "ZIP, 7z and why some files refuse to compress",
+  "nav": "ZIP, 7z and compression",
+  "h1": "ZIP, 7z and why some files refuse to compress",
+  "standfirst": "Compressing a folder of photos saves you almost nothing, and there is a good reason for that. Which format to use, and when compressing is worth doing at all.",
+  "description": "The difference between ZIP and 7z, why photos and video barely compress, and how to package files for sending, storing or protecting.",
+  "section": "Files",
+  "published": "2026-09-05",
+  "keywords": ["ZIP vs 7z difference", "why photos do not compress", "password protect a zip file", "split large archive", "best compression format Windows"],
+  "apps": [
+    { "name": "PC Archive Pro", "href": "apps/pc-archive-pro.html", "note": "Creates and extracts archives with encryption and splitting" },
+    { "name": "FileGuardian Ultra", "href": "apps/fileguardian-ultra.html", "note": "Protects and encrypts files on your own machine" },
+    { "name": "HSX ConvertStudio", "href": "apps/hsx-convertstudio.html", "note": "Converts media, often a better saving than compressing it" }
+  ]
+}-->
+
+<p class="art-lead">Compress a folder of documents and it might shrink by seventy per cent. Compress a folder
+of holiday photos and it shrinks by two. Nothing is broken. The photos were already compressed, and knowing
+which of your files are in that category tells you when zipping is worth the trouble.</p>
+
+<h2>Why some things compress and others do not</h2>
+
+<p>Compression works by finding repetition. A text document repeats words, letter patterns and spacing
+constantly, so a program can note the pattern once and refer back to it. That is where large savings come
+from.</p>
+
+<p>A JPEG photograph has already had this done to it, thoroughly, by the camera. So has an MP3, an MP4 video,
+and a modern Office document, which is a compressed archive already even though it does not look like one.
+There is no repetition left to find, so wrapping them in a ZIP simply adds a container around files that are
+as small as they are going to get.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>File type</th><th>Typical saving</th><th>Worth compressing?</th></tr></thead>
+  <tbody>
+    <tr><td>Text, code, logs, CSV</td><td>70 to 90 per cent</td><td>Yes, dramatically</td></tr>
+    <tr><td>Uncompressed images such as BMP or TIFF</td><td>50 to 70 per cent</td><td>Yes</td></tr>
+    <tr><td>Databases and disk images</td><td>Varies, often large</td><td>Usually yes</td></tr>
+    <tr><td>Word, Excel and PowerPoint files</td><td>A few per cent</td><td>Only to bundle them together</td></tr>
+    <tr><td>JPEG, PNG, MP3, MP4, PDF</td><td>Nearly nothing</td><td>Only to bundle them together</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>That last row is the useful one. If your archive of photographs came out the same size as the folder, that
+is compression working correctly, not failing.</p>
+
+<h2>Bundling is a reason on its own</h2>
+
+<p>Even with no size saving, putting files in one archive is often the right move. One file is easier to send
+than four hundred, transfers faster over most systems because there is no per-file overhead, preserves the
+folder structure, and arrives complete or not at all rather than partly.</p>
+
+<p>When that is your goal, set the compression level to store or fastest. You get the single file immediately
+instead of waiting while the software tries to compress data that cannot be compressed.</p>
+
+<h2>Which format</h2>
+
+<p><strong>ZIP</strong> is the universal one. Every operating system opens it without extra software, and it
+always will. Compression is decent rather than excellent. For anything you are sending to another person,
+particularly someone whose setup you do not know, use ZIP and do not think about it further.</p>
+
+<p><strong>7z</strong> compresses noticeably better, often 10 to 20 per cent smaller than ZIP on material that
+compresses at all, and considerably better on large text-heavy sets. Recent versions of Windows can extract it
+without extra software, though older systems and some phones still cannot. Use it for your own storage and
+backups where the saving is worth having.</p>
+
+<p><strong>RAR</strong> you will meet as something to extract rather than create, since making them requires
+paid software. Windows can now open them, so this is rarely a problem.</p>
+
+<p><strong>TAR.GZ</strong> appears in anything touching Linux. Worth recognising, rarely worth choosing on
+Windows.</p>
+
+<h2>Settings that make a difference</h2>
+
+<p><strong>Compression level.</strong> The gap between normal and maximum is usually a few per cent for
+several times the processing time. Normal is the right default. Maximum earns its keep only on very large text
+or code sets that you compress once and keep for a long while.</p>
+
+<p><strong>Solid archives.</strong> A 7z option that treats all the files as one continuous stream, which
+compresses much better when you have many similar small files. The trade is that extracting a single file
+means working through everything before it. Excellent for archiving a finished project, poor for something you
+will dip into regularly.</p>
+
+<p><strong>Splitting into volumes.</strong> Both formats can break an archive into pieces of a set size, which
+gets a large set past attachment limits or onto smaller drives. Every piece is needed to extract, so send them
+all and keep them together.</p>
+
+<h2>Passwords, and the one that is not real protection</h2>
+
+<p>Both formats can encrypt, but they are not equivalent.</p>
+
+<p>ZIP supports two methods. The original, sometimes called ZipCrypto or standard encryption, dates from the
+1990s and can be broken quickly. The modern option is AES-256, which is genuinely strong. If your software
+offers the choice, take AES. If it does not say which it is using, assume the weak one for anything that
+matters.</p>
+
+<p>7z uses AES-256 always, and it can also encrypt the list of file names. This matters more than people
+expect: a standard encrypted ZIP still shows anyone the names of everything inside, which for a folder called
+Medical or Contracts gives away most of what you were protecting.</p>
+
+<p>Neither format can help with a forgotten password. There is no recovery, no reset and no support line. Put
+the password in a password manager at the moment you create the archive, not afterwards.</p>
+
+<h2>When compression is the wrong tool</h2>
+
+<p>If a folder of video or photographs is too large, compression will not help and you need to change the
+files themselves. Converting video to a more efficient format can halve it. Reducing photographs that only
+ever need to be viewed on a screen does the same. Both are proper conversions rather than packaging, and both
+lose something, so keep your originals.</p>
+
+<p class="art-note">Two practical defaults cover almost everything. Sending files to someone: ZIP, normal
+compression, no password unless it is sensitive, in which case AES. Archiving your own finished work: 7z,
+normal compression, solid archive on, stored alongside a note of what it contains so you do not have to open
+it to find out.</p>

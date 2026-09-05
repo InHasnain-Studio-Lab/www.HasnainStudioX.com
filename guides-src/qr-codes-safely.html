@@ -1,0 +1,123 @@
+<!--HSX:GUIDE {
+  "title": "QR codes: what they can do, and when not to scan one",
+  "nav": "Using QR codes safely",
+  "h1": "QR codes: what they can do, and when not to scan one",
+  "standfirst": "A QR code cannot carry a virus. The risk is entirely in where it sends you, which makes the sensible precautions quite specific.",
+  "description": "What a QR code actually contains, the realistic risks of scanning one, and how to make codes of your own that keep working.",
+  "section": "Security",
+  "published": "2026-09-05",
+  "keywords": ["are QR codes safe", "QR code scam sticker", "make your own QR code", "dynamic vs static QR code", "QR code for wifi password"],
+  "apps": [
+    { "name": "QR Creator Studio", "href": "apps/qr-creator-studio.html", "note": "Generates codes on your machine, with no tracking redirect" },
+    { "name": "HSX Browser", "href": "apps/hsx-browser.html", "note": "Opens links without tracking them" }
+  ]
+}-->
+
+<p class="art-lead">A QR code is a picture of some text. That is the whole thing. It cannot install anything,
+run anything, or do anything by itself, and understanding that makes the real risks much easier to think
+about.</p>
+
+<h2>What is inside one</h2>
+
+<p>Those black and white squares encode a short piece of text, usually a few hundred characters at most. Your
+camera reads the pattern, recovers the text, and then decides what to do with it based on what it looks like.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>What it contains</th><th>What your phone does</th></tr></thead>
+  <tbody>
+    <tr><td>A web address</td><td>Offers to open it, which is the overwhelming majority of codes</td></tr>
+    <tr><td>Network name and password</td><td>Offers to join that Wi-Fi network</td></tr>
+    <tr><td>Contact details</td><td>Offers to save a new contact</td></tr>
+    <tr><td>Plain text</td><td>Shows it to you</td></tr>
+    <tr><td>Payment information</td><td>Opens a banking or payment app with details filled in</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>In every case your phone asks before acting. That confirmation step is your protection, and it is why the
+advice below is about reading rather than avoiding.</p>
+
+<h2>The risk that is actually real</h2>
+
+<p>The genuine problem is not the code, it is the destination. And the most common attack is refreshingly low
+technology: someone prints a sticker with their own code and puts it over the real one.</p>
+
+<p>This has happened widely on parking meters, restaurant tables, electric vehicle chargers and posters. The
+sticker leads to a convincing copy of the payment page, and people enter card details into it because the
+context looked entirely normal.</p>
+
+<p>Which gives one physical check worth making a habit. <strong>If a code is on a sticker that looks added,
+run your thumbnail over the edge.</strong> A code applied over another one usually has a raised edge, a
+slightly different finish, or sits at an angle to whatever it is printed on. In a car park or a restaurant,
+that ten second check is the whole defence.</p>
+
+<h2>Reading the address before you tap</h2>
+
+<p>Every modern phone shows the address before opening it. Actually looking at it takes a second and catches
+nearly everything.</p>
+
+<p>What you are checking is the domain, meaning the part immediately before the first single slash. In
+<code>https://pay.example-council.co.uk/parking</code> the domain is example-council.co.uk. Everything after
+the slash can say anything at all and is chosen by whoever owns that domain.</p>
+
+<p>The common tricks put a familiar name somewhere it does not control the address. Something like
+<code>yourbank.secure-login24.com</code> is a site called secure-login24.com, not your bank. Read from the
+slash backwards and this becomes obvious.</p>
+
+<p>Shortened links are a genuine problem here, because they hide the destination entirely. Plenty of
+legitimate organisations use them, which is unfortunate. If a shortened link arrives with a request for money
+or credentials, treat it as unverifiable rather than assuming the worst or the best.</p>
+
+<h2>When to be more careful, and when not to bother</h2>
+
+<p><strong>Scan without much thought:</strong> a restaurant menu, a museum exhibit, a ticket at an event, a
+Wi-Fi code from a member of staff. The worst realistic outcome is a page you did not want.</p>
+
+<p><strong>Look at the address first:</strong> anything printed outdoors and unattended, anything that arrived
+by post unsolicited, anything asking you to log in, and anything at all involving payment.</p>
+
+<p><strong>Do not scan:</strong> codes in unexpected emails or messages, which exist specifically because
+security filters read links but not pictures of links. And codes on letters claiming an unpaid fine or a
+delivery problem, which is currently one of the most common postal scams.</p>
+
+<p>One rule underneath all of it: <strong>never enter a password or card details on a page you arrived at by
+scanning something.</strong> If you need to pay or sign in, open the app or type the address you already know.
+This single habit removes essentially the entire risk, and costs you nothing.</p>
+
+<h2>Making codes that keep working</h2>
+
+<p>If you are producing codes rather than scanning them, there is one decision that matters more than the
+rest.</p>
+
+<p><strong>A static code</strong> contains your address directly. It works forever, needs no service behind
+it, and cannot be tracked or changed by anyone. It also cannot be corrected if the address changes, because
+the code is the address.</p>
+
+<p><strong>A dynamic code</strong> points at a redirection service which forwards to your real address. You
+can change the destination later and see scan statistics. The cost is that your code now depends on that
+company continuing to exist and to keep your account active. Printed material with dynamic codes on it becomes
+worthless the day the service closes or a subscription lapses, and this has caught out plenty of businesses.</p>
+
+<p>For anything printed in quantity or meant to last, static is the safer choice. Use a permanent address of
+your own, and if you need flexibility, point the code at a page on your own site that you can change.</p>
+
+<h2>Making one that scans reliably</h2>
+
+<ol class="art-steps">
+  <li><strong>Keep the address short.</strong> Less text means fewer, larger squares, which scan far more
+  easily from a distance or in poor light.</li>
+  <li><strong>Leave the quiet zone.</strong> Codes need clear space around them, roughly the width of four
+  squares. Cropping tightly is the most common reason a printed code fails.</li>
+  <li><strong>Dark on light, with real contrast.</strong> Inverted codes and low contrast colour schemes are
+  unreliable. This is not the place for subtle design.</li>
+  <li><strong>Print it large enough.</strong> A rough guide is a tenth of the scanning distance, so a code
+  read from two metres wants to be about twenty centimetres across.</li>
+  <li><strong>Test it before printing a thousand.</strong> On more than one phone, at the distance and in the
+  lighting people will actually use.</li>
+</ol>
+
+<p class="art-note">A logo in the middle of a code works because of built in error correction, which lets a
+code survive damage to part of it. Covering more than about a quarter of it will start causing failures that
+only show up in poor light, so if you are placing artwork over a code, test it somewhere dim before committing
+to the print run.</p>

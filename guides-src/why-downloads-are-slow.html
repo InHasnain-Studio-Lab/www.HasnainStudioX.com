@@ -1,0 +1,115 @@
+<!--HSX:GUIDE {
+  "title": "Why your downloads are slow, and what to check first",
+  "nav": "Why downloads are slow",
+  "h1": "Why your downloads are slow, and what to check first",
+  "standfirst": "Start with the unit confusion, because it explains more complaints than every other cause combined. Then work outwards from your own machine.",
+  "description": "Why downloads run slower than your broadband speed suggests, the difference between megabits and megabytes, and how to find the real bottleneck.",
+  "section": "Windows",
+  "published": "2026-09-05",
+  "keywords": ["download speed slower than internet speed", "megabits vs megabytes", "slow downloads Windows fix", "wifi slow download", "why is my download so slow"],
+  "apps": [
+    { "name": "PC Download Manager Ultra", "href": "apps/pc-download-manager-ultra.html", "note": "Manages and resumes downloads on your own machine" },
+    { "name": "HSX Browser", "href": "apps/hsx-browser.html", "note": "Browsing without tracking or background overhead" },
+    { "name": "QuantumDrop", "href": "apps/quantumdrop.html", "note": "Transfers files between your own devices directly" }
+  ]
+}-->
+
+<p class="art-lead">Before checking anything else, check the units. A great many slow download complaints are
+a connection working exactly as advertised, described in a different unit from the one the download is
+reporting.</p>
+
+<h2>The unit problem</h2>
+
+<p>Broadband is sold in megabits per second. Downloads are reported in megabytes per second. There are eight
+bits in a byte, so the numbers differ by a factor of eight.</p>
+
+<p>A 100 Mbps connection running perfectly delivers about 12.5 MB/s. If your download says 11 MB/s, your
+connection is doing its job. If you were expecting 100, you were comparing two different units.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Your connection</th><th>Best realistic download speed</th><th>Time for a 5 GB file</th></tr></thead>
+  <tbody>
+    <tr><td>50 Mbps</td><td>About 6 MB/s</td><td>Around 14 minutes</td></tr>
+    <tr><td>100 Mbps</td><td>About 12 MB/s</td><td>Around 7 minutes</td></tr>
+    <tr><td>500 Mbps</td><td>About 60 MB/s</td><td>Around 90 seconds</td></tr>
+    <tr><td>1 Gbps</td><td>About 118 MB/s</td><td>Around 45 seconds</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The lower case b means bits, the upper case B means bytes. It is a genuinely confusing convention, and it
+is the first thing to rule out.</p>
+
+<h2>Then check the connection itself</h2>
+
+<p>Run a speed test while nothing else is downloading, and compare the result with what you pay for. This
+separates two very different problems: a connection that is underperforming, and a connection that is fine but
+one particular download being slow.</p>
+
+<p>Test twice if you can, once over Wi-Fi and once with a cable. If the cable is much faster, your broadband
+is fine and the problem is between your router and your machine.</p>
+
+<h2>If Wi-Fi is the bottleneck</h2>
+
+<p>This is the most common cause on a home network, and there are four things worth trying in order.</p>
+
+<ol class="art-steps">
+  <li><strong>Use the 5 GHz band.</strong> Most routers broadcast two networks. The 2.4 GHz one reaches
+  further but is much slower and is shared with microwaves, baby monitors and every neighbouring router. If
+  your network names end in something like 5G, connect to that one when you are near enough.</li>
+
+  <li><strong>Move closer, or move the router.</strong> Wi-Fi speed falls off sharply with distance and with
+  every wall in between. A router in a cupboard, on the floor, or behind a television is working against
+  itself. Higher, central and in the open makes a real difference.</li>
+
+  <li><strong>Check what else is using it.</strong> Someone streaming in 4K, a games console updating, or a
+  cloud backup running are all competing for the same connection. Task Manager on your machine shows local
+  network use, and most routers list connected devices.</li>
+
+  <li><strong>Try a cable for anything large.</strong> Even a cheap Ethernet cable removes every variable
+  above. For a 50 GB game download it is worth trailing one across the room temporarily.</li>
+</ol>
+
+<h2>When it is the other end</h2>
+
+<p>Sometimes your connection is fine and the server is the limit. This is common and there is not much you can
+do about it, but you can identify it quickly.</p>
+
+<p>The signs are distinctive. One site is slow while everything else is fast. The speed is steady but low,
+rather than fluctuating. It is slow at particular times of day. Or the download starts fast and settles to a
+fixed rate, which usually means a deliberate per-user cap.</p>
+
+<p>If the site offers a choice of mirrors or regions, picking one geographically closer often helps
+considerably. Beyond that, it is a matter of waiting for a quieter moment.</p>
+
+<h2>The other usual suspects</h2>
+
+<p><strong>A VPN.</strong> Everything is routed through another server and encrypted on the way, which costs
+speed. Halving is not unusual. Turn it off and re-test to see how much it is costing you.</p>
+
+<p><strong>Windows Update in the background.</strong> Updates download quietly and can absorb most of your
+connection. Task Manager, under the Performance tab and then the network view, shows total use so you can see
+whether something else is busy.</p>
+
+<p><strong>Antivirus scanning as it downloads.</strong> Some security software inspects files during transfer,
+which slows large downloads noticeably. It usually shows up as speed that is fine at first and then drops
+sharply on big files.</p>
+
+<p><strong>An old router.</strong> Wi-Fi standards have moved on considerably. A router more than about six
+years old may not be able to deliver the speed you now pay for, no matter what the line supports. If your
+cabled speed is much higher than your wireless speed everywhere in the house, this is likely the cause.</p>
+
+<h2>What a download manager does and does not fix</h2>
+
+<p>Download managers open several connections to the same file at once. Where a server limits each connection
+rather than each user, this genuinely helps, sometimes a great deal. Where the limit is your own line, it
+changes nothing, because the bottleneck is not at the far end.</p>
+
+<p>Their more reliable benefit is resuming. A large download interrupted at 90 per cent normally starts again
+from nothing in a browser, while a download manager picks up where it stopped. On an unreliable connection
+that is worth more than any speed gain.</p>
+
+<p class="art-note">Work through it in this order and you will find the cause quickly: check the units, run a
+speed test, compare Wi-Fi against a cable, then see whether it is only one site. Four checks, about five
+minutes, and they separate a genuine problem from a connection quietly doing exactly what it should.</p>
