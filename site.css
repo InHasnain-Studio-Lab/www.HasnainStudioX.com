@@ -2574,3 +2574,31 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 @media (min-width: 1100px) {
     .guide-article .art-table-wrap { margin-inline: -5rem; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HSX:APP-SHOTS — screenshots on the application pages
+   ══════════════════════════════════════════════════════════════════════ */
+
+.app-shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 27rem), 1fr));
+    gap: 1rem;
+    margin: 1.4rem 0 1rem;
+}
+.app-shot {
+    margin: 0;
+    border: 1px solid var(--card-border);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    background: var(--card-bg);
+    line-height: 0;
+}
+.app-shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .app-shot { transition: border-color .25s ease, transform .25s ease; }
+    .app-shot:hover { border-color: var(--accent, #8ACCBB); transform: translateY(-2px); }
+}

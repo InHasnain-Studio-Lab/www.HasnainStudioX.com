@@ -171,6 +171,15 @@ const stageOf = a => isCert(a)
    page describe its own application instead of repeating the same sentence.
    Matched against the name, tagline and description so it stays right as the
    catalogue changes. */
+/* Screenshots prepared by make-app-shots.py from the store listings. */
+const SHOTS = (() => {
+  try { return JSON.parse(read('images/shots/index.json')); } catch (e) { return {}; }
+})();
+const shotsOf = a => {
+  const n = SHOTS[slug(a)] || 0;
+  return Array.from({ length: n }, (_, i) => slug(a) + '-' + (i + 1));
+};
+
 const SUBJECT_RULES = [
   [/screen ?record|screen ?capture|screenshot/i, 'your recordings',   'the recordings you make'],
   [/game launcher|game librar|launcher/i,        'your installed games', 'the games you have installed'],
@@ -362,7 +371,11 @@ function pageFor(a) {
         featureList: a.features, applicationSuite: 'Hasnain Studio X',
         image: hero ? [BASE + 'images/apps/' + hero + '-og.jpg',
                        BASE + 'images/apps/' + hero + '-hero.webp'] : undefined,
-        screenshot: hero ? BASE + 'images/apps/' + hero + '-hero.webp' : undefined,
+        screenshot: (() => {
+          const list = shotsOf(a).map(n => BASE + 'images/shots/' + n + '.webp');
+          if (hero) list.unshift(BASE + 'images/apps/' + hero + '-hero.webp');
+          return list.length ? list : undefined;
+        })(),
         brand: { '@type': 'Brand', name: markFor(a), owner: { '@id': BASE + '#organization' } },
         privacyPolicy: priv ? BASE + priv : undefined,
         publisher: { '@id': BASE + '#organization' },
@@ -483,6 +496,24 @@ ${hero ? `
 ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
             </ul>
         </section>
+${(() => {
+  const shots = shotsOf(a);
+  if (!shots.length) return '';
+  return `
+        <section class="section" aria-labelledby="shots-title">
+            <div class="section-header"><h2 id="shots-title">${esc(a.name)} on screen</h2></div>
+            <div class="app-shots">
+${shots.map((n, i) => `                <figure class="app-shot">
+                    <img src="../images/shots/${n}.webp"
+                         srcset="../images/shots/${n}-sm.webp 600w, ../images/shots/${n}.webp 1200w"
+                         sizes="(max-width:700px) 92vw, 46vw"
+                         loading="lazy" decoding="async"
+                         alt="${escA(a.name)} running on ${esc(a.platform)}, screen ${i + 1} of ${shots.length}">
+                </figure>`).join('\n')}
+            </div>
+            <p class="app-note">${esc(a.name)} running on ${esc(a.platform)}, captured from the application itself.</p>
+        </section>`;
+})()}
 
         <section class="section" aria-labelledby="who-title">
             <div class="section-header"><h2 id="who-title">Who it is for</h2></div>

@@ -72,7 +72,7 @@ jobs:
           rm -f build.js gen-app-pages.js gen-category-pages.js gen-guide-pages.js \
                 publish-guide.js hsx-taxonomy.js update-gallery.js optimise-images.py \
                 make-app-art.py make-icons.py brand-icon-master.png \
-                fetch-store-shots.js README.md
+                fetch-store-shots.js make-app-shots.py README.md
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
