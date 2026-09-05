@@ -63,10 +63,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Build inputs are not part of the published site. Left in place they are
-      # served as real URLs - articles-src/prompt-guide.html in particular is a
-      # raw fragment whose text is duplicated inside the AI Studio page, and
-      # every guides-src fragment is duplicated inside its generated page.
+      # Build inputs are not part of the published site. Left in place they
+      # are served as real URLs, duplicating text that already appears in the
+      # generated pages.
       - name: Strip build sources from the published site
         run: |
           rm -rf articles-src guides-src

@@ -1,0 +1,132 @@
+<!--HSX:GUIDE {
+  "title": "Free up disk space on Windows without a registry cleaner",
+  "nav": "Free up disk space on Windows",
+  "h1": "Free up disk space on Windows without a registry cleaner",
+  "standfirst": "Where the space on a full drive usually goes, and how to get it back safely using tools Windows already includes.",
+  "description": "A practical order for clearing space on a full Windows drive, using built in tools, with the large hidden files explained and the risky advice flagged.",
+  "section": "Windows",
+  "published": "2026-09-05",
+  "keywords": ["free up disk space Windows", "C drive full Windows 11", "what is hiberfil.sys", "WinSxS folder large", "safe disk cleanup Windows"],
+  "apps": [
+    { "name": "PC TuneX", "href": "apps/pc-tunex.html", "note": "Cleanup and maintenance that shows you what it will remove first" },
+    { "name": "MediaTidy Ultra", "href": "apps/mediatidy-ultra.html", "note": "Finds duplicate and oversized media files" },
+    { "name": "PC Archive Pro", "href": "apps/pc-archive-pro.html", "note": "Compresses folders you want to keep but rarely open" }
+  ]
+}-->
+
+<p class="art-lead">A full system drive is usually four or five large things rather than thousands of small
+ones. If you clear those in the right order you will normally get tens of gigabytes back in about twenty
+minutes, without installing anything and without touching the registry.</p>
+
+<h2>Why registry cleaners are not the answer</h2>
+
+<p>It is worth saying this early, because it is the first suggestion many people meet. Registry entries are
+tiny. Even a very messy registry takes up a few megabytes, so cleaning it cannot free meaningful space on a
+drive measured in hundreds of gigabytes.</p>
+
+<p>The registry is also a live database that Windows and your installed programs depend on. Removing entries
+that a cleaner has guessed are unused occasionally breaks something in a way that is hard to trace weeks
+later. The risk is small, but so is the reward, and there is no reason to accept even a small risk for a few
+megabytes.</p>
+
+<h2>Look before you delete</h2>
+
+<p>Before removing anything, find out where the space has gone. Guessing leads to people deleting things they
+needed and still being short of room.</p>
+
+<p>Windows has this built in. Open Settings, go to System, then Storage. You get a breakdown by category:
+apps, temporary files, documents, and so on. Click into any category to see the largest items. That view is
+enough to tell you whether your problem is a Steam library, a folder of video, years of downloads, or Windows
+itself.</p>
+
+<p>If you would rather see it as a folder tree sorted by size, any disk usage viewer will show you the same
+thing arranged differently. The point is simply to look first.</p>
+
+<h2>The big wins, in order</h2>
+
+<p>These are ordered by how much space they typically return against how little they risk. Work down the list
+and stop when you have enough.</p>
+
+<ol class="art-steps">
+  <li><strong>Windows Update leftovers.</strong> Usually the single biggest recovery, and often several
+  gigabytes. Search for Disk Cleanup, run it, choose your system drive, then click the button marked Clean up
+  system files. Wait for it to scan again, then tick Windows Update Cleanup along with the temporary file
+  categories. This removes superseded copies of update files that Windows keeps in case you roll back.</li>
+
+  <li><strong>The previous Windows installation.</strong> After a feature update, Windows keeps your old
+  installation in a folder called Windows.old so you can go back. It is often 15 to 20 GB. Windows deletes it
+  automatically after ten days, but if you are short now, Disk Cleanup offers it as Previous Windows
+  installations. Only remove it if the current version is behaving itself, because this is the thing that lets
+  you undo the update.</li>
+
+  <li><strong>The hibernation file.</strong> Windows reserves a hidden file on your system drive to store
+  memory contents when the machine hibernates. It is sized as a proportion of your installed memory, so on a
+  machine with plenty of RAM it can be several gigabytes. If you never hibernate, you can reclaim it. Open
+  Command Prompt or Terminal as an administrator and run <code>powercfg /hibernate off</code>. Be aware this
+  also turns off Fast Startup, so a cold boot may take a little longer. To put it back, run
+  <code>powercfg /hibernate on</code>.</li>
+
+  <li><strong>System Restore.</strong> Restore points are useful, but the space set aside for them can grow.
+  Search for Create a restore point, select your drive, click Configure, and look at the current usage against
+  the maximum. Reducing the maximum to around 5 per cent of the drive keeps the safety net while returning the
+  rest. Do not disable it altogether, because it is genuinely worth having.</li>
+
+  <li><strong>Downloads, and what is in it.</strong> This folder quietly collects installers you already ran
+  and files you already used. It is frequently the largest single folder of genuinely disposable content on a
+  machine, and nothing in Windows clears it for you unless you ask.</li>
+
+  <li><strong>Cloud folders storing local copies.</strong> If you use OneDrive, Dropbox or similar, check
+  whether files are being kept on the disk as well as in the cloud. OneDrive calls the setting Files On
+  Demand. Turning it on keeps everything available while only downloading what you open, which on a large
+  account can free a great deal.</li>
+</ol>
+
+<h2>The component store, and how to handle it</h2>
+
+<p>If you have looked at folder sizes you may have found <code>C:\Windows\WinSxS</code> reported as enormous,
+sometimes 10 GB or more. This is the component store, and it holds the pieces Windows uses to repair itself
+and to uninstall updates.</p>
+
+<p>Two things are worth knowing. First, the size reported by File Explorer is misleading, because many of the
+files in there are links to files that exist elsewhere and are counted twice. The real figure is smaller than
+it looks. Second, you must never delete anything inside it by hand. That is one of the few genuinely
+destructive things you can do to a Windows installation.</p>
+
+<p>There is a supported way to trim it. In an administrator Command Prompt, run:</p>
+
+<p class="pg-eg"><code>Dism.exe /Online /Cleanup-Image /StartComponentCleanup</code></p>
+
+<p>This removes superseded components safely and takes a few minutes. There is a stronger version that adds
+<code>/ResetBase</code>, which frees more, but it also means you can no longer uninstall any update installed
+up to that point. On a machine that is running well, that is usually an acceptable trade. On a machine you
+have just updated and are not yet sure about, leave it out.</p>
+
+<h2>Keeping the space you got back</h2>
+
+<p>Storage Sense will do most of this maintenance for you. It is in Settings, System, Storage. Turn it on and
+open its settings, and you can have Windows clear temporary files automatically, empty the recycle bin after a
+set number of days, and remove downloaded files you have not opened in a while.</p>
+
+<p>That last option deserves a moment's thought before you enable it, since it deletes from your Downloads
+folder on a timer. If you treat Downloads as a temporary area it is ideal. If you use it as storage, leave it
+off and tidy it yourself.</p>
+
+<h2>Things to leave alone</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Leave alone</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Anything inside Windows or System32</td><td>These are the operating system. Removing files here breaks the installation.</td></tr>
+    <tr><td>WinSxS, by hand</td><td>Use the DISM command above instead. Manual deletion here is not recoverable.</td></tr>
+    <tr><td>The page file, disabled entirely</td><td>Some programs expect it. Move it to another drive if you need the room, rather than removing it.</td></tr>
+    <tr><td>Program folders for software you still use</td><td>Uninstall properly through Settings so the entries and shared files are handled.</td></tr>
+    <tr><td>Anything a cleaner flags but cannot explain</td><td>If a tool cannot tell you what a file is and what depends on it, that is a reason to skip it.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="art-note">If you are still short of space after all of this, the problem is almost certainly your own
+files rather than Windows. Games, video projects and photo libraries are the usual culprits, and the fix there
+is either a second drive or moving the largest library somewhere else. No amount of system cleaning will
+substitute for it.</p>

@@ -1,0 +1,119 @@
+<!--HSX:GUIDE {
+  "title": "What offline AI really means for your data",
+  "nav": "What offline AI really means",
+  "h1": "What offline AI really means for your data",
+  "standfirst": "The word offline gets used loosely. Here is what it can mean, and how to check what a program on your computer is actually doing.",
+  "description": "Offline, local and private mean different things in AI software. What each one covers, what a local tool may still send, and how to verify it yourself.",
+  "section": "Local AI",
+  "published": "2026-09-05",
+  "keywords": ["offline AI meaning", "local AI privacy", "does AI software send my data", "private AI image generation", "check what an app sends"],
+  "apps": [
+    { "name": "HSX ArtGen Studio", "href": "apps/hsx-artgen-studio.html", "note": "Image generation that runs on your own graphics card" },
+    { "name": "HSX WriteDesk", "href": "apps/hsx-writedesk.html", "note": "Writing tools that process text on your machine" },
+    { "name": "DreamMint AI", "href": "apps/dreammint-ai.html", "note": "Local image generation with no account required" }
+  ]
+}-->
+
+<p class="art-lead">Software gets described as offline, local, private and on device, often as if those words
+mean the same thing. They do not. Knowing the difference tells you what a program can and cannot do with your
+work, and there is a simple way to check any claim for yourself.</p>
+
+<h2>Four claims that sound alike</h2>
+
+<p><strong>No account needed.</strong> The program works without you signing in. This is a real convenience,
+but on its own it says nothing about what leaves your computer. A tool can happily send data without ever
+knowing your name.</p>
+
+<p><strong>No telemetry.</strong> The program does not report your usage back to whoever made it. Again, this
+is worth having, and again it is narrower than it sounds. It says nothing about the work itself.</p>
+
+<p><strong>Processing happens on your device.</strong> Now we are getting somewhere. This means your text,
+your photo or your prompt is handled by your own processor or graphics card, rather than being uploaded to a
+server that does the work and sends a result back. This is the claim that actually protects your content.</p>
+
+<p><strong>Works with no internet connection.</strong> The strongest version, and the easiest to test. If you
+can disconnect the machine entirely and the program still does its job, then whatever it is doing, it is doing
+it in front of you.</p>
+
+<p>The four often go together, but not always, and the last two are the ones worth caring about.</p>
+
+<h2>What a cloud tool does with your work</h2>
+
+<p>When you use a service that runs in a browser or sends your files to a server, your content leaves your
+computer by design. That is not sinister, it is how the product works. What varies is what happens next, and
+that is set out in the terms you agreed to rather than in the interface.</p>
+
+<p>Three questions are worth answering before you paste anything sensitive into one:</p>
+
+<ol class="art-steps">
+  <li><strong>How long is it kept?</strong> Many services keep your inputs for a period for abuse monitoring,
+  even on paid plans. Some keep them indefinitely unless you delete them.</li>
+  <li><strong>Is it used to improve the service?</strong> This is the usual wording for training on your
+  content. Business plans often exclude it, free plans often do not.</li>
+  <li><strong>Who else can see it?</strong> Staff access for support and safety review is normal and usually
+  disclosed. Whether that matters depends entirely on what you are working on.</li>
+</ol>
+
+<p>For a holiday photo, none of this may bother you. For a contract, an unpublished manuscript, medical notes
+or a client's confidential material, it is a different conversation.</p>
+
+<h2>What a local tool may still send</h2>
+
+<p>Here is the part that gets glossed over. A program can do all its real work on your machine and still talk
+to the internet for other reasons, and most do. This is worth knowing so you can tell an honest local tool
+from a dishonest claim.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Connection</th><th>Why it happens</th><th>Should you worry?</th></tr></thead>
+  <tbody>
+    <tr><td>Downloading the model</td><td>Local AI needs a model file, often several gigabytes, and it has to come from somewhere the first time</td><td>No. This is a one off, and after it your work stays local.</td></tr>
+    <tr><td>Checking for updates</td><td>The program asks whether a newer version exists</td><td>No, though it should be possible to turn off</td></tr>
+    <tr><td>Licence or purchase check</td><td>Confirming you own the software</td><td>Normal for paid software, and usually infrequent</td></tr>
+    <tr><td>Crash reports</td><td>Sending diagnostics when something goes wrong</td><td>Reasonable if you are asked first, less so if you are not</td></tr>
+    <tr><td>Sending your content</td><td>Your prompt, image or document going to a server</td><td>Yes. This is the line. A tool that does this is not processing on your device, whatever it says elsewhere.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The distinction is simple once you see it. A local tool may talk to the internet about itself. It should
+never need to talk to the internet about your work.</p>
+
+<h2>How to check for yourself</h2>
+
+<p>You do not need any special software for this, and it takes a couple of minutes.</p>
+
+<ol class="art-steps">
+  <li><strong>The disconnect test.</strong> Load whatever you want to process, turn on flight mode or unplug
+  the network cable, and use the program normally. If it carries on working, the processing is happening on
+  your machine. If it stops or shows an error, it was not.</li>
+  <li><strong>Watch the network while it works.</strong> Open Task Manager, go to the Performance tab and
+  select your network, or open Resource Monitor and look at the Network tab. Run a job and watch. A local
+  tool will show almost nothing. A tool uploading your file will show a burst of outbound traffic that roughly
+  matches the size of what you gave it.</li>
+  <li><strong>Block it and see what breaks.</strong> Windows Defender Firewall lets you create an outbound
+  rule for a specific program. Block it, then use the software. If everything still works apart from update
+  checks, you have your answer, and you can leave the rule in place.</li>
+</ol>
+
+<p>The first test alone will settle most questions. It is also worth doing occasionally rather than once,
+because an update can change behaviour.</p>
+
+<h2>The reasons beyond privacy</h2>
+
+<p>Privacy is the usual argument for local software, but in practice people notice the other benefits more
+often.</p>
+
+<p>It works when the internet does not, which matters on a train, on a plane, or on a connection that drops.
+There is no cost per use, so experimenting freely does not run up a bill or burn through a credit allowance.
+Nothing queues behind other users at busy times. And the tool cannot be discontinued out from under you: a
+program on your disk keeps working after the company that made it moves on, which is not true of a service.</p>
+
+<p>There is a genuine trade off, and it is worth being straight about it. The largest models still run better
+on someone else's hardware than on a laptop, so for the absolute highest quality output, cloud services often
+win. Local software wins on control, cost, availability and confidentiality. Which matters more depends on the
+job in front of you, and there is no shame in using both for different things.</p>
+
+<p class="art-note">If you take one thing away, make it the disconnect test. It costs nothing, it needs no
+technical knowledge, and it answers the only question that really matters about any tool you are trusting with
+your work.</p>

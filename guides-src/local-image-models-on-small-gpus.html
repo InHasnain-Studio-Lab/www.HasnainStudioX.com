@@ -2,126 +2,137 @@
   "title": "Running local image models on a 4 GB or 6 GB GPU",
   "nav": "Image models on small GPUs",
   "h1": "Running local image models on a 4 GB or 6 GB GPU",
-  "standfirst": "Why your card runs out of memory, what actually fixes it, and the settings that matter in the order they matter.",
-  "description": "Why diffusion models exhaust VRAM on 4 GB and 6 GB cards, what each memory-saving setting really does, and a working recipe for each card size.",
+  "standfirst": "Why your graphics card runs out of memory, and the settings that fix it, in the order worth trying them.",
+  "description": "Why AI image models run out of graphics memory on 4 GB and 6 GB cards, what each memory setting actually does, and a working set-up for each size of card.",
   "section": "Local AI",
-  "published": "2026-09-04",
-  "keywords": ["4GB VRAM image generation", "6GB VRAM Stable Diffusion", "out of memory diffusion model", "low VRAM AI image generation", "SDXL on 6GB"],
+  "published": "2026-09-05",
+  "keywords": ["4GB VRAM image generation", "6GB VRAM Stable Diffusion", "out of memory error AI image", "low VRAM AI art", "SDXL on 6GB"],
   "apps": [
-    { "name": "HSX DreamMint AI", "href": "apps/dreammint-ai.html", "note": "Runs on 4 GB, with the memory settings below applied by default" },
-    { "name": "HSX PixUnica", "href": "apps/hsx-pixunica.html", "note": "Offline generation with face refinement and 2x enlargement" },
-    { "name": "HSX NovaDiffux", "href": "apps/hsx-novadiffux.html", "note": "Local diffusion with a plain-language prompt front end" }
+    { "name": "DreamMint AI", "href": "apps/dreammint-ai.html", "note": "Runs on 4 GB with these settings applied for you" },
+    { "name": "HSX PixUnica", "href": "apps/hsx-pixunica.html", "note": "Offline image generation with face refinement and 2x enlargement" },
+    { "name": "HSX NovaDiffux", "href": "apps/hsx-novadiffux.html", "note": "Local image generation with plain language prompts" }
   ]
 }-->
 
-<p class="art-lead">Almost every "CUDA out of memory" on a small card comes down to three numbers most tools
-never show you: how big the model is, how many pixels you asked for, and whether anything is being kept in
-memory that does not need to be. Fix them in that order and a 4 GB card is a perfectly serviceable image
-generator.</p>
+<p class="art-lead">If you have ever watched an image generator get most of the way through a picture and then
+stop with an out of memory error, this guide is for you. The good news is that a 4 GB card can produce
+genuinely good images. It just needs a few settings that most tools hide, and it helps to know which ones
+matter.</p>
 
 <h2>Where the memory actually goes</h2>
 
-<p>A diffusion model does not load as one lump. Three things compete for the same VRAM, and only the first
-is the number people quote.</p>
+<p>An image model does not load into your graphics card as one solid block. Three separate things compete for
+the same memory, and only the first one is the number people usually quote.</p>
 
-<p><strong>The weights.</strong> These are fixed and predictable. An SD 1.5-class UNet is about 860 million
-parameters, which at half precision is roughly 1.7 GB. An SDXL-class UNet is 2.6 billion parameters, or about
-5.2 GB at the same precision — before the text encoders, which on SDXL are another 1.4 GB or so because there
-are two of them. That arithmetic alone tells you why SDXL is painful on a 6 GB card and impossible on a 4 GB
-one, and no clever setting changes it.</p>
+<p><strong>The model itself.</strong> This part is fixed and easy to predict. An SD 1.5 style model is around
+860 million parameters, which works out at roughly 1.7 GB once loaded. An SDXL style model is 2.6 billion
+parameters, or about 5.2 GB, and it also loads two text encoders instead of one, which adds another 1.4 GB or
+so. That arithmetic on its own explains why SDXL is a squeeze on a 6 GB card and simply will not fit on a 4 GB
+one. No setting changes it.</p>
 
-<p><strong>The activations.</strong> This is the part that surprises people, because it scales with
-resolution far worse than you would expect. The model works on a latent image one eighth the size of the
-output, and the attention layers compare every latent position with every other one. At 512&times;512 that is
-a 64&times;64 latent, or 4,096 positions. At 1024&times;1024 it is 128&times;128, or 16,384 positions — four
-times the pixels, but sixteen times the attention matrix. Doubling the side of your image does not double
-the memory. It quadruples the pixel count and, in a naive implementation, multiplies the peak attention
-allocation by sixteen.</p>
+<p><strong>The working memory during generation.</strong> This is the part that catches people out, because
+it grows much faster than you would expect when you ask for a bigger picture. The model does its work on a
+small internal version of your image, one eighth the width and height of the final output. At 512 by 512
+pixels that internal version has about 4,000 positions to keep track of. At 1024 by 1024 it has about 16,000.
+Four times the pixels, but the model has to compare every position against every other position, so the memory
+it needs goes up roughly sixteen times, not four.</p>
 
-<p><strong>The decode.</strong> Once denoising finishes, the VAE turns the latent back into pixels, and it does
-that in one pass at full resolution. On a big image this single step can spike over a gigabyte on its own.
-If your generation gets to 100% and <em>then</em> crashes, this is what killed it, not the model.</p>
+<p>That is the single most useful thing to know here. Doubling the size of your image does not double the
+memory it needs. It can multiply it by sixteen.</p>
 
-<h2>What each setting really does</h2>
+<p><strong>The final step that turns it into a picture.</strong> When the generation finishes, one last stage
+converts that internal version into the image you actually see, and it does the whole thing in one go. On a
+large image this step alone can need over a gigabyte. If your generation reaches 100 per cent and only then
+fails, this is what ran out of room, not the model.</p>
 
-<p>Most tools expose the same handful of switches under different names. They are not interchangeable, and
-they do not cost the same.</p>
+<h2>What each setting does</h2>
+
+<p>Most tools offer the same handful of options under slightly different names. They are not interchangeable,
+and some are much cheaper than others.</p>
 
 <div class="art-table-wrap">
 <table class="art-table">
-  <thead><tr><th>Setting</th><th>What it does</th><th>Costs you</th></tr></thead>
+  <thead><tr><th>Setting</th><th>What it does</th><th>What it costs you</th></tr></thead>
   <tbody>
-    <tr><td>Half precision (fp16 / bf16)</td><td>Stores weights in 16 bits instead of 32, halving the model's footprint</td><td>Nothing visible. Use it always.</td></tr>
-    <tr><td>Memory-efficient attention</td><td>Computes attention in blocks so the full matrix never exists at once — kills the quadratic spike</td><td>Nothing, and it is often <em>faster</em></td></tr>
-    <tr><td>Attention slicing</td><td>Older, cruder version of the above: processes attention heads in sequence</td><td>Perhaps 10&ndash;20% speed</td></tr>
-    <tr><td>VAE tiling</td><td>Decodes the final image in overlapping tiles instead of one pass</td><td>A little speed; very occasionally a faint seam</td></tr>
-    <tr><td>Model offloading</td><td>Keeps parts of the model in system RAM and moves them to the GPU only when needed</td><td>Real speed &mdash; often 2&ndash;3&times; slower</td></tr>
-    <tr><td>Sequential offloading</td><td>The aggressive version: one submodule on the GPU at a time</td><td>A lot of speed. Last resort.</td></tr>
+    <tr><td>Half precision (fp16 or bf16)</td><td>Stores the model in half the space with no visible loss of quality</td><td>Nothing. Leave it on.</td></tr>
+    <tr><td>Memory efficient attention</td><td>Does the heavy comparison work in small batches, so the biggest memory spike never happens</td><td>Nothing, and it is often faster</td></tr>
+    <tr><td>Attention slicing</td><td>An older, simpler version of the same idea</td><td>Around 10 to 20 per cent speed</td></tr>
+    <tr><td>Tiled decoding</td><td>Builds the final image in overlapping sections instead of all at once</td><td>A little speed, and very occasionally a faint join</td></tr>
+    <tr><td>Model offloading</td><td>Keeps part of the model in system memory and moves it across only when needed</td><td>Real speed, often two to three times slower</td></tr>
+    <tr><td>Sequential offloading</td><td>The strongest version, keeping only one piece on the card at a time</td><td>A lot of speed. Use it last.</td></tr>
   </tbody>
 </table>
 </div>
 
-<p>The order matters. Half precision and memory-efficient attention are free, so they should already be on.
-VAE tiling is nearly free and solves the crash-at-100% problem specifically. Offloading is the only one that
-genuinely hurts, so it belongs last, and only if the model is simply too large for the card.</p>
+<p>The order is what matters. Half precision and memory efficient attention cost you nothing, so they should
+already be switched on. Tiled decoding is nearly free and solves the fails at 100 per cent problem
+specifically. Offloading is the only one that genuinely slows things down, so save it for when the model is
+simply too big for the card.</p>
 
-<h2>The setting nobody mentions: resolution</h2>
+<h2>The setting nobody mentions: image size</h2>
 
-<p>Generating far outside a model's training resolution does not merely cost memory, it costs quality. An
-SD 1.5-class model was trained at 512&times;512. Ask it for 1024&times;1024 directly and you will frequently
-get duplicated heads, a second torso, or a figure with three arms — the model has no concept of a composition
-that large, so it tiles what it does know. People often blame the prompt for this. The prompt is fine.</p>
+<p>Asking a model for a much bigger image than it was designed for does not just use more memory. It usually
+makes the picture worse.</p>
 
-<p>The fix is the same thing professional pipelines do anyway: generate at the model's native size, then
-enlarge. A 512&times;512 generation followed by a 2&times; upscale gives you a coherent 1024&times;1024 image
-using a fraction of the memory, and it will beat a direct 1024 generation from the same model almost every
-time. On an SDXL-class model, the native size is 1024, and the same logic applies from there.</p>
+<p>An SD 1.5 style model learned on images 512 pixels square. Ask it for 1024 directly and you will often get
+two heads, an extra arm, or a body that repeats halfway down. The model has never seen a composition at that
+size, so it fills the space with more of what it does know. People tend to blame their prompt when this
+happens. The prompt is usually fine.</p>
 
-<h2>A working recipe, by card</h2>
+<p>The fix is what professional workflows do anyway. Generate at the size the model was built for, then
+enlarge. A 512 pixel image followed by a 2x enlargement gives you a clean 1024 pixel result, uses a fraction
+of the memory, and will look better than a direct 1024 generation almost every time. For SDXL style models the
+built for size is 1024, and the same logic applies from there.</p>
+
+<h2>A set-up that works, by card size</h2>
 
 <ol class="art-steps">
-  <li><strong>4 GB.</strong> SD 1.5-class model, half precision, memory-efficient attention on, VAE tiling on,
-  batch size 1, generate at 512&times;512 (or 512&times;768 for portraits), then upscale 2&times;. This runs
-  comfortably and does not need offloading. Do not attempt SDXL here; it is not a settings problem.</li>
-  <li><strong>6 GB.</strong> Everything above, and SDXL becomes possible with model offloading enabled — expect
-  it to be considerably slower. Try it, time it, and be honest about whether the result justifies the wait.
-  For a lot of work, SD 1.5 at native resolution plus a good upscaler finishes sooner and looks better.</li>
-  <li><strong>8 GB and up.</strong> SDXL at 1024 without offloading, batch size 1. The advice stops being
-  interesting here, which is the point at which you can ignore most of this page.</li>
+  <li><strong>4 GB.</strong> Use an SD 1.5 style model with half precision, memory efficient attention on,
+  tiled decoding on, one image at a time, at 512 by 512 (or 512 by 768 for portraits). Then enlarge by 2x.
+  This runs comfortably and does not need offloading. SDXL is not worth attempting on this card, and no
+  combination of settings will change that.</li>
+  <li><strong>6 GB.</strong> Everything above, and SDXL becomes possible if you turn on model offloading.
+  Expect it to be noticeably slower. Try it, time it, and decide honestly whether the result is worth the
+  wait. For a lot of work, an SD 1.5 model at its native size with a good enlarger finishes sooner and looks
+  better.</li>
+  <li><strong>8 GB and above.</strong> SDXL at 1024 with no offloading, one image at a time. At this point
+  most of the advice on this page stops applying to you.</li>
 </ol>
 
-<h2>Two Windows-specific traps</h2>
+<h2>Two things that catch out Windows users</h2>
 
-<p><strong>Your card is not the only thing using it.</strong> A browser with hardware acceleration on can hold
-several hundred megabytes to a gigabyte of VRAM, and on a 4 GB card that is the difference between working and
-not. Close Chrome or Edge before a long run. It is an unglamorous fix that resolves a surprising share of
-out-of-memory reports.</p>
+<p><strong>Your graphics card is doing other jobs too.</strong> A web browser with hardware acceleration
+switched on can hold several hundred megabytes of graphics memory, sometimes a full gigabyte. On a 4 GB card
+that can be the difference between working and failing. Closing Chrome or Edge before a long run is an
+unglamorous fix, and it solves a surprising number of out of memory reports.</p>
 
-<p><strong>Windows will not always crash — it will crawl.</strong> Modern drivers spill past dedicated VRAM
-into system RAM rather than failing outright, so instead of an error you get a generation that takes eight
-minutes instead of forty seconds. Open Task Manager, go to Performance, select your GPU, and watch the two
-figures separately: <em>Dedicated GPU memory</em> and <em>Shared GPU memory</em>. If shared memory is climbing
-during a run, you are not out of memory in the sense that anything will tell you about — you are quietly
-running the model over the PCIe bus. Lower the resolution or enable tiling until shared memory stays flat.</p>
+<p><strong>Windows may not fail. It may just crawl.</strong> Recent drivers will quietly spill past your
+graphics memory into ordinary system memory rather than stopping with an error. Instead of a failure you get
+a generation that takes eight minutes instead of forty seconds.</p>
 
-<h2>How to diagnose it in one pass</h2>
+<p>You can see this happening. Open Task Manager, go to the Performance tab, select your GPU, and watch two
+figures separately: dedicated GPU memory and shared GPU memory. If shared memory climbs during a run, your
+card has run out of its own memory and is borrowing from the rest of the machine. Lower the image size or turn
+on tiled decoding until shared memory stays flat, and the speed comes back.</p>
 
-<p>When something fails, the timing tells you which of the three consumers ran out.</p>
+<h2>Working out what went wrong</h2>
+
+<p>When something fails, the moment it fails tells you which of the three things ran out.</p>
 
 <div class="art-table-wrap">
 <table class="art-table">
-  <thead><tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+  <thead><tr><th>What you see</th><th>What ran out</th><th>What to try</th></tr></thead>
   <tbody>
-    <tr><td>Fails before the first step</td><td>Weights do not fit</td><td>Smaller model, or enable offloading</td></tr>
-    <tr><td>Fails partway through denoising</td><td>Attention spike at this resolution</td><td>Memory-efficient attention; lower resolution</td></tr>
-    <tr><td>Reaches 100%, then fails</td><td>VAE decode</td><td>Enable VAE tiling</td></tr>
-    <tr><td>Completes, but takes minutes</td><td>Spilling into shared memory</td><td>Free VRAM, or reduce resolution until shared stays flat</td></tr>
-    <tr><td>Completes, but the anatomy is wrong</td><td>Generating above native resolution</td><td>Generate native, then upscale</td></tr>
+    <tr><td>Fails before the first step</td><td>The model does not fit</td><td>Use a smaller model, or turn on offloading</td></tr>
+    <tr><td>Fails partway through</td><td>Working memory at this image size</td><td>Turn on memory efficient attention, or reduce the size</td></tr>
+    <tr><td>Reaches 100 per cent, then fails</td><td>The final conversion step</td><td>Turn on tiled decoding</td></tr>
+    <tr><td>Finishes, but takes minutes</td><td>Borrowing system memory</td><td>Free up graphics memory, or reduce the image size</td></tr>
+    <tr><td>Finishes, but the anatomy is wrong</td><td>Generating above the built for size</td><td>Generate smaller, then enlarge</td></tr>
   </tbody>
 </table>
 </div>
 
-<p class="art-note">None of this is specific to any one application. The three consumers — weights,
-activations, decode — are properties of how diffusion models work, so the same reasoning applies whichever
-tool you run them in, and the same five symptoms map to the same five fixes. If a tool does not let you
-control tiling and attention, that is worth knowing before you conclude your card is the problem.</p>
+<p class="art-note">None of this is specific to any one program. The three things competing for memory are
+simply how these models work, so the same reasoning applies whichever tool you use, and the same five symptoms
+point to the same five fixes. If a tool gives you no control over tiling or attention, that is worth knowing
+before you decide your card is the problem.</p>

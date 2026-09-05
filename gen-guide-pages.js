@@ -1,20 +1,14 @@
 #!/usr/bin/env node
 /* ═══════════════════════════════════════════════════════════════════════
-   HSX guides — long-form articles, generated from guides-src/
+   HSX guides: long-form articles, generated from guides-src/
 
    Output: guides/<slug>.html, plus guides/index.html
 
-   Why these exist: every other page on this site is here to describe a
-   product. An app page answers "what is HSX NovaDiffux", a hub answers
-   "offline photo editors for Windows", and both assume the reader already
-   wants software. Neither answers "why does my 6 GB card run out of memory
-   generating a 1024px image", which is the question that actually gets
-   typed. A guide has to stand on its own for someone who never installs
-   anything — if it only makes sense as an advert for an app, it is not a
-   guide and it does not belong in here.
+   To add a guide, drop an HTML fragment in guides-src/<slug>.html opening
+   with a JSON front matter comment. Nothing else needs editing.
 
-   Authoring: drop an HTML fragment in guides-src/<slug>.html, opening with
-   a JSON front-matter comment. No build config to touch; this file finds it.
+   Required front matter: title, description, published.
+   Optional: nav, h1, standfirst, section, updated, keywords, apps.
    ═══════════════════════════════════════════════════════════════════ */
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname, P = f => path.join(ROOT, f);
@@ -26,16 +20,15 @@ const esc  = s => String(s == null ? '' : s)
   .replace(/&(?![a-zA-Z#0-9]+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escA = s => esc(s).replace(/"/g, '&quot;');
 
-/* ── read the sources ─────────────────────────────────────────────────── */
 const FM_RE = /^\s*<!--\s*HSX:GUIDE\s*([\s\S]*?)-->\s*/;
 
 function load(file) {
   const raw = fs.readFileSync(path.join(P(SRC), file), 'utf8');
   const m = raw.match(FM_RE);
-  if (!m) throw new Error(file + ': missing <!--HSX:GUIDE {...}--> front matter');
+  if (!m) throw new Error(file + ': missing HSX:GUIDE front matter');
   let fm;
   try { fm = JSON.parse(m[1]); }
-  catch (e) { throw new Error(file + ': front matter is not valid JSON — ' + e.message); }
+  catch (e) { throw new Error(file + ': front matter is not valid JSON, ' + e.message); }
   for (const k of ['title', 'description', 'published']) {
     if (!fm[k]) throw new Error(file + ': front matter is missing "' + k + '"');
   }
@@ -49,7 +42,7 @@ const GUIDES = fs.existsSync(P(SRC))
       .sort((a, b) => String(b.published).localeCompare(String(a.published)))
   : [];
 
-/* ── page shell, borrowed from a policy page exactly as the app pages do ── */
+/* page shell, borrowed from a policy page exactly as the app pages do */
 const TPL = read('privacy/HSXStudioFlowPrivacy.html').replace(/(href|src)="\.\.\//g, '$1="');
 const headOpen  = TPL.slice(0, TPL.indexOf('<body>'));
 const afterBody = TPL.slice(TPL.indexOf('<body>'));
@@ -71,8 +64,6 @@ const ORG = {
 };
 const SITE = { '@type': 'WebSite', '@id': BASE + '#website', url: BASE, name: 'Hasnain Studio X',
                publisher: { '@id': BASE + '#organization' }, inLanguage: 'en-GB' };
-/* Named authorship is the point: a guide carries a person's judgement, and a
-   reader (and a reviewer) is entitled to know whose. */
 const AUTHOR = { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain Butt Akhtar',
                  jobTitle: 'Founder and developer', worksFor: { '@id': BASE + '#organization' },
                  url: BASE + 'about.html' };
@@ -108,12 +99,9 @@ function shell({ url, title, desc, keywords, graph, main }) {
 }
 
 const readMins = w => Math.max(1, Math.round(w / 220));
-const niceDate = d => {
-  const dt = new Date(d + 'T00:00:00Z');
-  return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-};
+const niceDate = d => new Date(d + 'T00:00:00Z')
+  .toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 
-/* ── one article ──────────────────────────────────────────────────────── */
 function pageFor(g) {
   const url = BASE + OUT + '/' + g.slug + '.html';
   const others = GUIDES.filter(x => x.slug !== g.slug).slice(0, 3);
@@ -162,8 +150,7 @@ ${related.length ? `
             <div class="cat-siblings">
 ${related.map(a => `                <a class="cat-sib" href="../${escA(a.href)}"><span class="cat-sib-n">${esc(a.name)}</span><span class="cat-sib-t">${esc(a.note || '')}</span></a>`).join('\n')}
             </div>
-            <p class="app-note">Listed because they are relevant to the subject, not because the guide was
-            written to sell them. Everything above works the same whatever software you choose.</p>
+            <p class="app-note">Everything above works the same whichever software you choose.</p>
         </section>` : ''}
 ${others.length ? `
         <section class="section" aria-labelledby="guide-more-title">
@@ -180,12 +167,11 @@ ${others.map(o => `                <a class="cat-sib" href="${escA(o.slug)}.html
   return shell({ url, title: g.title + ' | Hasnain Studio X', desc: g.description, keywords, graph, main });
 }
 
-/* ── the index ────────────────────────────────────────────────────────── */
 function indexPage() {
   const url = BASE + OUT + '/';
   const TITLE = 'Guides | Hasnain Studio X';
-  const DESC = 'Practical guides to running software on your own hardware — local AI, Windows performance, '
-             + 'media and file handling. Written to be useful whether or not you use our apps.';
+  const DESC = 'Practical guides to getting more out of the computer you already own. Local AI, Windows '
+             + 'performance, photos, files and games, written to be useful on their own.';
   const graph = { '@context': 'https://schema.org', '@graph': [ORG, SITE,
     { '@type': ['CollectionPage', 'WebPage'], '@id': url + '#webpage', url, name: TITLE,
       description: DESC, inLanguage: 'en-GB',
@@ -218,16 +204,15 @@ function indexPage() {
         <section class="hero hero--single app-hero" aria-labelledby="guides-title">
             <div class="hero-eyebrow">${GUIDES.length} guide${GUIDES.length === 1 ? '' : 's'}</div>
             <h1 id="guides-title">Guides</h1>
-            <p class="app-tagline">How to get real work out of hardware you already own.</p>
+            <p class="app-tagline">How to get more out of the computer you already own.</p>
         </section>
 
         <section class="section" aria-labelledby="guides-why-title">
             <div class="section-header"><h2 id="guides-why-title">What these are</h2></div>
-            <p class="app-lead">Everything here is written to be useful on its own. If a guide only makes
-            sense as an advert for one of our apps, it does not belong on this page — you should be able to
-            follow any of it with software you already have, or none at all. Where one of our applications is
-            genuinely the tool for the job it gets a mention at the end, clearly marked, and never in place of
-            the actual explanation.</p>
+            <p class="app-lead">Every guide here is written to be useful on its own. You should be able to
+            follow any of it with software you already have, or none at all. Where one of our applications
+            suits the job it gets a mention at the end, clearly marked, and never in place of the
+            explanation.</p>
         </section>
 
         <section class="section" aria-labelledby="guides-list-title">
@@ -242,7 +227,6 @@ ${GUIDES.length ? `            <div class="cat-grid">\n${cards}\n            </d
     graph, main });
 }
 
-/* ── write ────────────────────────────────────────────────────────────── */
 if (!fs.existsSync(P(OUT))) fs.mkdirSync(P(OUT));
 for (const g of GUIDES) fs.writeFileSync(path.join(P(OUT), g.slug + '.html'), pageFor(g), 'utf8');
 fs.writeFileSync(path.join(P(OUT), 'index.html'), indexPage(), 'utf8');

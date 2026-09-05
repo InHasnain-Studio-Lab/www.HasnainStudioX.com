@@ -1,0 +1,123 @@
+<!--HSX:GUIDE {
+  "title": "JPEG, PNG, WebP or AVIF: choosing an image format",
+  "nav": "Choosing an image format",
+  "h1": "JPEG, PNG, WebP or AVIF: choosing an image format",
+  "standfirst": "Four formats, four jobs. A short guide to picking the right one, and the one mistake that quietly ruins a photo library.",
+  "description": "What JPEG, PNG, WebP and AVIF are each good at, how much space the newer formats really save, and when compatibility should decide it for you.",
+  "section": "Photos and files",
+  "published": "2026-09-05",
+  "keywords": ["WebP vs AVIF vs JPEG", "best image format for websites", "when to use PNG", "convert images without losing quality", "image format compatibility"],
+  "apps": [
+    { "name": "HSX ConvertStudio", "href": "apps/hsx-convertstudio.html", "note": "Batch conversion between formats on your own machine" },
+    { "name": "ConvertMaster Ultra", "href": "apps/convertmaster-ultra.html", "note": "Format conversion across images, audio, video and documents" },
+    { "name": "Pixumbra Studio", "href": "apps/pixumbra-studio.html", "note": "Photo editing that keeps your originals intact" }
+  ]
+}-->
+
+<p class="art-lead">Most people pick an image format by accident, using whatever their camera or their
+software produced. That is fine until a website loads slowly, a logo has a white box behind it, or a client
+cannot open the file you sent. Each of these four formats is genuinely better than the others at something
+specific.</p>
+
+<h2>The short version</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Format</th><th>Best for</th><th>Avoid it for</th></tr></thead>
+  <tbody>
+    <tr><td>JPEG</td><td>Photographs that need to open anywhere, on anything</td><td>Logos, screenshots, anything needing transparency</td></tr>
+    <tr><td>PNG</td><td>Screenshots, logos, diagrams, anything with flat colour, sharp edges or transparency</td><td>Photographs, where the files become enormous</td></tr>
+    <tr><td>WebP</td><td>Photographs and graphics on a website, where size matters</td><td>Files you need to email or hand to someone else</td></tr>
+    <tr><td>AVIF</td><td>Website photographs where you want the smallest possible file</td><td>Anything that has to open in older software</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>If you only remember one line: JPEG for sharing photos, PNG for anything with text or transparency, WebP
+or AVIF for your website.</p>
+
+<h2>Why photographs and graphics want different things</h2>
+
+<p>This is the distinction that explains almost everything else, and it is not complicated.</p>
+
+<p>A photograph is made of gradual changes. Skin tones blend, skies fade, shadows soften. Formats built for
+photographs take advantage of that by throwing away detail your eye does not notice, which makes the file
+much smaller. That is what lossy means, and on a photograph it works beautifully.</p>
+
+<p>A screenshot or a logo is the opposite. It has large areas of identical colour and hard edges, especially
+around text. Apply photographic compression to that and the edges pick up a faint haze, which is exactly where
+your eye is looking. Formats built for graphics keep every pixel precisely, which is what lossless means, and
+because there is so much repetition the file stays small anyway.</p>
+
+<p>Put a photograph in PNG and you get a file five or ten times larger than it needs to be. Put a screenshot
+of text in JPEG and you get visible mess around every letter. Both mistakes are common and both are avoidable
+by asking one question: is this mostly a photograph, or mostly a picture of something on a screen?</p>
+
+<h2>What the newer formats actually save</h2>
+
+<p>WebP and AVIF both do the same job as JPEG, more efficiently, because they are built on much newer
+compression research.</p>
+
+<p>In practice, at a quality most people cannot tell apart from the original, WebP files tend to land around a
+quarter to a third smaller than the equivalent JPEG. AVIF usually goes further again, often around half the
+size of the JPEG, and it holds up better at low quality settings where JPEG starts to look blocky.</p>
+
+<p>Those are typical figures rather than promises. The saving depends heavily on the picture. A busy, detailed
+photograph compresses less well in any format than a simple one with large smooth areas, and at very high
+quality settings the gap between all three narrows considerably. If the numbers matter to you, convert a few
+of your own representative images and compare, rather than trusting anyone's average.</p>
+
+<p>AVIF has one practical cost worth knowing about: it takes noticeably longer to create. For a handful of
+images that is irrelevant. For a batch of several thousand it is the difference between minutes and an hour,
+so it is worth testing on a small batch first.</p>
+
+<h2>When compatibility should decide it</h2>
+
+<p>Browsers handle all four formats now, so for a website the question is settled and you should use WebP or
+AVIF. Everywhere else, it is worth thinking for a second.</p>
+
+<p>Email is the usual trap. Attach an AVIF file and there is a reasonable chance the person receiving it
+cannot open it without installing something, particularly on a work machine where they cannot install
+anything. The same applies to older versions of office software, some printing services, older photo frames
+and televisions, and plenty of specialist software that has not been updated in years.</p>
+
+<p>The rule that avoids all of it: use the modern formats for things you publish, and JPEG or PNG for things
+you hand to a person. Nobody has ever been unable to open a JPEG.</p>
+
+<h2>The mistake worth avoiding</h2>
+
+<p>Lossy formats lose a little quality every time they are saved. Not just the first time. Every time.</p>
+
+<p>Open a JPEG, crop it, save it, open it again next month, adjust the brightness, save it again, and you have
+compressed an already compressed image twice over. Each pass throws away a bit more, and it never comes back.
+Do this a dozen times over a few years and the picture visibly degrades, which is why old family photos that
+have been through several rounds of editing often look worse than the originals nobody touched.</p>
+
+<p>The habit that prevents it is simple. Keep your original file untouched, edit a copy, and export from the
+original each time rather than editing the export. If your camera can save in a lossless or raw format and you
+have the space, that original is worth keeping for anything you care about.</p>
+
+<p>This is also the reason not to convert an entire photo library to a smaller lossy format to save disk
+space. You free up some room today and permanently lower the quality of every photograph you own. If space is
+the problem, a second drive costs less than the pictures are worth.</p>
+
+<h2>A sensible default set-up</h2>
+
+<ol class="art-steps">
+  <li><strong>Camera and phone originals.</strong> Leave them exactly as they are. Do not convert them in
+  bulk. Back them up.</li>
+  <li><strong>Editing.</strong> Work on copies, and export a fresh file from the original each time rather
+  than re-saving an export.</li>
+  <li><strong>Website images.</strong> WebP as the sensible default, AVIF if you want the smallest files and
+  do not mind the slower conversion. Around quality 80 for WebP is the usual sweet spot, but check a few of
+  your own images rather than taking a number on trust.</li>
+  <li><strong>Screenshots, logos and diagrams.</strong> PNG, always, unless you are putting them on a website,
+  in which case lossless WebP does the same job in a smaller file.</li>
+  <li><strong>Sending to another person.</strong> JPEG for photographs, PNG for anything else, unless you know
+  what they are opening it with.</li>
+</ol>
+
+<p class="art-note">One last thing that costs nothing. Strip location data from images before you publish
+them. Photos from a phone frequently carry the exact coordinates where they were taken, and most conversion
+tools will remove that for you if you ask. It is easy to forget until a picture of your own front garden is
+on the internet with a map reference attached.</p>

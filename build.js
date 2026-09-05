@@ -394,7 +394,7 @@ let sitemapMsg = '';
         .sort();
     } catch (e) { /* no apps/ folder yet */ }
 
-    /* the guides: the only pages here that are written rather than generated */
+    /* the articles under guides/ */
     let guidePages = [];
     try {
       guidePages = fs.readdirSync(path.join(ROOT, 'guides'))
@@ -441,13 +441,11 @@ let sitemapMsg = '';
       const HUBSLUGS = new Set(require('./hsx-taxonomy.js').HUBS.map(h => 'apps/' + h.slug + '.html'));
       const isHub = HUBSLUGS.has(f);
       const isApp = !isHub && f.startsWith('apps/');
-      /* a guide is the page someone with no knowledge of the studio lands on,
-         so it outranks the product pages it sits beside */
+      /* guides are entry points for search, so they rank above app pages */
       const isGuide = f.startsWith('guides/');
       const isGuideIx = f === 'guides/index.html';
-      /* a directory index answers at its directory URL - that is what every
-         inbound link points at, and what Pages serves, so that is the URL
-         that must be canonical. The homepage is the same rule at the root. */
+      /* a directory index answers at its directory URL, which is what Pages
+         serves and what inbound links point at. Same rule at the root. */
       const loc = f.endsWith('index.html') ? BASE + f.slice(0, -'index.html'.length) : BASE + f;
       return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${iso(f)}</lastmod>\n`
            + `    <changefreq>${FREQ[f] || (isGuideIx ? 'weekly' : isGuide ? 'monthly' : isHub ? 'weekly' : isApp ? 'monthly' : 'yearly')}</changefreq>\n    <priority>${PRIORITY[f] || (isGuideIx ? '0.9' : isGuide ? '0.8' : isHub ? '0.85' : isApp ? '0.7' : '0.3')}</priority>\n`
@@ -1412,17 +1410,13 @@ if (proseMsg) sitemapMsg += '\n' + proseMsg;
 if (heroesMsg) sitemapMsg += '\n' + heroesMsg;
 
 /* ── AdSense placement guard ──────────────────────────────────────────────
-   Google does not allow ads on screens without publisher content: error
-   pages, pages that immediately redirect, and near-empty utility pages are
-   named cases, and ads on pure legal boilerplate is the placement pattern
-   reviewers associate with thin sites.
+   Ads are not permitted on error pages, redirect stubs or pages with no
+   real content, and are kept off the privacy policies as well.
 
-   The generated app and category pages inherit their HTML shell from
-   privacy/HSXStudioFlowPrivacy.html, so the ad snippet used to spread from
-   that one policy to everything the generators touched. Rather than police
-   that by hand, this step decides per page and rewrites either way, so a
-   rebuild can neither drop the snippet from a real content page nor
-   reintroduce it onto a policy, a stub or an error page. */
+   The generators take their HTML shell from a privacy policy, so the ad
+   snippet used to spread wherever the build wrote. This step decides per
+   page and rewrites either way, so a rebuild can neither drop it from a
+   content page nor put it back on an excluded one. */
 const AD_CLIENT = 'ca-pub-1992140091770378';
 const AD_TAG = '    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='
   + AD_CLIENT + '" crossorigin="anonymous"></script>\n';
@@ -1431,10 +1425,8 @@ const AD_RE = /[ \t]*<script[^>]*googlesyndication\.com\/pagead\/js\/adsbygoogle
 const AD_DENY = new Set(['privacy-policies.html']);
 const AD_MIN_WORDS = 300;
 
-/* Placeholder slots that render a visible "Ad space reserved" box. Empty
-   labelled ad frames on a site under review read as a site built for ads
-   rather than for readers, so the box is removed and the intended placement
-   is kept as a source marker for when real units go in. */
+/* Removes the visible "Ad space reserved" placeholder box, keeping the
+   intended placement as a source marker for when real units go in. */
 const AD_SLOT_RE = /[ \t]*(?:<!--\s*Ad:[^]*?-->[ \t]*\r?\n)?[ \t]*<div class="ad-slot[^"]*"[^>]*>[\s\S]*?<\/div>[ \t]*\r?\n?/g;
 const AD_SLOT_MARK = '            <!--HSX:AD-SLOT reserved placement; insert the unit here once AdSense approves-->\n';
 
