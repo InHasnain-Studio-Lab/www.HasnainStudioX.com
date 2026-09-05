@@ -1382,7 +1382,8 @@ function syncGalleryApps() {
   // creative tool.
   const AI_APPS = new Set([
     'hsxstudioflow', 'fototensor', 'photovidix', 'novadiffux', 'quantumxai',
-    'artgenstudio', 'infinitegenai', 'dreamgenaiultra', 'dreammintai', 'glowlab', 'image3dx', 'forgexpro', 'pocktium'
+    'artgenstudio', 'infinitegenai', 'dreamgenaiultra', 'dreammintai', 'glowlab', 'image3dx', 'forgexpro', 'pocktium',
+    'nostalgicel'
   ]);
   const reg = {};
   for (const a of win) {

@@ -36,6 +36,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
+      <image:loc>https://hasnainstudiox.com/images/gallery/artgenstudio__Autumn-Treehouse__Painted-concept-illustration.png</image:loc>
+      <image:title>Autumn Treehouse</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/gallery/artgenstudio__Hoard-Keeper__Stylised-3D-character-render.png</image:loc>
+      <image:title>Hoard Keeper</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/gallery/artgenstudio__Coast-Road-1955__Vintage-colour-photography-look.png</image:loc>
+      <image:title>Coast Road 1955</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/gallery/nostalgicel__Blood-Moon-Gate__Selective-colour-over-monochrome.png</image:loc>
+      <image:title>Blood Moon Gate</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/gallery/nostalgicel__Cobalt-Portrait__High-detail-character-study.png</image:loc>
+      <image:title>Cobalt Portrait</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/gallery/nostalgicel__Crimson-Armour__Retro-anime-cel-with-ink-linework.png</image:loc>
+      <image:title>Crimson Armour</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://hasnainstudiox.com/images/gallery/artgenstudio__Snow-Leopard-At-Dawn__Photorealistic-wildlife-study.png</image:loc>
       <image:title>Snow Leopard At Dawn</image:title>
     </image:image>
@@ -50,14 +74,6 @@
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/gallery/QuantumGenAI-Image.png</image:loc>
       <image:title>Ornate Portrait Study</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/gallery/artgenstudio__Gilded-Bloom__Botanical-still-life-in-low-light.png</image:loc>
-      <image:title>Gilded Bloom</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/gallery/artgenstudio__Breath-Apart__Airbrushed-graphic-novel-portrait.png</image:loc>
-      <image:title>Breath Apart</image:title>
     </image:image>
   </url>
 
