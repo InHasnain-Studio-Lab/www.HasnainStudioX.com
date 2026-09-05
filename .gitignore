@@ -12,3 +12,6 @@ site.*.js
 effects.*.js
 fluid.*.js
 gallery-data.*.js
+
+# raw store screenshots, downloaded by fetch-store-shots.js
+store-shots/
