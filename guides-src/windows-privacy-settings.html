@@ -1,0 +1,115 @@
+<!--HSX:GUIDE {
+  "title": "What Windows collects, and which settings are worth changing",
+  "nav": "Windows privacy settings",
+  "h1": "What Windows collects, and which settings are worth changing",
+  "standfirst": "A realistic pass through the privacy settings: what each one does, what it does not do, and why the debloating scripts are a bad trade.",
+  "description": "The Windows privacy settings worth changing, what diagnostic data actually covers, and why removal scripts cause more problems than they solve.",
+  "section": "Privacy",
+  "published": "2026-09-06",
+  "keywords": ["Windows 11 privacy settings", "turn off Windows telemetry", "Windows diagnostic data explained", "advertising ID Windows", "debloat Windows risk"],
+  "apps": [
+    { "name": "PC GuardX", "href": "apps/pc-guardx.html", "note": "Privacy and protection tools that run locally" },
+    { "name": "PC VisionBulwark", "href": "apps/pc-visionbulwark.html", "note": "Screen and system privacy controls" },
+    { "name": "HSX Browser", "href": "apps/hsx-browser.html", "note": "Browsing without tracking built in" }
+  ]
+}-->
+
+<p class="art-lead">Windows privacy advice tends to arrive in two flavours: nothing to worry about, or a
+script that removes half the operating system. The useful version is in between. About twenty minutes of
+settings changes covers most of what is worth covering, and it is worth knowing what those changes actually
+achieve.</p>
+
+<h2>Diagnostic data, and the part you cannot turn off</h2>
+
+<p>Windows sends information about how the system is running back to Microsoft. It comes in two levels, and
+the distinction matters.</p>
+
+<p><strong>Required diagnostic data</strong> covers device configuration, whether updates installed
+successfully, crashes and errors. On the consumer editions of Windows this cannot be switched off. Enterprise
+editions can reduce it further, but Home and Pro cannot. Anyone telling you otherwise is describing a
+registry change that Windows ignores or reverses.</p>
+
+<p><strong>Optional diagnostic data</strong> adds which apps you use and for how long, browsing activity in
+Microsoft's own browser, and more detailed error reports. This one you can turn off, and it is the single most
+worthwhile change on this page.</p>
+
+<p>Find it in Settings, Privacy and security, then Diagnostics and feedback. Switch off the optional data. On
+the same page, turn off tailored experiences, which is the setting that uses your diagnostic data to
+personalise tips and advertisements. Below that, there is a delete button for the diagnostic data already
+collected, which is worth pressing once.</p>
+
+<h2>The rest of the list, in order of usefulness</h2>
+
+<ol class="art-steps">
+  <li><strong>Advertising ID.</strong> In Settings, Privacy and security, General. This is a unique
+  identifier that apps can use to link your activity across them for advertising. Turning it off resets it and
+  stops apps reading it. There is no downside.</li>
+
+  <li><strong>Activity history.</strong> Same area of settings. Windows records which apps and files you have
+  opened. Turning it off costs you the timeline feature, which most people never use.</li>
+
+  <li><strong>App permissions.</strong> Still in Privacy and security, there is a list covering location,
+  camera, microphone, contacts, and more. Each one shows exactly which apps have asked for access. Going
+  through camera, microphone and location and removing anything that has no business with them takes five
+  minutes and is the most concrete thing on this list.</li>
+
+  <li><strong>Search permissions.</strong> Windows search sends what you type in the Start menu to the web by
+  default. If you only want it to find things on your own machine, turn off the cloud content search and web
+  results. It also makes the Start menu noticeably faster.</li>
+
+  <li><strong>Location history.</strong> If you leave location on for a laptop you may want to find, clear the
+  stored history periodically. The button is on the same page.</li>
+</ol>
+
+<h2>The account question</h2>
+
+<p>Windows pushes you towards signing in with a Microsoft account, and it genuinely does useful things:
+settings sync across machines, device recovery, and BitLocker keys backed up so you are not locked out of your
+own drive.</p>
+
+<p>A local account keeps everything on the machine and links nothing to an online identity. The cost is real
+though. You lose settings sync, you lose the ability to find the device, and critically, if you use drive
+encryption you become entirely responsible for storing the recovery key. People lose those keys and lose
+everything on the drive.</p>
+
+<p>There is no universally right answer. If you choose a local account, write your encryption recovery key
+down and keep it somewhere physical, today rather than eventually.</p>
+
+<h2>Why the removal scripts are a bad idea</h2>
+
+<p>There is a whole genre of tools promising to strip Windows down by removing components and disabling
+services. They are popular, and they cause a steady stream of problems that surface weeks later and are very
+hard to trace back.</p>
+
+<p>The typical failures are Windows Update refusing to install, the Microsoft Store not working, printing or
+Bluetooth quietly breaking, and features returning after a major update in a half-configured state. By the
+time any of it appears, you have long forgotten which script you ran, and the usual fix is reinstalling
+Windows.</p>
+
+<p>Everything genuinely worth turning off is available in the settings app, supported, reversible, and
+survives updates. That is a much better trade than saving a few hundred megabytes and gaining an unstable
+system.</p>
+
+<h2>The part most people have backwards</h2>
+
+<p>For the average person, Windows is not the main source of tracking. The browser is.</p>
+
+<p>Advertising networks build profiles from what you visit, and that happens in the browser regardless of
+which operating system it is running on. Ten minutes spent on browser settings will do more for your privacy
+than every setting above put together.</p>
+
+<p>Three things worth doing there: block third party cookies, install a reputable content blocker, and choose
+a search engine that does not build a profile. If you want to go further, the browser's own tracking
+protection set to its strictest level is more effective than most people expect, though it occasionally breaks
+a site and needs an exception.</p>
+
+<h2>Realistic expectations</h2>
+
+<p>None of this makes you invisible, and it is not meant to. What it does is stop the casual, automatic
+collection that happens by default: the advertising identifier following you between apps, the optional
+telemetry, the app with no reason to use your microphone doing it anyway.</p>
+
+<p class="art-note">Worth repeating one point, because it is the one that costs people real money and real
+files. If you turn off your Microsoft account or move to a local account, find your BitLocker recovery key
+first and store it somewhere outside the machine. A locked drive with no key is not recoverable by anyone,
+including Microsoft.</p>

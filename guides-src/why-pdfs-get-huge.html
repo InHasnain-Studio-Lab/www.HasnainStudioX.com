@@ -1,0 +1,129 @@
+<!--HSX:GUIDE {
+  "title": "Why a PDF is 40 MB, and how to shrink it without wrecking it",
+  "nav": "Why PDFs get huge",
+  "h1": "Why a PDF is 40 MB, and how to shrink it without wrecking it",
+  "standfirst": "A ten page document should not be forty megabytes. What is taking up the space is almost always the same thing, and the fix depends on what the file is for.",
+  "description": "What makes PDF files large, the difference between a scanned and a text PDF, and how to compress one for email or print without losing what matters.",
+  "section": "Documents",
+  "published": "2026-09-06",
+  "keywords": ["reduce PDF file size", "why is my PDF so large", "scanned PDF vs text PDF", "compress PDF for email", "PDF DPI for printing"],
+  "apps": [
+    { "name": "HSX DocClarity", "href": "apps/hsx-docclarity.html", "note": "Document processing and clean-up on your own machine" },
+    { "name": "HSX DocMento", "href": "apps/hsx-docmento.html", "note": "Document handling, merging and conversion" },
+    { "name": "HSX WorkX Suite", "href": "apps/hsx-workx-suite.html", "note": "General office and document tools, offline" }
+  ]
+}-->
+
+<p class="art-lead">If a PDF is unexpectedly large, there is a good chance it contains no text at all. That
+single fact explains most oversized documents, and it changes which fix will work.</p>
+
+<h2>Two completely different things called PDF</h2>
+
+<p><strong>A text PDF</strong> stores your words as words. The letters are described by the fonts embedded in
+the file, so you can select them, copy them, and search for them. A twenty page report of this kind is
+typically well under a megabyte.</p>
+
+<p><strong>A scanned PDF</strong> is a stack of photographs. Your scanner or phone took a picture of each
+page, and the PDF is just a wrapper around those pictures. You cannot select the text because there is no
+text, only an image that happens to look like text. A twenty page scan can easily be thirty or forty
+megabytes.</p>
+
+<p>Telling them apart takes two seconds. Open the file and try to select a word. If a text cursor appears and
+you can highlight it, it is a text PDF. If your pointer draws a box over the page instead, it is a scan.</p>
+
+<h2>What is taking the space</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Cause</th><th>How to spot it</th><th>Typical saving</th></tr></thead>
+  <tbody>
+    <tr><td>Scanned pages at high resolution</td><td>Cannot select text, size grows evenly with page count</td><td>Very large, often 80 per cent or more</td></tr>
+    <tr><td>Photographs placed at full camera resolution</td><td>A few pages are enormous, the rest are small</td><td>Large</td></tr>
+    <tr><td>Screenshots saved as lossless images</td><td>Documentation and manuals, size out of proportion to content</td><td>Moderate to large</td></tr>
+    <tr><td>Every font fully embedded</td><td>A text-only file that is still a few megabytes</td><td>Small, and risky to change</td></tr>
+    <tr><td>Tracked changes, comments and old revisions</td><td>File shrinks a lot when re-saved</td><td>Sometimes surprising</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Choose the target before you compress</h2>
+
+<p>This is the decision that determines everything else, because compression that is right for one purpose
+ruins the file for another.</p>
+
+<p><strong>For reading on a screen or emailing,</strong> images inside the document only need to be about 150
+dots per inch. Anything beyond that is detail nobody will ever see. This is where the dramatic savings come
+from.</p>
+
+<p><strong>For printing,</strong> you need around 300 dots per inch, and compressing below that produces
+visibly soft, muddy pages. If the document is going to a printer, or to a client who might print it, do not
+compress it for screen.</p>
+
+<p><strong>For an archive or a legal record,</strong> do not compress at all. Keep the original. Store the
+smaller version separately if you need one for sending.</p>
+
+<p>Most compression tools offer these as presets with names like screen, ebook, print and prepress. Now you
+know what the names mean, choosing between them is straightforward.</p>
+
+<h2>Shrinking a scanned document</h2>
+
+<p>Scans have specific tricks available because of what they contain.</p>
+
+<ol class="art-steps">
+  <li><strong>Reduce the resolution to match the purpose.</strong> Many scanners default to 600 dots per inch,
+  which is far more than a document page needs. Two hundred is plenty for text, and 300 is generous. This
+  alone often cuts the file by three quarters.</li>
+
+  <li><strong>Scan in greyscale, or black and white, when the original is.</strong> A colour scan of a black
+  and white page stores three times the data for no benefit. Most scanners have a document or text mode that
+  handles this properly.</li>
+
+  <li><strong>Let it be slightly lossy.</strong> Pages of text tolerate image compression well, because the
+  contrast between ink and paper is so high that small artefacts are invisible. This is not true of
+  photographs or fine artwork, so judge by what is on the page.</li>
+
+  <li><strong>Add text recognition, but expect no saving.</strong> Optical character recognition adds a hidden
+  layer of real text over the images, which makes the document searchable and selectable. It is genuinely
+  worth doing. It does not make the file smaller, and it usually adds a little.</li>
+</ol>
+
+<h2>Shrinking a document you made yourself</h2>
+
+<p>If you produced the PDF from a word processor or design program, the best fix happens before the PDF
+exists.</p>
+
+<p>Resize images before placing them. A photograph from a modern camera is several thousand pixels wide, and
+placed into a document at postcard size it is still storing every one of those pixels. Reducing images to
+roughly the size they will appear, at the resolution you settled on above, prevents the problem rather than
+treating it.</p>
+
+<p>Then export using the correct preset. Most programs offer a smaller file or minimum size option in their
+PDF export settings, which does the downsampling for you.</p>
+
+<p>One thing to be careful about: some tools reduce size by flattening the document into images. That makes
+the text unselectable and unsearchable, turning your clean text PDF into a scan. If you can no longer select
+words after compressing, that is what happened, and it is worth going back and doing it differently.</p>
+
+<h2>What not to do</h2>
+
+<p><strong>Do not remove embedded fonts to save space.</strong> The saving is small and the risk is real. A
+PDF without its fonts renders using whatever the reader has available, so line breaks move, tables shift, and
+a carefully laid out document arrives looking wrong on someone else's machine.</p>
+
+<p><strong>Do not compress the same file repeatedly.</strong> The images inside are being re-compressed each
+time, and the quality drops on every pass exactly as it would with a photograph. Always go back to the
+original.</p>
+
+<p><strong>Do not compress and then delete the original,</strong> particularly for scans of documents you
+cannot re-scan. Keep the full quality version somewhere, even if you never send it.</p>
+
+<h2>A sensible rule of thumb</h2>
+
+<p>For a text document with a few images, expect somewhere under a megabyte for ten pages. For a scanned
+document at sensible settings, expect roughly 100 to 300 kilobytes per page. If you are far above those
+numbers, something in the file is stored at a much higher quality than the job requires, and the table above
+will tell you which.</p>
+
+<p class="art-note">If you are hitting an email limit, remember that most mail systems cut off around 25
+megabytes including the encoding overhead, so a 24 megabyte attachment can still bounce. Below 10 megabytes is
+the comfortable range, and anything larger is usually better sent as a link than squeezed until it looks bad.</p>

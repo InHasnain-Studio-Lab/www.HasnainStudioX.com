@@ -1,0 +1,111 @@
+<!--HSX:GUIDE {
+  "title": "Why your photo looks different on every screen",
+  "nav": "Why colours look different",
+  "h1": "Why your photo looks different on every screen",
+  "standfirst": "You edited it carefully, then it arrived on someone else's phone looking washed out. Here is what changes between screens, and what you can control.",
+  "description": "Why colours shift between monitors, phones and prints, what colour profiles do, and the practical steps that make your photos travel well.",
+  "section": "Photos and files",
+  "published": "2026-09-06",
+  "keywords": ["photo looks different on phone", "sRGB vs Adobe RGB", "monitor colour calibration", "colours change when uploaded", "prints look darker than screen"],
+  "apps": [
+    { "name": "Pixumbra Studio", "href": "apps/pixumbra-studio.html", "note": "Photo editing with control over export settings" },
+    { "name": "HSX GlowCraft", "href": "apps/hsx-glowcraft.html", "note": "Colour and light adjustment tools" },
+    { "name": "HSX NanoVisuality", "href": "apps/hsx-nanovisuality.html", "note": "Image processing that runs on your machine" }
+  ]
+}-->
+
+<p class="art-lead">You spend twenty minutes getting a photograph exactly right, send it to someone, and they
+see something noticeably different. Nothing has gone wrong with the file. Several separate things change
+between your screen and theirs, and only some of them are yours to fix.</p>
+
+<h2>What is actually changing</h2>
+
+<p><strong>Brightness, most of all.</strong> This is the biggest single factor and the one people think about
+least. Screens vary enormously in how bright they are set, and a phone outdoors adjusts itself constantly. An
+image that looks correctly exposed on a dim laptop looks blown out on a bright phone. There is no setting in
+your file that changes this.</p>
+
+<p><strong>The range of colours the screen can show.</strong> Not all screens can display the same colours.
+A basic office monitor covers a modest range, a good modern phone covers considerably more, and a professional
+display more again. The same red can be vivid on one and muted on another simply because one screen cannot
+physically produce it.</p>
+
+<p><strong>How saturated the screen makes things.</strong> Phone manufacturers deliberately boost colour, in a
+vivid or adaptive display mode, because people prefer it in a shop. Your carefully judged skin tones arrive
+slightly more orange than you left them.</p>
+
+<p><strong>Whether anyone told the screen what the colours mean.</strong> This is the one you can control, and
+it is where most avoidable problems come from.</p>
+
+<h2>The part you can control</h2>
+
+<p>Numbers in an image file do not mean anything on their own. A pixel described as 200, 60, 60 is only a
+particular red if you know which set of colours those numbers refer to. That information is the colour
+profile, and it travels inside the file as a small tag.</p>
+
+<p>When the tag is missing, software has to guess, and it guesses sRGB, which is the common standard the
+internet was built on. If your image was actually saved in a wider range such as Adobe RGB or Display P3, that
+guess is wrong, and the result is the classic complaint: colours that look flat, dull and slightly wrong
+compared with what you exported.</p>
+
+<p>The fix is simple and it is the single most useful thing on this page. <strong>Export in sRGB for anything
+going on the internet, and make sure the profile is embedded.</strong> Most editing software has both options
+in the export dialogue. Wider colour spaces are genuinely useful while you are editing, and for printing, but
+they should be converted to sRGB on the way out.</p>
+
+<h2>Getting your own screen closer to right</h2>
+
+<p>You cannot control other people's screens, so the goal is to make yours neutral enough that your edits are
+sensible starting points rather than corrections for your own display's quirks.</p>
+
+<ol class="art-steps">
+  <li><strong>Turn off adaptive colour features while editing.</strong> Night light, blue light reduction and
+  automatic colour temperature all shift the display warmer, usually in the evening. Editing under them
+  produces photographs that look strangely cold to everyone else. Turn them off before colour work.</li>
+
+  <li><strong>Set a sensible brightness.</strong> Comfortable in a normally lit room, not at maximum. Editing
+  on a screen at full brightness produces images that are too dark for everyone else, because you compensated
+  for a screen brighter than theirs.</li>
+
+  <li><strong>Check your monitor's picture mode.</strong> Many displays ship in a vivid or dynamic mode that
+  oversaturates everything. A standard or sRGB mode is a much better starting point.</li>
+
+  <li><strong>Consider a calibrator if this is your work.</strong> A hardware calibrator measures your screen
+  and builds a correction profile. It costs about as much as a decent lens filter and is the only way to make
+  a display genuinely accurate. For casual use it is overkill. For anyone selling prints it pays for
+  itself.</li>
+</ol>
+
+<h2>Why prints look darker</h2>
+
+<p>This surprises people every time, and it is not a fault. A screen makes its own light and shines it at you.
+Paper reflects whatever light is in the room. Paper simply cannot produce the brightness range a backlit
+screen can, so a photograph with deep shadows that look rich on screen turns into a dark mass on paper.</p>
+
+<p>The practical answer is to prepare prints slightly brighter than looks right on screen, particularly in the
+shadows, and to judge the result under decent light. Good printing services publish profiles for their paper
+that let editing software preview the effect before you commit, which is worth using for anything expensive.</p>
+
+<p>The other half is the paper itself. A matte paper has less contrast than a gloss one, and both differ from
+your screen. If you print regularly with one service, one test print teaches you more about the difference
+than any amount of theory.</p>
+
+<h2>A quick checklist before you publish</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Check</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Exported in sRGB with the profile embedded</td><td>Prevents the dull, flat look on other screens</td></tr>
+    <tr><td>Night light and blue light filters off while editing</td><td>Stops a warm screen pushing your edits cold</td></tr>
+    <tr><td>Monitor in a standard rather than vivid mode</td><td>Keeps saturation judgements honest</td></tr>
+    <tr><td>Viewed on your phone before publishing</td><td>Catches images that are too dark, which is the most common problem</td></tr>
+    <tr><td>Viewed on a second screen if you have one</td><td>Anything that looks wrong on both is genuinely wrong</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="art-note">You are aiming for a photograph that looks good across a range of screens rather than
+perfect on yours. Slightly less extreme editing usually travels better: heavy contrast and deep saturation
+tend to fall apart on displays that cannot reproduce them, while a moderately edited image looks reasonable
+almost everywhere.</p>

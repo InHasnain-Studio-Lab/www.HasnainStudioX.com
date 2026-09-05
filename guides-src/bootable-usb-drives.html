@@ -1,0 +1,115 @@
+<!--HSX:GUIDE {
+  "title": "Bootable USB drives, and making one before you need it",
+  "nav": "Bootable USB drives",
+  "h1": "Bootable USB drives, and making one before you need it",
+  "standfirst": "The one piece of preparation that turns a dead computer from a disaster into an afternoon. It takes fifteen minutes and an old USB stick.",
+  "description": "When you need a bootable USB drive, how to make one for Windows or recovery, and the boot settings that catch people out.",
+  "section": "Windows",
+  "published": "2026-09-06",
+  "keywords": ["make bootable USB Windows", "Windows recovery drive", "PC will not boot fix", "UEFI boot menu key", "reinstall Windows from USB"],
+  "apps": [
+    { "name": "HSX BootForge", "href": "apps/hsx-bootforge.html", "note": "Creates bootable drives from disc images" },
+    { "name": "PC Archive Pro", "href": "apps/pc-archive-pro.html", "note": "Packages the files you want to keep before a reinstall" },
+    { "name": "FileGuardian Ultra", "href": "apps/fileguardian-ultra.html", "note": "Protects the files you rescue from a failing machine" }
+  ]
+}-->
+
+<p class="art-lead">A bootable USB drive lets you start a computer from something other than its own hard
+drive. That sounds niche until the day the machine will not start, at which point it is the difference between
+fixing it yourself and carrying it to a shop.</p>
+
+<h2>When you need one</h2>
+
+<p>Four situations, and the first two are the common ones.</p>
+
+<p><strong>The computer will not start.</strong> Windows will not load, you are stuck on a repair loop, or the
+screen never gets past the manufacturer's logo. A bootable drive gets you to a working environment where you
+can run repairs or, at minimum, copy your files off before doing anything drastic.</p>
+
+<p><strong>You want a clean reinstall.</strong> Sometimes a machine is so tangled that starting again is
+faster than fixing it. A Windows installation drive lets you do that properly, including wiping and
+repartitioning the disk.</p>
+
+<p><strong>You want to test hardware.</strong> Memory tests and drive diagnostics run from a bootable drive so
+they can examine hardware without Windows in the way.</p>
+
+<p><strong>You want to try another operating system.</strong> Most Linux distributions can run directly from
+the USB drive without installing anything, which is a genuinely risk-free way to look around.</p>
+
+<h2>Make it now, not later</h2>
+
+<p>This is the entire point and it is worth being blunt about it. A recovery drive made after the computer has
+failed is not possible, because you need a working computer to make one.</p>
+
+<p>If you have a second machine you can borrow, fine. Plenty of households do not, and the failure always
+happens at the least convenient moment. Fifteen minutes today, on a USB stick you already own, removes that
+problem permanently.</p>
+
+<h2>Making one</h2>
+
+<p>You need a USB drive of at least 8 GB, and 16 GB is more comfortable. Everything on it will be erased, so
+check it first.</p>
+
+<p><strong>For Windows installation media,</strong> Microsoft provides a tool that downloads the current
+version and writes the drive for you in one step. Search for the Windows Media Creation Tool on Microsoft's
+own site, run it, and choose the option to create installation media for another PC. It handles the technical
+details itself.</p>
+
+<p><strong>For a Windows recovery drive,</strong> which repairs your existing installation rather than
+replacing it, Windows has this built in. Search the Start menu for Create a recovery drive. Tick the option to
+back up system files, which makes the drive larger but far more useful, and let it run. This is the one to
+make if you only make one.</p>
+
+<p><strong>For anything else,</strong> you will have a disc image file, usually with an .iso extension, and
+you need a tool that writes it to the drive correctly. Copying the file onto the USB stick does not work,
+because a bootable drive needs a particular structure that a plain copy does not create.</p>
+
+<h2>The settings that catch people out</h2>
+
+<p>Two technical choices appear when writing a drive, and picking wrong means the computer simply will not see
+it.</p>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Setting</th><th>Choose this</th><th>Unless</th></tr></thead>
+  <tbody>
+    <tr><td>Partition scheme</td><td>GPT</td><td>The target machine is more than about twelve years old, in which case MBR</td></tr>
+    <tr><td>Target system</td><td>UEFI</td><td>The same, in which case BIOS or Legacy</td></tr>
+    <tr><td>File system</td><td>FAT32 for the widest compatibility</td><td>A single file on the drive is over 4 GB, which needs NTFS</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>If you are unsure, GPT and UEFI are correct for essentially any computer bought in the last decade. If the
+drive does not appear in the boot menu, this pair is the first thing to change.</p>
+
+<h2>Actually booting from it</h2>
+
+<p>Computers start from their internal drive by default, so you have to tell yours otherwise. There are two
+ways.</p>
+
+<p>The quick way is the one-time boot menu. Press a key repeatedly as the machine starts, and choose the USB
+drive from a list. The key varies by manufacturer, and the usual candidates are F12, F11, F9 and Escape.
+Many machines show it briefly on the startup screen. This changes nothing permanently, which makes it the
+better option.</p>
+
+<p>The other way is changing the boot order in the firmware settings, usually reached with Delete or F2 at
+startup. This makes the machine always check USB first, which is fine but easy to forget about later.</p>
+
+<p>If the drive still does not appear, check three things. It should be plugged into a port directly on the
+machine rather than through a hub. A USB 2 port sometimes works when a USB 3 one does not, particularly with
+older installation media. And Secure Boot may need to be disabled temporarily for some non-Microsoft tools,
+though official Windows media works with it left on. Turn it back on afterwards.</p>
+
+<h2>What to do once you are in</h2>
+
+<p>If you booted because the machine will not start, resist the urge to reinstall immediately. Copy your files
+off first. A recovery environment gives you a file browser and access to the drive, and an external disk is
+all you need. Whatever you do next is safer once your documents and photographs are somewhere else.</p>
+
+<p>Only after that is done should you try repairs or a reinstall. The order matters, because a repair that
+goes wrong at that point costs you nothing you cannot replace.</p>
+
+<p class="art-note">Keep the finished drive somewhere you will find it, and label it with what it is and the
+date. A recovery drive made three Windows versions ago still boots, but it is worth refreshing once a year.
+Write the date on it and that decision becomes easy instead of a guess.</p>
