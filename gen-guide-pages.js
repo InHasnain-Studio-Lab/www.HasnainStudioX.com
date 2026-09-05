@@ -230,8 +230,19 @@ ${GUIDES.length ? `            <div class="cat-grid">\n${cards}\n            </d
 if (!fs.existsSync(P(OUT))) fs.mkdirSync(P(OUT));
 for (const g of GUIDES) fs.writeFileSync(path.join(P(OUT), g.slug + '.html'), pageFor(g), 'utf8');
 fs.writeFileSync(path.join(P(OUT), 'index.html'), indexPage(), 'utf8');
+
+/* A guide moved back into guides-src/scheduled must stop being served, so
+   any page here without a matching source is removed. */
+const keep = new Set(GUIDES.map(g => g.slug + '.html').concat('index.html'));
+let pruned = 0;
+for (const f of fs.readdirSync(P(OUT))) {
+  if (!f.endsWith('.html') || keep.has(f)) continue;
+  fs.unlinkSync(path.join(P(OUT), f));
+  pruned++;
+}
 const totalWords = GUIDES.reduce((n, g) => n + g.words, 0);
 console.log(`  guides   ${GUIDES.length} article${GUIDES.length === 1 ? '' : 's'} generated`
-  + (GUIDES.length ? `, ${totalWords.toLocaleString('en-GB')} words` : '') + ', plus index');
+  + (GUIDES.length ? `, ${totalWords.toLocaleString('en-GB')} words` : '') + ', plus index'
+  + (pruned ? `, ${pruned} withdrawn` : ''));
 
 module.exports.GUIDES = GUIDES.map(g => ({ slug: g.slug, title: g.title, words: g.words }));
