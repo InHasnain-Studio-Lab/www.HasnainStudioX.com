@@ -331,6 +331,42 @@ let sitemapMsg = '';
 
     })();
 
+/* ── 2b. per-app privacy policies are kept out of the search index ────────
+   The 74 policies say the same thing about 74 different apps, because that is
+   what a privacy policy is: the same commitments, restated per product. Google
+   read them as one page repeated and reported "Duplicate, Google chose
+   different canonical than user" against the sitemap, having picked one of
+   them to stand for the rest.
+   They are not search results anybody wants, so they are marked noindex and
+   drop out of the sitemap on their own, the filter there already excluding
+   noindexed pages. They stay linked, stay crawlable and stay reachable at
+   their published URLs, which is what a Store listing and a reader need.
+   privacy-policies.html remains the one indexed page for the set.
+   Applied here, before the sitemap is written, so a policy added later is
+   handled without anyone having to remember. */
+function syncPolicyNoindex() {
+  const dir = path.join(ROOT, 'privacy');
+  if (!fs.existsSync(dir)) return '';
+  const ROBOTS = /<meta name="robots" content="[^"]*"\/?>/i;
+  const BOTS = /<meta name="(googlebot|bingbot)" content="[^"]*"\/?>/gi;
+  let changed = 0, total = 0;
+  for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.html'))) {
+    const rel = 'privacy/' + f;
+    let h = read(rel);
+    if (/HSX:RENAME-REDIRECT/.test(h)) continue;   /* already a redirect stub */
+    total++;
+    const before = h;
+    h = h.replace(ROBOTS, '<meta name="robots" content="noindex, follow"/>');
+    h = h.replace(BOTS, function (m, bot) {
+      return '<meta name="' + bot + '" content="noindex, follow"/>';
+    });
+    if (h !== before) { write(rel, h); changed++; }
+  }
+  return '  policy indexing       ' + total + ' policies noindexed, ' + changed + ' updated';
+}
+const policyRobotsMsg = syncPolicyNoindex();
+if (policyRobotsMsg) console.log(policyRobotsMsg);
+
     (function(){
     /* One sitemap. Pages + the AI Studio gallery images, in a single file.
        85 URLs, and the sitemap limit is 50,000, so an index file would add nothing. */
@@ -462,6 +498,9 @@ let sitemapMsg = '';
     const HUBS_S = new Set(require('./hsx-taxonomy.js').HUBS.map(h => 'apps/' + h.slug + '.html'));
     const section = f => {
       if (f.startsWith('guides/')) return 'guides';
+      /* the per-app policies are noindexed and never reach this list, so the
+         policies sitemap carries the one page that represents them */
+      if (f === 'privacy-policies.html') return 'policies';
       if (f.startsWith('privacy/')) return 'policies';
       if (f.startsWith('apps/')) {
         if (HUBS_S.has(f)) return 'main';
