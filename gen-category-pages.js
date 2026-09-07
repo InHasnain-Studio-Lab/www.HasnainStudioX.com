@@ -68,7 +68,16 @@ const esc  = s => String(s == null ? '' : s)
 const escA = s => esc(s).replace(/"/g, '&quot;');
 
 /* page shell, borrowed from a policy page exactly as the app pages do */
-const TPL = read('privacy/HSXStudioFlowPrivacy.html').replace(/(href|src)="\.\.\//g, '$1="');
+/* The shell comes from a policy page, and policies are deliberately
+   noindexed. That rule belongs to the policy, not to the shell: every page
+   generated from it is one we want in the index. Reset it here so the
+   template's own robots meta can never leak into 90 other pages. */
+const REINDEX = h => h
+  .replace(/<meta name="robots" content="[^"]*"\/?>/i,
+           '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>')
+  .replace(/<meta name="(googlebot|bingbot)" content="[^"]*"\/?>/gi,
+           (m, bot) => '<meta name="' + bot + '" content="index, follow, max-snippet:-1, max-image-preview:large"/>');
+const TPL = REINDEX(read('privacy/HSXStudioFlowPrivacy.html').replace(/(href|src)="\.\.\//g, '$1="'));
 const headOpen  = TPL.slice(0, TPL.indexOf('<body>'));
 const afterBody = TPL.slice(TPL.indexOf('<body>'));
 const upify = h => h

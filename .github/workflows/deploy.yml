@@ -68,7 +68,7 @@ jobs:
       # generated pages.
       - name: Strip build sources from the published site
         run: |
-          rm -rf articles-src guides-src
+          rm -rf articles-src guides-src og-src
           rm -f build.js gen-app-pages.js gen-category-pages.js gen-guide-pages.js \
                 publish-guide.js hsx-taxonomy.js update-gallery.js optimise-images.py \
                 make-app-art.py make-icons.py brand-icon-master.png \

@@ -105,8 +105,17 @@ const alsoHubsOf = a => HUBS.filter(h => h.crossCut && (h.ids || []).includes(a.
 /* Page shell borrowed from a policy page. That page sits one folder down, so
    its links are already ../ prefixed; flatten them back to root-relative first
    and let upify() re-anchor them for apps/. */
-const TPL = read('privacy/HSXStudioFlowPrivacy.html')
-  .replace(/(href|src)="\.\.\//g, '$1="');
+/* The shell comes from a policy page, and policies are deliberately
+   noindexed. That rule belongs to the policy, not to the shell: every page
+   generated from it is one we want in the index. Reset it here so the
+   template's own robots meta can never leak into 90 other pages. */
+const REINDEX = h => h
+  .replace(/<meta name="robots" content="[^"]*"\/?>/i,
+           '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>')
+  .replace(/<meta name="(googlebot|bingbot)" content="[^"]*"\/?>/gi,
+           (m, bot) => '<meta name="' + bot + '" content="index, follow, max-snippet:-1, max-image-preview:large"/>');
+const TPL = REINDEX(read('privacy/HSXStudioFlowPrivacy.html')
+  .replace(/(href|src)="\.\.\//g, '$1="'));
 const headOpen = TPL.slice(0, TPL.indexOf('<body>'));
 const afterBody = TPL.slice(TPL.indexOf('<body>'));
 let headerHTML = afterBody.slice(0, afterBody.indexOf('<main'));
