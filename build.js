@@ -402,9 +402,9 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
        cannot quietly put it in the sitemap. */
     const TOKEN = /^(naver[0-9a-f]{16,}\.html|yandex_[0-9a-f]{8,}\.html|google[0-9a-f]{8,}\.html|BingSiteAuth\.xml)$/i;
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
-                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','contest-rules.html':'0.5' };
+                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
-                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','contest-rules.html':'monthly' };
+                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly' };
 
     const rootPages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f) && !TOKEN.test(f))
@@ -673,6 +673,7 @@ function syncSocialMeta() {
     'android-apps.html': 'og-android.png', 'HSXAIstudio.html': 'og-aistudio.png',
     'about.html': 'og-about.png', 'contact.html': 'og-contact.png',
     'contest-rules.html': 'og-home.png', 'privacy-policies.html': 'og-privacy.png',
+    'privacy.html': 'og-privacy.png',
     '404.html': 'og-home.png'
   };
   const escq = v => String(v).replace(/"/g, '&quot;');
@@ -1133,6 +1134,78 @@ function syncFooters() {
 }
 const footerMsg = syncFooters();
 
+/* ── the Company column ───────────────────────────────────────────────────
+   The Products column has been generated for a while; Company was still
+   hand-edited and had drifted, carrying an empty list item on all 96 pages
+   and inconsistent indentation. It also now has to carry the website privacy
+   policy, which AdSense requires visitors to be able to find, so it is
+   generated on the same terms: one definition, applied everywhere. */
+function syncFooterCompany() {
+  const WANT = ['contest-rules.html|Competition Rules', 'about.html|About Hasnain Butt Akhtar',
+                '|Home', 'contact.html|Contact',
+                'privacy-policies.html|App Privacy Policies', 'privacy.html|Website Privacy'];
+  let fixed = 0;
+  const walkDir = d => {
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src', 'guides-src', 'og-src'].includes(ent.name)) continue;
+      const p = path.join(d, ent.name);
+      if (ent.isDirectory()) { walkDir(p); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+      let s = fs.readFileSync(p, 'utf8');
+      if (s.includes('HSX:PRIVACY-REDIRECT') || s.includes('HSX:RENAME-REDIRECT')) continue;
+      const up = path.relative(ROOT, d) ? '../' : './';
+      const want = WANT.map(x => {
+        const [h, l] = x.split('|');
+        return '<li><a href="' + (h ? (up === './' ? '' : up) + h : up) + '">' + l + '</a></li>';
+      }).join('\n                            ');
+      const re = /(<h2 class="footer-heading">Company<\/h2>\s*<ul class="footer-links">)([\s\S]*?)(<\/ul>)/;
+      const m = s.match(re);
+      if (m && m[2].trim() !== want) {
+        s = s.replace(re, (_, x, y, z) => x + '\n                            ' + want + '\n                        ' + z);
+        fs.writeFileSync(p, s, 'utf8'); fixed++;
+      }
+    }
+  };
+  walkDir(ROOT);
+  return '  footer company        ' + (fixed ? fixed + ' rebuilt' : 'consistent');
+}
+const footerCoMsg = syncFooterCompany();
+
+/* ── one font request, and only for fonts the site uses ───────────────────
+   167 of the pages still asked Google for Orbitron, Inter and Poppins. The
+   stylesheet has not used any of them for a long time; it loads Unbounded,
+   Space Grotesk and JetBrains Mono. Every one of those pages was therefore
+   paying for a DNS lookup, a stylesheet and three font families that never
+   render, and sending the visitor's IP to Google to do it.
+   The link is now written from one definition, matching the URL site.css
+   imports, so the two resolve to a single cached request. */
+function syncFonts() {
+  const HREF = 'https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800'
+             + '&family=Space+Grotesk:wght@300;400;500;600;700'
+             + '&family=JetBrains+Mono:wght@400;500;600&display=swap';
+  const RE = /(<link[^>]*href=")https:\/\/fonts\.googleapis\.com\/css2\?[^"]*(")/g;
+  let fixed = 0, pages = 0;
+  const walkDir = d => {
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src', 'guides-src', 'og-src'].includes(ent.name)) continue;
+      const p = path.join(d, ent.name);
+      if (ent.isDirectory()) { walkDir(p); continue; }
+      if (!ent.name.endsWith('.html')) continue;
+      const s = fs.readFileSync(p, 'utf8');
+      if (!RE.test(s)) { RE.lastIndex = 0; continue; }
+      RE.lastIndex = 0;
+      pages++;
+      const out = s.replace(RE, (m, a, b) => a + HREF.replace(/&/g, '&amp;') + b);
+      if (out !== s) { fs.writeFileSync(p, out, 'utf8'); fixed++; }
+    }
+  };
+  walkDir(ROOT);
+  return '  web fonts             ' + pages + ' pages checked, ' + fixed + ' corrected';
+}
+const fontMsg = syncFonts();
+
+
+
 /* ── Copyright and trademark line ──────────────────────────────────────
    One sentence, everywhere, in the studio's name rather than the founder's:
    the studio is the publisher and the mark holder, and he is the founder and
@@ -1187,6 +1260,8 @@ function syncCopyright() {
 }
 const copyMsg = syncCopyright();
 if (footerMsg) sitemapMsg += '\n' + footerMsg;
+if (footerCoMsg) sitemapMsg += '\n' + footerCoMsg;
+if (fontMsg) sitemapMsg += '\n' + fontMsg;
 if (copyMsg)   sitemapMsg += '\n' + copyMsg;
 
 /* ── 3g. the studio's trademark register, on the About page ───────────── */
@@ -1462,7 +1537,7 @@ const AD_TAG = '    <script async src="https://pagead2.googlesyndication.com/pag
   + AD_CLIENT + '" crossorigin="anonymous"></script>\n';
 const AD_RE = /[ \t]*<script[^>]*googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^>]*><\/script>[ \t]*\r?\n?/g;
 /* Pages that are legal or navigational in purpose regardless of length. */
-const AD_DENY = new Set(['privacy-policies.html']);
+const AD_DENY = new Set(['privacy-policies.html', 'privacy.html']);
 const AD_MIN_WORDS = 300;
 
 /* Removes the visible "Ad space reserved" placeholder box, keeping the
