@@ -202,6 +202,7 @@ module.exports.INTENT = {
   morphlora:      'Offline AI Photo Restyler for Windows',
   pixunica:       'Offline 4K AI Image Generator for Windows',
   writedesk:      'Offline AI Writing Assistant for Windows',
+  socialdeckpro:  'Offline Social Post Writer for Windows',
   /* system and performance */
   pctunex:                'Windows PC Cleaner and Startup Manager',
   pcturboxultra:          'Windows RAM and CPU Optimiser for Gaming',
@@ -218,7 +219,7 @@ module.exports.INTENT = {
   autoclickx:             'Auto Clicker and Macro Recorder for PC',
   bootforge:              'Create Bootable USB Drives on Windows',
   earthos:                'Live World Map Desktop Wallpaper',
-  browsex:                'Privacy Browser for Windows, No Tracking',
+  browsex:                'Private AI Browser for Windows',
   aetheris:               'Unified Game Launcher for Windows',
 
   /* files and transfer */

@@ -830,7 +830,7 @@
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
                 /*TERMAPPS_START*/
-                print('Hasnain Studio X - 70 applications live, 1 in development', 'ok');
+                print('Hasnain Studio X - 70 applications live, 2 in development', 'ok');
                 print('', '');
                 print('WINDOWS (65)', 'warn');
                 print('  AI tools: DreamMint AI, HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX Nostalgicel, HSX NovaDiffux, HSX PixUnica, HSX Pocktium, HSX PromptKinetics, HSX QuantumGen AI Studio, HSX StudioFlow, HSX WriteDesk', '');
@@ -839,12 +839,12 @@
                 print('  Files & transfer: FileGuardian Ultra, FlipX Studio, HSX ConvertStudio, PC Archive Pro, PC Download Manager Ultra, QuantumDrop', '');
                 print('  Games & explore: HSX GameFabrix, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
                 print('  Other: HSX NanoCodify, HSX NanoVisuality, Pixumbra Studio', '');
-                print('  System & performance: FocusRoom Ultra, HSX Automafy, HSX BootForge, HSX Browser, HSX EarthShell, HSX HandsFree PC, HSX SmartClicker, KatanicOS, NimbusDock, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
+                print('  System & performance: FocusRoom Ultra, HSX AI Browser, HSX Automafy, HSX BootForge, HSX EarthShell, HSX HandsFree PC, HSX SmartClicker, KatanicOS, NimbusDock, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
                 print('', '');
                 print('ANDROID (5)', 'warn');
                 print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');
                 print('', '');
-                print('In development: 1 more. Full catalogue at hasnainstudiox.com', '');
+                print('In development: 2 more. Full catalogue at hasnainstudiox.com', '');
                 /*TERMAPPS_END*/
             }
         };
