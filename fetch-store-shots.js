@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   Collect the store screenshots for every live application.
+/* Collect the store screenshots for every live application.
 
    The screenshots on your Store listings are the ones you uploaded, so
    this reads the product ID out of each catalogue entry, asks Microsoft's
@@ -11,8 +10,7 @@
      node fetch-store-shots.js pixunica   one app, by its catalogue id
 
    Output: store-shots/<slug>/01.jpg upwards. Already downloaded apps are
-   skipped, so it is safe to stop it and run it again.
-   ═══════════════════════════════════════════════════════════════════ */
+   skipped, so it is safe to stop it and run it again. */
 const fs = require('fs'), path = require('path'), https = require('https');
 const ROOT = __dirname, OUT = path.join(ROOT, 'store-shots');
 const MARKET = 'GB', LANG = 'en-gb';

@@ -1,4 +1,4 @@
-# robots.txt — https://hasnainstudiox.com/
+# robots.txt - https://hasnainstudiox.com/
 # Open to every crawler. No engine-specific restrictions, no crawl-delay.
 
 User-agent: *
@@ -49,7 +49,7 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
-# Social preview fetchers — needed for Open Graph cards to render.
+# Social preview fetchers - needed for Open Graph cards to render.
 User-agent: Twitterbot
 Allow: /
 

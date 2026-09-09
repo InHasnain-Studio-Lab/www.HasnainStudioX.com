@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX guides: release the next scheduled article
+/* HSX guides: release the next scheduled article
 
    Written guides wait in guides-src/scheduled/ with a "release" date in
    their front matter. This moves the ones that are due up into
@@ -10,8 +9,7 @@
      node publish-guide.js --next   release the next one regardless of date
      node publish-guide.js --list   show the queue without changing anything
 
-   Then run the usual build to regenerate the site.
-   ═══════════════════════════════════════════════════════════════════ */
+   Then run the usual build to regenerate the site. */
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname;
 const SRC = path.join(ROOT, 'guides-src');

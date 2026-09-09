@@ -1,5 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX category taxonomy: the single source of truth shared by the app
+/* HSX category taxonomy: the single source of truth shared by the app
    pages, the category hub pages and the catalogue.
 
    A hub exists so that a category query ("photo editor for Windows that
@@ -9,8 +8,7 @@
 
    Developer Tools has one unreleased title and therefore gets no hub: a
    near-empty landing page is worse than none at all. Add it here the day
-   a second developer tool ships.
-   ═══════════════════════════════════════════════════════════════════ */
+   a second developer tool ships. */
 module.exports.HUBS = [
   {
     key: 'ai',
@@ -161,8 +159,7 @@ module.exports.HUBS = [
   }
 ];
 
-/* ═══════════════════════════════════════════════════════════════════════
-   Minimum graphics requirement, in GB of dedicated VRAM.
+/* Minimum graphics requirement, in GB of dedicated VRAM.
 
    Only the applications that do real work on the GPU carry this. The AI
    generation range, the coding studio and the on-device assistants. It is a
@@ -171,8 +168,7 @@ module.exports.HUBS = [
    Store listing. An app with no entry shows no badge: a guessed requirement
    is worse than none, because a refund is the cost of getting it wrong.
 
-   To add one, quote the figure from that app's Store listing.
-   ═══════════════════════════════════════════════════════════════════ */
+   To add one, quote the figure from that app's Store listing. */
 module.exports.GPU_VRAM = {
   hsxstudioflow: 4,   // "dedicated GPU (NVIDIA, AMD, or Intel with 4 GB+ VRAM)"
   novadiffux:    4,   // "dedicated GPU (NVIDIA, AMD, or Intel with 4 GB+ VRAM)"
@@ -183,8 +179,7 @@ module.exports.GPU_VRAM = {
   fototensor:    6    // "Running directly on your dedicated GPU (6GB+ VRAM)"
 };
 
-/* ═══════════════════════════════════════════════════════════════════════
-   Search-intent titles.
+/* Search-intent titles.
 
    An app page used to be titled the way the studio thinks of the product
    ("HSX StudioFlow - Local AI image studio"). Nobody searches that. They
@@ -194,8 +189,7 @@ module.exports.GPU_VRAM = {
 
    Each phrase is sized so that "<phrase> | <product name>" stays inside the
    ~60 characters Google renders before truncating. An app with no entry
-   falls back to the tagline-derived title.
-   ═══════════════════════════════════════════════════════════════════ */
+   falls back to the tagline-derived title. */
 module.exports.INTENT = {
   dreammintai:    'Offline AI Image and Video Generator',
   nostalgicel:    'Offline Retro Anime Image Generator',
@@ -286,16 +280,14 @@ module.exports.INTENT = {
   workxsuiteandroid:      'Offline PDF and Document Suite for Android'
 };
 
-/* ═══════════════════════════════════════════════════════════════════════
-   Cross-cutting hubs.
+/* Cross-cutting hubs.
 
    The seven hubs above follow the catalogue's own categories. These two do
    not: spatial audio sits inside Audio & Video, and privacy tools are spread
    across four categories. Both are real search demands in their own right,
    so they list apps explicitly by id. An app can appear in one of these as
    well as in its category hub - that is a second route in, not a duplicate,
-   because the canonical description of every app still lives on its own page.
-   ═══════════════════════════════════════════════════════════════════ */
+   because the canonical description of every app still lives on its own page. */
 module.exports.HUBS.push(
   {
     key: 'spatial', crossCut: true,

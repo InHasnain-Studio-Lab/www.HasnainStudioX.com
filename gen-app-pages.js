@@ -1,12 +1,10 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX app landing pages: one per live application, generated from the
+/* HSX app landing pages: one per live application, generated from the
    APPS arrays that already drive the catalogue, schema and sitemap.
 
    Output:  apps/<slug>.html
    Privacy policies stay at the site root, untouched, because those URLs
-   are registered with the stores and built into shipped software.
-   ═══════════════════════════════════════════════════════════════════ */
+   are registered with the stores and built into shipped software. */
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname, P = f => path.join(ROOT, f);
 const read = f => fs.readFileSync(P(f), 'utf8');
@@ -101,7 +99,7 @@ const hubOf = a => HUBS.find(h => h.key === catKeyOf(a)) || null;
    privacy tools) - listed as an extra route in, never as its breadcrumb */
 const alsoHubsOf = a => HUBS.filter(h => h.crossCut && (h.ids || []).includes(a.id));
 
-/* ── page shell, borrowed from an existing page so styling matches ── */
+/* page shell, borrowed from an existing page so styling matches */
 /* Page shell borrowed from a policy page. That page sits one folder down, so
    its links are already ../ prefixed; flatten them back to root-relative first
    and let upify() re-anchor them for apps/. */
@@ -143,13 +141,12 @@ const LOCAL_LINK = new Set(['castvisuality', 'quantumdrop']);
 const isLinked  = a => LOCAL_LINK.has(a.id);
 const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a);
 
-/* ── Trademarks ────────────────────────────────────────────────────────────
+/* Trademarks
    COINED are invented words owned outright by the studio; the mark is the
    bare word, not the product name it sits inside (HSX NovaDiffux -> NovaDiffux).
    Every other application asserts its full product name as the mark.
    TM is used throughout: it asserts an unregistered mark and needs no
-   registration. The registered symbol is reserved for Hasnain Studio X alone.
-   ──────────────────────────────────────────────────────────────────────── */
+   registration. The registered symbol is reserved for Hasnain Studio X alone. */
 const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
   'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
   'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
@@ -293,7 +290,7 @@ function pageFor(a) {
      already ends where the author ended a thought, so the aggressive rules
      would eat good words - they turned "Turn any phone" into "Turn". */
   const tidy = (t, deep) => {
-    let w = t.replace(/[\s,;:—–-]+$/, '').split(/\s+/).filter(Boolean);
+    let w = t.replace(/[\s,;:-]+$/, '').split(/\s+/).filter(Boolean);
     for (;;) {
       const last = (w[w.length - 1] || '').replace(/[^A-Za-z0-9]/g, '').toLowerCase();
       if (w.length && STOP.has(last)) { w.pop(); continue; }
@@ -306,7 +303,7 @@ function pageFor(a) {
       }
       break;
     }
-    return w.join(' ').replace(/[\s,;:—–-]+$/, '');
+    return w.join(' ').replace(/[\s,;:-]+$/, '');
   };
   /* A search-intent phrase leads the title where one is written for this app,
      with the product name after it. Sized so the whole title survives the ~60
@@ -328,7 +325,7 @@ function pageFor(a) {
     /* 1. longest prefix ending on a real phrase boundary, keeps the original
           punctuation and wording exactly as written */
     let cut = '';
-    for (const m of TAG.matchAll(/[,;:]|\s+(?:and|or|—|–|-)\s+/g)) {
+    for (const m of TAG.matchAll(/[,;:]|\s+(?:and|or|-)\s+/g)) {
       const pre = tidy(TAG.slice(0, m.index), false);
       if (pre.length <= room && pre.length > cut.length) cut = pre;
     }
@@ -355,7 +352,7 @@ function pageFor(a) {
   let DESC    = `${a.name}: ${TAGP} Runs entirely on your ${DEV} with no account, no telemetry and no subscription.`;
   if (DESC.length > 158) DESC = `${a.name}: ${TAGP} Runs on your ${DEV} with no account and no telemetry.`;
   if (DESC.length > 158) DESC = `${a.name}: ${a.tagline} Local-first, no account needed.`;
-  if (DESC.length > 158) DESC = DESC.slice(0, 155).replace(/[\s,;—-]+$/, '') + '...';
+  if (DESC.length > 158) DESC = DESC.slice(0, 155).replace(/[\s,;-]+$/, '') + '...';
   const KEYS  = [a.name, `${a.name} ${a.platform}`, `${a.name} download`,
                  `${a.name} privacy`, c.label, 'Hasnain Studio X', 'local-first software',
                  `${a.platform} app no subscription`].join(', ');

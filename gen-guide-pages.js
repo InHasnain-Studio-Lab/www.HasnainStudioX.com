@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX guides: long-form articles, generated from guides-src/
+/* HSX guides: long-form articles, generated from guides-src/
 
    Output: guides/<slug>.html, plus guides/index.html
 
@@ -8,8 +7,7 @@
    with a JSON front matter comment. Nothing else needs editing.
 
    Required front matter: title, description, published.
-   Optional: nav, h1, standfirst, section, updated, keywords, apps.
-   ═══════════════════════════════════════════════════════════════════ */
+   Optional: nav, h1, standfirst, section, updated, keywords, apps. */
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname, P = f => path.join(ROOT, f);
 const read = f => fs.readFileSync(P(f), 'utf8');

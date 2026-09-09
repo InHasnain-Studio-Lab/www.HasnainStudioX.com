@@ -18,11 +18,11 @@ Applies to every page, meta description, structured-data field and guide.
 
 ## Every file in the root, and why it is there
 
-### Pages — 88 .html files
+### Pages - 88 .html files
 | | |
 |---|---|
 | `index.html` `Windows-apps.html` `android-apps.html` `HSXAIstudio.html` `contact.html` | the site |
-| `privacy-policies.html` | A–Z index of all 79 app policies |
+| `privacy-policies.html` | A-Z index of all 79 app policies |
 | 79 `*Privacy.html` | one policy per app (Store requirement) |
 | `404.html` | custom not-found page, `noindex` |
 | `card.html` `qx-link.html` | QR landing pages, `noindex` |
@@ -31,7 +31,7 @@ Applies to every page, meta description, structured-data field and guide.
 | | |
 |---|---|
 | `site.css` `site.js` `effects.js` `fluid.js` | styles and scripts |
-| `gallery-data.js` | AI Studio gallery list — generated, do not hand-edit |
+| `gallery-data.js` | AI Studio gallery list - generated, do not hand-edit |
 | `images/` | site assets only - the 6 social share cards and app icons |
 | `images/gallery/` | **AI Studio artwork.** Drop new PNGs here, nowhere else |
 | `favicon.svg` `favicon.ico` `apple-touch-icon.png` `site.webmanifest` | icons |
@@ -41,7 +41,7 @@ Applies to every page, meta description, structured-data field and guide.
 |---|---|
 | `sitemap.xml` | **the only sitemap.** 85 pages + 3 gallery images, in one file |
 | `robots.txt` | crawl rules, points at the sitemap |
-| `88d79d2aa8d9f1a589221f1ca7cdec66.txt` | IndexNow ownership proof for Bing — do not rename or delete |
+| `88d79d2aa8d9f1a589221f1ca7cdec66.txt` | IndexNow ownership proof for Bing - do not rename or delete |
 
 ### Hosting
 | | |
@@ -50,7 +50,7 @@ Applies to every page, meta description, structured-data field and guide.
 | `.nojekyll` | stops GitHub running Jekyll over the site |
 | `ads.txt` `app-ads.txt` | AdSense / AdMob verification |
 
-### Build tools — run by GitHub, not by you
+### Build tools - run by GitHub, not by you
 | | |
 |---|---|
 | `build.js` | app counts, structured data, static catalogue, sitemap |
@@ -60,7 +60,7 @@ Applies to every page, meta description, structured-data field and guide.
 | `.github/workflows/` | runs all four on every push |
 
 ### Not published
-`_archive/` — backups and retired files. `.gitignore` keeps it out of the repo.
+`_archive/` - backups and retired files. `.gitignore` keeps it out of the repo.
 Safe to delete from your PC whenever you like.
 
 ## How to change something
@@ -71,7 +71,7 @@ The Action then rebuilds the catalogue, structured data and sitemap, commits the
 result, and tells Bing. **You never need to run anything on your PC.**
 
 To add or rename an app, edit the `APPS` array inside `Windows-apps.html` or
-`android-apps.html` — every count, schema entry and sitemap URL follows from it.
+`android-apps.html` - every count, schema entry and sitemap URL follows from it.
 To add gallery art, drop the PNG into `images/gallery/` and commit. Nothing
 else in `images/` is ever picked up.
 
@@ -88,6 +88,6 @@ else in `images/` is ever picked up.
 
 ## Known gap
 
-No `aggregateRating` in the structured data — star ratings must reflect real
+No `aggregateRating` in the structured data - star ratings must reflect real
 review data. Add the counts and averages from Partner Center and Play Console to
 `build.js` when you have them.

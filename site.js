@@ -1,13 +1,11 @@
-/* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X — site.js
+/* HASNAIN STUDIO X - site.js
    Core interactions: page transitions, scroll progress, reveal-on-scroll,
-   stat count-up, magnetic buttons, contact form, header state.
-   ═══════════════════════════════════════════════════════════════════════ */
+   stat count-up, magnetic buttons, contact form, header state. */
 (function () {
     'use strict';
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ── Page transition: fade in on load, fade out on internal nav ────── */
+    /* Page transition: fade in on load, fade out on internal nav */
     var pg = document.getElementById('pg-transition');
     if (pg) {
         pg.classList.add('active');
@@ -30,7 +28,7 @@
         });
     }
 
-    /* ── Header scrolled state + scroll progress ───────────────────────── */
+    /* Header scrolled state + scroll progress */
     var bar = document.querySelector('.top-bar');
     var prog = document.getElementById('scroll-progress');
     function onScroll() {
@@ -44,7 +42,7 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    /* ── Reveal on scroll ───────────────────────────────────────────────── */
+    /* Reveal on scroll */
     var revealEls = document.querySelectorAll('.reveal, .stagger');
     if ('IntersectionObserver' in window && revealEls.length) {
         var io = new IntersectionObserver(function (entries) {
@@ -67,7 +65,7 @@
         revealEls.forEach(function (el) { el.classList.add('visible'); });
     }
 
-    /* ── Stat number count-up (numeric stats only) ─────────────────────── */
+    /* Stat number count-up (numeric stats only) */
     var stats = document.querySelectorAll('.stat-number');
     if ('IntersectionObserver' in window && stats.length && !reduceMotion) {
         var sio = new IntersectionObserver(function (entries) {
@@ -93,7 +91,7 @@
         stats.forEach(function (s) { sio.observe(s); });
     }
 
-    /* ── Magnetic buttons (fine pointers only) ─────────────────────────── */
+    /* Magnetic buttons (fine pointers only) */
     if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
         document.querySelectorAll('.btn').forEach(function (btn) {
             btn.addEventListener('pointermove', function (e) {
@@ -108,7 +106,7 @@
         });
     }
 
-    /* ── Contact form: async submit with inline status ─────────────────── */
+    /* Contact form: async submit with inline status */
     /* Any form marked [data-async] posts without a page reload and reports
        into the <p> named by its id + '-status'. */
     document.querySelectorAll('form[data-async], #contact-form').forEach(function (form) {
@@ -127,8 +125,8 @@
                 if (res.ok) {
                     form.reset();
                     if (status) status.textContent = form.id === 'contest-form'
-                        ? '✓ Entry received — good luck. Winners are announced on X.'
-                        : '✓ Message sent — we’ll reply within 2 business days.';
+                        ? '✓ Entry received - good luck. Winners are announced on X.'
+                        : '✓ Message sent - we’ll reply within 2 business days.';
                 } else {
                     throw new Error('send failed');
                 }
@@ -143,12 +141,12 @@
         });
     });
 
-    /* ── Footer year auto-update ────────────────────────────────────────── */
+    /* Footer year auto-update */
     document.querySelectorAll('.footer-bottom span').forEach(function (s) {
         s.innerHTML = s.innerHTML.replace(/©\s*\d{4}/, '© ' + new Date().getFullYear());
     });
 
-    /* ── Scroll parallax: [data-parallax="0.12"] drifts with scroll ────── */
+    /* Scroll parallax: [data-parallax="0.12"] drifts with scroll */
     var pxEls = document.querySelectorAll('[data-parallax]');
     if (pxEls.length && !reduceMotion) {
         var ticking = false;
@@ -169,10 +167,8 @@
     }
 })();
 
-/* ═══════════════════════════════════════════════════════════════════════
-   AppViz — live animated previews so every app SHOWS what it does.
-   Used by the Windows / Android catalogue renderers and the home page.
-   ═══════════════════════════════════════════════════════════════════════ */
+/* AppViz - live animated previews so every app SHOWS what it does.
+   Used by the Windows / Android catalogue renderers and the home page. */
 window.AppViz = (function () {
     /* One animation per app, derived from that app's real feature set:
        gauge    = junk cleanup + optimisation (PC TuneX, Mobile TuneX)
@@ -238,7 +234,7 @@ window.AppViz = (function () {
     };
 })();
 
-/* Catalogue pages render their grid before this file loads — re-render once
+/* Catalogue pages render their grid before this file loads - re-render once
    AppViz exists so every tile gets its live preview. */
 (function () {
     try {
@@ -248,7 +244,7 @@ window.AppViz = (function () {
     } catch (e) { /* no-op */ }
 })();
 
-    /* ══ Made With HSX: monthly challenge countdown ══════════════════════
+    /* Made With HSX: monthly challenge countdown
        The deadline is the last moment of the current month, computed in the
        visitor's own clock, so nothing needs editing month to month. Add an
        entry to THEMES to name a month; anything unlisted shows "Open theme". */
@@ -297,7 +293,7 @@ window.AppViz = (function () {
         tick();
     })();
 
-    /* ── Prompt guide tabs (AI Studio) ─────────────────────────────────
+    /* Prompt guide tabs (AI Studio)
        Markup ships with every panel visible so crawlers and no-JS readers
        get the whole guide; this turns it into a tabbed panel. */
     (function promptGuideTabs() {
@@ -333,13 +329,12 @@ window.AppViz = (function () {
     })();
 
 
-/* ── Native Microsoft Store links ──────────────────────────────────────────
+/* Native Microsoft Store links
    On Windows, ms-windows-store://pdp/?ProductId=... opens the Store app
    straight on the product page, removing the browser hop and the second
    click. It is added only when the visitor is actually on Windows: elsewhere
    the protocol has no handler and the click would do nothing, so the link
-   stays hidden and the ordinary web link remains the only route.
-   ────────────────────────────────────────────────────────────────────── */
+   stays hidden and the ordinary web link remains the only route. */
 (function () {
   var links = document.querySelectorAll('a.store-native[data-pid]');
   if (!links.length) return;
@@ -354,11 +349,10 @@ window.AppViz = (function () {
   });
 })();
 
-/* ── Pillar page section navigation ───────────────────────────────────────
+/* Pillar page section navigation
    Marks whichever section is currently in view. Runs only on pages that
    actually have the bar, and does nothing at all without JavaScript beyond
-   leaving a working row of anchor links.
-   ────────────────────────────────────────────────────────────────────── */
+   leaving a working row of anchor links. */
 (function () {
   var bar = document.getElementById('pillar-nav');
   if (!bar || !('IntersectionObserver' in window)) return;

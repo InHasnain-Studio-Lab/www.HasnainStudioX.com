@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X: Site sync
+/* HASNAIN STUDIO X: Site sync
 
    Run this after adding, removing or renaming an app.
    It reads the APPS list inside Windows-apps.html and android-apps.html
@@ -11,8 +10,7 @@
      2. The SoftwareApplication structured data Google reads
      3. sitemap.xml, adds new pages, drops deleted ones, refreshes dates
 
-   Double-click update-site.bat. Nothing else to remember.
-   ═══════════════════════════════════════════════════════════════════════ */
+   Double-click update-site.bat. Nothing else to remember. */
 
 const fs = require('fs');
 const path = require('path');
@@ -56,7 +54,7 @@ const SCHEMA_CAT = {
   convertmasterultra:'MultimediaApplication', workxsuiteandroid:'BusinessApplication',
 };
 
-/* ── read the APPS array out of a page ── */
+/* read the APPS array out of a page */
 function readApps(file) {
   const s = read(file);
   const m = s.match(/const APPS = \[([\s\S]*?)\n        \];/);
@@ -92,7 +90,7 @@ const COUNTS = {
   'and-soon':   soon(and).length,
 };
 
-/* ── 1. rewrite every <span data-count="x">…</span> across the site ── */
+/* 1. rewrite every <span data-count="x">…</span> across the site */
 const PAGES = fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !f.startsWith('_'));
 let countEdits = 0;
 for (const f of PAGES) {
@@ -108,7 +106,7 @@ for (const f of PAGES) {
   if (s !== before) { write(f, s); countEdits++; }
 }
 
-/* ── 2. regenerate the SoftwareApplication structured data ── */
+/* 2. regenerate the SoftwareApplication structured data */
 function syncSchema(file, apps, listName, osName) {
   let s = read(file);
   const block = s.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
@@ -153,7 +151,7 @@ const nWin = syncSchema('Windows-apps.html', win, 'Windows Apps by Hasnain Studi
 const nAnd = syncSchema('android-apps.html', and, 'Android Apps by Hasnain Studio X', 'Android');
 
 
-/* ── 3. pre-render the catalogue, then rebuild the sitemap ──────────────
+/* 3. pre-render the catalogue, then rebuild the sitemap
    The catalogue is written into the HTML as static markup, because Bing,
    DuckDuckGo and the AI crawlers do not execute JavaScript. Then the sitemap
    is regenerated from what is actually on disk. */
@@ -163,7 +161,7 @@ let sitemapMsg = '';
   console.log = (...a) => { sitemapMsg += '    ' + a.join(' ').trim() + '\n'; };
   try {
 
-    /* ── app landing pages (apps/<slug>.html), one per live application ── */
+    /* app landing pages (apps/<slug>.html), one per live application */
     /* category hub pages first: the app pages link up into them */
     require('./gen-category-pages.js');
     require('./gen-app-pages.js');
@@ -331,7 +329,7 @@ let sitemapMsg = '';
 
     })();
 
-/* ── 2b. per-app privacy policies are kept out of the search index ────────
+/* 2b. per-app privacy policies are kept out of the search index
    The 74 policies say the same thing about 74 different apps, because that is
    what a privacy policy is: the same commitments, restated per product. Google
    read them as one page repeated and reported "Duplicate, Google chose
@@ -465,7 +463,7 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
           const t = (read(f).match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || b;
           nAppImgs++;
           appImg = `    <image:image>\n      <image:loc>${BASE}images/apps/${b}-og.jpg</image:loc>\n`
-                 + `      <image:title>${esc(t.split(' — ')[0].split(' | ')[0])}</image:title>\n    </image:image>\n`;
+                 + `      <image:title>${esc(t.split(' | ')[0])}</image:title>\n    </image:image>\n`;
         }
       }
       const extra = appImg ? appImg : (f === 'HSXAIstudio.html')
@@ -488,7 +486,7 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
            + extra + `  </url>`;
     };
 
-    /* ── one sitemap index, four section files ────────────────────────────
+    /* one sitemap index, four section files
        Search Console reports coverage per submitted sitemap, so splitting by
        section turns "12 pages not indexed" into "12 of the Windows app pages
        are not indexed", which is the difference between a number and a lead.
@@ -549,7 +547,7 @@ sitemapMsg = '\n' + sitemapMsg.replace(/\n$/, '');
 
 
 
-/* ── 3b. privacy policy index: rebuild from the files on disk ─────────────
+/* 3b. privacy policy index: rebuild from the files on disk
    Add a policy page and it appears here, in the count, and in the page's
    ItemList structured data, with no hand editing. */
 function syncPolicyIndex() {
@@ -597,7 +595,7 @@ function syncPolicyIndex() {
   write(file, s);
   return `  policy index          ${pages.length} policies`;
 }
-/* ── 3b. app id -> landing page map, consumed by the catalogue modal ──── */
+/* 3b. app id -> landing page map, consumed by the catalogue modal */
 function syncAppPages() {
   const map = {};
   for (const [apps, platform] of [[win, 'Windows'], [and, 'Android']])
@@ -618,7 +616,7 @@ function syncAppPages() {
   }
   return '  app page links       ' + n + ' modal buttons';
 }
-/* ── 3b2. browse-by-category strip ────────────────────────────────────────
+/* 3b2. browse-by-category strip
    The hub pages are only worth having if they are linked. This puts them on
    both catalogue pages and the homepage, as real markup rather than script
    output, so a crawler that does not run JavaScript still follows them. */
@@ -658,7 +656,7 @@ ${HUBS.map(h => `                    <a class="cat-sib" href="apps/${h.slug}.htm
     ? `  category strip        ${done} placed, markers missing in ${missing.join(', ')}`
     : `  category strip        ${HUBS.length} hubs linked from ${done} pages`;
 }
-/* ── 3b3. social cards must describe their own page ───────────────────────
+/* 3b3. social cards must describe their own page
    Pages built by copying another page inherit its og: and twitter: tags. That
    is how contest-rules.html came to advertise a privacy policy: the title,
    description and preview image shown on every share were another page's.
@@ -729,7 +727,7 @@ function syncSocialMeta() {
 }
 const socialMsg = syncSocialMeta();
 
-/* ── 3b4. one primary navigation, on every page ───────────────────────────
+/* 3b4. one primary navigation, on every page
    The header had drifted into three different shapes: 170 pages offered a
    single "Apps" link that went to Windows only, four offered Windows and
    Android separately, and the AI Studio page had lost its About link
@@ -778,7 +776,7 @@ function syncNav() {
 }
 const navMsg = syncNav();
 
-/* ── 3b5. counts written into prose ───────────────────────────────────────
+/* 3b5. counts written into prose
    The catalogue size appears inside sentences as well as in the stat blocks,
    where data-count cannot reach it. Those sentences went stale at 76 while
    the catalogue grew. */
@@ -803,7 +801,7 @@ const proseMsg = syncProseCounts();
 
 const catStripMsg = syncCategoryStrip();
 
-/* ── 3b6. hero artwork ────────────────────────────────────────────────────
+/* 3b6. hero artwork
    The Microsoft Store artwork for each application, kept in images/apps/ as
    <slug>-hero.webp and <slug>-hero-sm.webp. The map is rebuilt from the files
    that actually exist, so dropping a new tile into the folder is all it takes
@@ -827,7 +825,7 @@ function syncHeroes() {
   const n = Object.keys(map).length, total = win.length + and.length;
   return '  hero artwork          ' + n + ' of ' + total + ' apps illustrated';
 }
-/* ── 3b7. cache-busted asset URLs ─────────────────────────────────────────
+/* 3b7. cache-busted asset URLs
    Cloudflare caches .css and .js at the edge but does not cache .html, so a
    deploy ships new markup against a stale stylesheet. A ?v= query string does
    not fix that on its own: with the cache level set to ignore query strings,
@@ -877,7 +875,7 @@ const heroesMsg = syncHeroes();
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
 
-/* ── 3c. static gallery, so non-JavaScript crawlers read the artwork ───── */
+/* 3c. static gallery, so non-JavaScript crawlers read the artwork */
 function syncGalleryStatic() {
   const file = 'HSXAIstudio.html';
   if (!fs.existsSync(P(file))) return '';
@@ -983,7 +981,7 @@ function syncGalleryStatic() {
 const galStaticMsg = syncGalleryStatic();
 if (galStaticMsg) sitemapMsg += '\n' + galStaticMsg;
 
-/* ── 3d. prompt guide, rendered as a tabbed panel on the AI Studio page ── */
+/* 3d. prompt guide, rendered as a tabbed panel on the AI Studio page */
 function syncPromptGuide() {
   const file = 'HSXAIstudio.html';
   const src  = 'articles-src/prompt-guide.html';
@@ -1045,7 +1043,7 @@ ${p2.html.split('\n').map(l => '                    ' + l).join('\n')}
 const pgMsg = syncPromptGuide();
 if (pgMsg) sitemapMsg += '\n' + pgMsg;
 
-/* ── 3e. terminal `apps` command, generated from the catalogue ─────────── */
+/* 3e. terminal `apps` command, generated from the catalogue */
 function syncTerminalApps() {
   const file = 'effects.js';
   if (!fs.existsSync(P(file))) return '';
@@ -1092,7 +1090,7 @@ function syncTerminalApps() {
 const termMsg = syncTerminalApps();
 if (termMsg) sitemapMsg += '\n' + termMsg;
 
-/* ── 3f. one footer product list on every page, and no retired app names ── */
+/* 3f. one footer product list on every page, and no retired app names */
 function syncFooters() {
   const WANT = ['Windows-apps.html|Windows Apps', 'android-apps.html|Android Apps', 'HSXAIstudio.html|AI Studio'];
   /* names that used to appear in hand-written copy and are not real products */
@@ -1134,7 +1132,7 @@ function syncFooters() {
 }
 const footerMsg = syncFooters();
 
-/* ── the Company column ───────────────────────────────────────────────────
+/* the Company column
    The Products column has been generated for a while; Company was still
    hand-edited and had drifted, carrying an empty list item on all 96 pages
    and inconsistent indentation. It also now has to carry the website privacy
@@ -1171,7 +1169,7 @@ function syncFooterCompany() {
 }
 const footerCoMsg = syncFooterCompany();
 
-/* ── one font request, and only for fonts the site uses ───────────────────
+/* one font request, and only for fonts the site uses
    167 of the pages still asked Google for Orbitron, Inter and Poppins. The
    stylesheet has not used any of them for a long time; it loads Unbounded,
    Space Grotesk and JetBrains Mono. Every one of those pages was therefore
@@ -1206,7 +1204,7 @@ const fontMsg = syncFonts();
 
 
 
-/* ── Copyright and trademark line ──────────────────────────────────────
+/* Copyright and trademark line
    One sentence, everywhere, in the studio's name rather than the founder's:
    the studio is the publisher and the mark holder, and he is the founder and
    developer (which the About page and the schema both already say).
@@ -1214,7 +1212,7 @@ const fontMsg = syncFonts();
    makes the general claim, because naming one product on the contact page
    would be arbitrary. ® is reserved for Hasnain Studio X - the registered
    mark - and ™ is used for the product names, which are claimed but not
-   separately registered.                                                */
+   separately registered. */
 function syncCopyright() {
   const NAME_BY_APPPAGE = {}, NAME_BY_POLICY = {};
   for (const a of win.concat(and))
@@ -1222,7 +1220,7 @@ function syncCopyright() {
   try {
     for (const f of fs.readdirSync(P('privacy')).filter(f => f.endsWith('.html'))) {
       const t = (read('privacy/' + f).match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1];
-      const n = t.replace(/\s+/g, ' ').replace(/\s*[-–—]\s*Privacy Policy.*$/i, '').trim();
+      const n = t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim();
       if (n) NAME_BY_POLICY['privacy/' + f] = n;
     }
   } catch (e) { /* no privacy/ folder */ }
@@ -1264,7 +1262,7 @@ if (footerCoMsg) sitemapMsg += '\n' + footerCoMsg;
 if (fontMsg) sitemapMsg += '\n' + fontMsg;
 if (copyMsg)   sitemapMsg += '\n' + copyMsg;
 
-/* ── 3g. the studio's trademark register, on the About page ───────────── */
+/* 3g. the studio's trademark register, on the About page */
 function syncTrademarks() {
   const file = 'about.html';
   if (!fs.existsSync(P(file))) return '';
@@ -1332,12 +1330,12 @@ function syncTrademarks() {
 const tmMsg = syncTrademarks();
 if (tmMsg) sitemapMsg += '\n' + tmMsg;
 
-/* ── 3h. every policy also answers at its root URL ─────────────────────────
+/* 3h. every policy also answers at its root URL
    Store listings point at the root form (hasnainstudiox.com/XPrivacy.html).
    Those URLs serve the full policy text plus an instant redirect to the
    canonical copy in privacy/, so a certification checker that does not follow
    the redirect still reads a complete policy. Regenerated every build so a new
-   or renamed policy can never be missing its root URL. ─────────────────── */
+   or renamed policy can never be missing its root URL. */
 function syncPrivacyStubs() {
   const dir = path.join(ROOT, 'privacy');
   if (!fs.existsSync(dir)) return '';
@@ -1382,12 +1380,12 @@ ${inner}
 const stubMsg = syncPrivacyStubs();
 if (stubMsg) sitemapMsg += '\n' + stubMsg;
 
-/* ── 3i. dateModified must be a full ISO 8601 datetime ──────────────────
+/* 3i. dateModified must be a full ISO 8601 datetime
    Google reported "Invalid datetime value for 'dateModified'" because the
    value was date-only (2026-08-20). Schema date properties accept a bare
    date, but ProfilePage and Article types want a datetime with an offset.
    Rewritten here for every page, and only when the date actually changes,
-   so a rebuild on the same day produces no diff. ────────────────────── */
+   so a rebuild on the same day produces no diff. */
 function syncDateModified() {
   const now = new Date();
   const pad = n => String(n).padStart(2, '0');
@@ -1425,7 +1423,7 @@ if (dateMsg) sitemapMsg += '\n' + dateMsg;
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
 
-/* ── 4. contact form: rebuild the app list from the catalogue ─────────────
+/* 4. contact form: rebuild the app list from the catalogue
    The topic dropdown used to be hand-maintained and had drifted badly:
    pre-rename names, only 19 of 69 Windows apps, and two Windows titles
    filed under Android. It is now generated from the same APPS arrays as
@@ -1460,7 +1458,7 @@ const topicsMsg = syncContactTopics();
 if (topicsMsg) sitemapMsg += '\n' + topicsMsg;
 
 
-/* ── 3c. Made With HSX: app picker in the contest entry form ──────────── */
+/* 3c. Made With HSX: app picker in the contest entry form */
 function syncContestApps() {
   const file = 'HSXAIstudio.html';
   if (!fs.existsSync(P(file))) return '';
@@ -1484,7 +1482,7 @@ function syncContestApps() {
 const contestMsg = syncContestApps();
 if (contestMsg) sitemapMsg += '\n' + contestMsg;
 
-/* ── 4. AI Studio gallery: refresh the app registry ──────────────────────
+/* 4. AI Studio gallery: refresh the app registry
    The showcase filters images by the app that produced them. The names and
    Store links come from the same APPS array as everything else, so a rename
    or a new Store listing propagates here with no second edit. */
@@ -1524,7 +1522,7 @@ if (navMsg) sitemapMsg += '\n' + navMsg;
 if (proseMsg) sitemapMsg += '\n' + proseMsg;
 if (heroesMsg) sitemapMsg += '\n' + heroesMsg;
 
-/* ── AdSense placement guard ──────────────────────────────────────────────
+/* AdSense placement guard
    Ads are not permitted on error pages, redirect stubs or pages with no
    real content, and are kept off the privacy policies as well.
 
@@ -1632,7 +1630,7 @@ if (adMsg) sitemapMsg += '\n' + adMsg;
 const assetMsg = syncAssetVersions();
 if (assetMsg) sitemapMsg += '\n' + assetMsg;
 
-/* ── report ── */
+/* report */
 console.log(`
   Site synced.
 

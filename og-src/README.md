@@ -1,4 +1,4 @@
-# og-src — the social cards
+# og-src - the social cards
 
 Renders the seven Open Graph cards in `images/og-*.png` at 1200x630, in the
 site's own design system: obsidian ground, pearl-foil accents, Unbounded for

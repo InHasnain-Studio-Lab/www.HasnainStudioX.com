@@ -43,4 +43,4 @@ as an Organization with a stable @id of https://hasnainstudiox.com/#organization
 
 ## Contact
 
-Hasnain Studio X, United Kingdom — https://hasnainstudiox.com/contact.html
+Hasnain Studio X, United Kingdom - https://hasnainstudiox.com/contact.html

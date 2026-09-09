@@ -1,12 +1,10 @@
-/* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X — "OBSIDIAN HOLOGRAPHIC" DESIGN SYSTEM
+/* HASNAIN STUDIO X - "OBSIDIAN HOLOGRAPHIC" DESIGN SYSTEM
    Porcelain ink on violet-black obsidian. Iridescent pearl-foil accents.
-   Engineered grid, film grain, liquid-light. No neon clichés.
-   ═══════════════════════════════════════════════════════════════════════ */
+   Engineered grid, film grain, liquid-light. No neon clichés. */
 
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-/* ── Tokens ────────────────────────────────────────────────────────────── */
+/* Tokens */
 :root{
     color-scheme: dark;   /* native selects, scrollbars and pickers follow the site */
     /* surfaces */
@@ -58,7 +56,7 @@
     --r-pill:        999px;
 }
 
-/* ── Reset / base ──────────────────────────────────────────────────────── */
+/* Reset / base */
 *,*::before,*::after{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 html,body{margin:0;padding:0;}
@@ -99,7 +97,7 @@ a:hover{color:var(--accent);}
 ::-webkit-scrollbar-thumb{background:#262433;border-radius:99px;border:2px solid var(--bg);}
 ::-webkit-scrollbar-thumb:hover{background:#3a3750;}
 
-/* ── Atmosphere layers (fixed, behind content) ─────────────────────────── */
+/* Atmosphere layers (fixed, behind content) */
 #fluid-canvas{
     position:fixed;inset:0;z-index:-3;pointer-events:none;
 }
@@ -143,7 +141,7 @@ a:hover{color:var(--accent);}
 @keyframes drift2{to{transform:translate3d(7vw,-6vh,0) rotate(-30deg);}}
 @keyframes drift3{to{transform:translate3d(-5vw,-8vh,0) scale(1.25);}}
 
-/* ── Scroll progress / page transition ─────────────────────────────────── */
+/* Scroll progress / page transition */
 #scroll-progress{
     position:fixed;top:0;left:0;height:2px;width:0;z-index:1200;
     background:var(--holo);background-size:300% 100%;
@@ -157,7 +155,7 @@ a:hover{color:var(--accent);}
 }
 .page-transition.active{opacity:1;pointer-events:all;}
 
-/* ── Top bar ───────────────────────────────────────────────────────────── */
+/* Top bar */
 /* floating pill bar, Apple style */
 .top-bar{
     position:sticky;top:12px;z-index:900;
@@ -228,7 +226,7 @@ a:hover{color:var(--accent);}
 }
 .icon-btn:hover{border-color:var(--accent-line);transform:translateY(-2px);}
 
-/* ── Layout ────────────────────────────────────────────────────────────── */
+/* Layout */
 .container{
     max-width:1180px;margin:0 auto;
     padding:0 clamp(1.2rem,4vw,2.4rem) 5rem;
@@ -247,7 +245,7 @@ a:hover{color:var(--accent);}
 }
 .section-header p{color:var(--text-muted);margin:0;font-size:1.02rem;}
 
-/* ── Hero ──────────────────────────────────────────────────────────────── */
+/* Hero */
 .hero{padding-top:clamp(3rem,8vh,6rem);}
 .hero--single{padding-top:clamp(2.4rem,6vh,4.5rem);}
 .hero-card{
@@ -330,7 +328,7 @@ a:hover{color:var(--accent);}
     display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.6rem;
 }
 
-/* ── Buttons ───────────────────────────────────────────────────────────── */
+/* Buttons */
 .btn{
     position:relative;display:inline-flex;align-items:center;justify-content:center;
     gap:.5rem;cursor:pointer;border:none;
@@ -362,7 +360,7 @@ a:hover{color:var(--accent);}
 .btn.full{width:100%;}
 .btn:active{transform:translateY(-1px) scale(.99);}
 
-/* ── Stats strip ───────────────────────────────────────────────────────── */
+/* Stats strip */
 .stats-section{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     margin-top:clamp(2.6rem,6vh,4rem);
@@ -385,7 +383,7 @@ a:hover{color:var(--accent);}
     text-transform:uppercase;color:var(--ink-faint);margin-top:.5rem;
 }
 
-/* ── Grids & cards ─────────────────────────────────────────────────────── */
+/* Grids & cards */
 .grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:1.3rem;
@@ -481,7 +479,7 @@ a:hover{color:var(--accent);}
     box-shadow:0 6px 22px -8px rgba(199,165,247,.5);
 }
 
-/* ── About strip / social ──────────────────────────────────────────────── */
+/* About strip / social */
 .about-strip{
     position:relative;text-align:center;border-radius:28px;overflow:hidden;
     padding:clamp(2.4rem,5vw,3.6rem) clamp(1.4rem,5vw,3.4rem);
@@ -511,7 +509,7 @@ a:hover{color:var(--accent);}
 /* generic actions row */
 .actions{display:flex;gap:.8rem;flex-wrap:wrap;}
 
-/* ── Contact ───────────────────────────────────────────────────────────── */
+/* Contact */
 .contact-grid{
     display:grid;grid-template-columns:1.25fr .75fr;gap:2.4rem;align-items:start;
 }
@@ -567,7 +565,7 @@ a:hover{color:var(--accent);}
 .contact-info-card a{color:var(--cyan);word-break:break-all;}
 .contact-info-card a:hover{color:var(--ink);}
 
-/* ── Modal fallback (Windows/Android pages refine inline) ──────────────── */
+/* Modal fallback (Windows/Android pages refine inline) */
 .modal-overlay{
     position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;
     background:rgba(5,4,9,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
@@ -583,7 +581,7 @@ a:hover{color:var(--accent);}
 }
 .modal-overlay.open .modal-card{transform:none;}
 
-/* ── Portfolio / lightbox (AI Studio gallery) ──────────────────────────── */
+/* Portfolio / lightbox (AI Studio gallery) */
 .port-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
 .port-item{
     position:relative;border-radius:var(--r-md);overflow:hidden;aspect-ratio:1/1;cursor:pointer;
@@ -638,7 +636,7 @@ a:hover{color:var(--accent);}
     .lb-prev{left:6px;} .lb-next{right:6px;}
 }
 
-/* ── Footer ────────────────────────────────────────────────────────────── */
+/* Footer */
 .site-footer{
     position:relative;margin-top:clamp(4rem,10vh,7rem);
     border-top:1px solid var(--line);
@@ -676,7 +674,7 @@ a:hover{color:var(--accent);}
     color:var(--ink-faint);font-size:.8rem;font-family:var(--f-mono);letter-spacing:.04em;
 }
 
-/* ── Reveal-on-scroll ──────────────────────────────────────────────────── */
+/* Reveal-on-scroll */
 .reveal{opacity:0;transform:translateY(26px);
     transition:opacity .9s var(--ease), transform .9s var(--ease);
 }
@@ -688,7 +686,7 @@ a:hover{color:var(--accent);}
 }
 .stagger.visible>*{opacity:1;transform:none;}
 
-/* ── Cursor aura (injected by effects.js) ──────────────────────────────── */
+/* Cursor aura (injected by effects.js) */
 #cursor-aura{
     position:fixed;top:0;left:0;width:380px;height:380px;border-radius:50%;
     pointer-events:none;z-index:0;mix-blend-mode:screen;
@@ -697,7 +695,7 @@ a:hover{color:var(--accent);}
     transform:translate(-50%,-50%);will-change:transform;
 }
 
-/* ── Responsive ────────────────────────────────────────────────────────── */
+/* Responsive */
 @media (max-width:980px){
     .footer-grid{grid-template-columns:1fr 1fr;}
     .contact-grid{grid-template-columns:1fr;}
@@ -715,13 +713,11 @@ a:hover{color:var(--accent);}
     .hero-actions .btn{width:100%;}
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   V2 — IMMERSIVE LAYER
+/* V2 - IMMERSIVE LAYER
    Split heroes · bento · marquee · live app previews · device frames ·
-   float & depth system · proof chips
-   ═══════════════════════════════════════════════════════════════════════ */
+   float & depth system · proof chips */
 
-/* ── Float & depth ─────────────────────────────────────────────────────── */
+/* Float & depth */
 [data-float]{animation:floaty 7s ease-in-out infinite;will-change:transform;}
 @keyframes floaty{
     0%,100%{transform:translateY(0) rotate(var(--rot,0deg));}
@@ -730,7 +726,7 @@ a:hover{color:var(--accent);}
 .depth-stage{perspective:1200px;transform-style:preserve-3d;}
 .depth-stage>*{transform-style:preserve-3d;}
 
-/* ── Split (asymmetric) hero ───────────────────────────────────────────── */
+/* Split (asymmetric) hero */
 .hero-split{
     display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.6rem,4vw,3.4rem);
     align-items:center;padding:clamp(2.4rem,7vh,5rem) 0 1rem;
@@ -794,7 +790,7 @@ a:hover{color:var(--accent);}
     filter:blur(8px);
 }
 
-/* ── Marquee ticker ────────────────────────────────────────────────────── */
+/* Marquee ticker */
 .marquee{
     position:relative;overflow:hidden;margin-top:clamp(2.6rem,6vh,4rem);
     padding:.95rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
@@ -814,7 +810,7 @@ a:hover{color:var(--accent);}
 .marquee-track span::after{content:'◆';font-size:.5rem;color:var(--accent);opacity:.6;}
 @keyframes marquee{to{transform:translateX(-50%);}}
 
-/* ── Bento grid ────────────────────────────────────────────────────────── */
+/* Bento grid */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1.1rem;grid-auto-rows:minmax(150px,auto);}
 .bento-cell{
     position:relative;border-radius:var(--r-lg);overflow:hidden;isolation:isolate;
@@ -857,7 +853,7 @@ a:hover{color:var(--accent);}
     .b-row2{grid-row:span 1;}
 }
 
-/* ── Page-signature heroes ─────────────────────────────────────────────── */
+/* Page-signature heroes */
 /* Windows: command console */
 .console{
     width:min(460px,100%);border-radius:16px;overflow:hidden;
@@ -917,7 +913,7 @@ a:hover{color:var(--accent);}
 }
 @keyframes beacon{0%{transform:scale(.1);opacity:.9;}100%{transform:scale(1);opacity:0;}}
 
-/* ── Device frames ─────────────────────────────────────────────────────── */
+/* Device frames */
 .dev-phone{
     position:relative;width:172px;height:330px;flex-shrink:0;
     border-radius:28px;padding:14px 11px;
@@ -941,7 +937,7 @@ a:hover{color:var(--accent);}
 }
 .dev-screen .viz{border:none;background:transparent;margin:0;}
 
-/* ── Live app previews ("apps look alive") ─────────────────────────────── */
+/* Live app previews ("apps look alive") */
 .viz{
     position:relative;min-height:96px;border-radius:12px;overflow:hidden;
     display:flex;align-items:center;justify-content:center;gap:12px;
@@ -954,7 +950,7 @@ a:hover{color:var(--accent);}
     background:radial-gradient(140px 70px at 75% -10%, rgba(199,165,247,.09), transparent 70%);
 }
 
-/* gauge — TuneX optimisers */
+/* gauge - TuneX optimisers */
 .vg-ring{
     position:relative;width:52px;height:52px;border-radius:50%;
     border:3px solid rgba(255,255,255,.09);border-top-color:var(--mint);
@@ -976,7 +972,7 @@ a:hover{color:var(--accent);}
 @keyframes vgspin{to{transform:rotate(360deg);}}
 @keyframes vgfill{0%{transform:scaleX(.12);}55%{transform:scaleX(.92);}100%{transform:scaleX(.12);}}
 
-/* qr — Drop2QR */
+/* qr - Drop2QR */
 .vq{display:grid;grid-template-columns:repeat(5,11px);gap:3px;}
 .vq i{width:11px;height:11px;border-radius:2.5px;background:rgba(255,255,255,.12);animation:vqblink 2.6s infinite;}
 .vq i:nth-child(3n){background:rgba(199,165,247,.4);animation-delay:.35s;}
@@ -984,7 +980,7 @@ a:hover{color:var(--accent);}
 .vq i:nth-child(7n){animation-delay:1.15s;}
 @keyframes vqblink{0%,100%{opacity:.3;}50%{opacity:1;}}
 
-/* dock — NimbusDock */
+/* dock - NimbusDock */
 .vd{
     display:flex;gap:9px;align-items:flex-end;padding:9px 15px;
     border-radius:15px;background:rgba(255,255,255,.06);border:1px solid var(--line);
@@ -997,7 +993,7 @@ a:hover{color:var(--accent);}
 .vd i:nth-child(5){background:linear-gradient(145deg,var(--ice),#6e88a3);animation-delay:.72s;}
 @keyframes vdbounce{0%,100%{transform:none;}30%{transform:translateY(-8px) scale(1.1);}}
 
-/* transfer — QuantumDrop */
+/* transfer - QuantumDrop */
 .viz-transfer{gap:8px;}
 .vt-node{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid var(--card-border);}
 .vt-line{position:relative;width:72px;height:2px;background:rgba(255,255,255,.09);overflow:visible;}
@@ -1006,7 +1002,7 @@ a:hover{color:var(--accent);}
 .vt-line i:nth-child(3){animation-delay:1.1s;background:var(--rose);}
 @keyframes vtgo{0%{left:0;opacity:0;}15%{opacity:1;}85%{opacity:1;}100%{left:calc(100% - 6px);opacity:0;}}
 
-/* seasons — XSeasons */
+/* seasons - XSeasons */
 .vs{
     position:relative;width:78%;height:62px;border-radius:10px;overflow:hidden;
     background:linear-gradient(180deg,#2b3654,#101627);
@@ -1021,7 +1017,7 @@ a:hover{color:var(--accent);}
 @keyframes vshue{0%,100%{filter:hue-rotate(0deg);}50%{filter:hue-rotate(150deg);}}
 @keyframes vsarc{0%,100%{transform:translate(0,7px);}50%{transform:translate(52px,-5px);}}
 
-/* eq — SpatiaX / VAudio */
+/* eq - SpatiaX / VAudio */
 .ve{display:flex;gap:5px;align-items:center;height:58px;}
 .ve i{width:6px;height:30%;border-radius:99px;background:linear-gradient(180deg,var(--violet),var(--mint));animation:veq 1s ease-in-out infinite alternate;}
 .ve i:nth-child(1){animation-delay:0s;}
@@ -1033,7 +1029,7 @@ a:hover{color:var(--accent);}
 .ve i:nth-child(7){animation-delay:.42s;}
 @keyframes veq{from{height:14%;}to{height:96%;}}
 
-/* convert — FlipX */
+/* convert - FlipX */
 .vc-chip{
     font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;
     padding:.5rem .65rem;border-radius:8px;color:var(--ink-soft);
@@ -1046,7 +1042,7 @@ a:hover{color:var(--accent);}
     animation:vgspin 3.5s linear infinite;
 }
 
-/* kanban — WorkX / StudioFlow */
+/* kanban - WorkX / StudioFlow */
 .vk{display:flex;gap:9px;}
 .vk b{
     display:flex;flex-direction:column;gap:5px;width:36px;padding:6px;
@@ -1058,7 +1054,7 @@ a:hover{color:var(--accent);}
 .vk b:nth-child(3) i:first-child{background:rgba(159,232,214,.55);animation:vkpulse 2.6s 1.7s infinite;}
 @keyframes vkpulse{0%,100%{opacity:.4;}50%{opacity:1;}}
 
-/* ai — ForgeX / HorizonOS */
+/* ai - ForgeX / HorizonOS */
 .va{position:relative;width:66px;height:66px;}
 .va-core{
     position:absolute;inset:21px;border-radius:9px;
@@ -1075,7 +1071,7 @@ a:hover{color:var(--accent);}
 .va-orbit2 i{background:var(--rose);}
 @keyframes vapulse{0%,100%{box-shadow:0 0 0 0 rgba(199,165,247,.35);}50%{box-shadow:0 0 24px 5px rgba(199,165,247,.28);}}
 
-/* docs — DocsMining */
+/* docs - DocsMining */
 .vdoc{
     position:relative;width:50px;height:62px;border-radius:7px;overflow:hidden;
     background:rgba(255,255,255,.06);border:1px solid var(--line);
@@ -1091,7 +1087,7 @@ a:hover{color:var(--accent);}
 }
 @keyframes vscan{0%,100%{top:-16px;}50%{top:100%;}}
 
-/* lock — XCipher */
+/* lock - XCipher */
 .vl{display:flex;align-items:center;gap:13px;}
 .vl-pad{
     position:relative;width:32px;height:25px;border-radius:6px;margin-top:11px;
@@ -1111,7 +1107,7 @@ a:hover{color:var(--accent);}
 }
 @keyframes vlc{50%{opacity:.35;}}
 
-/* spatial — SpatiaX: listener at centre, sound source orbiting in 3D field */
+/* spatial - SpatiaX: listener at centre, sound source orbiting in 3D field */
 .vsp{position:relative;width:74px;height:74px;}
 .vsp-ring{
     position:absolute;inset:0;border-radius:50%;
@@ -1133,7 +1129,7 @@ a:hover{color:var(--accent);}
     background:var(--mint);box-shadow:0 0 10px rgba(159,232,214,.8);
 }
 
-/* suite — WorkX: PDF / Word / spreadsheet documents, all local */
+/* suite - WorkX: PDF / Word / spreadsheet documents, all local */
 .vsu{display:flex;gap:9px;}
 .vsu b{
     font-family:var(--f-mono);font-size:.58rem;font-weight:600;letter-spacing:.1em;
@@ -1147,7 +1143,7 @@ a:hover{color:var(--accent);}
 .vsu b:nth-child(3){border-top-color:var(--mint);animation-delay:.9s;}
 @keyframes vsulift{0%,100%{transform:none;}18%{transform:translateY(-6px);}36%{transform:none;}}
 
-/* imagegen — HSX StudioFlow: image rendering on your own GPU */
+/* imagegen - HSX StudioFlow: image rendering on your own GPU */
 .vimg{
     position:relative;width:84px;height:58px;border-radius:8px;overflow:hidden;
     background:rgba(255,255,255,.05);border:1px solid var(--line);
@@ -1172,7 +1168,7 @@ a:hover{color:var(--accent);}
 }
 @keyframes vimgrender{0%{transform:scaleX(0);}70%{transform:scaleX(1);}100%{transform:scaleX(1);}}
 
-/* prompt — ForgeX Pro: structured prompt lines assembling */
+/* prompt - ForgeX Pro: structured prompt lines assembling */
 .vpr{display:flex;flex-direction:column;gap:8px;width:96px;position:relative;}
 .vpr i{
     height:6px;border-radius:3px;transform-origin:left;
@@ -1187,7 +1183,7 @@ a:hover{color:var(--accent);}
 }
 @keyframes vprtype{0%{transform:scaleX(0);}40%{transform:scaleX(1);}100%{transform:scaleX(1);}}
 
-/* shell — HorizonOS: desktop widgets + launcher dock */
+/* shell - HorizonOS: desktop widgets + launcher dock */
 .vsh{
     position:relative;display:grid;grid-template-columns:repeat(2,32px);gap:6px;
     padding:9px 9px 18px;border-radius:10px;
@@ -1206,7 +1202,7 @@ a:hover{color:var(--accent);}
     background:linear-gradient(90deg, rgba(243,179,207,.5), rgba(199,165,247,.5), rgba(159,232,214,.5));
 }
 
-/* guard — PC GuardX: privacy toggles flipping on */
+/* guard - PC GuardX: privacy toggles flipping on */
 .vgd{display:flex;align-items:center;gap:14px;}
 .vgd-shield{
     width:34px;height:38px;
@@ -1232,7 +1228,7 @@ a:hover{color:var(--accent);}
     100%{left:2px;background:var(--ink-faint);}
 }
 
-/* chat — HSX Pocktium: local conversation with typing dots */
+/* chat - HSX Pocktium: local conversation with typing dots */
 .vch{display:flex;flex-direction:column;gap:9px;width:104px;}
 .vch-b1,.vch-b2{position:relative;height:18px;border-radius:10px;}
 .vch-b1{
@@ -1255,7 +1251,7 @@ a:hover{color:var(--accent);}
 @keyframes vchin{0%{opacity:0;transform:translateY(7px);}12%,88%{opacity:1;transform:none;}100%{opacity:0;transform:translateY(-4px);}}
 @keyframes vchdot{0%,100%{transform:translateY(0);opacity:.5;}50%{transform:translateY(-3px);opacity:1;}}
 
-/* gallery — HSX PhotoVidix: photo library with light sweep */
+/* gallery - HSX PhotoVidix: photo library with light sweep */
 .vga{position:relative;display:flex;gap:8px;overflow:hidden;padding:4px;border-radius:10px;}
 .vga i{
     width:34px;height:46px;border-radius:7px;border:1px solid var(--line);
@@ -1272,7 +1268,7 @@ a:hover{color:var(--accent);}
 @keyframes vgalift{0%,100%{transform:none;}16%{transform:translateY(-5px) scale(1.05);}32%{transform:none;}}
 @keyframes vgaglint{0%{left:-22px;}60%,100%{left:110%;}}
 
-/* cast — HSX CastVisuality: screen with expanding cast waves */
+/* cast - HSX CastVisuality: screen with expanding cast waves */
 .vca{position:relative;width:84px;height:58px;}
 .vca-scr{
     position:absolute;inset:0;border-radius:9px;
@@ -1295,10 +1291,8 @@ a:hover{color:var(--accent);}
 /* viz inside modals gets more height */
 .modal-card .viz{min-height:120px;}
 
-/* ═══════════════════════════════════════════════════════════════════════
-   V3 — SIGNATURE EFFECTS (ported from previous InHasnain build,
-   restyled for the obsidian palette)
-   ═══════════════════════════════════════════════════════════════════════ */
+/* V3 - SIGNATURE EFFECTS (ported from previous InHasnain build,
+   restyled for the obsidian palette) */
 
 /* premium typography polish */
 h1,h2,h3{text-wrap:balance;}
@@ -1459,7 +1453,7 @@ body.weather-rain .glass-condensation{opacity:.55;}
 .voice-indicator.active{opacity:1;transform:translate(-50%,0);}
 .voice-indicator #vi-res{color:var(--mint);letter-spacing:.04em;}
 
-/* ── Split hero responsive ─────────────────────────────────────────────── */
+/* Split hero responsive */
 @media (max-width:980px){
     .hero-split{grid-template-columns:1fr;gap:2.4rem;}
     .hero-copy{text-align:center;}
@@ -1478,7 +1472,7 @@ body.weather-rain .glass-condensation{opacity:.55;}
     .dev-phone{width:158px;height:300px;}
 }
 
-/* ── Reduced motion ────────────────────────────────────────────────────── */
+/* Reduced motion */
 @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
     .reveal,.stagger>*{opacity:1;transform:none;}
@@ -1486,11 +1480,11 @@ body.weather-rain .glass-condensation{opacity:.55;}
     html{scroll-behavior:auto;}
 }
 
-/* ── Ad slots (Google AdSense) ────────────────────────────────────────────
+/* Ad slots (Google AdSense)
    One shared shell so units read as part of the design system, not as
    bolted-on boxes. Swap the placeholder markup inside each .ad-slot for
-   the real <ins class="adsbygoogle"> unit once the account is approved —
-   the wrapper, label and spacing stay the same. ───────────────────────── */
+   the real <ins class="adsbygoogle"> unit once the account is approved -
+   the wrapper, label and spacing stay the same. */
 .ad-slot{
     position:relative;
     grid-column:1/-1;
@@ -1531,12 +1525,10 @@ body.weather-rain .glass-condensation{opacity:.55;}
     .ad-slot{padding:1.1rem 1rem 1.3rem;min-height:96px;}
 }
 
-/* ══════════════════════════════════════════════════════════════════════
-   Static app directory — permanent, crawlable copy of the catalogue.
+/* Static app directory - permanent, crawlable copy of the catalogue.
    Rendered server-side (see update-site.js / hsx-prerender) so Bing,
    DuckDuckGo and AI crawlers, which do not execute JavaScript, still
-   see every app name, description and privacy-policy link.
-   ══════════════════════════════════════════════════════════════════ */
+   see every app name, description and privacy-policy link. */
 .app-directory { margin-top: 2.6rem; padding: 1.8rem 1.6rem 2rem; }
 .app-directory > h2 { font-size: 1.35rem; margin: 0 0 .5rem; letter-spacing: -.01em; }
 .app-directory .dir-intro { margin: 0 0 1.6rem; max-width: 62ch; opacity: .7; font-size: .93rem; line-height: 1.6; }
@@ -1560,7 +1552,7 @@ body.weather-rain .glass-condensation{opacity:.55;}
 .dir-links a:hover { border-bottom-color: currentColor; }
 .dir-sep { opacity: .35; margin: 0 .15rem; }
 
-/* Skip link — WCAG 2.4.1 bypass block */
+/* Skip link - WCAG 2.4.1 bypass block */
 .skip-link { position: absolute; left: -9999px; top: 0; z-index: 9999;
              background: #0b0a12; color: #E6F1F3; padding: .7rem 1.1rem;
              border: 1px solid rgba(255,255,255,.25); border-radius: 0 0 8px 0;
@@ -1583,10 +1575,8 @@ body.weather-rain .glass-condensation{opacity:.55;}
 a.tile-btn, a.tile-btn:link, a.tile-btn:visited { text-decoration: none; }
 a.tile-btn-details { display: inline-flex; align-items: center; }
 
-/* ══════════════════════════════════════════════════════════════════════
-   About page — founder profile. Built on the site tokens so it reads as
-   part of the same system: holo accents, mono labels, clipped corners.
-   ══════════════════════════════════════════════════════════════════ */
+/* About page - founder profile. Built on the site tokens so it reads as
+   part of the same system: holo accents, mono labels, clipped corners. */
 .ab-lead { font-size: 1.05rem; line-height: 1.7; color: var(--ink); margin: 0 0 1rem; }
 .ab-lead strong { color: var(--ink); }
 .ab-note { margin: 1.2rem 0 0; font-size: .88rem; color: var(--ink-soft); }
@@ -1695,10 +1685,8 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     margin: .1rem 0 1.1rem;
 }
 
-/* ══════════════════════════════════════════════════════════════════════
-   MADE WITH HSX — monthly community challenge
-   Built on the site tokens: holo edges, mono labels, clipped corners.
-   ══════════════════════════════════════════════════════════════════ */
+/* MADE WITH HSX - monthly community challenge
+   Built on the site tokens: holo edges, mono labels, clipped corners. */
 .mw { margin-top: .4rem; }
 .mw-top { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.1rem; align-items: stretch; }
 @media (max-width: 940px) { .mw-top { grid-template-columns: 1fr; } }
@@ -1825,9 +1813,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 .mw-wcard-v { font-size: .9rem; color: var(--ink-soft); }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:APP-PAGES — dedicated application landing pages (/apps/*.html)
-   ══════════════════════════════════════════════════════════════════════ */
+/* HSX:APP-PAGES - dedicated application landing pages (/apps/*.html) */
 .app-crumb{
     font-family:var(--f-mono); font-size:.74rem; letter-spacing:.08em;
     text-transform:uppercase; color:var(--ink-faint);
@@ -1904,7 +1890,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 /* /HSX:APP-PAGES */
 
-/* HSX:BTN-GHOST — quiet third action, used in the app detail modal */
+/* HSX:BTN-GHOST - quiet third action, used in the app detail modal */
 .btn--ghost{
     background:transparent;
     border:1px solid var(--card-border);
@@ -1917,15 +1903,13 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 /* /HSX:BTN-GHOST */
 
-/* HSX:MODAL-ACTIONS — three actions need to sit on one row at modal width */
+/* HSX:MODAL-ACTIONS - three actions need to sit on one row at modal width */
 .modal-actions{ display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; }
 .modal-actions .btn{ padding:.85rem 1.25rem; font-size:.72rem; letter-spacing:.09em; }
 @media (max-width:520px){ .modal-actions .btn{ flex:1 1 100%; } }
 /* /HSX:MODAL-ACTIONS */
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:APP-SPEC — technical detail cells on an application page
-   ══════════════════════════════════════════════════════════════════════ */
+/* HSX:APP-SPEC - technical detail cells on an application page */
 .app-spec{
     display:grid; gap:.7rem; margin:0;
     grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -1973,10 +1957,8 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 /* /HSX:APP-SPEC */
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:GALLERY-STATIC — the crawlable / no-JavaScript version of the showcase.
-   Same artwork, same words. Hidden by script once the showcase takes over.
-   ══════════════════════════════════════════════════════════════════════ */
+/* HSX:GALLERY-STATIC - the crawlable / no-JavaScript version of the showcase.
+   Same artwork, same words. Hidden by script once the showcase takes over. */
 .gal-static[hidden]{ display:none; }
 .gal-static{ margin-top:1.5rem; }
 .gs-head{
@@ -2015,9 +1997,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .gs-app a:hover{ text-decoration:underline; }
 /* /HSX:GALLERY-STATIC */
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:GUIDES — long-form prose, used by the prompt guide on the AI Studio page
-   ══════════════════════════════════════════════════════════════════════ */
+/* HSX:GUIDES - long-form prose, used by the prompt guide on the AI Studio page */
 
 
 .art-body{ font-size:1.02rem; line-height:1.75; color:var(--ink-soft); }
@@ -2064,11 +2044,9 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 
 /* /HSX:GUIDES */
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:PROMPT-GUIDE — tabbed guidance panel on the AI Studio page.
+/* HSX:PROMPT-GUIDE - tabbed guidance panel on the AI Studio page.
    Without JavaScript every panel is visible, so nothing is hidden from a
-   crawler or a reader; script turns it into tabs.
-   ══════════════════════════════════════════════════════════════════════ */
+   crawler or a reader; script turns it into tabs. */
 .pg-wrap{
     display:grid; grid-template-columns:minmax(210px,250px) 1fr; gap:1.4rem;
     align-items:start; max-width:1000px; margin:0 auto;
@@ -2139,9 +2117,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 /* /HSX:PROMPT-GUIDE */
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:TRADEMARKS — attribution line on app pages, register on About
-   ══════════════════════════════════════════════════════════════════════ */
+/* HSX:TRADEMARKS - attribution line on app pages, register on About */
 .app-tm{
     margin-top:.9rem; padding-top:.9rem; border-top:1px solid var(--line);
     font-size:.78rem; line-height:1.65; color:var(--ink-faint); max-width:78ch;
@@ -2170,7 +2146,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .tm-note strong{ color:var(--ink); }
 /* /HSX:TRADEMARKS */
 
-/* HSX:IMAGE-LICENCE — terms behind the license field on the gallery images */
+/* HSX:IMAGE-LICENCE - terms behind the license field on the gallery images */
 .gal-licence{
     margin:1.6rem auto 0; max-width:70ch; padding:1.1rem 1.3rem;
     background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r-md);
@@ -2186,11 +2162,9 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 .gal-licence a:hover{ text-decoration:underline; }
 /* /HSX:IMAGE-LICENCE */
 
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX:CATEGORY-HUB — the per-category landing pages under apps/
+/* HSX:CATEGORY-HUB - the per-category landing pages under apps/
    Built from the same tokens as the app pages so a hub reads as part of
-   the same catalogue rather than a bolted-on section.
-   ═══════════════════════════════════════════════════════════════════ */
+   the same catalogue rather than a bolted-on section. */
 .cat-grid{
     display:grid; gap:.85rem;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -2272,15 +2246,13 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 }
 .cat-strip a:hover,.cat-strip a:focus-visible{ border-color:var(--accent-line); color:var(--accent); }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX:HERO-TILES — Microsoft Store artwork on the catalogue cards.
+/* HSX:HERO-TILES - Microsoft Store artwork on the catalogue cards.
    .app-tile is the gradient border layer and .tile-in is the card surface,
    so the artwork lives inside .tile-in and cancels its horizontal padding.
    The notched clip-path, the hover lift and the animated per-app logo all
    stay exactly as they were; the logo simply lifts onto the artwork.
    An app with no artwork keeps the original card, so a partial rollout
-   reads as deliberate rather than broken.
-   ═══════════════════════════════════════════════════════════════════ */
+   reads as deliberate rather than broken. */
 .app-tile--hero .tile-in{ padding-top:0; display:flex; flex-direction:column; }
 .tile-hero{
     position:relative; z-index:0;
@@ -2362,12 +2334,10 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     background:linear-gradient(to top,rgba(8,7,12,.85),transparent);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX:GPU-BADGE — minimum graphics requirement.
+/* HSX:GPU-BADGE - minimum graphics requirement.
    Buyers of GPU-bound software ask one question before anything else: will
    this run on my machine. Answer it in the hero, compactly, and only where
-   there is a real published figure to state.
-   ═══════════════════════════════════════════════════════════════════ */
+   there is a real published figure to state. */
 .gpu-badge{
     display:inline-flex; align-items:center; gap:.55rem;
     margin:1.15rem auto 0; padding:.5rem .95rem .5rem .75rem;
@@ -2396,12 +2366,10 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     .gpu-badge-v::before{ display:none; }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX:COMPARISON — the local-first case, as a table rather than a claim.
+/* HSX:COMPARISON - the local-first case, as a table rather than a claim.
    A real <table> with proper row and column headers, so it reads correctly
    to a screen reader and can be understood by a crawler as structured
-   comparison rather than decorative markup.
-   ═══════════════════════════════════════════════════════════════════ */
+   comparison rather than decorative markup. */
 .cmp-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .cmp{
     width:100%; border-collapse:separate; border-spacing:0;
@@ -2447,12 +2415,10 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     font-family:var(--f-mono); font-size:.72rem; letter-spacing:.06em;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX:PILLAR-NAV — section navigation for the long AI Studio page.
+/* HSX:PILLAR-NAV - section navigation for the long AI Studio page.
    Sticks below the main header once scrolled past, and marks the section
    currently in view. Purely additive: with JavaScript off it is still a
-   working list of in-page links.
-   ═══════════════════════════════════════════════════════════════════ */
+   working list of in-page links. */
 .pillar-nav{
     position:sticky; top:84px; z-index:40;
     display:flex; gap:.25rem; flex-wrap:nowrap; overflow-x:auto;
@@ -2484,10 +2450,10 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 /* in-page jumps must not land under the sticky bars */
 :target{ scroll-margin-top:150px; }
 
-/* ── HSX Apps Hub promo banner ──────────────────────────────────────────
+/* HSX Apps Hub promo banner
    The download nudge that sits above the app grid. Built from the same
    devices as .hero-card so it reads as part of the page, not an advert
-   dropped onto it: prismatic top edge, holo headline, pearl accents.     */
+   dropped onto it: prismatic top edge, holo headline, pearl accents. */
 .hub-burst{
     position:relative;overflow:hidden;isolation:isolate;
     border-radius:28px;border:1px solid var(--card-border);
@@ -2561,13 +2527,11 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     .hub-burst::before{animation:none;}
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:GUIDE-PAGE: standalone articles under guides/
+/* HSX:GUIDE-PAGE: standalone articles under guides/
 
    .art-body is shared with the prompt guide, which sits in a narrow panel
    and needs no measure of its own. A guide is the whole page, so the
-   reading column is constrained here. Tables keep the full width.
-   ══════════════════════════════════════════════════════════════════════ */
+   reading column is constrained here. Tables keep the full width. */
 
 .guide-article { max-width: 44rem; margin-inline: auto; }
 .guide-article .art-table-wrap { max-width: none; }
@@ -2575,9 +2539,7 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     .guide-article .art-table-wrap { margin-inline: -5rem; }
 }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   HSX:APP-SHOTS — screenshots on the application pages
-   ══════════════════════════════════════════════════════════════════════ */
+/* HSX:APP-SHOTS - screenshots on the application pages */
 
 .app-shots {
     display: grid;

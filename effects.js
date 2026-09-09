@@ -1,15 +1,13 @@
-/* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X — effects.js
+/* HASNAIN STUDIO X - effects.js
    Atmosphere: cursor light-aura, card spotlight tracking, 3D card tilt,
-   orb parallax. Desktop / fine-pointer only; honours reduced motion.
-   ═══════════════════════════════════════════════════════════════════════ */
+   orb parallax. Desktop / fine-pointer only; honours reduced motion. */
 (function () {
     'use strict';
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var finePointer = window.matchMedia('(pointer: fine)').matches;
     if (reduceMotion || !finePointer) return;
 
-    /* ── Cursor aura: soft iridescent light following the pointer ──────── */
+    /* Cursor aura: soft iridescent light following the pointer */
     var aura = document.createElement('div');
     aura.id = 'cursor-aura';
     document.body.appendChild(aura);
@@ -24,7 +22,7 @@
         requestAnimationFrame(loop);
     })();
 
-    /* ── Orb parallax: light-fields lean toward the pointer ────────────── */
+    /* Orb parallax: light-fields lean toward the pointer */
     var orbs = document.querySelectorAll('.orb');
     if (orbs.length) {
         document.addEventListener('pointermove', function (e) {
@@ -38,7 +36,7 @@
         }, { passive: true });
     }
 
-    /* ── Card spotlight + 3D tilt ───────────────────────────────────────── */
+    /* Card spotlight + 3D tilt */
     var tiltables = document.querySelectorAll('.card, .contact-info-card, .app-tile, .stat-item, .hero-card, .about-strip');
     tiltables.forEach(function (el) {
         var isBig = el.classList.contains('hero-card') || el.classList.contains('about-strip');
@@ -61,7 +59,7 @@
         });
     });
 
-    /* ── Depth stage: whole hero composition leans in 3D toward pointer ── */
+    /* Depth stage: whole hero composition leans in 3D toward pointer */
     document.querySelectorAll('.depth-stage').forEach(function (stage) {
         stage.addEventListener('pointermove', function (e) {
             var r = stage.getBoundingClientRect();
@@ -76,11 +74,9 @@
     });
 })();
 
-/* ═══════════════════════════════════════════════════════════════════════
-   SIGNATURE EFFECTS — ported from the previous InHasnain build and
+/* SIGNATURE EFFECTS - ported from the previous InHasnain build and
    restyled for the obsidian palette. Honest by design: no fabricated
-   content, silent if audio files are absent, reduced-motion respected.
-   ═══════════════════════════════════════════════════════════════════════ */
+   content, silent if audio files are absent, reduced-motion respected. */
 (function () {
     'use strict';
     var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -90,7 +86,7 @@
     /* permanent night: the obsidian theme is the night theme */
     document.body.classList.add('is-night');
 
-    /* ── Header tools: weather toggle, ambient sound, live clock ───────── */
+    /* Header tools: weather toggle, ambient sound, live clock */
     function initHeaderTools() {
         var bar = document.querySelector('.top-bar');
         if (!bar || bar.querySelector('.actions')) return;
@@ -170,7 +166,7 @@
         tick(); setInterval(tick, 1000);
     }
 
-    /* ── Particle wordmark: HASNAIN STUDIO X in shimmering gold dust ───── */
+    /* Particle wordmark: HASNAIN STUDIO X in shimmering gold dust */
     function initKineticWord() {
         if (document.querySelector('.kinetic-word')) return;
         var anchor = document.querySelector('.marquee');   /* home page only */
@@ -252,7 +248,7 @@
         if (RM) { draw(); } else { requestAnimationFrame(draw); }
     }
 
-    /* ── Signature intro: handwritten HASNAIN, once per session ────────── */
+    /* Signature intro: handwritten HASNAIN, once per session */
     function initSignature() {
         if (RM) return;
         if (sessionStorage.getItem('hsx-sig-seen')) return;
@@ -301,7 +297,7 @@
         }, TOTAL);
     }
 
-    /* ── Custom cursor + iridescent snake trail (desktop) ──────────────── */
+    /* Custom cursor + iridescent snake trail (desktop) */
     function initCursor() {
         if (TOUCH || RM) return;
         var dot = document.createElement('div');
@@ -337,7 +333,7 @@
         })();
     }
 
-    /* ── Shooting stars across the obsidian sky ────────────────────────── */
+    /* Shooting stars across the obsidian sky */
     function initStars() {
         if (RM) return;
         function spawn() {
@@ -362,8 +358,8 @@
         chain(700); chain(2000);
     }
 
-    /* ── Photoreal night sky: stars with true colour temperatures, a
-          Milky Way band, diffraction spikes, and a cratered moon ────────── */
+    /* Photoreal night sky: stars with true colour temperatures, a
+          Milky Way band, diffraction spikes, and a cratered moon */
     function initStarfield() {
         var cv = document.createElement('canvas');
         cv.id = 'star-canvas'; cv.setAttribute('aria-hidden', 'true');
@@ -560,7 +556,7 @@
         if (window.__paintSky) window.__paintSky();
     }
 
-    /* ── Glass condensation: droplets on panels, visible in rain mode ──── */
+    /* Glass condensation: droplets on panels, visible in rain mode */
     function initCondensation() {
         document.querySelectorAll('.hero-card, .card, .contact-info-card, .bento-cell, .float-card, .console, .contact-form').forEach(function (panel) {
             if (panel.querySelector(':scope > .glass-condensation')) return;
@@ -579,7 +575,7 @@
         });
     }
 
-    /* ── Waveform divider after the hero ───────────────────────────────── */
+    /* Waveform divider after the hero */
     function initWaveform() {
         var firstSection = document.querySelector('.section');
         if (!firstSection || document.querySelector('.waveform-divider')) return;
@@ -592,7 +588,7 @@
         firstSection.parentNode.insertBefore(wrap, firstSection);
     }
 
-    /* ── Ink splat: click the brand for an ink burst, then home ────────── */
+    /* Ink splat: click the brand for an ink burst, then home */
     function initInkSplat() {
         var brand = document.querySelector('.top-bar .brand');
         if (!brand) return;
@@ -642,9 +638,9 @@
         });
     }
 
-    /* ── Ambient sound: realistic rain synthesised live with Web Audio.
+    /* Ambient sound: realistic rain synthesised live with Web Audio.
           Rain mode: filtered noise shower with droplet hiss and slow gusts.
-          Clear mode: a whisper of night air. No audio files needed. ────── */
+          Clear mode: a whisper of night air. No audio files needed. */
     var SND = { on: false, actx: null, rainBody: null, rainHiss: null, air: null };
     function noiseBuffer(actx, brown) {
         var len = actx.sampleRate * 2;
@@ -721,7 +717,7 @@
         });
     }
 
-    /* ── Cinematic 4D rain: depth layers, wind, splashes, lightning ────── */
+    /* Cinematic 4D rain: depth layers, wind, splashes, lightning */
     function initRain() {
         var cv = document.createElement('canvas');
         cv.id = 'rain-canvas'; cv.setAttribute('aria-hidden', 'true');
@@ -808,7 +804,7 @@
         if (document.body.classList.contains('weather-rain')) startRain();
     }
 
-    /* ── Hidden terminal: press ` to toggle ────────────────────────────── */
+    /* Hidden terminal: press ` to toggle */
     function initTerminal() {
         var overlay = document.createElement('div');
         overlay.className = 'hsx-terminal-overlay';
@@ -858,7 +854,7 @@
         overlay.addEventListener('click', function (e) { if (e.target === overlay) closeT(); });
     }
 
-    /* ── Voice navigation: hold Space, say a page name ─────────────────── */
+    /* Voice navigation: hold Space, say a page name */
     function initVoice() {
         var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SR) return;

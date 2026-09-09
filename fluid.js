@@ -1,9 +1,7 @@
-/* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X — fluid.js
+/* HASNAIN STUDIO X - fluid.js
    Quiet cosmic dust only. The wind ribbons were retired so the night
    sky (stars + moon in effects.js) owns the background.
-   Pauses when the tab is hidden; off for reduced motion.
-   ═══════════════════════════════════════════════════════════════════════ */
+   Pauses when the tab is hidden; off for reduced motion. */
 (function () {
     'use strict';
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

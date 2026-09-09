@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   HSX category hub pages: one indexable landing page per catalogue
+/* HSX category hub pages: one indexable landing page per catalogue
    category, generated from the same APPS arrays as everything else.
 
    Output: apps/<hub-slug>.html
@@ -10,8 +9,7 @@
    "offline photo editor for Windows", which is how someone who has never
    heard of the studio actually searches. Until now those queries had
    nowhere on the site to land, because the categories were JavaScript
-   filters on one page rather than URLs.
-   ═══════════════════════════════════════════════════════════════════ */
+   filters on one page rather than URLs. */
 const fs = require('fs'), path = require('path');
 const ROOT = __dirname, P = f => path.join(ROOT, f);
 const read = f => fs.readFileSync(P(f), 'utf8');

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* ═══════════════════════════════════════════════════════════════════════
-   HASNAIN STUDIO X — IndexNow submission
+/* HASNAIN STUDIO X - IndexNow submission
 
    Pushes every URL in sitemap.xml to Bing, Yandex, Seznam and Naver in one
    request. Bing usually crawls within minutes instead of waiting for its own
@@ -8,9 +7,8 @@
 
        node submit-indexnow.js          (or double-click submit-indexnow.bat)
 
-   The key file b0acc9d970954ca19f3d76421331a14d.txt must stay in the site root —
-   that is how the engines verify you own the domain.
-   ═══════════════════════════════════════════════════════════════════ */
+   The key file b0acc9d970954ca19f3d76421331a14d.txt must stay in the site root -
+   that is how the engines verify you own the domain. */
 const fs = require('fs'), path = require('path'), https = require('https');
 const ROOT = __dirname;
 const KEY  = 'b0acc9d970954ca19f3d76421331a14d';
