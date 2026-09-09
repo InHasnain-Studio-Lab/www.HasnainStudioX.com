@@ -15,3 +15,6 @@ gallery-data.*.js
 
 # raw store screenshots, downloaded by fetch-store-shots.js
 store-shots/
+
+# WSL/fuse leftovers
+.fuse_hidden*
