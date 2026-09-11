@@ -14,6 +14,27 @@ The form on the site posts `multipart/form-data` and only checks the response
 status, so the worker is a drop-in for the old third-party endpoint. No change to
 `site.js` was needed.
 
+## This needs its own worker
+
+Give this a worker of its own. Do not attach the route to a worker that already
+does something else: the route sends every request to that worker's code, so the
+contact form gets whatever that worker replies, and the form reads a 200 as
+delivery. A keepalive worker answering `200 Supabase keepalive ping sent` looks
+exactly like a sent message from the outside.
+
+`site.js` now requires `{"ok":true}` in the response body rather than trusting the
+status code, so a wrong worker fails visibly instead of silently. That is a
+backstop, not a substitute for pointing the route at the right worker.
+
+A quick way to confirm the route reaches this code:
+
+```bash
+curl https://api.hasnainstudiox.com/contact
+```
+
+The answer should name itself: `{"ok":false,"service":"hsx-contact","error":"POST only."}`.
+Anything else means the route is on the wrong worker.
+
 ## One-time setup
 
 **1. Verify the domain for sending, in Resend**
@@ -54,12 +75,17 @@ npx wrangler secret put RESEND_API_KEY
 
 **4. Put it on the domain**
 
-In the Cloudflare dashboard: Workers and Pages -> hsx-contact -> Settings ->
-Domains and Routes -> Add -> Custom Domain -> `api.hasnainstudiox.com`.
+In the Cloudflare dashboard: Workers and Pages -> hsx-contact -> Domains ->
+**Add Domain** -> `api.hasnainstudiox.com`.
 
-A custom domain on a subdomain is deliberate. It leaves the apex DNS and the
-GitHub Pages setup untouched, so publishing the site cannot break mail and a
-worker mistake cannot take the site down.
+Add Domain, not Add Route. A route only matches traffic that already reaches
+Cloudflare; it does not create the hostname, so a route on a subdomain with no
+DNS record never fires and the request fails to resolve. Add Domain creates the
+record as well.
+
+A subdomain is deliberate. It leaves the apex DNS and the GitHub Pages setup
+untouched, so publishing the site cannot break mail and a worker mistake cannot
+take the site down.
 
 ## Checking it works
 

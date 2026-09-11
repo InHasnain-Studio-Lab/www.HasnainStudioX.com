@@ -3,6 +3,10 @@ const ALLOWED_ORIGINS = [
   'https://www.hasnainstudiox.com',
 ];
 
+/* defaults so a missing dashboard variable cannot silently misdeliver */
+const DEFAULT_TO = 'contact@hasnainstudiox.com';
+const DEFAULT_FROM = 'HSX Website <noreply@hasnainstudiox.com>';
+
 const MAX_FIELDS = 25;
 const MAX_VALUE = 5000;
 const MAX_SUBJECT = 150;
@@ -50,8 +54,16 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
     }
+    /* identifies this worker, so a wrong one on the route is obvious */
+    if (request.method === 'GET' && url.pathname === '/contact') {
+      return json({ ok: false, service: 'hsx-contact', error: 'POST only.' }, 405, origin);
+    }
     if (request.method !== 'POST' || url.pathname !== '/contact') {
       return json({ ok: false, error: 'Not found.' }, 404, origin);
+    }
+    if (!env.RESEND_API_KEY) {
+      console.log('RESEND_API_KEY is not set on this worker');
+      return json({ ok: false, error: 'Not configured.' }, 500, origin);
     }
     if (origin && !ALLOWED_ORIGINS.includes(origin)) {
       return json({ ok: false, error: 'Origin not allowed.' }, 403, origin);
@@ -112,8 +124,8 @@ export default {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: env.MAIL_FROM,
-        to: [env.MAIL_TO],
+        from: env.MAIL_FROM || DEFAULT_FROM,
+        to: [env.MAIL_TO || DEFAULT_TO],
         reply_to: email,
         subject,
         html,

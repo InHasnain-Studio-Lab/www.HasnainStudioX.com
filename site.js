@@ -122,14 +122,15 @@
                 body: new FormData(form),
                 headers: { 'Accept': 'application/json' }
             }).then(function (res) {
-                if (res.ok) {
-                    form.reset();
-                    if (status) status.textContent = form.id === 'contest-form'
-                        ? '✓ Entry received - good luck. Winners are announced on X.'
-                        : '✓ Message sent - we’ll reply within 2 business days.';
-                } else {
-                    throw new Error('send failed');
-                }
+                /* a 200 is not proof of delivery: anything else answering this
+                   URL can return one. Only the endpoint's own {"ok":true} is. */
+                return res.json().catch(function () { return null; });
+            }).then(function (data) {
+                if (!data || data.ok !== true) throw new Error('send failed');
+                form.reset();
+                if (status) status.textContent = form.id === 'contest-form'
+                    ? '✓ Entry received - good luck. Winners are announced on X.'
+                    : '✓ Message sent - we’ll reply within 2 business days.';
             }).catch(function () {
                 if (status) {
                     status.style.color = '#f3b3cf';
