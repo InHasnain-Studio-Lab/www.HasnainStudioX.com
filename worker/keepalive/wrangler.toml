@@ -1,0 +1,25 @@
+name = "tiny-feather-61db"
+main = "keepalive-worker.js"
+compatibility_date = "2026-09-01"
+
+# matches what the worker already had, so deploying does not turn it on
+preview_urls = false
+
+# Supabase pauses a free project after about a week of inactivity, so once a
+# day is enough. The previous */5 fired 288 times a day and every one failed.
+[triggers]
+crons = ["0 6 * * *"]
+
+# the worker logs whether the ping actually reached Supabase, which is only
+# readable while these stay on
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+
+[vars]
+SUPABASE_URL = "https://tpfpkotpgvgusfghepba.supabase.co"
+
+# SUPABASE_ANON_KEY is set separately:
+#   npx wrangler secret put SUPABASE_ANON_KEY
