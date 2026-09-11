@@ -10,7 +10,7 @@ routes = [
 
 [vars]
 MAIL_TO = "contact@hasnainstudiox.com"
-MAIL_FROM = "HSX Website <noreply@hasnainstudiox.com>"
+MAIL_FROM = "HSX Website <noreply@send.hasnainstudiox.com>"
 
 # RESEND_API_KEY is a secret, never a var:
 #   npx wrangler secret put RESEND_API_KEY

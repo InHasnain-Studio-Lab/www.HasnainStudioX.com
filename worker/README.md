@@ -39,26 +39,26 @@ Anything else means the route is on the wrong worker.
 
 **1. Verify the domain for sending, in Resend**
 
-Add the domain in the Resend dashboard and create the DKIM records it gives you.
+Add **`send.hasnainstudiox.com`**, not the bare domain, and create the records
+Resend gives you.
 
-**SPF gotcha.** Cloudflare Email Routing already publishes an SPF record on the
-apex:
-
-```
-v=spf1 include:_spf.mx.cloudflare.net ~all
-```
-
-A domain may hold only one SPF record. Do not add a second. Merge the sender's
-include into the existing record:
+The subdomain is the point. The apex already carries Cloudflare Email Routing:
 
 ```
-v=spf1 include:_spf.mx.cloudflare.net include:amazonses.com ~all
+MX   route1/2/3.mx.cloudflare.net
+TXT  v=spf1 include:_spf.mx.cloudflare.net ~all
 ```
 
-Two SPF records is the single most common reason mail starts landing in spam
-after a change like this.
+A domain may hold only one SPF record, so verifying the apex would mean editing
+that line and risking inbound mail. Sending from a subdomain keeps the two apart:
+inbound on the apex, outbound on `send.`, neither touching the other.
 
-Inbound routing is unaffected: sending uses TXT records, receiving uses MX.
+TXT and MX records cannot be proxied, so there is nothing to switch off. If any
+record Resend asks for is a CNAME, set that one to DNS only.
+
+The address mail is sent from has to be on the verified subdomain, which is why
+`MAIL_FROM` is `noreply@send.hasnainstudiox.com`. Mail still arrives at
+`contact@hasnainstudiox.com`; that is the recipient, not the sender.
 
 **2. Publish the worker**
 

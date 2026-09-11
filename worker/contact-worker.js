@@ -5,7 +5,7 @@ const ALLOWED_ORIGINS = [
 
 /* defaults so a missing dashboard variable cannot silently misdeliver */
 const DEFAULT_TO = 'contact@hasnainstudiox.com';
-const DEFAULT_FROM = 'HSX Website <noreply@hasnainstudiox.com>';
+const DEFAULT_FROM = 'HSX Website <noreply@send.hasnainstudiox.com>';
 
 const MAX_FIELDS = 25;
 const MAX_VALUE = 5000;
