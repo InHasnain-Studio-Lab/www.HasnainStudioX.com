@@ -26,7 +26,7 @@ const PUBLISHED = path.join(SITE, 'hub-catalog.json');
 
 const read = file => fs.readFileSync(path.join(SITE, file), 'utf8');
 
-/* suites */
+/* ── suites ─────────────────────────────────────────────────────────────── */
 
 const SUITE_OF = {
     system: 'system', files: 'system', utilities: 'system',
@@ -47,7 +47,7 @@ const SUITES = [
     { k: 'creative', n: 'HSX Creative Utilities', s: 'Creative', t: 'Audio, video, design, documents and simulated worlds', a: '#F3B3CF', x: '003' },
 ];
 
-/* page readers */
+/* ── page readers ───────────────────────────────────────────────────────── */
 
 function readApps(file) {
     const source = read(file);
@@ -84,7 +84,7 @@ function readMarks(file) {
     return marks;
 }
 
-/* mark conversion: svg primitives to path data */
+/* ── mark conversion: svg primitives to path data ───────────────────────── */
 
 const round = value => Math.round(parseFloat(value) * 1000) / 1000;
 const num = value => String(round(value));
@@ -139,11 +139,14 @@ function toStrokes(svg) {
     return strokes;
 }
 
-/* contact */
+/* ── contact ────────────────────────────────────────────────────────────── */
 
 function readContact() {
     const source = read('contact.html');
-    const endpoint = (source.match(/action="(https:\/\/api\.hasnainstudiox\.com\/[^"]+)"/) || [])[1] || null;
+    /* the form's own action, so a change of provider needs no change here */
+    const endpoint = (source.match(/<form[^>]*id="contact-form"[^>]*action="(https:\/\/[^"]+)"/) || [])[1]
+        || (source.match(/action="(https:\/\/[^"]+)"/) || [])[1]
+        || null;
 
     const pick = id => {
         const block = source.match(new RegExp(`<select id="${id}"[\\s\\S]*?<\\/select>`));
@@ -157,14 +160,14 @@ function readContact() {
 
     return {
         e: endpoint,
-        m: (source.match(/mailto:([^"]+)"/) || [])[1] || 'contact@hasnainstudiox.com',
+        m: (source.match(/mailto:([^"]+)"/) || [])[1] || 'Hasnain@outlook.at',
         x: social ? social[0] : null,
         t: pick('c-topic'),
         p: pick('c-platform'),
     };
 }
 
-/* build */
+/* ── build ──────────────────────────────────────────────────────────────── */
 
 const clean = value => String(value == null ? '' : value)
     .replace(/[\u2012\u2013\u2014]/g, '-')
@@ -236,10 +239,11 @@ function build(app, index, platform, siteCategory, marks, heroes, pages) {
     };
 }
 
-/* feed
+/* ── feed ───────────────────────────────────────────────────────────────
    Every entry is a change this run can prove: an app that appeared, one that
    went live, or a build recorded in the release feed. The previous state comes
-   from the copy already published, so nothing has to be tracked by hand. */
+   from the copy already published, so nothing has to be tracked by hand.
+   ──────────────────────────────────────────────────────────────────────── */
 
 const KEEP_EVENTS = 40;
 
@@ -367,7 +371,7 @@ const catalogue = {
         n: 'Hasnain Studio X',
         a: 'Hasnain Butt Akhtar',
         s: 'https://hasnainstudiox.com',
-        c: 'contact@hasnainstudiox.com',
+        c: 'Hasnain@outlook.at',
         l: 'England, United Kingdom',
     },
     ct: readContact(),

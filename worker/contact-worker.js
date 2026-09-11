@@ -35,12 +35,24 @@ const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', 
 
 const label = k => k.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 
-function collect(form) {
+/* The website posts multipart form data. HSX Apps Hub posts JSON. Both are
+   read into the same list of pairs. */
+async function read(request) {
+  const type = (request.headers.get('Content-Type') || '').toLowerCase();
+  if (type.includes('application/json')) {
+    const body = await request.json();
+    if (!body || typeof body !== 'object' || Array.isArray(body)) throw new Error('not an object');
+    return Object.entries(body);
+  }
+  return [...(await request.formData()).entries()];
+}
+
+function collect(entries) {
   const fields = [];
-  for (const [k, v] of form.entries()) {
+  for (const [k, v] of entries) {
     if (fields.length >= MAX_FIELDS) break;
-    if (typeof v !== 'string') continue;
-    const value = v.trim().slice(0, MAX_VALUE);
+    if (typeof v !== 'string' && typeof v !== 'number') continue;
+    const value = String(v).trim().slice(0, MAX_VALUE);
     if (value) fields.push([k, value]);
   }
   return fields;
@@ -69,19 +81,19 @@ export default {
       return json({ ok: false, error: 'Origin not allowed.' }, 403, origin);
     }
 
-    let form;
+    let entries;
     try {
-      form = await request.formData();
+      entries = await read(request);
     } catch (e) {
       return json({ ok: false, error: 'Malformed submission.' }, 400, origin);
     }
 
+    const fields = collect(entries);
+
     /* hidden field: a real visitor never fills it, so anything here is a bot */
-    if ((form.get('company') || '').toString().trim()) {
+    if (fields.some(([k, v]) => k === 'company' && v)) {
       return json({ ok: true }, 200, origin);
     }
-
-    const fields = collect(form);
     const get = k => (fields.find(f => f[0] === k) || [, ''])[1];
 
     const name = get('name');
