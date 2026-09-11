@@ -14,9 +14,27 @@ const ROOT = __dirname;
 const KEY  = 'b0acc9d970954ca19f3d76421331a14d';
 const HOST = 'hasnainstudiox.com';
 
-const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
-const urlList = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
-if (!urlList.length) { console.error('No URLs found in sitemap.xml'); process.exit(1); }
+/* sitemap.xml is an index: its entries are the other sitemaps, not pages.
+   Submitting those tells the engines nothing, so follow them down a level
+   and collect the pages themselves. */
+const locs = file => [...fs.readFileSync(path.join(ROOT, file), 'utf8')
+    .matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+
+const local = url => url.replace(`https://${HOST}/`, '');
+const seen = new Set();
+
+for (const entry of locs('sitemap.xml')) {
+  const name = local(entry);
+  if (!name.endsWith('.xml')) { seen.add(entry); continue; }
+  if (!fs.existsSync(path.join(ROOT, name))) {
+    console.error(`  ${name} is listed in sitemap.xml but not on disk`);
+    continue;
+  }
+  locs(name).forEach(u => seen.add(u));
+}
+
+const urlList = [...seen];
+if (!urlList.length) { console.error('No page URLs found in the sitemaps'); process.exit(1); }
 
 const body = JSON.stringify({
   host: HOST,
