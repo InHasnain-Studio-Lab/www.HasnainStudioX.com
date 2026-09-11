@@ -2,6 +2,12 @@ name = "hsx-contact"
 main = "contact-worker.js"
 compatibility_date = "2026-09-01"
 
+# creates the hostname and its DNS record on deploy, so the name cannot be
+# mistyped in the dashboard and no route is needed
+routes = [
+  { pattern = "api.hasnainstudiox.com", custom_domain = true }
+]
+
 [vars]
 MAIL_TO = "contact@hasnainstudiox.com"
 MAIL_FROM = "HSX Website <noreply@hasnainstudiox.com>"
