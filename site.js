@@ -133,7 +133,7 @@
             }).catch(function () {
                 if (status) {
                     status.style.color = '#f3b3cf';
-                    status.textContent = 'Could not send. Please email Hasnain@outlook.at directly.';
+                    status.textContent = 'Could not send. Please email contact@hasnainstudiox.com directly.';
                 }
             }).finally(function () {
                 if (btn) { btn.disabled = false; btn.style.opacity = ''; }

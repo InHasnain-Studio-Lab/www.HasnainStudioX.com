@@ -1,0 +1,10 @@
+name = "hsx-contact"
+main = "contact-worker.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+MAIL_TO = "contact@hasnainstudiox.com"
+MAIL_FROM = "HSX Website <noreply@hasnainstudiox.com>"
+
+# RESEND_API_KEY is a secret, never a var:
+#   npx wrangler secret put RESEND_API_KEY
