@@ -1,0 +1,100 @@
+<!--HSX:GUIDE {
+  "title": "Why the same prompt gives you a different picture every time",
+  "nav": "Getting the same picture twice",
+  "h1": "Why the same prompt gives you a different picture every time",
+  "standfirst": "You typed the same words and got a different image. That is meant to happen, and there is a reliable way to get a result you liked back again.",
+  "description": "Why an AI image generator gives a new result from identical wording, what the seed does, and how to reproduce a picture you already liked.",
+  "section": "Local AI",
+  "release": "2026-09-13",
+  "published": "2026-09-05",
+  "keywords": ["same prompt different image", "why do AI images change every time", "AI image seed explained", "reproduce an AI image", "save AI image settings"],
+  "apps": [
+    { "name": "HSX ArtGen Studio", "href": "apps/hsx-artgen-studio.html", "note": "Image generation that runs on your own graphics card" },
+    { "name": "DreamMint AI", "href": "apps/dreammint-ai.html", "note": "Local image generation with no account required" },
+    { "name": "HSX MorphLora", "href": "apps/hsx-morphlora.html", "note": "Restyles a photograph you already have, on your own machine" }
+  ]
+}-->
+
+<p class="art-lead">You write a description, you get a picture you like, and you close the window. The next day
+you type the same words and get something else entirely. Nothing is broken. The randomness is deliberate, and
+once you know where it lives you can switch it off.</p>
+
+<h2>The part that changes</h2>
+
+<p>Every image starts from a patch of random noise, a bit like television static. The description you wrote is
+the instruction for what to pull out of that static. Change the starting noise and you get a different picture
+from the same instruction, in the same way that two illustrators given one brief will hand back two different
+drawings, both correct.</p>
+
+<p>That starting point is a number, usually called the seed. Most tools pick a new one each time so that
+pressing the button again gives you something fresh rather than the picture you already have. That is the
+behaviour you want ninety percent of the time, and the reason the tenth time is so frustrating.</p>
+
+<h2>Getting yesterday's picture back</h2>
+
+<p>If the seed is what changed, then fixing the seed is what brings the picture back. Somewhere in the tool
+there will be a seed field, often with a dice or refresh icon beside it that means pick a new one. Set it to
+the number the picture you liked was made with and generate again. Same seed and same description gives you the
+same image.</p>
+
+<p>Which means the number is worth keeping. Good tools record it against every image they make, so you can look
+back at a result from last week and find the seed that produced it. If yours does not, write it down before you
+close the window, because it is not recoverable afterwards.</p>
+
+<h2>Same seed, still not the same</h2>
+
+<p>If you have fixed the seed and the picture still differs, something else moved. The usual culprits, roughly
+in order of how often they catch people out:</p>
+
+<ul>
+  <li>The description is not identical. A missing comma or an extra word counts as a change.</li>
+  <li>The image size is different. The same seed at a different shape is effectively a different starting point.</li>
+  <li>A style or preset is applied that was not before, or is applied at a different strength.</li>
+  <li>The number of steps or the guidance setting has moved, including by loading a different preset.</li>
+  <li>You are on a different computer. Results can differ slightly between machines even with everything else matched.</li>
+</ul>
+
+<p>That last one surprises people, so it is worth stating plainly: a seed is a reliable way to reproduce a
+picture on the machine that made it, and a good but not perfect way to reproduce it somewhere else.</p>
+
+<h2>Using the randomness on purpose</h2>
+
+<p>Once you can control it, the randomness becomes the useful part rather than the annoying part. The practical
+method is to work in two passes.</p>
+
+<p>First, leave the seed random and write loosely. Generate a batch and look for a composition that is close to
+what you had in mind. You are not looking for the finished thing here, only for a starting point that is
+pointing the right way.</p>
+
+<p>Then lock the seed of whichever one you liked, and start editing the words. Because the starting noise is now
+fixed, each change you make to the description shows you the effect of that change and nothing else. Swap the
+time of day, change the colour of a coat, add a detail to the background. You are adjusting one variable at a
+time instead of rolling the dice again, which is the difference between steering and guessing.</p>
+
+<p>Tools that offer several variations from one seed are doing a version of this for you, holding the starting
+point steady while nudging everything else, so you can compare like with like.</p>
+
+<h2>Keep the settings, not just the picture</h2>
+
+<p>The mistake almost everyone makes early on is saving the image and nothing else. Months later you have a
+folder of pictures you cannot recreate, and no way to make a matching one for the second half of a pair.</p>
+
+<p>What you want to keep, alongside the file, is the description you used, the seed, the size, and whatever
+style or preset was applied. Some tools save all of that into the image file itself, so dragging it back in
+restores the settings. Some offer to save a look as a reusable preset, which is the same idea with a friendlier
+name. Either is better than a note in a text file, but a note in a text file is much better than nothing.</p>
+
+<p>It matters most when you need consistency rather than a single good image: a set of illustrations that
+belong together, a series of headers in one style, a character who should look the same in the second picture
+as in the first. All of that rests on being able to hold something steady while you change something else.</p>
+
+<h2>The short version</h2>
+
+<p>Different results from identical wording are the tool working as designed, not a fault. The seed is the
+random part, it is usually a field you can type into, and fixing it makes results repeatable. Explore with it
+unlocked, refine with it locked, and save the settings next to the picture so that today's good result is still
+available to you next month.</p>
+
+<p class="art-note">If your tool does not show a seed at all, that is worth knowing before you rely on it for
+anything that needs to match. Being able to reproduce your own work is the difference between a toy and
+something you can plan around.</p>

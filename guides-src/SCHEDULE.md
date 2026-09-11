@@ -1,6 +1,6 @@
 # Guide release schedule
 
-Six guides are live. Fourteen are written and waiting in `scheduled/`,
+Nine guides are live. Eleven are written and waiting in `scheduled/`,
 set to go out one every two days.
 
 ## Releasing the next one
@@ -31,7 +31,7 @@ on 3 October.
 | 2026-09-07 | Media | Why a video file will not play, and how to fix it |
 | 2026-09-09 | Windows | Why your Windows PC feels slow, and what actually helps |
 | 2026-09-11 | Photos and files | Sorting out a photo library that got away from you |
-| 2026-09-13 | Local AI | What 7B, Q4 and the rest of a local AI model name mean |
+| 2026-09-13 | Local AI | Why the same prompt gives you a different picture every time |
 | 2026-09-15 | Windows | Why your downloads are slow, and what to check first |
 | 2026-09-17 | Audio | Spatial audio on Windows: what is real and what is marketing |
 | 2026-09-19 | Documents | Why a PDF is 40 MB, and how to shrink it without wrecking it |
