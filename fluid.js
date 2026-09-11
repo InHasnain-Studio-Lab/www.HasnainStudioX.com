@@ -1,6 +1,5 @@
 /* HASNAIN STUDIO X - fluid.js
-   Quiet cosmic dust only. The wind ribbons were retired so the night
-   sky (stars + moon in effects.js) owns the background.
+   Quiet cosmic dust. The night sky, stars and moon, lives in effects.js.
    Pauses when the tab is hidden; off for reduced motion. */
 (function () {
     'use strict';

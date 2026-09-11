@@ -74,9 +74,8 @@
     });
 })();
 
-/* SIGNATURE EFFECTS - ported from the previous InHasnain build and
-   restyled for the obsidian palette. Honest by design: no fabricated
-   content, silent if audio files are absent, reduced-motion respected. */
+/* SIGNATURE EFFECTS - silent when audio files are absent, reduced
+   motion respected. */
 (function () {
     'use strict';
     var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
