@@ -121,21 +121,47 @@ export default {
     const declared = get('_subject').slice(0, MAX_SUBJECT);
     const subject = declared || 'Website contact: ' + (get('topic') || 'General enquiry');
 
+    /* Email clients strip most CSS, so this is tables and inline styles only,
+       on a light ground because a dark one gets inverted unpredictably. The
+       message always sits apart from the details, whatever its length. */
     const shown = fields.filter(([k]) => !SKIP.has(k));
-    const long = ([, v]) => v.length > 120;
-    const rows = shown.filter(f => !long(f));
-    const blocks = shown.filter(long);
+    const details = shown.filter(([k, v]) => k !== 'message' && v.length <= 120);
+    const bodies = shown.filter(([k, v]) => k === 'message' || v.length > 120);
+
+    const row = ([k, v]) =>
+      '<tr>' +
+      '<td style="padding:7px 18px 7px 0;color:#6b6b78;font-size:13px;white-space:nowrap;vertical-align:top">' +
+      esc(label(k)) + '</td>' +
+      '<td style="padding:7px 0;color:#16151c;font-size:14px">' + esc(v) + '</td>' +
+      '</tr>';
+
+    const block = ([k, v]) =>
+      '<tr><td style="padding:22px 0 6px;color:#6b6b78;font-size:11px;letter-spacing:.08em;' +
+      'text-transform:uppercase">' + esc(label(k)) + '</td></tr>' +
+      '<tr><td style="padding:0;color:#16151c;font-size:15px;line-height:1.6;white-space:pre-wrap">' +
+      esc(v) + '</td></tr>';
 
     const html =
-      '<table style="border-collapse:collapse;font:14px system-ui,sans-serif">' +
-      rows.map(([k, v]) =>
-        '<tr><td style="padding:2px 12px 2px 0;color:#667;vertical-align:top">' + esc(label(k)) +
-        '</td><td style="padding:2px 0"><strong>' + esc(v) + '</strong></td></tr>').join('') +
-      '</table>' +
-      blocks.map(([k, v]) =>
-        '<hr style="border:none;border-top:1px solid #dde;margin:16px 0">' +
-        '<div style="font:12px system-ui,sans-serif;color:#667;margin-bottom:6px">' + esc(label(k)) + '</div>' +
-        '<div style="font:14px/1.6 system-ui,sans-serif;white-space:pre-wrap">' + esc(v) + '</div>').join('');
+      '<div style="background:#f4f3ef;padding:28px 12px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">' +
+      '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" ' +
+      'style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e3e0d8;border-radius:6px">' +
+      '<tr><td style="height:3px;background:#16705c;font-size:0;line-height:0">&nbsp;</td></tr>' +
+      '<tr><td style="padding:22px 26px 0">' +
+      '<div style="color:#6b6b78;font-size:11px;letter-spacing:.1em;text-transform:uppercase">Hasnain Studio X</div>' +
+      '<div style="color:#16151c;font-size:19px;font-weight:600;padding-top:4px">' + esc(subject) + '</div>' +
+      '</td></tr>' +
+      '<tr><td style="padding:14px 26px 0">' +
+      '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">' +
+      details.map(row).join('') + '</table></td></tr>' +
+      (bodies.length
+        ? '<tr><td style="padding:0 26px">' +
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">' +
+          bodies.map(block).join('') + '</table></td></tr>'
+        : '') +
+      '<tr><td style="padding:24px 26px 22px">' +
+      '<div style="border-top:1px solid #eeebe4;padding-top:14px;color:#8a8896;font-size:12px">' +
+      'Reply to this email to answer ' + esc(name) + ' directly.</div>' +
+      '</td></tr></table></div>';
 
     const sent = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -149,6 +175,7 @@ export default {
         reply_to: email,
         subject,
         html,
+        text: shown.map(([k, v]) => label(k) + ': ' + v).join('\n'),
       }),
     });
 
