@@ -151,6 +151,30 @@ function pageFor(g) {
 ${g.body.split('\n').map(l => l ? '                ' + l : l).join('\n')}
             </div>
         </article>
+
+        <section class="section signup" aria-labelledby="signup-title">
+            <div class="section-header"><h2 id="signup-title">Release notes by email</h2></div>
+            <p class="signup-why">Everything I publish reaches you through Microsoft and Google, and neither
+            lets me contact the people who buy my software. This list is how I tell you directly when a new
+            app is published, when one you own gets a real update, or when something changes that affects
+            software you already paid for.</p>
+            <form class="signup-form" id="signup-${escA(g.slug)}" data-async
+                  action="https://api.hasnainstudiox.com/list/subscribe" method="POST">
+                <input type="hidden" name="source" value="guide/${escA(g.slug)}"/>
+                <input type="text" name="hsx_ref" tabindex="-1" autocomplete="off"
+                       aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px"/>
+                <label class="signup-label" for="signup-email-${escA(g.slug)}">Your email address</label>
+                <div class="signup-row">
+                    <input class="signup-input" id="signup-email-${escA(g.slug)}" name="email" type="email"
+                           required placeholder="you@example.com" autocomplete="email"/>
+                    <button class="btn btn--primary" type="submit">Send me release notes</button>
+                </div>
+                <p id="signup-${escA(g.slug)}-status" class="form-status" aria-live="polite"></p>
+            </form>
+            <p class="signup-small">No schedule, no marketing, and no tracking pixel, so I cannot tell whether
+            you open anything. One click unsubscribes for good. What is stored and for how long is set out in
+            the <a href="../privacy.html#p5">privacy policy</a>.</p>
+        </section>
 ${related.length ? `
         <section class="section" aria-labelledby="guide-apps-title">
             <div class="section-header"><h2 id="guide-apps-title">Software mentioned in this guide</h2></div>

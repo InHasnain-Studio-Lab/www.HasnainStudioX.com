@@ -338,6 +338,24 @@ a:hover{color:var(--accent);}
     display:block;margin-top:.6rem;font-style:normal;font-size:.76rem;
     letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
 }
+/* Release notes signup, at the end of each guide */
+.signup{border:1px solid var(--line, #262532);background:rgba(255,255,255,.015);}
+.signup-why{color:var(--text-muted);font-size:.98rem;line-height:1.7;max-width:60ch;}
+.signup-form{margin:1.4rem 0 .9rem;}
+.signup-label{
+    display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;
+    letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.5rem;
+}
+.signup-row{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;}
+.signup-input{
+    flex:1 1 260px;min-width:0;padding:.72rem .9rem;border-radius:7px;
+    border:1px solid var(--line, #262532);background:rgba(0,0,0,.25);
+    color:var(--text-main);font-family:inherit;font-size:.98rem;
+}
+.signup-input:focus{outline:2px solid var(--mint);outline-offset:1px;}
+.signup-small{color:var(--ink-faint);font-size:.85rem;line-height:1.65;max-width:62ch;margin:0;}
+.signup-small a{color:var(--mint);}
+
 .buy-promise{
     color:var(--text-muted);font-size:.95rem;font-weight:300;line-height:1.7;
     max-width:520px;margin:1.2rem auto 0;text-align:center;
