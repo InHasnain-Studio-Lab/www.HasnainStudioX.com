@@ -10,10 +10,13 @@ const DEFAULT_FROM = 'HSX Website <noreply@send.hasnainstudiox.com>';
 const MAX_FIELDS = 25;
 const MAX_VALUE = 5000;
 const MAX_SUBJECT = 150;
-const MIN_CONTENT = 10;
+const MIN_CONTENT = 4;
 
-/* not shown in the message body: control fields and the bot trap */
-const SKIP = new Set(['_subject', 'company']);
+/* not shown in the message body: control fields and the bot trap.
+   'company' was the old trap name. Browsers autofill it, which silently
+   dropped real messages, so it is now an ordinary ignored field. */
+const SKIP = new Set(['_subject', 'company', 'hsx_ref']);
+const TRAP = 'hsx_ref';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -78,6 +81,7 @@ export default {
       return json({ ok: false, error: 'Not configured.' }, 500, origin);
     }
     if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      console.log('rejected origin:', origin);
       return json({ ok: false, error: 'Origin not allowed.' }, 403, origin);
     }
 
@@ -90,8 +94,12 @@ export default {
 
     const fields = collect(entries);
 
-    /* hidden field: a real visitor never fills it, so anything here is a bot */
-    if (fields.some(([k, v]) => k === 'company' && v)) {
+    /* The trap is hidden and carries a name no browser autofills, so a value
+       in it means a bot. Logged rather than dropped in silence, so a real
+       person caught by it is visible in the worker log. */
+    const trapped = fields.find(([k, v]) => k === TRAP && v);
+    if (trapped) {
+      console.log('trap filled, dropping:', JSON.stringify(fields.slice(0, 6)));
       return json({ ok: true }, 200, origin);
     }
     const get = k => (fields.find(f => f[0] === k) || [, ''])[1];

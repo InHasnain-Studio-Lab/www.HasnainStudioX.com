@@ -126,15 +126,20 @@
                    URL can return one. Only the endpoint's own {"ok":true} is. */
                 return res.json().catch(function () { return null; });
             }).then(function (data) {
-                if (!data || data.ok !== true) throw new Error('send failed');
+                /* the endpoint says what was wrong; showing 'could not send'
+                   instead leaves the visitor with nothing to act on */
+                if (!data || data.ok !== true) throw new Error((data && data.error) || '');
                 form.reset();
                 if (status) status.textContent = form.id === 'contest-form'
                     ? '✓ Entry received - good luck. Winners are announced on X.'
                     : '✓ Message sent - we’ll reply within 2 business days.';
-            }).catch(function () {
+            }).catch(function (err) {
                 if (status) {
+                    var said = err && err.message;
                     status.style.color = '#f3b3cf';
-                    status.textContent = 'Could not send. Please email contact@hasnainstudiox.com directly.';
+                    status.textContent = said
+                        ? said + ' You can also email contact@hasnainstudiox.com.'
+                        : 'Could not send. Please email contact@hasnainstudiox.com.';
                 }
             }).finally(function () {
                 if (btn) { btn.disabled = false; btn.style.opacity = ''; }
