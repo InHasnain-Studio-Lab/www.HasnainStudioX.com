@@ -11,6 +11,13 @@ routes = [
 [vars]
 MAIL_TO = "contact@hasnainstudiox.com"
 MAIL_FROM = "HSX Website <noreply@send.hasnainstudiox.com>"
+LIST_FROM = "Hasnain Studio X <notes@send.hasnainstudiox.com>"
 
 # RESEND_API_KEY is a secret, never a var:
 #   npx wrangler secret put RESEND_API_KEY
+
+# the release notes list. Created 2026-09-17.
+[[d1_databases]]
+binding = "LIST"
+database_name = "hsx-list"
+database_id = "0691f00a-50fb-4c80-b352-4c640d614068"

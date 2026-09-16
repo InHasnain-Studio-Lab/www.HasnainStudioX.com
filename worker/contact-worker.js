@@ -1,3 +1,5 @@
+import { handleList } from './list.js';
+
 const ALLOWED_ORIGINS = [
   'https://hasnainstudiox.com',
   'https://www.hasnainstudiox.com',
@@ -73,7 +75,8 @@ export default {
     if (request.method === 'GET' && url.pathname === '/contact') {
       return json({ ok: false, service: 'hsx-contact', error: 'POST only.' }, 405, origin);
     }
-    if (request.method !== 'POST' || url.pathname !== '/contact') {
+    if (!url.pathname.startsWith('/list/') &&
+        (request.method !== 'POST' || url.pathname !== '/contact')) {
       return json({ ok: false, error: 'Not found.' }, 404, origin);
     }
     if (!env.RESEND_API_KEY) {
@@ -83,6 +86,13 @@ export default {
     if (origin && !ALLOWED_ORIGINS.includes(origin)) {
       console.log('rejected origin:', origin);
       return json({ ok: false, error: 'Origin not allowed.' }, 403, origin);
+    }
+
+    /* the release notes list lives on its own paths */
+    if (url.pathname.startsWith('/list/')) {
+      const handled = await handleList(request, env, url, json, origin);
+      if (handled) return handled;
+      return json({ ok: false, error: 'Not found.' }, 404, origin);
     }
 
     let entries;
