@@ -47,12 +47,19 @@ function confirmEmail(link) {
   return {
     subject: 'Confirm your email address',
     html: shell('Confirm your email address',
-      '<p style="margin:0">One click and you are on the list for release notes from Hasnain Studio X.</p>' +
+      '<p style="margin:0">You asked for release notes from Hasnain Studio X: an email when a new ' +
+      'app is published, when one you own gets a real update, or when something changes that affects ' +
+      'software you already paid for. Nothing else, and never on a schedule.</p>' +
+      '<p style="margin:14px 0 0">Click to confirm and you are on the list.</p>' +
       button(link, 'Confirm') +
+      /* the address is shown in full: a button that hides where it goes is what a
+         phishing email looks like, and filters score it that way too */
+      '<p style="margin:10px 0 0;color:#6b6b78;font-size:12px;word-break:break-all">' +
+      'Or paste this into your browser:<br>' + link + '</p>' +
       '<p style="margin:14px 0 0;color:#6b6b78;font-size:13px">If you did not ask for this, ignore it. ' +
       'Nothing happens, and the link stops working in seven days.</p>',
       'Hasnain Studio X, England &middot; hasnainstudiox.com'),
-    text: 'Confirm your email address to get release notes from Hasnain Studio X:\n\n' + link +
+    text: 'You asked for release notes from Hasnain Studio X. Confirm your address here:\n\n' + link +
       '\n\nIf you did not ask for this, ignore it. The link stops working in seven days.\n\n' +
       'Hasnain Studio X, England',
   };
@@ -172,7 +179,9 @@ export async function handleList(request, env, url, json, origin) {
       'unsubscribed_at = NULL'
     ).bind(email, 'pending', token, source, now, 'pending', token, source, now).run();
 
-    await send(env, email, confirmEmail(linkFor('confirm', token)));
+    /* the unsubscribe header goes on this one too: a confirmation without it can be
+       scored as bulk, and it gives anyone who did not ask for it a way out */
+    await send(env, email, confirmEmail(linkFor('confirm', token)), linkFor('unsubscribe', token));
     return json({ ok: true }, 200, origin);
   }
 

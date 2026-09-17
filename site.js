@@ -132,7 +132,9 @@
                 form.reset();
                 if (status) status.textContent = form.id === 'contest-form'
                     ? '✓ Entry received - good luck. Winners are announced on X.'
-                    : '✓ Message sent - we’ll reply within 2 business days.';
+                    : /^signup-/.test(form.id)
+                        ? '✓ Check your email and click the link to confirm. If it is not there in a minute, look in your junk folder.'
+                        : '✓ Message sent - we’ll reply within 2 business days.';
             }).catch(function (err) {
                 if (status) {
                     var said = err && err.message;
