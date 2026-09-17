@@ -18,3 +18,4 @@ store-shots/
 
 # WSL/fuse leftovers
 .fuse_hidden*
+node_modules/

@@ -13,11 +13,25 @@ MAIL_TO = "contact@hasnainstudiox.com"
 MAIL_FROM = "HSX Website <noreply@send.hasnainstudiox.com>"
 LIST_FROM = "Hasnain Studio X <notes@send.hasnainstudiox.com>"
 
+# the studio mailbox. REPLY_FROM needs hasnainstudiox.com verified in Resend;
+# until it is, Resend refuses the send and says so in the app.
+REPLY_FROM = "Hasnain Studio X <contact@hasnainstudiox.com>"
+MAIL_FALLBACK = "hasnain@outlook.at"
+
 # RESEND_API_KEY is a secret, never a var:
 #   npx wrangler secret put RESEND_API_KEY
+# MAILBOX_KEY is the key HSX Control Center sends. Same rule:
+#   npx wrangler secret put MAILBOX_KEY
 
 # the release notes list. Created 2026-09-17.
 [[d1_databases]]
 binding = "LIST"
 database_name = "hsx-list"
 database_id = "0691f00a-50fb-4c80-b352-4c640d614068"
+
+# received mail, read by HSX Control Center. Create it, then paste the id here:
+#   npx wrangler d1 create hsx-mail
+[[d1_databases]]
+binding = "MAIL"
+database_name = "hsx-mail"
+database_id = "PASTE_THE_ID_FROM_WRANGLER_D1_CREATE"

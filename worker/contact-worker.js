@@ -1,4 +1,5 @@
 import { handleList } from './list.js';
+import { handleMail, receive } from './mailbox.js';
 
 const ALLOWED_ORIGINS = [
   'https://hasnainstudiox.com',
@@ -64,12 +65,29 @@ function collect(entries) {
 }
 
 export default {
+  /* Cloudflare Email Routing delivers here. Nothing on the website reaches this
+     handler, and nothing here answers a browser. */
+  async email(message, env) {
+    await receive(message, env);
+  },
+
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders(origin) });
+    }
+
+    /* the studio mailbox: keyed, never browser facing, so it is answered before
+       the origin and form checks that guard the public paths */
+    if (url.pathname.startsWith('/mail/')) {
+      const handled = await handleMail(request, env, url);
+      if (handled) return handled;
+      return new Response(JSON.stringify({ ok: false, error: 'Not found.' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
     }
     /* identifies this worker, so a wrong one on the route is obvious */
     if (request.method === 'GET' && url.pathname === '/contact') {
