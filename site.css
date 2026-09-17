@@ -338,23 +338,45 @@ a:hover{color:var(--accent);}
     display:block;margin-top:.6rem;font-style:normal;font-size:.76rem;
     letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
 }
-/* Release notes signup, at the end of each guide */
-.signup{border:1px solid var(--line, #262532);background:rgba(255,255,255,.015);}
-.signup-why{color:var(--text-muted);font-size:.98rem;line-height:1.7;max-width:60ch;}
-.signup-form{margin:1.4rem 0 .9rem;}
+/* Release notes signup, at the end of each guide. Panel styling follows the
+   same tokens as the rest of the site rather than its own values. */
+.signup{
+    background:var(--card-bg); border:1px solid var(--card-border);
+    border-radius:var(--r-lg); padding:clamp(1.6rem,4vw,2.6rem);
+    backdrop-filter:blur(10px) saturate(1.2);
+}
+.signup .section-header{margin-bottom:1.8rem;}
+.signup-why{
+    color:var(--text-muted); font-size:1rem; line-height:1.75;
+    max-width:60ch; margin:0 auto 1.6rem; text-align:center;
+}
+.signup-form{margin:0 auto; max-width:640px;}
 .signup-label{
-    display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;
-    letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.5rem;
+    display:block; font-family:var(--f-mono,'JetBrains Mono',ui-monospace,monospace);
+    font-size:.7rem; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--ink-faint); margin-bottom:.55rem;
 }
-.signup-row{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;}
+.signup-row{display:flex; gap:.8rem; flex-wrap:wrap; align-items:stretch;}
 .signup-input{
-    flex:1 1 260px;min-width:0;padding:.72rem .9rem;border-radius:7px;
-    border:1px solid var(--line, #262532);background:rgba(0,0,0,.25);
-    color:var(--text-main);font-family:inherit;font-size:.98rem;
+    flex:1 1 260px; min-width:0; padding:.8rem 1rem;
+    border:1px solid var(--card-border); border-radius:var(--r-md);
+    background:var(--surface-2); color:var(--text-main);
+    font-family:inherit; font-size:1rem;
+    transition:border-color var(--t-fast) var(--ease);
 }
-.signup-input:focus{outline:2px solid var(--mint);outline-offset:1px;}
-.signup-small{color:var(--ink-faint);font-size:.85rem;line-height:1.65;max-width:62ch;margin:0;}
+.signup-input::placeholder{color:var(--ink-faint);}
+.signup-input:hover{border-color:var(--accent-line);}
+.signup-input:focus-visible{outline:2px solid var(--mint); outline-offset:2px;}
+.signup-row .btn{white-space:nowrap;}
+.signup-form .form-status{margin:.9rem 0 0;}
+.signup-small{
+    color:var(--ink-faint); font-size:.85rem; line-height:1.7;
+    max-width:60ch; margin:1.4rem auto 0; text-align:center;
+}
 .signup-small a{color:var(--mint);}
+@media (max-width:560px){
+    .signup-row .btn{width:100%;}
+}
 
 .buy-promise{
     color:var(--text-muted);font-size:.95rem;font-weight:300;line-height:1.7;
