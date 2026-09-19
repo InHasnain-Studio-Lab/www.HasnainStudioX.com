@@ -464,6 +464,14 @@ function pageFor(a) {
             <a href="${hub.slug}.html">${esc(hub.nav)}</a> <span aria-hidden="true">/</span>` : ''}
             <span aria-current="page">${esc(a.name)}</span>
         </nav>
+${pid ? `
+        <aside class="copy-notice" id="copy-notice" role="note" aria-labelledby="copy-notice-title" hidden>
+            <p class="copy-notice-title" id="copy-notice-title">About the copy you came from</p>
+            <p>The copy on that site is a modified build we don't support and can't vouch for.
+            The genuine ${esc(a.name)} has a free trial on the Microsoft Store.</p>
+            <a class="btn btn--primary" href="${escA(a.storeUrl)}" target="_blank" rel="noopener">
+                Get the genuine app <span aria-hidden="true">&rarr;</span></a>
+        </aside>` : ''}
 
 ${hero ? `
         <figure class="app-hero-art">
@@ -492,7 +500,8 @@ ${hero ? `
                 <span class="proof-chip">${isLinked(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
             </div>${out ? `
             <p class="buy-promise">Buy it once through ${esc(storeName)}. There is no renewal, and no account to
-            keep it working: the copy on your machine keeps running whether or not this studio is still here.</p>` : ''}${vram ? `
+            keep it working: the copy on your machine keeps running whether or not this studio is still here.
+            Genuine copies are sold only on ${esc(storeName)}.</p>` : ''}${vram ? `
             <p class="gpu-badge">
                 <span class="gpu-badge-ico" aria-hidden="true">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><rect x="7" y="10" width="5" height="4" rx="1"/><path d="M16 10v4M7 18v2M17 18v2"/></svg>

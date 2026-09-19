@@ -357,6 +357,34 @@ window.AppViz = (function () {
   });
 })();
 
+/* Copy-site notice
+   A visitor who followed a link from a site redistributing these apps is told
+   the copy there is not ours. Only the referring host is read, in the browser,
+   and nothing is stored or sent anywhere. Sites that strip the referrer are
+   simply not recognised. */
+(function () {
+  var box = document.getElementById('copy-notice');
+  if (!box || !document.referrer) return;
+
+  var host;
+  try { host = new URL(document.referrer).hostname.toLowerCase(); } catch (e) { return; }
+
+  var known = [
+    'fcportables.com', 'psychodownloads.com', 'tutbb.com', 'phcorner.org', 'phcorner.net',
+    'avxhm.se', 'fullwarezcrack.com', 'filecr.com', 'warez.ge', 'dl4all.org', 'dl4all.com',
+    'cmteampk.com', 'filespayouts.com', 'downturk.net', 'gfxplugin.com', 'forums.srcds.com',
+    'softarchive.is', 'softarchive.la', 'sanet.st', 'sanet.lc'
+  ];
+  var listed = known.some(function (d) {
+    return host === d || host.slice(-(d.length + 1)) === '.' + d;
+  });
+  /* these rotate their numbered or regional domains, so match the family */
+  var family = /(^|\.)(gfxtra\d*|avxhm|avaxhome|softarchive|sanet)\./.test(host)
+    || /warez|crack|nulled|torrent/.test(host);
+
+  if (listed || family) box.removeAttribute('hidden');
+})();
+
 /* Pillar page section navigation
    Marks whichever section is currently in view. Runs only on pages that
    actually have the bar, and does nothing at all without JavaScript beyond
