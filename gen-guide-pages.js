@@ -67,7 +67,8 @@ const ORG = {
   founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain Butt Akhtar' },
   sameAs: ['https://x.com/HasnainStudioX',
            'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X',
-           'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X']
+           'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X',
+           'https://www.wikidata.org/wiki/Q141501125']
 };
 const SITE = { '@type': 'WebSite', '@id': BASE + '#website', url: BASE, name: 'Hasnain Studio X',
                publisher: { '@id': BASE + '#organization' }, inLanguage: 'en-GB' };
