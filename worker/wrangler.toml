@@ -29,9 +29,8 @@ binding = "LIST"
 database_name = "hsx-list"
 database_id = "0691f00a-50fb-4c80-b352-4c640d614068"
 
-# received mail, read by HSX Control Center. Create it, then paste the id here:
-#   npx wrangler d1 create hsx-mail
+# received mail, read by HSX Control Center. Created 2026-09-19.
 [[d1_databases]]
 binding = "MAIL"
 database_name = "hsx-mail"
-database_id = "PASTE_THE_ID_FROM_WRANGLER_D1_CREATE"
+database_id = "672d5cb3-e575-413d-9fb3-c5d0d402fd8d"
