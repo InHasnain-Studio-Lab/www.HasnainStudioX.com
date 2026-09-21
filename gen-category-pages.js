@@ -241,7 +241,7 @@ ${hub.faq.map(([q, ans]) => `                <div class="app-q"><h3>${esc(q)}</h
 ${siblings.map(s => `                <a class="cat-sib" href="${s.slug}.html"><span class="cat-sib-n">${esc(s.nav)}</span><span class="cat-sib-t">${esc(s.h1)}</span></a>`).join('\n')}
             </div>
             <p class="app-note"><a href="../Windows-apps.html">Full Windows catalogue</a>${hasAndroid ? ' &middot; <a href="../android-apps.html">Android catalogue</a>' : ''} &middot; <a href="../privacy-policies.html">Privacy policies</a> &middot; <a href="../about.html">About the studio</a></p>
-            <p class="app-tm">Hasnain Studio X&reg; is a registered trademark. Product names shown on this page
+            <p class="app-tm">Hasnain Studio X&trade; is a trade mark of Hasnain Studio X. Product names shown on this page
             are trademarks of Hasnain Studio X.</p>
         </section>
     </main>`;
