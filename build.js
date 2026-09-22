@@ -838,7 +838,7 @@ function syncHeroes() {
    hash is ever published. The originals stay in place as the source files. */
 function syncAssetVersions() {
   const crypto = require('crypto');
-  const ASSETS = ['site.css', 'site.js', 'effects.js', 'fluid.js', 'gallery-data.js'];
+  const ASSETS = ['site.css', 'site.js', 'effects.js', 'fluid.js', 'gallery-data.js', 'scene3d.js'];
   const map = {};
   for (const a of ASSETS) {
     let buf;

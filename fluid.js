@@ -4,6 +4,7 @@
 (function () {
     'use strict';
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (document.documentElement.classList.contains('scene-home')) return;
 
     var canvas = document.createElement('canvas');
     canvas.id = 'fluid-canvas';

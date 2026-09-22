@@ -1449,6 +1449,8 @@ body{text-rendering:optimizeLegibility;}
 /* starfield canvas: above the orb glows so the moon reads crisply */
 #star-canvas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:1;transition:opacity .6s ease;}
 #star-canvas.off{opacity:0;}
+#scene3d{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;transition:opacity .6s ease;}
+#scene3d.off{opacity:0;}
 .sky-btn.on .ico{color:var(--gold);}
 
 /* cinematic rain */

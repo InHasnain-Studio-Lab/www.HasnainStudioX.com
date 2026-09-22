@@ -137,7 +137,7 @@
                 ? '<span class="ico">&#10038;</span><span class="lbl">SKY ON</span>'
                 : '<span class="ico">&#10038;</span><span class="lbl">SKY OFF</span>';
             skyBtn.classList.toggle('on', window.__skyOn);
-            var cv = document.getElementById('star-canvas');
+            var cv = document.getElementById('star-canvas') || document.getElementById('scene3d');
             if (cv) cv.classList.toggle('off', !window.__skyOn);
         }
         paintSky();
@@ -360,6 +360,7 @@
     /* Photoreal night sky: stars with true colour temperatures, a
           Milky Way band, diffraction spikes, and a cratered moon */
     function initStarfield() {
+        if (document.documentElement.classList.contains('scene-home')) return;
         var cv = document.createElement('canvas');
         cv.id = 'star-canvas'; cv.setAttribute('aria-hidden', 'true');
         var grid = document.querySelector('.bg-grid');
