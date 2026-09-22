@@ -92,7 +92,22 @@ async function store(message, env) {
   ).run();
 }
 
-async function send(env, { to, subject, html, text, inReplyTo, references }) {
+/* Resend takes base64 file content. Anything unnamed, oversized or beyond ten
+   files is dropped rather than failing the whole send. */
+function files(list) {
+  if (!Array.isArray(list) || !list.length) return undefined;
+  const out = [];
+  let total = 0;
+  for (const f of list.slice(0, 10)) {
+    if (!f || typeof f.filename !== 'string' || typeof f.content !== 'string') continue;
+    total += Math.ceil(f.content.length * 0.75);
+    if (total > 15 * 1024 * 1024) break;
+    out.push({ filename: f.filename.slice(0, 160), content: f.content });
+  }
+  return out.length ? out : undefined;
+}
+
+async function send(env, { to, subject, html, text, inReplyTo, references, attachments }) {
   const headers = {};
   if (inReplyTo) headers['In-Reply-To'] = inReplyTo;
   if (references) headers['References'] = references;
@@ -111,6 +126,7 @@ async function send(env, { to, subject, html, text, inReplyTo, references }) {
       html,
       text,
       headers: Object.keys(headers).length ? headers : undefined,
+      attachments: files(attachments),
     }),
   });
 
@@ -197,6 +213,7 @@ export async function handleMail(request, env, url) {
       text: body.text,
       inReplyTo: row.message_id || undefined,
       references: chain || undefined,
+      attachments: body.attachments,
     });
     if (!sent.ok) return reply(sent, 502);
 
@@ -214,6 +231,7 @@ export async function handleMail(request, env, url) {
       subject: body.subject || 'Hasnain Studio X',
       html: body.html,
       text: body.text,
+      attachments: body.attachments,
     });
     return sent.ok ? reply({ ok: true }) : reply(sent, 502);
   }
