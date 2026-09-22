@@ -131,19 +131,25 @@
         var skyBtn = document.createElement('button');
         skyBtn.className = 'tool-btn sky-btn';
         skyBtn.title = 'Toggle night sky (stars and moon)';
-        window.__skyOn = localStorage.getItem('hsx-sky') !== 'off';
+        /* the homepage keeps its own choice: sky off there means the 3D scene runs */
+        var home = document.documentElement.classList.contains('scene-home');
+        var skyKey = home ? 'hsx-sky-home' : 'hsx-sky';
+        window.__skyOn = home ? localStorage.getItem(skyKey) === 'on' : localStorage.getItem(skyKey) !== 'off';
         function paintSky() {
             skyBtn.innerHTML = window.__skyOn
                 ? '<span class="ico">&#10038;</span><span class="lbl">SKY ON</span>'
                 : '<span class="ico">&#10038;</span><span class="lbl">SKY OFF</span>';
             skyBtn.classList.toggle('on', window.__skyOn);
-            var cv = document.getElementById('star-canvas') || document.getElementById('scene3d');
+            var cv = document.getElementById('star-canvas');
             if (cv) cv.classList.toggle('off', !window.__skyOn);
+            var s3 = document.getElementById('scene3d');
+            if (s3) s3.classList.toggle('off', window.__skyOn);
+            if (home) document.documentElement.classList.toggle('sky-3d', !window.__skyOn);
         }
         paintSky();
         skyBtn.addEventListener('click', function () {
             window.__skyOn = !window.__skyOn;
-            localStorage.setItem('hsx-sky', window.__skyOn ? 'on' : 'off');
+            localStorage.setItem(skyKey, window.__skyOn ? 'on' : 'off');
             paintSky();
         });
         actions.appendChild(skyBtn);
@@ -360,7 +366,6 @@
     /* Photoreal night sky: stars with true colour temperatures, a
           Milky Way band, diffraction spikes, and a cratered moon */
     function initStarfield() {
-        if (document.documentElement.classList.contains('scene-home')) return;
         var cv = document.createElement('canvas');
         cv.id = 'star-canvas'; cv.setAttribute('aria-hidden', 'true');
         var grid = document.querySelector('.bg-grid');

@@ -1,7 +1,7 @@
 /* HASNAIN STUDIO X - scene3d.js
    Homepage only. One particle field that reshapes itself for the section in
-   view. Replaces the star sky and dust on this page; the SKY button still
-   switches it off. */
+   view. It runs while the night sky is off, the homepage default; SKY ON
+   brings the stars and moon back and stops it. */
 import {
   WebGLRenderer, Scene, PerspectiveCamera, BufferGeometry, BufferAttribute,
   Points, ShaderMaterial, AdditiveBlending, Color, Clock,
@@ -504,9 +504,7 @@ function start(canvas, reduced) {
 const canvas = document.createElement('canvas');
 canvas.id = 'scene3d';
 canvas.setAttribute('aria-hidden', 'true');
-let skyOff = window.__skyOn === false;
-try { skyOff = skyOff || localStorage.getItem('hsx-sky') === 'off'; } catch (e) { /* storage blocked */ }
-if (skyOff) canvas.classList.add('off');
+if (window.__skyOn === true) canvas.classList.add('off');
 document.body.prepend(canvas);
 try {
   start(canvas, window.matchMedia('(prefers-reduced-motion: reduce)').matches);
