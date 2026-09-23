@@ -400,9 +400,9 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
        cannot quietly put it in the sitemap. */
     const TOKEN = /^(naver[0-9a-f]{16,}\.html|yandex_[0-9a-f]{8,}\.html|google[0-9a-f]{8,}\.html|BingSiteAuth\.xml)$/i;
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
-                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5' };
+                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','ownership.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
-                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly' };
+                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','ownership.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly' };
 
     const rootPages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f) && !TOKEN.test(f))
@@ -870,7 +870,9 @@ function syncAssetVersions() {
   return '  asset filenames       ' + Object.keys(map).length + ' hashed, ' + refs
        + ' references across ' + targets.length + ' pages';
 }
+const ownershipMsg = require('./gen-ownership.js').build();
 const heroesMsg = syncHeroes();
+console.log(ownershipMsg);
 
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
@@ -1141,7 +1143,8 @@ const footerMsg = syncFooters();
 function syncFooterCompany() {
   const WANT = ['contest-rules.html|Competition Rules', 'about.html|About Hasnain Butt Akhtar',
                 '|Home', 'contact.html|Contact',
-                'privacy-policies.html|App Privacy Policies', 'privacy.html|Website Privacy'];
+                'privacy-policies.html|App Privacy Policies', 'ownership.html|Ownership and Copyright',
+                'privacy.html|Website Privacy'];
   let fixed = 0;
   const walkDir = d => {
     for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
