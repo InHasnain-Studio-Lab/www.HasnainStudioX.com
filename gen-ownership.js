@@ -23,6 +23,16 @@ function storeFacts() {
   }
 }
 
+function playDates() {
+  /* Google Play has no public endpoint for this, so the Android dates are
+     kept by hand from the Play Console listing */
+  try {
+    return JSON.parse(read('play-dates.json')).products || {};
+  } catch (e) {
+    return {};
+  }
+}
+
 function firstReleases() {
   /* the news feed carries the date each app went live; earliest wins */
   const dates = {};
@@ -50,16 +60,17 @@ function build() {
   if (!apps.length) return '  ! ownership page skipped, no apps in the catalogue';
   const notes = firstReleases();
   const facts = storeFacts();
+  const play = playDates();
   const dates = {};
   for (const app of apps) {
-    dates[app.i] = (facts[app.i] && facts[app.i].released) || notes[app.i] || null;
+    dates[app.i] = (facts[app.i] && facts[app.i].released) || play[app.i] || notes[app.i] || null;
   }
   const fromStore = Object.values(facts).filter(f => f.released).length;
   const stamp = new Date().toISOString().slice(0, 10);
 
-  const play = url => (String(url || '').match(/[?&]id=([\w.]+)/) || [])[1];
+  const pkg = url => (String(url || '').match(/[?&]id=([\w.]+)/) || [])[1];
   const rows = apps.map(app => {
-    const id = app.p || play(app.u);
+    const id = app.p || pkg(app.u);
     const store = id
       ? `<a href="${esc(app.u || 'https://apps.microsoft.com/detail/' + app.p)}">${esc(id)}</a>`
       : '<span class="own-none">not listed</span>';

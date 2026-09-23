@@ -1,0 +1,10 @@
+{
+ "note": "First release on Google Play, taken from the Play Console listing. Windows dates come from store-facts.json.",
+ "products": {
+  "convertmasterultra": "2026-08-20",
+  "docsmining": "2026-06-11",
+  "mobiletunex": "2026-05-21",
+  "spatiaxmobile": "2026-08-18",
+  "workxsuiteandroid": "2026-08-20"
+ }
+}
