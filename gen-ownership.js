@@ -13,6 +13,16 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const AUTHOR = 'Hasnain Butt Akhtar';
 const STUDIO = 'Hasnain Studio X';
 
+function storeFacts() {
+  /* release dates and publisher names as the Microsoft Store itself reports
+     them, refreshed by fetch-store-facts.js */
+  try {
+    return JSON.parse(read('store-facts.json')).products || {};
+  } catch (e) {
+    return {};
+  }
+}
+
 function firstReleases() {
   /* the news feed carries the date each app went live; earliest wins */
   const dates = {};
@@ -38,7 +48,13 @@ function build() {
   const catalogue = JSON.parse(read('hub-catalog.json'));
   const apps = [...(catalogue.ps || [])].sort((a, b) => a.n.localeCompare(b.n, 'en-GB'));
   if (!apps.length) return '  ! ownership page skipped, no apps in the catalogue';
-  const dates = firstReleases();
+  const notes = firstReleases();
+  const facts = storeFacts();
+  const dates = {};
+  for (const app of apps) {
+    dates[app.i] = (facts[app.i] && facts[app.i].released) || notes[app.i] || null;
+  }
+  const fromStore = Object.values(facts).filter(f => f.released).length;
   const stamp = new Date().toISOString().slice(0, 10);
 
   const play = url => (String(url || '').match(/[?&]id=([\w.]+)/) || [])[1];
@@ -104,7 +120,8 @@ function build() {
             <h2 id="own-list-title">Published works</h2>
             <p>${apps.length} applications, each written and owned by ${AUTHOR}. The identifier is the product ID
             on the Microsoft Store, or the package name on Google Play, both of which name ${STUDIO} as
-            publisher.</p>
+            publisher. The release dates for the ${fromStore} Microsoft Store products are as the Store itself
+            reports them, and the Store names ${STUDIO} as publisher of every one.</p>
             <div class="own-wrap">
                 <table class="own-table">
                     <thead>
@@ -152,7 +169,8 @@ ${rows}
   })}</script>\n</head>`;
 
   fs.writeFileSync(P('ownership.html'), page.replace('</head>', data), 'utf8');
-  return `  ownership record       ${apps.length} works listed, ${Object.keys(dates).length} with first release dates`;
+  const dated = Object.values(dates).filter(Boolean).length;
+  return `  ownership record       ${apps.length} works listed, ${dated} dated, ${fromStore} from the Store`;
 }
 
 module.exports = { build };

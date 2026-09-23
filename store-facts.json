@@ -1,0 +1,474 @@
+{
+ "built": "2026-09-23T00:31:37.015Z",
+ "products": {
+  "pctunex": {
+   "id": "9NM5CJRT7D06",
+   "released": "2026-04-18",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PC TuneX"
+  },
+  "nimbusdock": {
+   "id": "9PK74T4FJR1Q",
+   "released": "2026-05-19",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "NimbusDock – Floating Glass Dock & App Launcher"
+  },
+  "quantumdrop": {
+   "id": "9ND6HR1VM9FF",
+   "released": "2026-06-03",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "QuantumDrop – Fast Local File Sharing & Wi-Fi Drop"
+  },
+  "xseasons": {
+   "id": "9PDK0BLBHJHS",
+   "released": "2026-05-23",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "XSeasons – Live Wallpaper & Seasonal Desktop Widgets"
+  },
+  "pcturboxultra": {
+   "id": "9PH35J8QM8TH",
+   "released": "2026-06-22",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PC TurboX Ultra"
+  },
+  "spatiaxultra": {
+   "id": "9NC2PT8X077H",
+   "released": "2026-05-19",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "SpatiaX Ultra"
+  },
+  "flipxstudio": {
+   "id": "9N5FWK5V0760",
+   "released": "2026-05-03",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "FlipX Studio – Video & Audio Media Converter"
+  },
+  "vaudioelite": {
+   "id": "9NPTCQS39L08",
+   "released": "2026-05-18",
+   "updated": "2026-08-23",
+   "publisher": "Hasnain Studio X",
+   "title": "VAudio Elite"
+  },
+  "hypersonusultra": {
+   "id": "9N248NK4CT19",
+   "released": "2026-06-19",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "Hypersonus Ultra"
+  },
+  "medialucent": {
+   "id": "9N9QFDHKPKM3",
+   "released": "2026-06-20",
+   "updated": "2026-09-20",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX MediaLucent – Media Player & Streaming Hub"
+  },
+  "workxsuite": {
+   "id": "9P2GLHQLQ1BX",
+   "released": "2026-05-11",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX WorkX Suite – PDF, Office Docs & Sheets Studio"
+  },
+  "webxstudio": {
+   "id": "9PM0GJJQGKLL",
+   "released": "2026-06-12",
+   "updated": "2026-08-24",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX WebX Studio"
+  },
+  "forgexpro": {
+   "id": "9PMS5ZG4NXXS",
+   "released": "2026-05-11",
+   "updated": "2026-09-10",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX PromptKinetics – Prompt Builder & Quality Studio"
+  },
+  "hsxstudioflow": {
+   "id": "9P6NZMCG20P8",
+   "released": "2026-06-08",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX StudioFlow – Offline AI Image & Video Studio"
+  },
+  "fototensor": {
+   "id": "9NJF6CLN5RPD",
+   "released": "2026-06-19",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX FotoTensor – Offline AI Image & Art Studio"
+  },
+  "horizonos": {
+   "id": "9PDWPB52FRZJ",
+   "released": "2026-06-09",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "SolsticeOS"
+  },
+  "pcguardx": {
+   "id": "9NVK1JPFSQHL",
+   "released": "2026-06-09",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PC GuardX"
+  },
+  "pocktium": {
+   "id": "9PFFP713N7X2",
+   "released": "2026-06-18",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX Pocktium – Offline AI Chat, Code & Workspace"
+  },
+  "photovidix": {
+   "id": "9NR32X1TLJZT",
+   "released": "2026-06-18",
+   "updated": "2026-09-16",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX PhotoVidix – Photo & Video Editor AI Studio"
+  },
+  "castvisuality": {
+   "id": "9NTKDHQVR57X",
+   "released": "2026-08-19",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX CastVisuality – Screen Mirror & Remote Control"
+  },
+  "browsex": {
+   "id": "9P49PDPB9DF4",
+   "released": "2026-06-22",
+   "updated": "2026-09-11",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX AI Browser – Fast, Smart & Private Web Browsing"
+  },
+  "socialdeckpro": {
+   "id": "9N4MDVRRP319",
+   "released": "2026-09-10",
+   "updated": "2026-09-10",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX SocialDeck Pro"
+  },
+  "convertxpro": {
+   "id": "9NJBGZT21JX3",
+   "released": "2026-07-02",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX ConvertStudio – 63-in-1 Media & File Converter"
+  },
+  "creatorxstudio": {
+   "id": "9N450XQXPPMC",
+   "released": "2026-06-23",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX CreatorStudio – Live Stream & Screen Recorder"
+  },
+  "docclarity": {
+   "id": "9N38W044GM3C",
+   "released": "2026-07-01",
+   "updated": "2026-08-29",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX DocClarity – Offline AI Document & Contract Analysis"
+  },
+  "docmento": {
+   "id": "9P79HJ9DTZ9G",
+   "released": "2026-07-02",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX DocMento – Offline PDF Editor & Translator"
+  },
+  "glowlab": {
+   "id": "9NW8DRCTF11G",
+   "released": "2026-07-09",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX GlowCraft – RAW Photo Editor & AI Studio"
+  },
+  "pcvisionbulwark": {
+   "id": "9N6FZTTNWQBH",
+   "released": "2026-06-29",
+   "updated": "2026-08-17",
+   "publisher": "Hasnain Studio X",
+   "title": "PC VisionBulwark"
+  },
+  "planetx": {
+   "id": "9PKHTFGG73R9",
+   "released": "2026-06-29",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX PlanetX – 3D Solar System & Universe Atlas"
+  },
+  "pcarchivepro": {
+   "id": "9PCBBQSHJ9BK",
+   "released": "2026-07-07",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "PC Archive Pro"
+  },
+  "pcdownloadmanagerultra": {
+   "id": "9PBXW1GJJ5KN",
+   "released": "2026-07-09",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PC Download Manager Ultra"
+  },
+  "handsfreepc": {
+   "id": "9N21T5VTT7FR",
+   "released": "2026-07-15",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX HandsFree PC – Offline Voice & Sound Control"
+  },
+  "planetxearthexplorer": {
+   "id": "9N11TS5BDSWD",
+   "released": "2026-07-03",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PlanetX: Earth Explorer"
+  },
+  "terraorbitix": {
+   "id": "9NFQSMR84HLP",
+   "released": "2026-07-27",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX TerraOrbitix 3D"
+  },
+  "planetxinfinity": {
+   "id": "9NVVVT3RGFFT",
+   "released": "2026-07-08",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PlanetX: Infinity"
+  },
+  "primecut": {
+   "id": "9PCCGCBTG9PF",
+   "released": "2026-07-10",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX PrimeCut Ultra – Video Editor & Auto Subtitles"
+  },
+  "autoclickx": {
+   "id": "9NX5BLJ4XGVC",
+   "released": "2026-07-10",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX SmartClicker – Auto Clicker & Macro Studio"
+  },
+  "image3dx": {
+   "id": "9NR4XC4TCG73",
+   "released": "2026-07-13",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX DepthStudio 3D – Photo to 3D Relief & STL"
+  },
+  "sensecapture": {
+   "id": "9PNN24092WS3",
+   "released": "2026-07-13",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX SenseCapture – Sound-Triggered Camera & Audio Recorder"
+  },
+  "nexusos": {
+   "id": "9NMP8D2QHM40",
+   "released": "2026-07-22",
+   "updated": "2026-08-24",
+   "publisher": "Hasnain Studio X",
+   "title": "VectalonOS"
+  },
+  "novadiffux": {
+   "id": "9MW265HR80PZ",
+   "released": "2026-08-07",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX NovaDiffux – Offline AI Image & Art Studio"
+  },
+  "beatxpro": {
+   "id": "9PNFQVSQXQNP",
+   "released": "2026-07-16",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX BeatGrid – DJ Mixer & AI Stem Studio"
+  },
+  "spillframe": {
+   "id": "9N0KSTXH4B39",
+   "released": "2026-07-22",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX SpillFrame – 2D Animation & Drawing Studio"
+  },
+  "execrafter": {
+   "id": "9N0KLL3XR76C",
+   "released": "2026-07-20",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX ExeCrafter – No-Code Windows App & EXE Maker"
+  },
+  "qrcreatorstudio": {
+   "id": "9PJWVZ4C4PW9",
+   "released": "2026-05-18",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "QR Creator Studio"
+  },
+  "automafy": {
+   "id": "9NDZ90KKPCVB",
+   "released": "2026-07-20",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX Automafy – Desktop RPA & Automation"
+  },
+  "quantumos": {
+   "id": "9N34W0QD2R93",
+   "released": "2026-07-23",
+   "updated": "2026-08-23",
+   "publisher": "Hasnain Studio X",
+   "title": "KatanicOS"
+  },
+  "focusroomultra": {
+   "id": "9NWWWHKZSWTK",
+   "released": "2026-08-05",
+   "updated": "2026-08-25",
+   "publisher": "Hasnain Studio X",
+   "title": "FocusRoom Ultra"
+  },
+  "bootforge": {
+   "id": "9MXF635P5WHV",
+   "released": "2026-07-14",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX BootForge – Bootable USB Creator & Flasher"
+  },
+  "fileguardianultra": {
+   "id": "9P7V2XD0LZJQ",
+   "released": "2026-08-02",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "FileGuardian Ultra"
+  },
+  "aetheris": {
+   "id": "9NSBHJQRJPD8",
+   "released": "2026-08-05",
+   "updated": "2026-09-05",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX LaunchHarbor – Game Launcher & Library Hub"
+  },
+  "gamefabrix": {
+   "id": "9NNLWKTWX46F",
+   "released": "2026-07-20",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX GameFabrix – 2D Game Engine & Maker"
+  },
+  "artgenstudio": {
+   "id": "9NDT39K51XLK",
+   "released": "2026-08-03",
+   "updated": "2026-08-31",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX ArtGen Studio"
+  },
+  "dreammintai": {
+   "id": "9MZLQVV07PVB",
+   "released": "2026-09-02",
+   "updated": "2026-09-02",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX DreamMint AI – Offline AI Image & Art Studio"
+  },
+  "earthos": {
+   "id": "9NNSDQ69C3XJ",
+   "released": "2026-08-03",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX EarthShell – Live Earth Desktop & Shell"
+  },
+  "mediatidyultra": {
+   "id": "9NLRFFH5T9G7",
+   "released": "2026-08-05",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "MediaTidy Ultra"
+  },
+  "pcscreenrecorderpro": {
+   "id": "9NCPPXGRVF9J",
+   "released": "2026-08-05",
+   "updated": "2026-08-21",
+   "publisher": "Hasnain Studio X",
+   "title": "PC Screen Recorder Pro"
+  },
+  "quantumxai": {
+   "id": "9NCGM2XJFQT3",
+   "released": "2026-08-10",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX QuantumGen AI Studio"
+  },
+  "dreamgenaiultra": {
+   "id": "9PLPCW4T3FFW",
+   "released": "2026-08-12",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX DreamVivid AI – Offline AI Art & Image Maker"
+  },
+  "infinitegenai": {
+   "id": "9NFGT2DJVZMB",
+   "released": "2026-08-09",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX InfiniteGen Studio – Offline AI Art & Video Clips"
+  },
+  "nanovisuality": {
+   "id": "9PF4C8VFHNQ5",
+   "released": "2026-08-27",
+   "updated": "2026-09-11",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX NanoVisuality - AI Photo Enhancer, 4K Upscaler & Image Restorer"
+  },
+  "pixumbrastudio": {
+   "id": "9PB29K34D2RS",
+   "released": "2026-08-25",
+   "updated": "2026-09-02",
+   "publisher": "Hasnain Studio X",
+   "title": "Pixumbra Studio"
+  },
+  "nanocodify": {
+   "id": "9PKCQP2BVFLH",
+   "released": "2026-08-18",
+   "updated": "2026-08-26",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX NanoCodify – Offline AI Coding Assistant & Studio"
+  },
+  "writedesk": {
+   "id": "9NF4MFW7SBZB",
+   "released": "2026-09-01",
+   "updated": "2026-09-01",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX WriteDesk – Offline AI Writer"
+  },
+  "pixunica": {
+   "id": "9N7JW6XTHG9P",
+   "released": "2026-09-04",
+   "updated": "2026-09-04",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX PixUnica – Offline AI Image Generator"
+  },
+  "nostalgicel": {
+   "id": "9P19V9GM71D1",
+   "released": "2026-09-03",
+   "updated": "2026-09-03",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX Nostalgicel - Retro Anime Studio"
+  },
+  "morphlora": {
+   "id": "9ND77VPV91LR",
+   "released": "2026-09-08",
+   "updated": "2026-09-08",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX MorphLora – AI Restyle and Photo Studio"
+  }
+ }
+}
