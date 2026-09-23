@@ -1534,97 +1534,29 @@ if (heroesMsg) sitemapMsg += '\n' + heroesMsg;
    snippet used to spread wherever the build wrote. This step decides per
    page and rewrites either way, so a rebuild can neither drop it from a
    content page nor put it back on an excluded one. */
-const AD_CLIENT = 'ca-pub-1992140091770378';
-const AD_TAG = '    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='
-  + AD_CLIENT + '" crossorigin="anonymous"></script>\n';
-const AD_RE = /[ \t]*<script[^>]*googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^>]*><\/script>[ \t]*\r?\n?/g;
-/* Pages that are legal or navigational in purpose regardless of length. */
-const AD_DENY = new Set(['privacy-policies.html', 'privacy.html']);
-const AD_MIN_WORDS = 300;
-
-/* Removes the visible "Ad space reserved" placeholder box, keeping the
-   intended placement as a source marker for when real units go in. */
-const AD_SLOT_RE = /[ \t]*(?:<!--\s*Ad:[^]*?-->[ \t]*\r?\n)?[ \t]*<div class="ad-slot[^"]*"[^>]*>[\s\S]*?<\/div>[ \t]*\r?\n?/g;
-const AD_SLOT_MARK = '            <!--HSX:AD-SLOT reserved placement; insert the unit here once AdSense approves-->\n';
+/* AdSense was never switched on, and the studio has decided against it. This
+   step now only strips the leftover tag and placeholder wherever it is found,
+   so no Google ad script ships with the site. */
+const AD_RE = /[ 	]*<script[^>]*googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^>]*><\/script>[ 	]*\r?\n?/g;
+const AD_BOX_RE = /[ 	]*<div class="ad-slot"[\s\S]*?<\/div>[ 	]*\r?\n?/g;
 
 function syncAdPlacement() {
-  let added = 0, removed = 0, kept = 0, refused = 0, slots = 0;
-
-  const bodyWords = s => {
-    let t = s.replace(/<script[\s\S]*?<\/script>/gi, ' ')
-             .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-             .replace(/<!--[\s\S]*?-->/g, ' ')
-             .replace(/<[^>]+>/g, ' ');
-    return t.split(/\s+/).filter(Boolean).length;
-  };
-
-  const eligible = (rel, s) => {
-    if (AD_DENY.has(rel)) return false;
-    /* redirect stubs: the ad would load on a page that replaces itself */
-    if (/HSX:(PRIVACY|RENAME)-REDIRECT/.test(s)) return false;
-    /* every privacy policy, at either path */
-    if (rel.startsWith('privacy/') || /Privacy[^/]*\.html$/.test(rel)) return false;
-    /* error pages, previews and anything deliberately kept out of the index */
-    if (/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(s)) return false;
-    return bodyWords(s) >= AD_MIN_WORDS;
-  };
-
-  const visit = d => {
+  let cleaned = 0;
+  const walk = d => {
     for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
-      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src'].includes(ent.name)) continue;
-      const p = path.join(d, ent.name);
-      if (ent.isDirectory()) { visit(p); continue; }
+      if (ent.name.startsWith('_') || ['.git', '.github', 'node_modules', 'articles-src', 'guides-src', 'og-src', 'worker'].includes(ent.name)) continue;
+      const full = path.join(d, ent.name);
+      if (ent.isDirectory()) { walk(full); continue; }
       if (!ent.name.endsWith('.html')) continue;
-
-      const rel = path.relative(ROOT, p).split(path.sep).join('/');
-      let s = fs.readFileSync(p, 'utf8');
-      let dirty = false;
-
-      /* Only touch markup. A page can also hold this block inside a script,
-         as a string it injects later, and rewriting that breaks the string
-         and takes the whole page's JavaScript down with it. */
-      const scripts = [];
-      let body = s.replace(/<script[\s\S]*?<\/script>/gi, m => {
-        scripts.push(m); return '\u0000SCRIPT' + (scripts.length - 1) + '\u0000';
-      });
-
-      if (AD_SLOT_RE.test(body)) {
-        AD_SLOT_RE.lastIndex = 0;
-        body = body.replace(AD_SLOT_RE, AD_SLOT_MARK);
-        dirty = true; slots++;
-      }
-      AD_SLOT_RE.lastIndex = 0;
-      s = body.replace(/\u0000SCRIPT(\d+)\u0000/g, (m, i) => scripts[+i]);
-
-      const has = AD_RE.test(s); AD_RE.lastIndex = 0;
-      const want = eligible(rel, s);
-
-      if (want === has) {
-        if (dirty) fs.writeFileSync(p, s, 'utf8');
-        if (want) kept++; else refused++;
-        continue;
-      }
-
-      if (want) {
-        if (!s.includes('</head>')) { refused++; continue; }
-        s = s.replace('</head>', AD_TAG + '</head>');
-        added++;
-      } else {
-        s = s.replace(AD_RE, '');
-        removed++;
-      }
-      fs.writeFileSync(p, s, 'utf8');
+      const src = fs.readFileSync(full, 'utf8');
+      const out = src.replace(AD_RE, '').replace(AD_BOX_RE, '');
+      if (out !== src) { fs.writeFileSync(full, out, 'utf8'); cleaned++; }
     }
   };
-  visit(ROOT);
-
-  const bits = [`${kept + added} page${kept + added === 1 ? '' : 's'} serving`];
-  if (added) bits.push(`${added} added`);
-  if (removed) bits.push(`${removed} stripped`);
-  if (slots) bits.push(`${slots} placeholder slot${slots === 1 ? '' : 's'} cleared`);
-  bits.push(`${refused} withheld`);
-  return '  adsense placement     ' + bits.join(', ');
+  walk(ROOT);
+  return '  adsense                 removed from ' + cleaned + ' pages';
 }
+
 const adMsg = syncAdPlacement();
 if (adMsg) sitemapMsg += '\n' + adMsg;
 
