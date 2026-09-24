@@ -863,7 +863,13 @@ function syncAssetVersions() {
       const ext  = asset.slice(asset.lastIndexOf('.') + 1);
       // matches site.css, site.css?v=abc and site.<oldhash>.css
       const re = new RegExp('((?:href|src)="(?:\\.\\./)?)' + stem + '(?:\\.[0-9a-f]{6,})?\\.' + ext + '(?:\\?v=[0-9a-f]+)?(")', 'g');
-      out = out.replace(re, (m, head, tail) => { refs++; return head + hashed + tail; });
+      out = out.replace(re, (m, head, tail) => {
+        refs++;
+        /* a page dropped into a subfolder can arrive with a root level asset
+           link, which then resolves inside that folder and loads nothing */
+        const up = f.includes('/') && !head.includes('../') ? '../' : '';
+        return head + up + hashed + tail;
+      });
     }
     if (out !== src) { write(f, out); files++; }
   }
