@@ -564,6 +564,17 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/pc-benchx-ultra.html</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-benchx-ultra-og.jpg</image:loc>
+      <image:title>PC BenchX Ultra: A hardware performance lab</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/pc-download-manager-ultra.html</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>

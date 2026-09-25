@@ -240,7 +240,7 @@ let sitemapMsg = '';
           +   '</div>'
           +   '<div class="tile-tagline">'+esc(a.tagline)+'</div>'
           +   '<div class="tile-footer">'
-          +     '<i class="tile-dot'+(soon?' soon':'')+'"></i>'+(soon?'In development':'Available')
+          +     '<i class="tile-dot'+(soon?' soon':'')+'"></i>'+(soon?(a.stage==='certification'?'In certification':'In development'):'Available')
           +     '<span class="tile-acts">'
           +       (priv ? '<a class="tile-btn tile-btn-details" href="'+priv+'" aria-label="'+escAttr('Details and privacy policy for '+a.name)+'">Details</a>' : '')
           +       '<a class="tile-btn tile-btn-get" href="'+a.storeUrl+'"'+(ext?' target="_blank" rel="noopener"':'')
@@ -280,7 +280,7 @@ let sitemapMsg = '';
             const priv = rel(a.privacyUrl);
             const soon = a.status === 'soon';
             return '<article class="dir-app" id="app-'+a.id+'">'
-              + '<h3 class="dir-app-name">'+esc(a.name)+(soon?' <span class="dir-soon">In development</span>':'')+'</h3>'
+              + '<h3 class="dir-app-name">'+esc(a.name)+(soon?' <span class="dir-soon">'+(a.stage==='certification'?'In certification':'In development')+'</span>':'')+'</h3>'
               + '<p class="dir-tagline">'+esc(a.tagline)+'</p>'
               + '<p class="dir-desc">'+esc(a.description||'')+'</p>'
               + (a.features&&a.features.length ? '<ul class="dir-features">'+a.features.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul>' : '')
@@ -781,7 +781,9 @@ const navMsg = syncNav();
    where data-count cannot reach it. Those sentences went stale at 76 while
    the catalogue grew. */
 function syncProseCounts() {
-  const total = COUNTS['total'];
+  /* the live count, not the total: a sentence saying the studio publishes N
+     applications must not count one still in certification */
+  const total = COUNTS['live'];
   /* the catalogue size is written into sentences and social card copy as well
      as into the stat blocks, where data-count cannot reach it */
   const RE = /\b\d{1,3}(?=\s+local-first\b)/g;
