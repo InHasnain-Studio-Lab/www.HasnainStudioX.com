@@ -145,6 +145,7 @@
             var s3 = document.getElementById('scene3d');
             if (s3) s3.classList.toggle('off', window.__skyOn);
             if (home) document.documentElement.classList.toggle('sky-3d', !window.__skyOn);
+            if (window.__skyOn && window.__skyWake) window.__skyWake();
         }
         paintSky();
         skyBtn.addEventListener('click', function () {
@@ -423,19 +424,21 @@
         var mx = -999, my = -999;
         document.addEventListener('mousemove', function (e) {
             mx = e.clientX; my = e.clientY;
-            dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+            dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0) translate(-50%,-50%)';
         }, { passive: true });
         document.addEventListener('mousedown', function () { dot.classList.add('clicking'); });
         document.addEventListener('mouseup', function () { dot.classList.remove('clicking'); });
         var L = 0.28;
+        function place(d) {
+            d.el.style.transform = 'translate3d(' + d.x.toFixed(1) + 'px,' + d.y.toFixed(1) + 'px,0) translate(-50%,-50%)';
+        }
         (function animate() {
             trail[0].x += (mx - trail[0].x) * L; trail[0].y += (my - trail[0].y) * L;
-            trail[0].el.style.left = trail[0].x + 'px'; trail[0].el.style.top = trail[0].y + 'px';
+            place(trail[0]);
             for (var i = 1; i < SEG; i++) {
                 trail[i].x += (trail[i - 1].x - trail[i].x) * L;
                 trail[i].y += (trail[i - 1].y - trail[i].y) * L;
-                trail[i].el.style.left = trail[i].x + 'px';
-                trail[i].el.style.top = trail[i].y + 'px';
+                place(trail[i]);
             }
             requestAnimationFrame(animate);
         })();
@@ -556,7 +559,7 @@
             moon.x = W * 0.82; moon.y = H * 0.19; moon.r = Math.min(W, H) * 0.065;
             /* supersampled, capped so a 4K screen still renders it quickly */
             moonSS = Math.max(1, Math.min(2, 420 / (moon.r * 2)));
-            moonTex = renderMoon(moon.r * moonSS);
+            moonTex = null; paintMoon(moon.r * moonSS);
             /* a bright star never sits in front of the moon */
             bright.forEach(function (s) {
                 while (Math.hypot(s.x - moon.x, s.y - moon.y) < moon.r * 4) {
@@ -583,21 +586,45 @@
             for (var i = 0; i < oct; i++) { s += amp * noise(x * f, y * f); f *= 2.03; amp *= 0.5; }
             return s;
         }
-        function renderMoon(R) {
-            var size = Math.ceil(R * 2) + 2, c = size / 2;
+        var moonJob = null;
+        /* whole discs at once cost long enough to stall the first paint, so the
+           rows are shaded in short slices between frames */
+        function paintMoon(R) {
+            var size = Math.ceil(R * 2) + 2;
             var cv2 = document.createElement('canvas');
             cv2.width = cv2.height = size;
             var g = cv2.getContext('2d');
-            var img = g.createImageData(size, size), px = img.data;
-            var seed = 7.3;
-            var craterList = [];
+            var job = {
+                size: size, c: size / 2, R: R, cv: cv2, g: g,
+                img: g.createImageData(size, size), row: 0,
+                craters: [], ray: { x: -0.18, y: 0.55, r: 0.05 }, L: [-0.3, -0.26, 0.92]
+            };
             for (var k = 0; k < 70; k++) {
                 var cr = 0.025 + Math.pow(hash(k, 3.1), 3) * 0.16;
-                craterList.push({ x: hash(k, 1.7) * 2.2 - 1.1, y: hash(k, 9.2) * 2.2 - 1.1, r: cr, d: 0.6 + hash(k, 5.5) * 0.6 });
+                job.craters.push({ x: hash(k, 1.7) * 2.2 - 1.1, y: hash(k, 9.2) * 2.2 - 1.1, r: cr, d: 0.6 + hash(k, 5.5) * 0.6 });
             }
-            var ray = { x: -0.18, y: 0.55, r: 0.05 };
-            var L = [-0.3, -0.26, 0.92];
-            for (var j = 0; j < size; j++) {
+            moonJob = job;
+            if (RM) { while (job.row < size) moonRows(job, 1e9); finishMoon(job); }
+            else moonSlice();
+        }
+        function moonSlice() {
+            var job = moonJob;
+            if (!job) return;
+            moonRows(job, 6);
+            if (job.row < job.size) setTimeout(moonSlice, 0);
+            else finishMoon(job);
+        }
+        function finishMoon(job) {
+            job.g.putImageData(job.img, 0, 0);
+            moonTex = job.cv;
+            moonJob = null;
+        }
+        function moonRows(job, budget) {
+            var size = job.size, c = job.c, R = job.R, px = job.img.data;
+            var craterList = job.craters, ray = job.ray, L = job.L;
+            var seed = 7.3, t0 = Date.now();
+            while (job.row < size) {
+                var j = job.row++;
                 for (var i = 0; i < size; i++) {
                     var nx = (i + 0.5 - c) / R, ny = (j + 0.5 - c) / R;
                     var r2 = nx * nx + ny * ny;
@@ -634,9 +661,8 @@
                     px[o + 2] = Math.min(255, v * (236 + mare * 6));
                     px[o + 3] = edge * 255;
                 }
+                if (Date.now() - t0 >= budget) return;
             }
-            g.putImageData(img, 0, 0);
-            return cv2;
         }
         function drawMoon() {
             var x = moon.x, y = moon.y, r = moon.r;
@@ -688,11 +714,7 @@
             ctx.stroke();
         }
         function draw() {
-            if (window.__skyOn === false) {
-                ctx.clearRect(0, 0, W, H);
-                if (!RM) requestAnimationFrame(draw);
-                return;
-            }
+            if (window.__skyOn === false) { running = false; ctx.clearRect(0, 0, W, H); return; }
             ctx.clearRect(0, 0, W, H); t += 0.016;
             for (var i = 0; i < stars.length; i++) {
                 var s = stars[i];
@@ -711,10 +733,21 @@
             drawMoon();
             if (!RM) requestAnimationFrame(draw);
         }
-        build();
-        var rT;
-        window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(build, 200); }, { passive: true });
-        if (RM) { draw(); } else { requestAnimationFrame(draw); }
+        /* the stars, and above all the moon's surface, cost more than the whole
+           of the rest of the page, so none of it is built until the sky is on */
+        var built = false, running = false, rT;
+        function start() {
+            if (running || window.__skyOn === false) return;
+            running = true;
+            if (!built) { built = true; build(); }
+            if (RM) draw(); else requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', function () {
+            if (!built) return;
+            clearTimeout(rT); rT = setTimeout(build, 200);
+        }, { passive: true });
+        window.__skyWake = start;
+        start();
         if (window.__paintSky) window.__paintSky();
     }
 

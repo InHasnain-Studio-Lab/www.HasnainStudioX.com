@@ -1438,13 +1438,13 @@ body{text-rendering:optimizeLegibility;}
 
 /* custom cursor + snake trail */
 #hsx-cursor{
-    position:fixed;width:10px;height:10px;border-radius:50%;z-index:2100;
+    position:fixed;left:0;top:0;width:10px;height:10px;border-radius:50%;z-index:2100;
     background:var(--ink);pointer-events:none;transform:translate(-50%,-50%);
     box-shadow:0 0 10px rgba(244,242,238,.5);transition:width .15s,height .15s;
 }
 #hsx-cursor.clicking{width:16px;height:16px;background:var(--mint);}
 .hsx-snake-dot{
-    position:fixed;border-radius:50%;z-index:2099;pointer-events:none;
+    position:fixed;left:0;top:0;border-radius:50%;z-index:2099;pointer-events:none;
     background:var(--holo);background-size:300% 100%;transform:translate(-50%,-50%);
 }
 
