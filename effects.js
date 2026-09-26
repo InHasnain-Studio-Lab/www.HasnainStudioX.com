@@ -186,7 +186,7 @@
         anchor.insertAdjacentElement('beforebegin', wrap);
         var ctx = canvas.getContext('2d');
         if (!ctx) return;
-        var DPR = Math.min(window.devicePixelRatio || 1, 2.5);
+        var DPR = Math.min(window.devicePixelRatio || 1, 1.5);
         var GRAD = [[242, 223, 184], [243, 179, 207], [199, 165, 247], [159, 232, 214]];
         var BUCKETS = 24;
         var particles = [], sprites = [];
@@ -240,7 +240,7 @@
             var lh = fontSize * 1.12;
             lines.forEach(function (l, i) { octx.fillText(l, W / 2, H / 2 + (i - (lines.length - 1) / 2) * lh); });
             var data = octx.getImageData(0, 0, W, H).data;
-            var step = Math.max(2, Math.round(2.5 * DPR));
+            var step = Math.max(3, Math.round(3.2 * DPR));
             var targets = [];
             for (var y = 0; y < H; y += step) {
                 for (var x = 0; x < W; x += step) {
@@ -257,7 +257,7 @@
                         x: tx + (Math.random() - 0.5) * W * 0.7,
                         y: ty + (Math.random() - 0.5) * H * 4,
                         vx: 0, vy: 0,
-                        r: (0.85 + Math.random() * 0.5) * DPR,
+                        r: (1.05 + Math.random() * 0.55) * DPR,
                         ph: Math.random() * Math.PI * 2,
                         k: 0.03 + Math.random() * 0.03
                     };
@@ -277,6 +277,7 @@
             }
         }
         function draw(now) {
+            if (last && now - last < 15) { if (running) requestAnimationFrame(draw); return; }
             var dt = last ? Math.min(2.5, (now - last) / 16.667) : 1;
             last = now;
             t += 0.016 * dt;

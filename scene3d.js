@@ -122,10 +122,12 @@ function rect(x, y, w, h) {
 
 function start(canvas, reduced) {
   const small = Math.min(window.innerWidth, window.innerHeight) < 700;
-  const COUNT = small ? 4500 : 9000;
+  const COUNT = small ? 3500 : 6500;
 
-  const renderer = new WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.5 : 2));
+  /* soft glows gain nothing from extra pixel density, and a background must
+     never wake a laptop's discrete GPU */
+  const renderer = new WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'low-power' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1 : 1.25));
   renderer.setClearColor(0x000000, 0);
 
   const scene = new Scene();
@@ -402,15 +404,22 @@ function start(canvas, reduced) {
 
   const off = () => canvas.classList.contains('off') || document.hidden;
 
-  function frame() {
+  let settledOn = null;
+  let lastFrame = 0;
+
+  function frame(now) {
     raf = 0;
     if (off()) return;
+    /* high-refresh screens would otherwise do this work twice as often */
+    if (!reduced && now - lastFrame < 15) { raf = requestAnimationFrame(frame); return; }
+    lastFrame = now;
     const dt = Math.min(clock.getDelta(), 0.05);
     const t = clock.elapsedTime;
     const target = shapes[current];
     let moving = false;
 
     const base = reduced ? 1 : 1 - Math.pow(1 - 0.045, dt * 60);
+    if (settledOn !== target) {
     for (let i = 0; i < COUNT; i++) {
       const k = Math.min(1, base * speed[i]);
       const j = i * 3;
@@ -425,6 +434,8 @@ function start(canvas, reduced) {
     geo.attributes.position.needsUpdate = true;
     geo.attributes.color.needsUpdate = true;
     geo.attributes.size.needsUpdate = true;
+    if (!moving) settledOn = target;
+    }
 
     const ease = reduced ? 1 : Math.min(1, dt * 1.6);
     waveNow += (target.wave - waveNow) * ease;
@@ -459,7 +470,7 @@ function start(canvas, reduced) {
   let resizeTimer = 0;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => { build(); kick(); }, 150);
+    resizeTimer = setTimeout(() => { build(); settledOn = null; kick(); }, 150);
   });
   if (!reduced) {
     window.addEventListener('pointermove', (e) => {
