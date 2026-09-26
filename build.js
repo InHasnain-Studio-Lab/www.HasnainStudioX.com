@@ -372,27 +372,10 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
     const ROOT = __dirname, P = f => path.join(ROOT, f);
     const BASE = 'https://hasnainstudiox.com/';
     const read = f => fs.readFileSync(P(f), 'utf8');
-    /* lastmod must be the date the page's content actually changed. File mtime
-       is useless here: a CI checkout stamps every file with the run time, so
-       every URL would claim to have changed on every deploy and the engines
-       would rightly ignore the signal. The last commit that touched the file is
-       the real answer. Needs fetch-depth: 0 on the checkout step. */
-    const GITDATE = (() => {
-      const map = {};
-      try {
-        const out = require('child_process')
-          .execSync('git log --pretty=format:%x00%cI --name-only', { cwd: ROOT, maxBuffer: 128 * 1024 * 1024 })
-          .toString();
-        let when = null;
-        for (const line of out.split('\n')) {
-          if (line.startsWith('\0')) { when = line.slice(1, 11); continue; }
-          const f = line.trim();
-          if (f && when && !(f in map)) map[f] = when;   // git log is newest first
-        }
-      } catch (e) { /* no git history available - fall back to mtime */ }
-      return map;
-    })();
-    const iso = f => GITDATE[f] || new Date(fs.statSync(P(f)).mtime).toISOString().slice(0, 10);
+    /* provisional: the content-date pass at the end of the build writes the
+       final lastmod values, once every page is in its finished form */
+    const LEDGER = (() => { try { return JSON.parse(read('page-dates.json')); } catch (e) { return {}; } })();
+    const iso = f => (LEDGER[f] && LEDGER[f].t || today).slice(0, 10);
 
     const SKIP = new Set(['card.html', 'qx-link.html', '404.html']);
     /* Search-engine ownership tokens must exist and must never be indexed.
@@ -1392,45 +1375,6 @@ ${inner}
 const stubMsg = syncPrivacyStubs();
 if (stubMsg) sitemapMsg += '\n' + stubMsg;
 
-/* 3i. dateModified must be a full ISO 8601 datetime
-   Google reported "Invalid datetime value for 'dateModified'" because the
-   value was date-only (2026-08-20). Schema date properties accept a bare
-   date, but ProfilePage and Article types want a datetime with an offset.
-   Rewritten here for every page, and only when the date actually changes,
-   so a rebuild on the same day produces no diff. */
-function syncDateModified() {
-  const now = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  const stamp = now.getUTCFullYear() + '-' + pad(now.getUTCMonth() + 1) + '-' + pad(now.getUTCDate())
-    + 'T' + pad(now.getUTCHours()) + ':' + pad(now.getUTCMinutes()) + ':00+00:00';
-  const today = stamp.slice(0, 10);
-  let fixed = 0, ok = 0;
-
-  const visit = d => {
-    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
-      if (ent.name.startsWith('_') || ['.git', '.github', 'articles-src'].includes(ent.name)) continue;
-      const p = path.join(d, ent.name);
-      if (ent.isDirectory()) { visit(p); continue; }
-      if (!ent.name.endsWith('.html')) continue;
-      let s = fs.readFileSync(p, 'utf8');
-      if (!/"dateModified"/.test(s)) continue;
-
-      let changed = false;
-      s = s.replace(/"dateModified"\s*:\s*"([^"]*)"/g, (m, v) => {
-        /* already a valid datetime for today -> leave it alone */
-        if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/.test(v) && v.slice(0, 10) === today) { ok++; return m; }
-        changed = true;
-        return '"dateModified": "' + stamp + '"';
-      });
-      if (changed) { fs.writeFileSync(p, s, 'utf8'); fixed++; }
-    }
-  };
-  visit(ROOT);
-  return '  dateModified          ' + (fixed ? fixed + ' page' + (fixed === 1 ? '' : 's') + ' stamped ' + stamp
-                                             : 'all ' + ok + ' already current');
-}
-const dateMsg = syncDateModified();
-if (dateMsg) sitemapMsg += '\n' + dateMsg;
 
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
@@ -1573,6 +1517,86 @@ if (adMsg) sitemapMsg += '\n' + adMsg;
    be undone by them. */
 const assetMsg = syncAssetVersions();
 if (assetMsg) sitemapMsg += '\n' + assetMsg;
+
+/* 3z. content dates
+   A page's date moves only when what a reader gets changes. Every build
+   rewrites asset filenames and date stamps on every page, so those are left
+   out of the fingerprint; otherwise each deploy would claim all pages changed
+   and the engines would stop trusting lastmod. The ledger is committed, and
+   both dateModified and the sitemaps read from it. */
+function syncContentDates() {
+  const crypto = require('crypto');
+  const pad = n => String(n).padStart(2, '0');
+  const now = new Date();
+  const stamp = now.getUTCFullYear() + '-' + pad(now.getUTCMonth() + 1) + '-' + pad(now.getUTCDate())
+    + 'T' + pad(now.getUTCHours()) + ':' + pad(now.getUTCMinutes()) + ':00+00:00';
+  let ledger = {};
+  try { ledger = JSON.parse(read('page-dates.json')); } catch (e) { /* first run */ }
+
+  const fingerprint = h => crypto.createHash('sha1').update(h
+    .replace(/"dateModified"\s*:\s*"[^"]*"/g, '"dateModified":""')
+    .replace(/\b(site|effects|fluid|gallery-data|scene3d)\.[0-9a-f]{10}\.(css|js)\b/g, '$1.$2')
+  ).digest('hex').slice(0, 16);
+
+  const SKIPDIR = new Set(['.git', '.github', '.claude', 'node_modules', 'worker', 'articles-src', 'guides-src']);
+  const files = [];
+  const visit = d => {
+    for (const ent of fs.readdirSync(P(d), { withFileTypes: true })) {
+      if (ent.name.startsWith('_') || SKIPDIR.has(ent.name)) continue;
+      const rel = d ? d + '/' + ent.name : ent.name;
+      if (ent.isDirectory()) visit(rel);
+      else if (ent.name.endsWith('.html')) files.push(rel);
+    }
+  };
+  visit('');
+
+  const next = {};
+  let moved = 0, restamped = 0;
+  for (const f of files) {
+    let h = read(f);
+    const fp = fingerprint(h);
+    const prev = ledger[f];
+    next[f] = prev && prev.h === fp ? prev : { h: fp, t: stamp };
+    if (next[f] !== prev) moved++;
+    const t = next[f].t;
+    const out = h.replace(/"dateModified"\s*:\s*"[^"]*"/g, '"dateModified": "' + t + '"');
+    if (out !== h) { write(f, out); restamped++; }
+  }
+  const sorted = {};
+  for (const k of Object.keys(next).sort()) sorted[k] = next[k];
+  const json = JSON.stringify(sorted, null, 1) + '\n';
+  if (!fs.existsSync(P('page-dates.json')) || read('page-dates.json') !== json) write('page-dates.json', json);
+
+  const BASE = 'https://hasnainstudiox.com/';
+  const dayOf = loc => {
+    let f = loc.slice(BASE.length) || 'index.html';
+    if (f.endsWith('/')) f += 'index.html';
+    return next[f] ? next[f].t.slice(0, 10) : null;
+  };
+  const newest = {};
+  for (const sm of fs.readdirSync(ROOT).filter(n => /^sitemap-.+\.xml$/.test(n))) {
+    const x = read(sm);
+    let top = '';
+    const y = x.replace(/<loc>([^<]+)<\/loc>(\s*)<lastmod>[^<]*<\/lastmod>/g, (m, loc, gap) => {
+      const d = dayOf(loc);
+      if (!d) return m;
+      if (d > top) top = d;
+      return '<loc>' + loc + '</loc>' + gap + '<lastmod>' + d + '</lastmod>';
+    });
+    if (y !== x) write(sm, y);
+    newest[sm] = top;
+  }
+  if (fs.existsSync(P('sitemap.xml'))) {
+    const x = read('sitemap.xml');
+    const y = x.replace(/<loc>[^<]*\/(sitemap-[^<]+\.xml)<\/loc>(\s*)<lastmod>[^<]*<\/lastmod>/g,
+      (m, sm, gap) => newest[sm] ? m.replace(/<lastmod>[^<]*<\/lastmod>/, '<lastmod>' + newest[sm] + '</lastmod>') : m);
+    if (y !== x) write('sitemap.xml', y);
+  }
+  return '  content dates         ' + moved + ' page' + (moved === 1 ? '' : 's') + ' changed, '
+       + (files.length - moved) + ' kept their date';
+}
+const contentDateMsg = syncContentDates();
+if (contentDateMsg) sitemapMsg += '\n' + contentDateMsg;
 
 /* report */
 console.log(`

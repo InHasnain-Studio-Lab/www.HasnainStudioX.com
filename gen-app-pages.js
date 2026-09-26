@@ -181,6 +181,21 @@ const stageOf = a => isCert(a)
 const SHOTS = (() => {
   try { return JSON.parse(read('images/shots/index.json')); } catch (e) { return {}; }
 })();
+/* real pixel sizes, so the browser reserves the space before a shot loads
+   and the text below it does not jump */
+const webpSize = f => {
+  try {
+    const b = fs.readFileSync(P(f));
+    const kind = b.toString('ascii', 12, 16);
+    if (kind === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+    if (kind === 'VP8L') {
+      return [1 + (((b[22] & 0x3f) << 8) | b[21]),
+              1 + (((b[24] & 0x0f) << 10) | (b[23] << 2) | ((b[22] & 0xc0) >> 6))];
+    }
+    if (kind === 'VP8X') return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+  } catch (e) { /* missing file: no size rather than a wrong one */ }
+  return null;
+};
 const shotsOf = a => {
   const n = SHOTS[slug(a)] || 0;
   return Array.from({ length: n }, (_, i) => slug(a) + '-' + (i + 1));
@@ -528,7 +543,7 @@ ${(() => {
 ${shots.map((n, i) => `                <figure class="app-shot">
                     <img src="../images/shots/${n}.webp"
                          srcset="../images/shots/${n}-sm.webp 600w, ../images/shots/${n}.webp 1200w"
-                         sizes="(max-width:700px) 92vw, 46vw"
+                         sizes="(max-width:700px) 92vw, 46vw"${(sz => sz ? ` width="${sz[0]}" height="${sz[1]}"` : '')(webpSize('images/shots/' + n + '.webp'))}
                          loading="lazy" decoding="async"
                          alt="${escA(a.name)} running on ${esc(a.platform)}, screen ${i + 1} of ${shots.length}">
                 </figure>`).join('\n')}

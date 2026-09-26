@@ -199,6 +199,7 @@ module.exports.INTENT = {
   socialdeckpro:  'Offline Social Post Writer for Windows',
   /* system and performance */
   pctunex:                'Windows PC Cleaner and Startup Manager',
+  pcbenchxultra:          'Windows PC Benchmark and Hardware Test',
   pcturboxultra:          'Windows RAM and CPU Optimiser for Gaming',
   pcguardx:               'Windows Privacy Settings Dashboard, Offline',
   pcvisionbulwark:        'Blue Light and Eye Comfort App for PC',
