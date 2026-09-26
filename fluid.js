@@ -16,7 +16,7 @@
     var mobile = window.matchMedia('(max-width: 760px)').matches;
 
     function resize() {
-        DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+        DPR = Math.min(window.devicePixelRatio || 1, 1.25);
         W = canvas.width = Math.floor(innerWidth * DPR);
         H = canvas.height = Math.floor(innerHeight * DPR);
         canvas.style.width = innerWidth + 'px';
@@ -52,12 +52,16 @@
         if (running) requestAnimationFrame(frame);
     });
 
+    var last = 0;
     function frame(t) {
         if (!running) return;
+        if (t - last < 31) { requestAnimationFrame(frame); return; }
+        var step = last ? Math.min(100, t - last) : 16;
+        last = t;
         ctx.clearRect(0, 0, W, H);
         for (var k = 0; k < dust.length; k++) {
             var p = dust[k];
-            p.x += p.vx * 16; p.y += p.vy * 16;
+            p.x += p.vx * step; p.y += p.vy * step;
             if (p.y < -0.02) { p.y = 1.02; p.x = Math.random(); }
             if (p.x < -0.02) { p.x = 1.02; }
             if (p.x > 1.02) { p.x = -0.02; }

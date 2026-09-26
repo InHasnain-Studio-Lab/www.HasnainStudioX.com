@@ -480,8 +480,8 @@
         if (window.__skyOn === false) cv.classList.add('off');
         var ctx = cv.getContext('2d');
         if (!ctx) return;
-        var DPR = Math.min(window.devicePixelRatio || 1, 2);
-        var W, H, stars = [], bright = [], t = 0;
+        var DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+        var W, H, stars = [], bright = [], t = 0, lastSky = 0;
         var moon = {}, moonTex = null, moonSS = 1;
         /* real star colour temperatures: blue-white O/B, white A,
            yellow-white F/G, orange K, red-orange M */
@@ -714,9 +714,13 @@
             ctx.moveTo(s.x, s.y - L); ctx.lineTo(s.x, s.y + L);
             ctx.stroke();
         }
-        function draw() {
+        /* a slow twinkle reads the same at 30 frames a second, for half the work */
+        function draw(now) {
             if (window.__skyOn === false) { running = false; ctx.clearRect(0, 0, W, H); return; }
-            ctx.clearRect(0, 0, W, H); t += 0.016;
+            if (now && now - lastSky < 31) { requestAnimationFrame(draw); return; }
+            t += now && lastSky ? Math.min(0.1, (now - lastSky) / 1000) : 0.016;
+            lastSky = now || 0;
+            ctx.clearRect(0, 0, W, H);
             for (var i = 0; i < stars.length; i++) {
                 var s = stars[i];
                 var tw = s.base * (0.55 + 0.45 * Math.sin(t * s.sp + s.ph));

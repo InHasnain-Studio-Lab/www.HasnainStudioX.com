@@ -759,9 +759,9 @@ a:hover{color:var(--accent);}
 /* Cursor aura (injected by effects.js) */
 #cursor-aura{
     position:fixed;top:0;left:0;width:380px;height:380px;border-radius:50%;
-    pointer-events:none;z-index:0;mix-blend-mode:screen;
+    pointer-events:none;z-index:0;
     background:radial-gradient(circle,
-        rgba(199,165,247,.10), rgba(159,232,214,.05) 40%, transparent 70%);
+        rgba(199,165,247,.08), rgba(159,232,214,.04) 40%, transparent 70%);
     transform:translate(-50%,-50%);will-change:transform;
 }
 
