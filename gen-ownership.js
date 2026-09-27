@@ -54,10 +54,38 @@ function shown(iso) {
   return `<time datetime="${iso}">${d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time>`;
 }
 
+/* the site's own catalogue pages are the list: the record must never lag
+   behind the apps the site itself shows */
+function siteApps() {
+  const ico = () => '';
+  const block = (src, re, end) => {
+    const m = src.match(re);
+    if (!m) return null;
+    const from = m.index + m[0].length;
+    return src.slice(from, src.indexOf(end, from));
+  };
+  const listingKey = url => ((/\/detail\/([A-Z0-9]+)/i.exec(url || '') || [])[1] || '').toUpperCase() || null;
+  const out = [];
+  for (const [file, pf] of [['Windows-apps.html', 'win'], ['android-apps.html', 'and']]) {
+    const src = read(file);
+    const list = eval('[' + block(src, /const APPS = \[/, '\n        ];') + ']');
+    let pages = {};
+    try { pages = JSON.parse(block(src, /var APPPAGES = /, '; /*APPPAGES_END*/')); } catch (e) { /* no pages yet */ }
+    for (const a of list) {
+      out.push({
+        i: a.id, n: a.name, pf,
+        p: listingKey(a.storeUrl),
+        u: /^https?:/.test(a.storeUrl) ? a.storeUrl : '',
+        su: 'https://hasnainstudiox.com/' + (pages[a.id] || file),
+      });
+    }
+  }
+  return out;
+}
+
 function build() {
-  const catalogue = JSON.parse(read('hub-catalog.json'));
-  const apps = [...(catalogue.ps || [])].sort((a, b) => a.n.localeCompare(b.n, 'en-GB'));
-  if (!apps.length) return '  ! ownership page skipped, no apps in the catalogue';
+  const apps = siteApps().sort((a, b) => a.n.localeCompare(b.n, 'en-GB'));
+  if (!apps.length) return '  ! ownership page skipped, no apps in the catalogue pages';
   const notes = firstReleases();
   const facts = storeFacts();
   const play = playDates();
@@ -184,5 +212,5 @@ ${rows}
   return `  ownership record       ${apps.length} works listed, ${dated} dated, ${fromStore} from the Store`;
 }
 
-module.exports = { build };
+module.exports = { build, siteApps };
 if (require.main === module) console.log(build());

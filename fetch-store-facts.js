@@ -26,7 +26,7 @@ async function one(id) {
 }
 
 (async () => {
-  const apps = JSON.parse(fs.readFileSync(P('hub-catalog.json'), 'utf8')).ps || [];
+  const apps = require('./gen-ownership.js').siteApps();
   const ids = apps.filter(a => a.p).map(a => ({ key: a.i, id: a.p, name: a.n }));
   const out = {};
   let ok = 0, failed = 0;
