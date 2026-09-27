@@ -196,6 +196,15 @@ export async function handleMail(request, env, url) {
     return reply({ ok: true, state });
   }
 
+  /* the row is the only copy this service keeps, so deleting it is final */
+  if (path === '/mail/delete' && request.method === 'POST') {
+    const body = await request.json().catch(() => ({}));
+    if (!body.id) return reply({ ok: false, error: 'No message given.' }, 400);
+
+    const result = await db.prepare('DELETE FROM messages WHERE id = ?').bind(body.id).run();
+    return reply({ ok: true, deleted: (result.meta && result.meta.changes) || 0 });
+  }
+
   if (path === '/mail/reply' && request.method === 'POST') {
     const body = await request.json().catch(() => ({}));
     const row = body.id && await db.prepare('SELECT * FROM messages WHERE id = ?').bind(body.id).first();
