@@ -2594,6 +2594,16 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     gap: 1rem;
     margin: 1.4rem 0 1rem;
 }
+/* phone captures: a row of narrow screens rather than two wide ones */
+.app-shots--phone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.app-shots--phone .app-shot {
+    flex: 0 1 10rem;
+    min-width: 0;
+}
 .app-shot {
     margin: 0;
     border: 1px solid var(--card-border);

@@ -92,6 +92,7 @@ const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLB
    crawler landing on one app page can reach every sibling in its category.
    This resolver must stay identical to the one in gen-category-pages.js. */
 const { HUBS, GPU_VRAM, INTENT } = require('./hsx-taxonomy.js');
+const { DETAILS: ANDROID, ADS } = require('./android-details.js');
 const catKeyOf = a => CAT_OVERRIDE[a.id] || CATMAP[a.id] || CATMAP_A[a.id]
                    || CAT_FALLBACK[a.category] || 'system';
 const hubOf = a => HUBS.find(h => h.key === catKeyOf(a)) || null;
@@ -180,7 +181,8 @@ const stageOf = a => isCert(a)
    catalogue changes. */
 /* Screenshots prepared by make-app-shots.py from the store listings. */
 const SHOTS = (() => {
-  try { return JSON.parse(read('images/shots/index.json')); } catch (e) { return {}; }
+  const load = f => { try { return JSON.parse(read(f)); } catch (e) { return {}; } };
+  return { ...load('images/shots/index.json'), ...load('play-shots.json') };
 })();
 /* real pixel sizes, so the browser reserves the space before a shot loads
    and the text below it does not jump */
@@ -225,6 +227,17 @@ function subjectOf(a) {
 const catPhrase = c => c.label.toLowerCase().replace(/\bai\b/g, 'AI');
 
 function faqFor(a) {
+  const ad = a.platform === 'Android' ? ANDROID[a.id] : null;
+  if (ad) return [
+    [`Does ${a.name} need an internet connection?`, ad.net],
+    [`Does ${a.name} require an account?`,
+     `No. There is no registration, no sign-in and no online identity. You install the app and use it.`],
+    [`What data does ${a.name} collect?`,
+     `Hasnain Studio X collects nothing: there is no account, no analytics and no crash reporting that leaves your phone, and ${ad.subject.short} are never uploaded. ${ADS} The full detail is in the ${a.name} privacy policy.`],
+    [`Is ${a.name} a subscription?`,
+     `No. ${a.name} is free on Google Play, with an optional one-time Pro unlock. There is no recurring fee.`],
+    [`Which versions of Android does it support?`, `Android ${ad.minAndroid} or later.`],
+  ];
   const os = a.platform === 'Android' ? 'Android' : 'Windows 10 and Windows 11';
   const net = isLinked(a)
     ? [`Does ${a.name} need an internet connection?`,
@@ -261,7 +274,9 @@ function pageFor(a) {
   const s = slug(a);
   const url = BASE + 'apps/' + s + '.html';
   const priv = rel(a.privacyUrl);
-  const osFull = a.platform === 'Android' ? 'Android' : 'Windows 10, Windows 11';
+  const ad = a.platform === 'Android' ? ANDROID[a.id] : null;
+  const subj = ad ? ad.subject : subjectOf(a);
+  const osFull = ad ? `Android ${ad.minAndroid} or later` : a.platform === 'Android' ? 'Android' : 'Windows 10, Windows 11';
   const storeName = a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store';
   const out = isOut(a), cert = isCert(a), stageLine = stageOf(a);
   const storeHref = out ? a.storeUrl : '../contact.html';
@@ -407,7 +422,8 @@ function pageFor(a) {
         publisher: { '@id': BASE + '#organization' },
         author: { '@id': BASE + '#founder' },
         creator: { '@id': BASE + '#founder' },
-        offers: { '@type': 'Offer', category: 'Free trial, then one-time purchase',
+        offers: { '@type': 'Offer', category: ad ? 'Free, optional one-time Pro unlock' : 'Free trial, then one-time purchase',
+                  price: ad ? '0' : undefined, priceCurrency: ad ? 'USD' : undefined,
                   availability: out ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
                   url: out ? a.storeUrl : BASE + 'contact.html' } },
       { '@type': 'Person', '@id': BASE + '#founder',
@@ -499,7 +515,7 @@ ${hero ? `
                  alt="${escA(a.name)} for ${esc(a.platform)} by Hasnain Studio X">
         </figure>` : ''}
         <section class="hero hero--single app-hero" aria-labelledby="app-title">
-            <div class="hero-eyebrow">${esc(c.label)} &middot; ${esc(a.platform)} &middot; ${out ? esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play') : (cert ? 'In certification' : 'In development')}</div>
+            <div class="hero-eyebrow">${esc(ad && ad.label ? ad.label : c.label)} &middot; ${esc(a.platform)} &middot; ${out ? esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play') : (cert ? 'In certification' : 'In development')}</div>
             <h1 id="app-title">${esc(a.name)}</h1>
             <p class="app-tagline">${esc(a.tagline)}</p>
             <p class="hero-sub">${esc(a.description)}</p>
@@ -512,10 +528,12 @@ ${hero ? `
             </div>
             <div class="proof-chips" style="justify-content:center;">
                 <span class="proof-chip">No account</span>
-                <span class="proof-chip">No telemetry</span>
+                <span class="proof-chip">${ad ? 'No analytics' : 'No telemetry'}</span>
                 <span class="proof-chip">No subscription</span>
-                <span class="proof-chip">${isLinked(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
-            </div>${out ? `
+                <span class="proof-chip">${ad ? 'Files stay on the phone' : isLinked(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
+            </div>${out && ad ? `
+            <p class="buy-promise">Free on Google Play, with an optional one-time Pro unlock. There is no
+            subscription and no account to keep it working. Genuine copies are published only on Google Play.</p>` : out ? `
             <p class="buy-promise">Buy it once through ${esc(storeName)}. There is no renewal, and no account to
             keep it working: the copy on your machine keeps running whether or not this studio is still here.
             Genuine copies are sold only on ${esc(storeName)}.</p>` : ''}${vram ? `
@@ -540,11 +558,11 @@ ${(() => {
   return `
         <section class="section" aria-labelledby="shots-title">
             <div class="section-header"><h2 id="shots-title">${esc(a.name)} on screen</h2></div>
-            <div class="app-shots">
+            <div class="app-shots${ad ? ' app-shots--phone' : ''}">
 ${shots.map((n, i) => `                <figure class="app-shot">
                     <img src="../images/shots/${n}.webp"
-                         srcset="../images/shots/${n}-sm.webp 600w, ../images/shots/${n}.webp 1200w"
-                         sizes="(max-width:700px) 92vw, 46vw"${(sz => sz ? ` width="${sz[0]}" height="${sz[1]}"` : '')(webpSize('images/shots/' + n + '.webp'))}
+                         srcset="${ad ? `../images/shots/${n}-sm.webp 270w, ../images/shots/${n}.webp 540w` : `../images/shots/${n}-sm.webp 600w, ../images/shots/${n}.webp 1200w`}"
+                         sizes="${ad ? '(max-width:700px) 44vw, 180px' : '(max-width:700px) 92vw, 46vw'}"${(sz => sz ? ` width="${sz[0]}" height="${sz[1]}"` : '')(webpSize('images/shots/' + n + '.webp'))}
                          loading="lazy" decoding="async"
                          alt="${escA(a.name)} running on ${esc(a.platform)}, screen ${i + 1} of ${shots.length}">
                 </figure>`).join('\n')}
@@ -553,19 +571,26 @@ ${shots.map((n, i) => `                <figure class="app-shot">
         </section>`;
 })()}
 
-        <section class="section" aria-labelledby="who-title">
+${ad ? `
+        <section class="section" aria-labelledby="inside-title">
+            <div class="section-header"><h2 id="inside-title">Inside ${esc(a.name)}</h2></div>
+            <div class="app-faq">
+${ad.groups.map(([h, p]) => `                <div class="app-q"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join('\n')}
+            </div>
+        </section>
+` : ''}        <section class="section" aria-labelledby="who-title">
             <div class="section-header"><h2 id="who-title">Who it is for</h2></div>
-            <p class="app-lead">${esc(a.name)} is built for ${esc(whoOf(a))}.</p>
-            <p>It sits in the ${esc(catPhrase(c))} part of the catalogue, and ${esc(subjectOf(a).short)}
-            never leave the machine to be processed. There is no server behind ${esc(a.name)} to send them to.</p>
+            <p class="app-lead">${esc(a.name)} is built for ${esc(ad ? ad.who : whoOf(a))}.</p>
+            <p>It sits in the ${esc(ad && ad.label ? ad.label.toLowerCase() : catPhrase(c))} part of the catalogue, and ${esc(subj.short)}
+            never leave the ${ad ? 'phone' : 'machine'} to be processed. There is no server behind ${esc(a.name)} to send them to.</p>
         </section>
 
         <section class="section" aria-labelledby="local-title">
             <div class="section-header"><h2 id="local-title">Local-first, by design</h2></div>
-            <p>Plenty of the alternatives send ${esc(subjectOf(a).short)} to a server to be
+            <p>Plenty of the alternatives send ${esc(subj.short)} to a server to be
             handled. ${esc(a.name)} does not.
             Processing runs on your ${a.platform === 'Android' ? 'phone’s own processor' : 'CPU or GPU'},
-            and ${esc(subjectOf(a).long)} stay where you put them.${isLinked(a)
+            and ${esc(subj.long)} stay where you put them.${ad ? ' ' + esc(ad.net) : isLinked(a)
               ? ` ${esc(a.name)} does need your devices to be on the same network, but that is the only link involved: it runs over your own Wi-Fi or a hotspot, with nothing routed through a server and no internet connection required.`
               : isOffline(a)
               ? ' The application keeps working with the network switched off.'
@@ -574,20 +599,40 @@ ${shots.map((n, i) => `                <figure class="app-shot">
             account to create and no subscription to lapse.${vram ? ` It does ask for a graphics card with at
             least ${vram} GB of dedicated memory, because the work it would otherwise send to a server happens
             on that card instead.` : ''} Full detail is in the
-            ${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a>` : 'privacy policy'}.</p>
+            ${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a>` : 'privacy policy'}.</p>${ad && ad.honest ? `
+            <p>${esc(ad.honest)}</p>` : ''}
+        </section>
+${ad ? `
+        <section class="section" aria-labelledby="pro-title">
+            <div class="section-header"><h2 id="pro-title">Free and Pro</h2></div>
+            <p class="app-lead">${esc(a.name)} is free on Google Play. ${esc(ad.free)}</p>
+            <p>A one-time Pro unlock, with no subscription, adds:</p>
+            <ul class="app-features">
+${ad.pro.map(p => `                <li>${esc(p)}</li>`).join('\n')}
+            </ul>${ad.proNote ? `
+            <p>${esc(ad.proNote)}</p>` : ''}
+            <p class="app-note">${esc(ADS)}</p>
         </section>
 
+        <section class="section" aria-labelledby="asks-title">
+            <div class="section-header"><h2 id="asks-title">What it asks your phone for</h2></div>
+            <p class="app-lead">Android shows these when you install or first use a feature. Each one is used for the reason given, and for nothing else.</p>
+            <dl class="app-spec">
+${ad.asks.map(([k, v]) => `                <div class="spec-cell"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n')}
+            </dl>
+        </section>
+` : ''}
         <section class="section" aria-labelledby="tech-title">
             <div class="section-header"><h2 id="tech-title">Technical details</h2></div>
             <dl class="app-spec">
                 <div class="spec-cell"><dt>Platform</dt><dd>${esc(osFull)}</dd></div>
                 <div class="spec-cell"><dt>Distribution</dt><dd>${esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play')}</dd></div>
                 <div class="spec-cell spec-cell--${out ? 'good' : 'wait'}"><dt>Availability</dt><dd><span class="spec-dot" aria-hidden="true"></span>${out ? 'Available now' : (cert ? 'In certification' : 'In development')}</dd></div>
-                <div class="spec-cell"><dt>Licence</dt><dd>Free trial, then one purchase</dd></div>${vram ? `
+                <div class="spec-cell"><dt>Licence</dt><dd>${ad ? 'Free, optional one-time Pro' : 'Free trial, then one purchase'}</dd></div>${vram ? `
                 <div class="spec-cell"><dt>Graphics</dt><dd>${vram} GB+ dedicated VRAM</dd></div>` : ''}
-                <div class="spec-cell spec-cell--${isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
+                <div class="spec-cell spec-cell--${ad ? 'note' : isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? esc(ad.netShort) : isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
-                <div class="spec-cell spec-cell--good"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
+                <div class="spec-cell spec-cell--${ad ? 'note' : 'good'}"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? 'None. Free version shows ads' : 'None'}</dd></div>
                 <div class="spec-cell"><dt>Publisher</dt><dd>Hasnain Studio X</dd></div>
                 <div class="spec-cell"><dt>Developer</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a></dd></div>
             </dl>
@@ -615,7 +660,8 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
         <section class="section" aria-labelledby="get-title">
             <div class="section-header"><h2 id="get-title">Get ${esc(a.name)}</h2></div>
             <p class="app-lead">${out
-              ? `Available now on ${esc(storeName)}. Try it free, then a single purchase unlocks it for good with no subscription and no account.`
+              ? ad ? `Available now on Google Play. It is free, and a single optional purchase unlocks Pro for good, with no subscription and no account.`
+                : `Available now on ${esc(storeName)}. Try it free, then a single purchase unlocks it for good with no subscription and no account.`
               : `${esc(a.name)} is ${esc(stageLine)}. It is not on sale yet. Send a message and I will tell you the day it goes live.`}</p>
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
