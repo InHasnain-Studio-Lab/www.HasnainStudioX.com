@@ -72,7 +72,7 @@ function build() {
   const rows = apps.map(app => {
     const id = app.p || pkg(app.u);
     const store = id
-      ? `<a href="${esc(app.u || 'https://apps.microsoft.com/detail/' + app.p)}">${esc(id)}</a>`
+      ? `<a href="${esc(app.p ? 'https://apps.microsoft.com/detail/' + app.p : app.u)}">${esc(id)}</a>`
       : '<span class="own-none">not listed</span>';
     return `                    <tr>
                         <td><a href="${esc(app.su || './')}">${esc(app.n)}</a></td>

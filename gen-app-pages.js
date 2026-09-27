@@ -167,6 +167,7 @@ const heroOf = a => {
 
 const isOut   = a => a.status === 'live';                 // already released
 const isCert  = a => a.stage === 'certification';        // submitted, awaiting store approval
+const HUB_STORE = 'https://apps.microsoft.com/detail/9P0SCSV68797';
 const storeOf = a => a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store';
 const stageOf = a => isCert(a)
   ? `with ${storeOf(a)}, going through certification`
@@ -618,7 +619,8 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
               : `${esc(a.name)} is ${esc(stageLine)}. It is not on sale yet. Send a message and I will tell you the day it goes live.`}</p>
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
-${also.length ? `            <p class="app-lead">Also listed under ${also.map(h => `<a href="${h.slug}.html">${esc(h.nav.toLowerCase())}</a>`).join(' and ')}.</p>
+${out && a.platform === 'Windows' ? `            <p class="app-lead">Not ready to buy yet? <a href="${HUB_STORE}" target="_blank" rel="noopener">HSX Apps Hub</a> is free on the Microsoft Store. It shows which of your HSX apps have updates and tells you when a new one is out.</p>
+` : ''}${also.length ? `            <p class="app-lead">Also listed under ${also.map(h => `<a href="${h.slug}.html">${esc(h.nav.toLowerCase())}</a>`).join(' and ')}.</p>
 ` : ''}            <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; ${hub ? `<a href="${hub.slug}.html">${esc(hub.nav)} apps</a> &middot; ` : ''}<a href="${catalogue}">Full catalogue</a></p>
             <p class="app-tm">${
               markFor(a) === a.name
