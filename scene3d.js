@@ -14,13 +14,13 @@ const SUITES = [
   { k: 'creative', a: '#F3B3CF', c: 33 },
 ];
 const SECTIONS = [
-  ['.hero-split', 'galaxy'],
-  ['.hub-burst', 'hub'],
-  ['#platform-title', 'devices'],
-  ['#browse-title', 'grid'],
-  ['#why-local', 'cube'],
+  ['.hero-split', 'emblem'],
+  ['.hub-burst', 'hive'],
+  ['#platform-title', 'trio'],
+  ['#browse-title', 'bloom'],
+  ['#why-local', 'vault'],
   ['#about', 'mark'],
-  ['#founder-note', 'wave'],
+  ['#founder-note', 'floor'],
 ];
 
 const vertex = `
@@ -162,7 +162,7 @@ function start(canvas, reduced) {
   let suites = SUITES;
   let view = { w: 16, h: 9, wide: true };
   const shapes = {};
-  let current = 'galaxy';
+  let current = 'emblem';
 
   function layout() {
     const w = canvas.clientWidth || window.innerWidth;
@@ -178,10 +178,6 @@ function start(canvas, reduced) {
     return apps && apps.length ? apps : suites.flatMap((g) => Array.from({ length: g.c }, () => ({ s: g.k, a: g.a })));
   }
 
-  function suiteColour(k) {
-    return new Color((suites.find((g) => g.k === k) || suites[0]).a);
-  }
-
   function shape(fill, { spin = 0, tilt = 0, wave = 0, x = 0, y = 0 } = {}) {
     const p = new Float32Array(COUNT * 3);
     const c = new Float32Array(COUNT * 3);
@@ -193,165 +189,213 @@ function start(canvas, reduced) {
 
   function tint(c, i, col, b) { c[i * 3] = col.r * b; c[i * 3 + 1] = col.g * b; c[i * 3 + 2] = col.b * b; }
 
-  /* Three spiral arms, one per suite, with every app as a bright star on its arm. */
-  function galaxy() {
-    const scale = view.wide ? 1 : 0.7;
-    return shape((p, c, s) => {
-      const r = rand(3);
-      const list = appList();
-      const keys = suites.map((g) => g.k);
-      const armOf = (k) => Math.max(0, keys.indexOf(k));
-      const counts = {};
-      for (let i = 0; i < COUNT; i++) {
-        let arm, d, col, b, sz;
-        if (i < list.length) {
-          arm = armOf(list[i].s);
-          counts[arm] = (counts[arm] || 0) + 1;
-          d = 0.7 + (counts[arm] / (list.filter((a) => armOf(a.s) === arm).length + 1)) * 3.6;
-          col = new Color(list[i].a || suites[arm].a);
-          b = 1.35;
-          sz = 10 + r() * 4;
-        } else if (i < COUNT * 0.12) {
-          arm = -1;
-          d = Math.pow(r(), 2) * 0.9;
-          col = PALETTE[0];
-          b = 0.7 + r() * 0.3;
-          sz = 2 + r() * 2;
-        } else {
-          arm = i % keys.length;
-          d = 0.5 + Math.pow(r(), 0.8) * 4.8;
-          col = suiteColour(keys[arm]);
-          b = 0.3 + r() * 0.45;
-          sz = 1.8 + r() * 2;
-        }
-        const base = arm < 0 ? r() * Math.PI * 2 : (arm / keys.length) * Math.PI * 2;
-        const a = base + d * 0.95 + (arm < 0 ? 0 : (r() - 0.5) * (0.35 + d * 0.06));
-        const spread = arm < 0 ? 0.25 : 0.12 + d * 0.05;
-        p[i * 3] = (Math.cos(a) * d + (r() - 0.5) * spread) * scale;
-        p[i * 3 + 1] = (r() - 0.5) * (arm < 0 ? 0.5 : 0.18) * scale;
-        p[i * 3 + 2] = (Math.sin(a) * d + (r() - 0.5) * spread) * scale;
-        tint(c, i, col, view.wide ? b : b * 0.6);
-        s[i] = sz;
-      }
-    }, { spin: 0.06, tilt: 0.62, x: view.wide ? view.w * 0.2 : 0, y: view.wide ? 0 : view.h * 0.18 });
+  /* Every shape is built from the studio mark: a point-up hexagon. */
+  const SQ3 = Math.sqrt(3);
+  const WHITE = new Color('#f4f2ee');
+
+  function hexCorners(cx, cy, R) {
+    return Array.from({ length: 6 }, (_, k) => {
+      const a = Math.PI / 2 + (k * Math.PI) / 3;
+      return [cx + Math.cos(a) * R, cy + Math.sin(a) * R];
+    });
   }
 
-  /* Every app on one ring around a bright core: the Hub gathering them. */
-  function hub() {
-    const R = view.wide ? 2.4 : 1.7;
+  function hexSegs(cx, cy, R) {
+    const v = hexCorners(cx, cy, R);
+    return v.map((p, k) => [p, v[(k + 1) % 6]]);
+  }
+
+  /* a point inside a point-up hexagon of radius R */
+  function inHex(r, R) {
+    for (;;) {
+      const x = (r() - 0.5) * SQ3 * R, y = (r() - 0.5) * 2 * R;
+      if (Math.abs(x) * 0.5 + Math.abs(y) * (SQ3 / 2) <= R * (SQ3 / 2) && Math.abs(x) <= (SQ3 / 2) * R) return [x, y];
+    }
+  }
+
+  /* whole rings of point-up cells around a centre, enough to hold n, so the hive keeps a hexagon outline */
+  function honeycomb(n, s) {
+    let rings = 0;
+    while (3 * rings * (rings + 1) + 1 < n) rings++;
+    const cells = [];
+    for (let q = -rings; q <= rings; q++) {
+      for (let r = Math.max(-rings, -q - rings); r <= Math.min(rings, -q + rings); r++) {
+        cells.push([s * SQ3 * (q + r / 2), -s * 1.5 * r, Math.atan2(r, q)]);
+      }
+    }
+    return cells.sort((a, b) => Math.hypot(a[0], a[1]) - Math.hypot(b[0], b[1]) || a[2] - b[2]);
+  }
+
+  /* The studio mark in light: a double hexagon frame around the rounded H. */
+  function emblem() {
+    const k = view.wide ? 1 : 0.68;
+    const R = 2.3 * k, Ri = 1.94 * k;
+    /* the H as three rounded strokes, filled like the chrome letter in the icon */
+    const hx = 0.62 * k, hy = 0.72 * k, thick = 0.21 * k;
+    const bars = [[-hx, -hy, -hx, hy], [hx, -hy, hx, hy], [-hx, 0, hx, 0]];
+    const onBar = (r) => {
+      const [x1, y1, x2, y2] = bars[Math.floor(r() * 3)];
+      const t = r(), a = r() * Math.PI * 2, d = Math.sqrt(r()) * thick;
+      return [x1 + (x2 - x1) * t + Math.cos(a) * d, y1 + (y2 - y1) * t + Math.sin(a) * d, (r() - 0.5) * 0.12];
+    };
+    return shape((p, c, s) => {
+      const r = rand(3);
+      const nOuter = Math.floor(COUNT * 0.24), nInner = Math.floor(COUNT * 0.16), nH = Math.floor(COUNT * 0.38);
+      const outer = onSegments(hexSegs(0, 0, R), nOuter, r, 0.07 * k);
+      const inner = onSegments(hexSegs(0, 0, Ri), nInner, r, 0.035 * k);
+      for (let i = 0; i < COUNT; i++) {
+        if (i < nOuter) {
+          p.set(outer[i], i * 3); tint(c, i, PALETTE[2], 1 + r() * 0.35); s[i] = 2.6 + r() * 2;
+        } else if (i < nOuter + nInner) {
+          p.set(inner[i - nOuter], i * 3); tint(c, i, PALETTE[2], 0.6 + r() * 0.25); s[i] = 1.9 + r() * 1.4;
+        } else if (i < nOuter + nInner + nH) {
+          p.set(onBar(r), i * 3); tint(c, i, WHITE, 0.7 + r() * 0.35); s[i] = 2 + r() * 1.7;
+        } else {
+          const [x, y] = inHex(r, Ri * 0.97);
+          p.set([x, y, (r() - 0.5) * 0.35], i * 3); tint(c, i, PALETTE[2], 0.1 + r() * 0.14); s[i] = 1.4 + r() * 1.4;
+        }
+      }
+    }, { spin: 0, tilt: 0, x: view.wide ? view.w * 0.21 : 0, y: view.wide ? 0 : view.h * 0.2 });
+  }
+
+  /* A hexagonal honeycomb with one lit cell for every app, in its suite colour: the Hub gathering them. */
+  function hive() {
     return shape((p, c, s) => {
       const r = rand(17);
       const list = appList();
+      const cs = view.wide ? 0.25 : 0.19;
+      const cells = honeycomb(list.length, cs);
+      const lit = (k) => k < list.length;
+      const tone = (k) => lit(k) ? new Color(list[k].a || suites[0].a) : PALETTE[2];
+      const wallN = Math.floor(COUNT * 0.82);
       for (let i = 0; i < COUNT; i++) {
         if (i < list.length) {
-          const a = (i / list.length) * Math.PI * 2;
-          p.set([Math.cos(a) * R, Math.sin(a) * R, 0], i * 3);
-          tint(c, i, new Color(list[i].a || suites[0].a), 1.4);
-          s[i] = 9 + r() * 3;
-        } else if (i < COUNT * 0.22) {
-          const u = r() * 2 - 1, th = r() * Math.PI * 2, rr = 0.55 * Math.cbrt(r());
-          const q = Math.sqrt(1 - u * u);
-          p.set([Math.cos(th) * q * rr, Math.sin(th) * q * rr, u * rr], i * 3);
-          tint(c, i, PALETTE[i % 2 ? 0 : 3], 0.8 + r() * 0.2);
-          s[i] = 2.4 + r() * 2.4;
+          const [x, y] = cells[i];
+          p.set([x, y, 0.08], i * 3); tint(c, i, tone(i), 1.45); s[i] = 8 + r() * 3;
+        } else if (i < wallN) {
+          const k = Math.floor(r() * cells.length), [x, y] = cells[k];
+          const v = hexCorners(x, y, cs * 0.9), e = Math.floor(r() * 6), t = r();
+          const a = v[e], b = v[(e + 1) % 6];
+          p.set([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, (r() - 0.5) * 0.05], i * 3);
+          tint(c, i, tone(k), lit(k) ? 0.6 + r() * 0.3 : 0.34 + r() * 0.12); s[i] = 1.8 + r() * 1.2;
         } else {
-          const a = r() * Math.PI * 2;
-          const d = R + (r() - 0.5) * 0.5 + (r() < 0.25 ? (r() - 0.5) * 2.2 : 0);
-          p.set([Math.cos(a) * d, Math.sin(a) * d, (r() - 0.5) * 0.4], i * 3);
-          tint(c, i, PALETTE[Math.floor(r() * 4)], 0.25 + r() * 0.35);
-          s[i] = 1.6 + r() * 1.8;
+          const a = r() * Math.PI * 2, d = cs * (11 + r() * 5);
+          p.set([Math.cos(a) * d, Math.sin(a) * d, (r() - 0.5) * 1.2], i * 3);
+          tint(c, i, PALETTE[Math.floor(r() * 4)], 0.1 + r() * 0.15); s[i] = 1.4 + r() * 1.2;
         }
       }
-    }, { spin: 0.1, tilt: 0.25, x: view.wide ? view.w * 0.22 : 0 });
+    }, { spin: 0, tilt: 0.18, x: view.wide ? view.w * 0.22 : 0, y: view.wide ? 0 : view.h * 0.08 });
   }
 
-  /* A monitor and a phone drawn in light: Windows and Android. */
-  function devices() {
-    const k = view.wide ? 1 : 0.62;
-    const monitor = [
-      ...rect(-0.9 * k, 0.35 * k, 4.6 * k, 2.8 * k),
-      [[-0.9 * k, -1.05 * k], [-0.9 * k, -1.65 * k]],
-      [[-1.8 * k, -1.7 * k], [0, -1.7 * k]],
+  /* Three product lines, three cells: a monitor for Windows, a phone for Android, a spark for AI Studio. */
+  function trio() {
+    const k = view.wide ? 1 : 0.66;
+    const R = 1.12 * k;
+    const cells = [[0, 1.05 * k], [-1.02 * k, -0.72 * k], [1.02 * k, -0.72 * k]];
+    const tones = [PALETTE[2], PALETTE[3], PALETTE[0]];
+    const monitor = (cx, cy) => [
+      ...rect(cx, cy + 0.12 * k, 0.95 * k, 0.6 * k),
+      [[cx, cy - 0.18 * k], [cx, cy - 0.34 * k]], [[cx - 0.24 * k, cy - 0.36 * k], [cx + 0.24 * k, cy - 0.36 * k]],
     ];
-    const phone = [...rect(2.35 * k, -0.1 * k, 1.25 * k, 2.4 * k), [[2.15 * k, 0.95 * k], [2.55 * k, 0.95 * k]]];
+    const phone = (cx, cy) => [...rect(cx, cy, 0.46 * k, 0.8 * k), [[cx - 0.07 * k, cy + 0.3 * k], [cx + 0.07 * k, cy + 0.3 * k]]];
+    const spark = (cx, cy) => {
+      const L = 0.42 * k, w = 0.1 * k, out = [];
+      for (let q = 0; q < 4; q++) {
+        const a = (q * Math.PI) / 2, tip = [cx + Math.cos(a) * L, cy + Math.sin(a) * L];
+        const sideA = [cx + Math.cos(a + Math.PI / 4) * w, cy + Math.sin(a + Math.PI / 4) * w];
+        const sideB = [cx + Math.cos(a - Math.PI / 4) * w, cy + Math.sin(a - Math.PI / 4) * w];
+        out.push([sideB, tip], [tip, sideA]);
+      }
+      return out;
+    };
+    const glyphs = [monitor(...cells[0]), phone(...cells[1]), spark(...cells[2])];
     return shape((p, c, s) => {
       const r = rand(23);
-      const edgeN = Math.floor(COUNT * 0.6);
-      const mN = Math.floor(edgeN * 0.72);
-      const edges = [...onSegments(monitor, mN, r, 0.05), ...onSegments(phone, edgeN - mN, r, 0.05)];
+      const per = Math.floor(COUNT / 3);
       for (let i = 0; i < COUNT; i++) {
-        if (i < edgeN) {
-          p.set(edges[i], i * 3);
-          tint(c, i, i < mN ? PALETTE[2] : PALETTE[3], 0.75 + r() * 0.3);
-          s[i] = 2 + r() * 1.8;
+        const g = Math.min(2, Math.floor(i / per)), j = i - g * per;
+        const [cx, cy] = cells[g];
+        if (j < per * 0.45) {
+          const [a, b] = hexSegs(cx, cy, R)[Math.floor(r() * 6)], t = r();
+          p.set([a[0] + (b[0] - a[0]) * t + (r() - 0.5) * 0.05, a[1] + (b[1] - a[1]) * t + (r() - 0.5) * 0.05, (r() - 0.5) * 0.08], i * 3);
+          tint(c, i, tones[g], 0.75 + r() * 0.3); s[i] = 2 + r() * 1.6;
+        } else if (j < per * 0.8) {
+          const segs = glyphs[g], [a, b] = segs[Math.floor(r() * segs.length)], t = r();
+          p.set([a[0] + (b[0] - a[0]) * t + (r() - 0.5) * 0.04, a[1] + (b[1] - a[1]) * t + (r() - 0.5) * 0.04, 0.05], i * 3);
+          tint(c, i, WHITE, 0.7 + r() * 0.3); s[i] = 2 + r() * 1.5;
         } else {
-          const inPhone = r() < 0.25;
-          const [cx, cy, w, h] = inPhone ? [2.35 * k, -0.1 * k, 1.1 * k, 2.2 * k] : [-0.9 * k, 0.35 * k, 4.4 * k, 2.6 * k];
-          p.set([cx + (r() - 0.5) * w, cy + (r() - 0.5) * h, (r() - 0.5) * 0.3], i * 3);
-          tint(c, i, PALETTE[Math.floor(r() * 5)], 0.12 + r() * 0.2);
-          s[i] = 1.4 + r() * 1.4;
+          const [x, y] = inHex(r, R * 0.9);
+          p.set([cx + x, cy + y, (r() - 0.5) * 0.25], i * 3); tint(c, i, tones[g], 0.1 + r() * 0.12); s[i] = 1.4 + r() * 1.2;
         }
       }
-    }, { spin: 0, tilt: 0, x: view.wide ? view.w * 0.2 : 0, y: view.wide ? 0 : view.h * 0.12 });
+    }, { spin: 0, tilt: 0, x: view.wide ? view.w * 0.21 : 0, y: view.wide ? 0 : view.h * 0.12 });
   }
 
-  /* The catalogue as a grid of tiles, one per app. */
-  function grid() {
+  /* The catalogue grouped around one studio: a gold centre cell with six around it. */
+  function bloom() {
+    const k = view.wide ? 1 : 0.66;
+    const R = 0.92 * k;
+    const centres = [[0, 0], ...Array.from({ length: 6 }, (_, q) => {
+      const a = (q * Math.PI) / 3;
+      return [Math.cos(a) * SQ3 * R, Math.sin(a) * SQ3 * R];
+    })];
+    const tones = [PALETTE[0], PALETTE[2], PALETTE[3], PALETTE[1], PALETTE[4], PALETTE[2], PALETTE[3]];
     return shape((p, c, s) => {
       const r = rand(29);
-      const list = appList();
-      const cols = view.wide ? 12 : 8;
-      const rows = Math.ceil(list.length / cols);
-      const gap = Math.min((view.wide ? view.w * 0.5 : view.w * 0.85) / cols, 0.62);
-      const per = Math.floor((COUNT - list.length) / list.length);
-      const centre = (i) => [((i % cols) - (cols - 1) / 2) * gap, ((rows - 1) / 2 - Math.floor(i / cols)) * gap];
       for (let i = 0; i < COUNT; i++) {
-        if (i < list.length) {
-          const [x, y] = centre(i);
-          p.set([x, y, 0.2], i * 3);
-          tint(c, i, new Color(list[i].a || suites[0].a), 1.3);
-          s[i] = 7 + r() * 2;
+        const g = i % 7, [cx, cy] = centres[g];
+        if (r() < 0.55) {
+          const [a, b] = hexSegs(cx, cy, R * 0.96)[Math.floor(r() * 6)], t = r();
+          p.set([a[0] + (b[0] - a[0]) * t + (r() - 0.5) * 0.04, a[1] + (b[1] - a[1]) * t + (r() - 0.5) * 0.04, (r() - 0.5) * 0.08], i * 3);
+          tint(c, i, tones[g], (g === 0 ? 1.25 : 0.8) + r() * 0.3); s[i] = (g === 0 ? 2.8 : 2.2) + r() * 1.5;
         } else {
-          const owner = Math.min(list.length - 1, Math.floor((i - list.length) / Math.max(1, per)));
-          const [x, y] = centre(owner);
-          const h = gap * 0.36;
-          const edge = r() < 0.7;
-          const t = r() * 4;
-          const side = Math.floor(t);
-          const f = (t - side) * 2 - 1;
-          const px = edge ? (side < 2 ? f * h : (side === 2 ? -h : h)) : (r() - 0.5) * 2 * h;
-          const py = edge ? (side < 2 ? (side === 0 ? -h : h) : f * h) : (r() - 0.5) * 2 * h;
-          p.set([x + px, y + py, (r() - 0.5) * 0.1], i * 3);
-          tint(c, i, new Color(list[owner].a || suites[0].a), edge ? 0.35 + r() * 0.2 : 0.12);
-          s[i] = 1.4 + r() * 1.2;
+          const [x, y] = inHex(r, R * 0.85);
+          p.set([cx + x, cy + y, (r() - 0.5) * 0.3], i * 3); tint(c, i, tones[g], (g === 0 ? 0.42 : 0.14) + r() * 0.14); s[i] = 1.4 + r() * 1.4;
         }
       }
-    }, { spin: 0, tilt: 0, x: view.wide ? view.w * 0.22 : 0, y: view.wide ? 0 : -view.h * 0.05 });
+    }, { spin: 0, tilt: 0.22, x: view.wide ? view.w * 0.22 : 0, y: view.wide ? 0 : -view.h * 0.02 });
   }
 
-  /* A cube: your machine, with the work kept inside it. */
-  function cube() {
-    const h = view.wide ? 1.7 : 1.25;
-    const v = [[-h, -h, -h], [h, -h, -h], [h, h, -h], [-h, h, -h], [-h, -h, h], [h, -h, h], [h, h, h], [-h, h, h]];
-    const edges = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]].map(([a, b]) => [v[a], v[b]]);
+  /* Your machine as a hexagonal prism, with the work moving inside it and none of it leaving. */
+  function vault() {
+    const R = view.wide ? 1.75 : 1.25, Hh = view.wide ? 1.45 : 1.05;
+    const top = hexCorners(0, 0, R).map(([x, z]) => [x, Hh, z]);
+    const bot = hexCorners(0, 0, R).map(([x, z]) => [x, -Hh, z]);
+    const edges = [
+      ...top.map((p, k) => [p, top[(k + 1) % 6]]),
+      ...bot.map((p, k) => [p, bot[(k + 1) % 6]]),
+      ...top.map((p, k) => [p, bot[k]]),
+    ];
     return shape((p, c, s) => {
       const r = rand(31);
-      const edgeN = Math.floor(COUNT * 0.55);
+      const edgeN = Math.floor(COUNT * 0.5);
       const e = onSegments(edges, edgeN, r, 0.04);
       for (let i = 0; i < COUNT; i++) {
         if (i < edgeN) {
-          p.set(e[i], i * 3);
-          tint(c, i, PALETTE[3], 0.7 + r() * 0.35);
-          s[i] = 2 + r() * 1.6;
+          p.set(e[i], i * 3); tint(c, i, PALETTE[3], 0.7 + r() * 0.35); s[i] = 2 + r() * 1.6;
         } else {
-          const rr = Math.cbrt(r()) * h * 0.6;
-          const u = r() * 2 - 1, th = r() * Math.PI * 2, q = Math.sqrt(1 - u * u);
-          p.set([Math.cos(th) * q * rr, Math.sin(th) * q * rr, u * rr], i * 3);
-          tint(c, i, PALETTE[Math.floor(r() * 4)], 0.3 + r() * 0.4);
-          s[i] = 1.8 + r() * 2;
+          const [x, z] = inHex(r, R * 0.72);
+          p.set([x, (r() - 0.5) * 2 * Hh * 0.75, z], i * 3);
+          tint(c, i, PALETTE[Math.floor(r() * 4)], 0.3 + r() * 0.4); s[i] = 1.8 + r() * 2;
         }
       }
-    }, { spin: 0.18, tilt: 0.45, x: view.wide ? view.w * 0.22 : 0 });
+    }, { spin: 0.16, tilt: 0.38, x: view.wide ? view.w * 0.22 : 0 });
+  }
+
+  /* A honeycomb floor under the last section, moving slowly. */
+  function floor() {
+    return shape((p, c, s) => {
+      const r = rand(13);
+      const cs = 0.78, W = view.w * 1.3, D = 12;
+      const cols = Math.ceil(W / (cs * SQ3)) + 1, rows = Math.ceil(D / (cs * 1.5)) + 1;
+      for (let i = 0; i < COUNT; i++) {
+        const q = Math.floor(r() * cols), row = Math.floor(r() * rows);
+        const cx = (q + (row % 2) * 0.5) * cs * SQ3 - W / 2, cz = row * cs * 1.5 - D * 0.7;
+        const [a, b] = hexSegs(cx, cz, cs)[Math.floor(r() * 6)], t = r();
+        p.set([a[0] + (b[0] - a[0]) * t, -2.4, a[1] + (b[1] - a[1]) * t], i * 3);
+        tint(c, i, PALETTE[Math.floor(((cx + W / 2) / W) * 4) % 4], 0.42 + r() * 0.3); s[i] = 1.9 + r() * 1.4;
+      }
+    }, { wave: 1, tilt: 0.32 });
   }
 
   function mark() {
@@ -367,23 +411,7 @@ function start(canvas, reduced) {
     }, { x: view.wide ? view.w * 0.24 : 0, y: view.wide ? 0 : view.h * 0.22 });
   }
 
-  function wave() {
-    return shape((p, c, s) => {
-      const r = rand(13);
-      const cols = Math.round(Math.sqrt(COUNT * 1.8));
-      const rows = Math.ceil(COUNT / cols);
-      const W = view.w * 1.3;
-      for (let i = 0; i < COUNT; i++) {
-        const gx = i % cols;
-        const gz = Math.floor(i / cols);
-        p.set([(gx / (cols - 1) - 0.5) * W, -2.4, (gz / rows - 0.7) * 12], i * 3);
-        tint(c, i, PALETTE[Math.floor((gx / cols) * 4) % 4], 0.28 + r() * 0.3);
-        s[i] = 1.8 + r() * 1.4;
-      }
-    }, { wave: 1 });
-  }
-
-  const builders = { galaxy, hub, devices, grid, cube, mark, wave };
+  const builders = { emblem, hive, trio, bloom, vault, mark, floor };
 
   function build() {
     layout();
@@ -502,7 +530,7 @@ function start(canvas, reduced) {
       if (!data || !data.ps) return;
       apps = data.ps.map((p) => ({ s: p.s, a: p.a }));
       if (data.cs && data.cs.length) suites = data.cs.map((s) => ({ k: s.k, a: s.a, c: s.c }));
-      for (const k of ['galaxy', 'hub', 'grid']) shapes[k] = builders[k]();
+      shapes.hive = builders.hive();
       kick();
     })
     .catch(() => {});
