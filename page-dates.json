@@ -695,77 +695,81 @@
   "h": "3ecc9391ad5725e8",
   "t": "2026-09-23T01:35:00+00:00"
  },
+ "guides/automating-repetitive-tasks.html": {
+  "h": "71c88c427efae0b4",
+  "t": "2026-09-29T01:38:00+00:00"
+ },
  "guides/back-up-your-files-properly.html": {
-  "h": "127ed8c4cb2f66d5",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "cdb7460a14fd4f96",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/choosing-an-image-format.html": {
-  "h": "d0ead2c3385cbf8f",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "e1bf6d70a1601db7",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/free-up-disk-space-on-windows.html": {
-  "h": "0be5d4b42b60137e",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "7f95230046164457",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/index.html": {
-  "h": "94dc515a3ede608e",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "3c242be4f283500d",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/local-image-models-on-small-gpus.html": {
-  "h": "bae7b25a52f9528a",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "1c6334d8921f316c",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/one-game-library-across-stores.html": {
-  "h": "fbf9ab2c70ef17ed",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "bd6dd30cb12c10fa",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/organise-a-photo-library.html": {
-  "h": "36427f6fcd12a7a5",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "f3a9259ce9383a80",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/qr-codes-safely.html": {
-  "h": "6b16d0038ff8b9ee",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "10a60357281f7224",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/same-prompt-different-picture.html": {
-  "h": "35e431e45fa4fb08",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "7972c55fbd6c58fd",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/screen-recording-settings.html": {
-  "h": "0b50ca0e7e21b72c",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "da455f0e913cdea0",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/spatial-audio-on-windows.html": {
-  "h": "dc36185e3e7ba006",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "3f50be5993cc6822",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/speed-up-a-slow-windows-pc.html": {
-  "h": "b34c2423224d6656",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "6e975fba93b7d117",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/what-offline-ai-really-means.html": {
-  "h": "1ab526ca704af784",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "a44d788dde2ecc2a",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/why-a-video-file-wont-play.html": {
-  "h": "845ea67b0ee9a61e",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "279c98898396ca67",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/why-downloads-are-slow.html": {
-  "h": "b0486546db91ef75",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "cecfd7631c2c88de",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/why-pdfs-get-huge.html": {
-  "h": "33c4225350704cbc",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "88260a4258b2ad98",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/windows-privacy-settings.html": {
-  "h": "6dfb4d70cc9ae8af",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "6de14c295af0feef",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "guides/zip-7z-and-compression.html": {
-  "h": "09ac16a6398106ef",
-  "t": "2026-09-27T00:55:00+00:00"
+  "h": "6d8aafd1a0c122f0",
+  "t": "2026-09-29T01:38:00+00:00"
  },
  "index.html": {
   "h": "9c34a1269664d430",
