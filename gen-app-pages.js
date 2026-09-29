@@ -166,6 +166,28 @@ const heroOf = a => {
   return fs.existsSync(P('images/apps/' + b + '-hero.webp')) ? b : null;
 };
 
+/* Tutorial videos from app-videos.json, keyed by app id:
+     "pctunex": { "youtube": "<11-character id>", "title": "...", "uploaded": "YYYY-MM-DD", "seconds": 95 }
+   The thumbnail is the JPG HSX Media Production exports, saved as images/videos/<page slug>.jpg.
+   Nothing is fetched from YouTube until the visitor presses play. */
+const VIDEOS = fs.existsSync(P('app-videos.json')) ? JSON.parse(read('app-videos.json')) : {};
+const videoOf = a => {
+  const v = VIDEOS[a.id];
+  if (!v) return null;
+  const own = 'images/videos/' + slug(a) + '.jpg';
+  const hero = heroOf(a);
+  const thumb = fs.existsSync(P(own)) ? own : hero ? 'images/apps/' + hero + '-hero.webp' : null;
+  const problem = !/^[A-Za-z0-9_-]{11}$/.test(v.youtube || '') ? 'the YouTube id is not 11 characters'
+    : !/^\d{4}-\d{2}-\d{2}$/.test(v.uploaded || '') ? 'the upload date is missing'
+    : !thumb ? 'there is no thumbnail at ' + own : null;
+  if (problem) { console.warn(`  video       ${a.id} skipped: ${problem}`); return null; }
+  const secs = Math.round(Number(v.seconds) || 0);
+  return { id: v.youtube, title: v.title || 'How to use ' + a.name, uploaded: v.uploaded, thumb,
+    description: v.description || `A walkthrough of ${a.name}, showing how to use it step by step.`,
+    iso: secs ? `PT${Math.floor(secs / 60)}M${secs % 60}S` : undefined,
+    clock: secs ? `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}` : '' };
+};
+
 const isOut   = a => a.status === 'live';                 // already released
 const isCert  = a => a.stage === 'certification';        // submitted, awaiting store approval
 const HUB_STORE = 'https://apps.microsoft.com/detail/9P0SCSV68797';
@@ -286,6 +308,7 @@ function pageFor(a) {
 
   const also = alsoHubsOf(a);
   const hero = heroOf(a);
+  const video = videoOf(a);
   const vram = GPU_VRAM[a.id] || null;
   /* Microsoft Store product id, for the native protocol link */
   const pidM = String(a.storeUrl || '').match(/apps\.microsoft\.com\/detail\/([A-Z0-9]{12})/i);
@@ -426,6 +449,10 @@ function pageFor(a) {
                   price: ad ? '0' : undefined, priceCurrency: ad ? 'USD' : undefined,
                   availability: out ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
                   url: out ? a.storeUrl : BASE + 'contact.html' } },
+      video ? { '@type': 'VideoObject', '@id': url + '#video', name: video.title, description: video.description,
+        thumbnailUrl: [BASE + video.thumb], uploadDate: video.uploaded, duration: video.iso,
+        embedUrl: 'https://www.youtube-nocookie.com/embed/' + video.id,
+        publisher: { '@id': BASE + '#organization' }, about: { '@id': url + '#app' } } : undefined,
       { '@type': 'Person', '@id': BASE + '#founder',
         name: 'Hasnain Butt Akhtar',
         alternateName: ['Hasnain Butt', 'Hasnain Akhtar', 'InHasnain'],
@@ -456,7 +483,7 @@ function pageFor(a) {
           { '@type': 'ListItem', position: hub ? 4 : 3, name: a.name, item: url } ] } },
       { '@type': 'FAQPage', '@id': url + '#faq', mainEntity: faq.map(([q, ans]) => (
         { '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: ans } })) }
-    ]
+    ].filter(Boolean)
   };
 
   /* every app page used to share one of two pictures; now each has its own */
@@ -552,7 +579,18 @@ ${hero ? `
 ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
             </ul>
         </section>
-${(() => {
+${video ? `
+        <section class="section" aria-labelledby="video-title">
+            <div class="section-header"><h2 id="video-title">Watch: ${esc(video.title)}</h2></div>
+            <div class="app-video">
+                <button type="button" class="app-video-play" data-yt="${escA(video.id)}" data-title="${escA(video.title)}"
+                        aria-label="Play the video: ${escA(video.title)}">
+                    <img src="../${video.thumb}" width="1280" height="720" loading="lazy" decoding="async" alt="">
+                    <span class="app-video-icon" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span>
+                </button>
+            </div>
+            <p class="app-note">${video.clock ? video.clock + ' long. ' : ''}Pressing play loads the video from YouTube. <a href="https://www.youtube.com/watch?v=${escA(video.id)}" target="_blank" rel="noopener">Watch it on YouTube</a></p>
+        </section>` : ''}${(() => {
   const shots = shotsOf(a);
   if (!shots.length) return '';
   return `

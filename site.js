@@ -410,3 +410,19 @@ window.AppViz = (function () {
   }, { rootMargin: '-160px 0px -55% 0px', threshold: 0 });
   maps.forEach(function (m) { io.observe(m.section); });
 })();
+
+/* Tutorial videos
+   The page shows a picture stored on this site; YouTube is contacted only
+   when the visitor presses play. */
+(function () {
+  document.addEventListener('click', function (e) {
+    var button = e.target.closest && e.target.closest('.app-video-play');
+    if (!button) return;
+    var frame = document.createElement('iframe');
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(button.getAttribute('data-yt')) + '?autoplay=1&rel=0';
+    frame.title = button.getAttribute('data-title') || 'Video';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    button.replaceWith(frame);
+  });
+})();
