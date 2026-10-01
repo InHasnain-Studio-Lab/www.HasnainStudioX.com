@@ -232,6 +232,39 @@
         });
     }
 
+    /* ---- problem finder ---- */
+
+    var fixGrid = document.querySelector('.fix-grid');
+    if (fixGrid) {
+        var cards = [].slice.call(fixGrid.querySelectorAll('.fix-card'));
+        var search = document.getElementById('fix-search');
+        var chipsEl = [].slice.call(document.querySelectorAll('.fix-chip'));
+        var count = document.querySelector('.fix-count');
+        var none = document.querySelector('.fix-none');
+        var cat = '';
+        var filter = function () {
+            var terms = search.value.toLowerCase().split(/\s+/).filter(Boolean);
+            var shown = 0;
+            cards.forEach(function (c) {
+                var hay = (c.textContent + ' ' + c.getAttribute('data-words')).toLowerCase();
+                var ok = (!cat || c.getAttribute('data-cat') === cat) && terms.every(function (t) { return hay.indexOf(t) !== -1; });
+                c.hidden = !ok;
+                if (ok) shown++;
+            });
+            count.textContent = shown + (shown === 1 ? ' problem' : ' problems');
+            none.hidden = shown > 0;
+        };
+        chipsEl.forEach(function (b) {
+            b.addEventListener('click', function () {
+                cat = b.getAttribute('data-cat');
+                chipsEl.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+                filter();
+            });
+        });
+        search.addEventListener('input', filter);
+        filter();
+    }
+
     /* ---- bug reports ---- */
 
     var bugForm = document.getElementById('bug-form');

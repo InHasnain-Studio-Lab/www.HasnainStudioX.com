@@ -383,9 +383,9 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
        cannot quietly put it in the sitemap. */
     const TOKEN = /^(naver[0-9a-f]{16,}\.html|yandex_[0-9a-f]{8,}\.html|google[0-9a-f]{8,}\.html|BingSiteAuth\.xml)$/i;
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
-                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','ownership.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5','new-pc.html':'0.8','community.html':'0.6','bug-hunt.html':'0.6' };
+                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','ownership.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5','new-pc.html':'0.8','fix.html':'0.8','community.html':'0.6','bug-hunt.html':'0.6' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
-                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','ownership.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly','new-pc.html':'monthly','community.html':'weekly','bug-hunt.html':'monthly' };
+                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','ownership.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly','new-pc.html':'monthly','fix.html':'monthly','community.html':'weekly','bug-hunt.html':'monthly' };
 
     const rootPages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f) && !TOKEN.test(f))
@@ -655,7 +655,7 @@ function syncSocialMeta() {
     'about.html': 'og-about.png', 'contact.html': 'og-contact.png',
     'contest-rules.html': 'og-home.png', 'privacy-policies.html': 'og-privacy.png',
     'privacy.html': 'og-privacy.png',
-    'new-pc.html': 'og-windows.png', 'community.html': 'og-home.png', 'bug-hunt.html': 'og-home.png',
+    'new-pc.html': 'og-windows.png', 'fix.html': 'og-windows.png', 'community.html': 'og-home.png', 'bug-hunt.html': 'og-home.png',
     '404.html': 'og-home.png'
   };
   const escq = v => String(v).replace(/"/g, '&quot;');
@@ -1087,7 +1087,7 @@ if (termMsg) sitemapMsg += '\n' + termMsg;
 /* 3f. one footer product list on every page, and no retired app names */
 function syncFooters() {
   const WANT = ['Windows-apps.html|Windows Apps', 'android-apps.html|Android Apps', 'HSXAIstudio.html|AI Studio',
-                'new-pc.html|New PC Setup'];
+                'new-pc.html|New PC Setup', 'fix.html|Fix It With HSX'];
   /* names that used to appear in hand-written copy and are not real products */
   const RETIRED = ['HSX PC Tune', 'HSX PC Guard', 'HSX Seasons', 'HSX Spatia', 'HSX VAudio',
                    'HSX Promptalon',
