@@ -245,6 +245,34 @@ function subjectOf(a) {
   return { short: 'your files', long: 'the files you point it at' };
 }
 
+/* "Your first hour": a short plan that gets a trial to a real result before it ends.
+   The middle steps are the app's own features; promises about privacy or price are
+   left out because they are not something to try. */
+const NOT_A_STEP = /\b(never|telemetry|no cloud|no account|no accounts|no sign-in|no analytics|no crash|privacy|private|zero[- ]|fully offline|completely offline|fully local|runs entirely|all processing|all conversion|all edits|everything (is )?(stored|generated|stays|processed)|stays? on[- ]device|stay on[- ]device|kept locally|on your own (device|hardware|pc)|built on|trial|one-time|lightweight|network access|no background|offline - no|works offline)\b/i;
+
+function firstHourOf(a, ad) {
+  const tries = a.features.filter(f => !NOT_A_STEP.test(f)).slice(0, 3);
+  const steps = [
+    ad
+      ? ['Install it free', `Get ${a.name} from Google Play. The free version is enough to see whether it suits you.`]
+      : ['Start the free trial', `Get ${a.name} from the Microsoft Store. The Store page shows how long the trial lasts, so you know your window before you begin.`],
+    ['Use your own work', `Try it on your own ${a.platform === 'Android' ? 'phone' : 'PC'} and real tasks rather than a quick look around. That is the only test that tells you whether it earns its place.`],
+    ...tries.map(f => ['Try this', f.replace(/\.$/, '')]),
+    ad
+      ? ['Decide on Pro', 'If the free version earns its place, the optional Pro unlock is a single purchase on Google Play, with no subscription.']
+      : ['Decide before it ends', `If it earned its place, buy it on the Microsoft Store before the trial runs out. The purchase unlocks the copy you already have, so there is nothing to reinstall.`],
+  ];
+  return `
+        <section class="section" aria-labelledby="hour-title">
+            <div class="section-header"><h2 id="hour-title">Your first hour with ${esc(a.name)}</h2>
+                <p>${ad ? 'A short plan for finding out quickly whether it suits you.' : 'A short plan for getting to a real result while the trial is still running.'}</p></div>
+            <ol class="first-hour">
+${steps.map(([h, p]) => `                <li><h3>${esc(h)}</h3><p>${esc(p)}</p></li>`).join('\n')}
+            </ol>
+        </section>
+`;
+}
+
 /* "AI Tools" must not become "ai tools" in the middle of a sentence. */
 const catPhrase = c => c.label.toLowerCase().replace(/\bai\b/g, 'AI');
 
@@ -579,7 +607,7 @@ ${hero ? `
 ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
             </ul>
         </section>
-${video ? `
+${out ? firstHourOf(a, ad) : ''}${video ? `
         <section class="section" aria-labelledby="video-title">
             <div class="section-header"><h2 id="video-title">Watch: ${esc(video.title)}</h2></div>
             <div class="app-video">

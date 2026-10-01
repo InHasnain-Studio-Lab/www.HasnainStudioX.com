@@ -2676,3 +2676,10 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
     .app-video-icon { transition: transform .2s ease; }
     .app-video-play:hover .app-video-icon { transform: scale(1.08); }
 }
+
+/* app pages: "Your first hour" trial plan */
+.first-hour{list-style:none;margin:0;padding:0;counter-reset:hour;display:grid;grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));gap:.9rem;}
+.first-hour li{counter-increment:hour;padding:1.2rem 1.2rem 1.1rem;border-radius:var(--r-lg);background:var(--card-bg);border:1px solid var(--card-border);}
+.first-hour li::before{content:counter(hour,decimal-leading-zero);display:block;margin-bottom:.55rem;font-family:var(--f-mono);font-size:.75rem;letter-spacing:.18em;background:var(--holo);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.first-hour h3{margin:0 0 .35rem;font-family:var(--f-display);font-weight:500;font-size:.98rem;color:var(--ink);}
+.first-hour p{margin:0;color:var(--ink-soft);font-size:.92rem;line-height:1.55;}

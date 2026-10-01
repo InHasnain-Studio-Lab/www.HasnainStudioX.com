@@ -426,3 +426,49 @@ window.AppViz = (function () {
     button.replaceWith(frame);
   });
 })();
+
+/* Store campaign tags
+   Each Microsoft Store and Google Play link is tagged with the page it was
+   followed from, so Partner Center and Play Console can show which page led
+   to an install. The tag is added as the link is used, so dynamically built
+   links are covered too. Nothing is stored and no cookie is set. A page opened
+   from a post as page.html?c=x-oct carries that label into its tags. */
+(function () {
+  function pageId() {
+    var p = location.pathname.toLowerCase();
+    if (p === '/' || p === '/index.html') return 'home';
+    var m = p.match(/^\/(apps|guides)\/([a-z0-9-]+?)(\.html)?$/);
+    if (m) return (m[1] === 'apps' ? 'app-' : 'guide-') + m[2];
+    var f = p.replace(/^\/|\.html$/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    return f || 'home';
+  }
+  var inbound = (new URLSearchParams(location.search).get('c') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 30);
+
+  function campaign(a) {
+    var holder = a.closest('[data-cid]');
+    var id = 'web-' + (holder ? holder.getAttribute('data-cid') : pageId());
+    return (inbound ? id + '.' + inbound : id).slice(0, 100);
+  }
+
+  function tag(a) {
+    var href = a.getAttribute('href') || '';
+    var cid = encodeURIComponent(campaign(a));
+    var m;
+    if ((m = href.match(/^https:\/\/apps\.microsoft\.com\/detail\/([a-z0-9]+)/i)))
+      a.setAttribute('href', 'https://apps.microsoft.com/detail/' + m[1] + '?cid=' + cid);
+    else if ((m = href.match(/^ms-windows-store:\/\/pdp\/\?productid=([a-z0-9]+)/i)))
+      a.setAttribute('href', 'ms-windows-store://pdp/?ProductId=' + m[1] + '&cid=' + cid);
+    else if (/^https:\/\/apps\.microsoft\.com\/search\/publisher\?name=/i.test(href))
+      a.setAttribute('href', href.replace(/&cid=[^&]*/i, '') + '&cid=' + cid);
+    else if ((m = href.match(/^https:\/\/play\.google\.com\/store\/apps\/details\?id=([a-z0-9._]+)/i)))
+      a.setAttribute('href', 'https://play.google.com/store/apps/details?id=' + m[1] + '&referrer='
+        + encodeURIComponent('utm_source=hasnainstudiox&utm_medium=website&utm_campaign=' + decodeURIComponent(cid)));
+  }
+
+  ['click', 'auxclick', 'contextmenu'].forEach(function (type) {
+    document.addEventListener(type, function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (a) tag(a);
+    }, true);
+  });
+})();

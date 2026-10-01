@@ -1,7 +1,7 @@
 {
  "404.html": {
-  "h": "393c1e367b2b754c",
-  "t": "2026-09-23T00:27:00+00:00"
+  "h": "fd2cbbf506c2b2eb",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "ConvertMasterUltraPrivacy.html": {
   "h": "102c9cd66ca7903b",
@@ -36,8 +36,8 @@
   "t": "2026-09-25T13:23:00+00:00"
  },
  "HSXAIstudio.html": {
-  "h": "49107ee320bc03c4",
-  "t": "2026-09-27T00:22:00+00:00"
+  "h": "0e7ec5d3bb92b400",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "HSXAppsHubPrivacy.html": {
   "h": "f34cf84f7bfbd727",
@@ -82,6 +82,10 @@
  "HSXCreatorStudioPrivacy.html": {
   "h": "858041caf6d3a5b6",
   "t": "2026-09-25T13:23:00+00:00"
+ },
+ "HSXCreatorixPrivacy.html": {
+  "h": "969ccf13654c39c6",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "HSXDepthStudio3DPrivacy.html": {
   "h": "66f8409656d13f3d",
@@ -320,8 +324,8 @@
   "t": "2026-09-25T13:23:00+00:00"
  },
  "Windows-apps.html": {
-  "h": "bd8b9e31bcedef6e",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "5fbfdc3a23f4478e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "WorkXSuitePrivacy.html": {
   "h": "679dc9f3ef06ceb6",
@@ -332,72 +336,72 @@
   "t": "2026-09-25T13:23:00+00:00"
  },
  "about.html": {
-  "h": "79c8f2f0033f270e",
-  "t": "2026-09-26T22:27:00+00:00"
+  "h": "45c415ce7ccbc8fa",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "android-apps.html": {
-  "h": "2b61c52552b9fdbd",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "822a47e60f281a86",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/3d-and-exploration-apps.html": {
-  "h": "0aac2832519487de",
-  "t": "2026-09-23T01:35:00+00:00"
+  "h": "58f1751332d9a645",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/audio-and-video-apps.html": {
-  "h": "a661c83d5122f195",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "1f2020f095257480",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/convertmaster-ultra.html": {
-  "h": "9223ef72c222b745",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "f78da5fea0aaaec3",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/docsmining.html": {
-  "h": "3fea58d7243dd1b3",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "7d662fd8e7afd125",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/document-and-design-apps.html": {
-  "h": "556496b9285e611b",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "ce52fff292c5ea36",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/dreammint-ai.html": {
-  "h": "0d4e1c8a20839496",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "03476b80d5a58f4f",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/file-transfer-and-conversion-apps.html": {
-  "h": "aded57bdd858414d",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "5fded188817f5a81",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/fileguardian-ultra.html": {
-  "h": "3bd78b58c7ae25ff",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "49a82e2d186ad8e1",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/flipx-studio.html": {
-  "h": "3c6c1f22d0880af2",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "f34289cf467acbb1",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/focusroom-ultra.html": {
-  "h": "ce1161b9b036dbb5",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "e76aec553700009b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-ai-browser.html": {
-  "h": "bbecb610caf6352f",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "d51169a486a157c3",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-artgen-studio.html": {
-  "h": "a02bf952234f7de3",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "6c4373370f33540b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-automafy.html": {
-  "h": "29b6e74cb1019cb5",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "5395809a6e221213",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-beatgrid.html": {
-  "h": "906afb3d677207d7",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "7da6ea9bbd6d4049",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-bootforge.html": {
-  "h": "773962b1db6bf749",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "ac4268b138da0fd1",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-browse.html": {
   "h": "c8cdb612aa6b4c67",
@@ -408,440 +412,456 @@
   "t": "2026-09-09T19:20:00+00:00"
  },
  "apps/hsx-castvisuality.html": {
-  "h": "3ed782c189ce6e41",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "94af8c558ddba5a8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-convertstudio.html": {
-  "h": "826f4da82d55aae4",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "a765054fbc29bc98",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-creatorstudio.html": {
-  "h": "7110ed6a09894499",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "ebf19ca72ec08e48",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-depthstudio-3d.html": {
-  "h": "e4e7d89a0e444358",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "820a336d7fa1215e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-docclarity.html": {
-  "h": "47f989c2d5ff7203",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "74a2436201e8543d",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-docmento.html": {
-  "h": "8f9afb4a288db75c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "dfe3b444f22c8541",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-dreamvivid-ai.html": {
-  "h": "8023fa7b40347bef",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "9d9a3f7bcad68541",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-earthshell.html": {
-  "h": "0f6eb37732605a1c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "1a8ea04ecdb0d511",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-execrafter.html": {
-  "h": "5481ff0565219364",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "cfe30d4a427ab223",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-fototensor.html": {
-  "h": "f3ad8be374ecd93c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "685d78a4a466b6d6",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-gamefabrix.html": {
-  "h": "637c7b87e19c817c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "c293b668cc4751d7",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-glowcraft.html": {
-  "h": "898c1192a32ace05",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "d463c783c7bb2337",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-handsfree-pc.html": {
-  "h": "87a7d3507fed34e3",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "f2154acb265a017d",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-infinitegen-studio.html": {
-  "h": "145252a61dcbd545",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "c19f453a3a27e5d4",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-launchharbor.html": {
-  "h": "9182d3b753d43801",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "75b4f82c29995d28",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-medialucent.html": {
-  "h": "b804fed15e467707",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "5d1249b6560699f5",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-morphlora.html": {
-  "h": "fd1bf567468266cc",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "f96be1772840e040",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-nanocodify.html": {
-  "h": "9d78b4174e50587d",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "68dbf030a8f071fc",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-nanovisuality.html": {
-  "h": "fc2e92e92f5b4b84",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "24d3309fe118e0a3",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-nostalgicel.html": {
-  "h": "5e66280ef24379a8",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "c35685719e191b91",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-novadiffux.html": {
-  "h": "b6d407f0141cbd18",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "1fc61d910e40181f",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-photovidix.html": {
-  "h": "906a185997e6ebab",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "386b9c675051e7da",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-pixunica.html": {
-  "h": "6032ee68a4d90f62",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "07cfe45e85567056",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-planetx.html": {
-  "h": "b96f822861100d58",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "210a97c41fe4d92c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-pocktium.html": {
-  "h": "49f11008e337286c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "5a28f76ead2465cc",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-primecut-ultra.html": {
-  "h": "534aea050d075d88",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "bd826225ab456969",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-promptalon.html": {
   "h": "52529876dedb36e5",
   "t": "2026-08-28T02:47:00+00:00"
  },
  "apps/hsx-promptkinetics.html": {
-  "h": "61b96b9cec583ac8",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "a9fb33f1bf4d1410",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-quantumgen-ai-studio.html": {
-  "h": "048509dafcb78e05",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "e3ef3759f5082043",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-sensecapture.html": {
-  "h": "b9df567d96ff24f6",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "77f792d4fa1fe5b4",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-smartclicker.html": {
-  "h": "3d12c71a648b2add",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "d7973c1facb2c532",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-socialdeck-pro.html": {
-  "h": "2312a045b36b1b41",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "a6f20737035bdc73",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-spillframe.html": {
-  "h": "aa38b5c887fa6d01",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "92050c098cc02fa3",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-studioflow.html": {
-  "h": "8a8df1e09482edb8",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "ab2bc65d16e86e00",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-terraorbitix-3d.html": {
-  "h": "9ae72e62c8a7b0a3",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "06dbea91c7a959e9",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-webx-studio.html": {
-  "h": "02a7cbbc703a708b",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "da396f3a6aae6f8f",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-workx-suite.html": {
-  "h": "04d502744c07cbab",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "23d5a807210cbad6",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hsx-writedesk.html": {
-  "h": "c43e9f67302b1837",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "dfc605a13b7ce226",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/hypersonus-ultra.html": {
-  "h": "54efea525f6f8108",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "f2fc0ac3c1e90919",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/katanicos.html": {
-  "h": "507d58889ed0e1a8",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "3735d4197fbab241",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/local-ai-apps.html": {
-  "h": "696a1df5ad406d9a",
-  "t": "2026-09-23T01:35:00+00:00"
+  "h": "d540944e3de4d251",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/mediatidy-ultra.html": {
-  "h": "f1c34f85370c3244",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "a06542f659b2061e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/mobile-tunex.html": {
-  "h": "7160b340d9f3f357",
-  "t": "2026-09-27T01:21:00+00:00"
+  "h": "7d25e8322685f9d7",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/nimbusdock.html": {
-  "h": "146b173f7dcd0b93",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "b0dd5a915778b1dd",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-archive-pro.html": {
-  "h": "e823dd673ef461c9",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "ba7578a5fc5bc61d",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-benchx-ultra.html": {
-  "h": "71fab5f142ef5668",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "ee0874d2baaa18e1",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-download-manager-ultra.html": {
-  "h": "294c51cc04b67054",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "0f3b905b0ace8685",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-guardx.html": {
-  "h": "06a070f3921d7453",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "217ec4d57a845a8d",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-optimisation-apps.html": {
-  "h": "6456fb8c9fc3609f",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "211e07a7686207e4",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-screen-recorder-pro.html": {
-  "h": "122d95fcdec85aa4",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "1f8a7bb66bbabe4b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-sensex.html": {
   "h": "4872ec8d04fffb93",
   "t": "2026-09-04T17:22:00+00:00"
  },
  "apps/pc-tunex.html": {
-  "h": "c554ac09707f5d66",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "149b25cfcee2f505",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-turbox-ultra.html": {
-  "h": "78f2845b88fa729c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "1ba1d4238962b8ad",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pc-visionbulwark.html": {
-  "h": "a29739c9af885e5d",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "2b139c2dc2584780",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/photo-editing-apps.html": {
-  "h": "9e2b2168ccd2122d",
-  "t": "2026-09-23T01:35:00+00:00"
+  "h": "6f598747be4bb0b1",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/pixumbra-studio.html": {
-  "h": "779636c874a5e88c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "7d3a5d63ffa6684c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/planetx-earth-explorer.html": {
-  "h": "840e7b5b0fc779aa",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "689024c694a297ef",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/planetx-infinity.html": {
-  "h": "2543aafadaac655c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "9e7f0d05584d8ed0",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/privacy-utilities.html": {
-  "h": "1a3b82902ceef9c7",
-  "t": "2026-09-23T01:35:00+00:00"
+  "h": "2af6e0ef65bd2554",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/qr-creator-studio.html": {
-  "h": "e9043df367bb1a77",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "fb9a80503274d3f5",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/quantumdrop.html": {
-  "h": "0df84286fe37950c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "58a9d9a9190fdafa",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/solsticeos.html": {
-  "h": "32c22342742cc5f1",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "52318f1c3a6e631a",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/spatial-audio-apps.html": {
-  "h": "4db42c751e2a0896",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "3011722e41a0f69e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/spatiax-ultra-mobile.html": {
-  "h": "53cbb1d9467787b8",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "0cdb47a1e6358145",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/spatiax-ultra.html": {
-  "h": "500bbe2a93d532e4",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "35ebe1509740e263",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/vaudio-elite.html": {
-  "h": "62d61011a1f76645",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "9b244353a321d9ed",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/vectalonos.html": {
-  "h": "d7b195c75ee9de5c",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "24267df544eac508",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/workx-suite.html": {
-  "h": "fa277207dea30da9",
-  "t": "2026-09-27T01:20:00+00:00"
+  "h": "49c83b73d046855c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "apps/xseasons.html": {
-  "h": "3d76ef754ec383a3",
-  "t": "2026-09-27T00:21:00+00:00"
+  "h": "4a6ab3f6d49f2fd8",
+  "t": "2026-10-01T20:18:00+00:00"
+ },
+ "bug-hunt.html": {
+  "h": "e723207c20f8ef28",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "card.html": {
   "h": "d98a94e719264656",
   "t": "2026-09-05T03:57:00+00:00"
  },
+ "community.html": {
+  "h": "c950779ad45c06a8",
+  "t": "2026-10-01T20:18:00+00:00"
+ },
  "contact.html": {
-  "h": "f6c73ccacc239455",
-  "t": "2026-09-26T22:27:00+00:00"
+  "h": "9e69b0b58ddf236f",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "contest-rules.html": {
-  "h": "3ecc9391ad5725e8",
-  "t": "2026-09-23T01:35:00+00:00"
+  "h": "5380383883d1f205",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/automating-repetitive-tasks.html": {
-  "h": "71c88c427efae0b4",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "2def95b940687e4d",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/back-up-your-files-properly.html": {
-  "h": "cdb7460a14fd4f96",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "b86a71fb40d3f045",
+  "t": "2026-10-01T20:18:00+00:00"
+ },
+ "guides/bootable-usb-drives.html": {
+  "h": "70b7144353f5cf85",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/choosing-an-image-format.html": {
-  "h": "e1bf6d70a1601db7",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "8a09cea06ab737e5",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/free-up-disk-space-on-windows.html": {
-  "h": "7f95230046164457",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "75f85a94cd75314c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/index.html": {
-  "h": "3c242be4f283500d",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "4c53e3972187fb4f",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/local-image-models-on-small-gpus.html": {
-  "h": "1c6334d8921f316c",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "d0c532e7ccf125e0",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/one-game-library-across-stores.html": {
-  "h": "bd6dd30cb12c10fa",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "c93acd59acac34e0",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/organise-a-photo-library.html": {
-  "h": "f3a9259ce9383a80",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "67b4ed719954d95b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/qr-codes-safely.html": {
-  "h": "10a60357281f7224",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "18befeabe622c5ad",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/same-prompt-different-picture.html": {
-  "h": "7972c55fbd6c58fd",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "68f2599fcf458ee8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/screen-recording-settings.html": {
-  "h": "da455f0e913cdea0",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "a4867bf09b84c4ef",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/spatial-audio-on-windows.html": {
-  "h": "3f50be5993cc6822",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "34b24198a2a0d456",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/speed-up-a-slow-windows-pc.html": {
-  "h": "6e975fba93b7d117",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "862b0cb91529aa00",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/what-offline-ai-really-means.html": {
-  "h": "a44d788dde2ecc2a",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "cc16fe38d879f89a",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/why-a-video-file-wont-play.html": {
-  "h": "279c98898396ca67",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "456041e17463fa1e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/why-downloads-are-slow.html": {
-  "h": "cecfd7631c2c88de",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "fc4c1b3af37af337",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/why-pdfs-get-huge.html": {
-  "h": "88260a4258b2ad98",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "3f66a80d9d8ff168",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/windows-privacy-settings.html": {
-  "h": "6de14c295af0feef",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "7ffbcc09c69a49c3",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "guides/zip-7z-and-compression.html": {
-  "h": "6d8aafd1a0c122f0",
-  "t": "2026-09-29T01:38:00+00:00"
+  "h": "c3fd5e40ebf083e9",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "index.html": {
-  "h": "9c34a1269664d430",
-  "t": "2026-09-26T22:27:00+00:00"
+  "h": "67936e129ea41015",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "naverb1219b2bdf5741eca11b6a8168a1e3df.html": {
   "h": "461f21264018252b",
   "t": "2026-08-28T03:22:00+00:00"
  },
+ "new-pc.html": {
+  "h": "6cf9540903464b83",
+  "t": "2026-10-01T20:18:00+00:00"
+ },
  "ownership.html": {
-  "h": "bc37069f83e62991",
-  "t": "2026-09-29T00:15:00+00:00"
+  "h": "0b4959cde3b7e6aa",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy-policies.html": {
-  "h": "1a1382c07c2d1d65",
-  "t": "2026-09-25T13:16:00+00:00"
+  "h": "7af7ec1384240e7b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy.html": {
-  "h": "6a04d2984046d833",
-  "t": "2026-09-29T00:15:00+00:00"
+  "h": "9946f12854eb6ee6",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/ConvertMasterUltraPrivacy.html": {
-  "h": "7ecd0c9bb2463f40",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "397da60f09a40399",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/DocsMiningPrivacy.html": {
-  "h": "a65491bd1ed435c3",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "65ef32142ef7e80c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/DreamMintAIPrivacy.html": {
-  "h": "2819b2658f2802d9",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "b9849687771aae52",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/Drop2QRPrivacy.html": {
-  "h": "641701b0160ab18c",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "29ce77ad74a6f48e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/FileGuardianUltraPrivacy.html": {
-  "h": "a72c93054c6c7cf3",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "d98b8108c1c3e923",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/FlipXStudioPrivacy.html": {
-  "h": "dd7064e98ad0a3e2",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "728a20a923f33444",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/FocusRoomUltraPrivacy.html": {
-  "h": "1c196e74873188d6",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "8cc518e76f82bee6",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXAIBrowserPrivacy.html": {
-  "h": "35086d3b3079d859",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "2eb61aa2c45e3f44",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXAppsHubPrivacy.html": {
-  "h": "0ec8f2207941729e",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "22b8f0ee4638816c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXArtGenStudioPrivacy.html": {
-  "h": "30e655dd6dcd10f7",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "5c62613c08cbed96",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXAutomafyPrivacy.html": {
-  "h": "d6291beabe30dc71",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "66a149599e021525",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXBeatGridPrivacy.html": {
-  "h": "1da527f8bc2843a1",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "e442105bafce711c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXBootForgePrivacy.html": {
-  "h": "30f26872c5d7f3ee",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "28d9f265eaf1fe17",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXBrowsePrivacy.html": {
   "h": "b3bb5b195d0f8ece",
@@ -852,264 +872,268 @@
   "t": "2026-09-09T19:20:00+00:00"
  },
  "privacy/HSXCastVisualityPrivacy.html": {
-  "h": "db2bdfd29e520a1e",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "8d4e052e87f44119",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXCodivaryPrivacy.html": {
-  "h": "2289355a72407066",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "963de9de2092fe67",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXConvertStudioPrivacy.html": {
-  "h": "9cfcc1a62121d003",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "fce1b6c5af8ab145",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXCreatorStudioPrivacy.html": {
-  "h": "c842c7974ec9b193",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "9eb30234603df716",
+  "t": "2026-10-01T20:18:00+00:00"
+ },
+ "privacy/HSXCreatorixPrivacy.html": {
+  "h": "fb50cd4002bf8ee0",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXDepthStudio3DPrivacy.html": {
-  "h": "ad911a735c16c3d4",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "b744e33300bd3d60",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXDocClarityPrivacy.html": {
-  "h": "5a325092cd5a809b",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "b2b88200516afdf8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXDocMentoPrivacy.html": {
-  "h": "b8a2a1299894368e",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "8ba57d22d11b039a",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXDreamVividAIPrivacy.html": {
-  "h": "7d5f249e8f3d52ac",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c52ed4546429bbf9",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXEarthShellPrivacy.html": {
-  "h": "cf66c5b8972d16c4",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "88385d2076406c88",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXExeCrafterPrivacy.html": {
-  "h": "c9acf33e132b674d",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c48c858229fb452c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXFotoTensorPrivacy.html": {
-  "h": "3da4362b57194691",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "d4c09b4bbe6896b8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXGameFabrixPrivacy.html": {
-  "h": "2fc2e915d0911840",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "6c5a9a9f8cf5d095",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXGlowCraftPrivacy.html": {
-  "h": "cf36305ffa1d2d39",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "ba6870534ed6d5a2",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXHandsFreePCPrivacy.html": {
-  "h": "ac50c6e15a0aea04",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "0ed011719c66991e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXInfiniteGenStudioPrivacy.html": {
-  "h": "1f394e9df9f1a543",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "347aa14df3f0b64c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXLaunchHarborPrivacy.html": {
-  "h": "c0d270043eb4f394",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "7ed59e462f2c8b9c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXMediaLucentPrivacy.html": {
-  "h": "81350660aef849ab",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "e3155701b58cd554",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXMorphLoraPrivacy.html": {
-  "h": "f91391e96619ec18",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "6eb1bb9982eed6f4",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXNanoCodifyPrivacy.html": {
-  "h": "efec19ed7d170c09",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "d3d48900380529eb",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXNanoVisualityPrivacy.html": {
-  "h": "1ea992de12fcf7fe",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "e7dd7a7bd4ccdc6b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXNostalgicelPrivacy.html": {
-  "h": "fd0dc60015e0d0c1",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "b30e277710f029ac",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXNovaDiffuxPrivacy.html": {
-  "h": "9bac09c20cb17cf4",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "0bda5d78c517ea01",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPhotoVidixPrivacy.html": {
-  "h": "124f58b567953711",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "785c85f46010f7a0",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPixUnicaPrivacy.html": {
-  "h": "4af3677a390abfc7",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "9509fa6e213cd325",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPlanetXPrivacy.html": {
-  "h": "7c7a133054eec2c9",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "770741791250b0cf",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPocktiumPrivacy.html": {
-  "h": "731b81c6025adf2a",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "09f5848ccb0cecac",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPrimeCutUltraPrivacy.html": {
-  "h": "554467bc73bd98aa",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "ef71dcc9fc0157dc",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPromptKineticsPrivacy.html": {
-  "h": "8b3059f4d6bd1f47",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "627c68daf3eec5bc",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXPromptalonPrivacy.html": {
   "h": "6ad36bad07cc9b3b",
   "t": "2026-08-28T02:47:00+00:00"
  },
  "privacy/HSXQuantumGenAIStudioPrivacy.html": {
-  "h": "8962c629f351f70a",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c98a8ad73426269c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXSenseCapturePrivacy.html": {
-  "h": "aa5c374e20efd111",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "ab74afac2a3296d8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXSmartClickerPrivacy.html": {
-  "h": "b82bf02488c8bd61",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "f1a5cc6736a2e001",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXSocialDeckProPrivacy.html": {
-  "h": "d5b9348ccab6122b",
-  "t": "2026-09-23T00:27:00+00:00"
+  "h": "34fd5fcc1629ba38",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXSpillFramePrivacy.html": {
-  "h": "46c8fdd0e70ace46",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c780c27c822237f2",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXStudioFlowPrivacy.html": {
-  "h": "fe463251d9816996",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "290e51dafc9faeaa",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXTerraOrbitix3DPrivacy.html": {
-  "h": "d00300eb9f3c63e5",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "5cb1269ca852165f",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXWebXStudioPrivacy.html": {
-  "h": "9de4456e04ed723e",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c8f83912e66b011e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXWorkXSuitePrivacy.html": {
-  "h": "b84d13b2e59fda10",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "dfac69ee6d9eb2cb",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HSXWriteDeskPrivacy.html": {
-  "h": "e78b37591bf49d63",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "89c5567878a44745",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/HypersonusUltraPrivacy.html": {
-  "h": "a6ef24ad6d186922",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "7f38e07d1d84efe8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/KatanicOSPrivacy.html": {
-  "h": "d1069136aca12092",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "54875f31f0249776",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/MediaTidyUltraPrivacy.html": {
-  "h": "4d8a022e0e0b40e0",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "431bdd7bff321cb1",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/MobileTunexPrivacy.html": {
-  "h": "3da5f3f1c6196e8c",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "bf6f8ab36b3fb3b8",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/NimbusDockPrivacy.html": {
-  "h": "1f43e98abf52f9f9",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "889a695ad5c60757",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCArchiveProPrivacy.html": {
-  "h": "a4b9c3b6ccac69da",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "6e9bc00a57fd8d98",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCBenchXUltraPrivacy.html": {
-  "h": "847a6648800146e2",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "f8248147aaaf7460",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCDownloadManagerUltraPrivacy.html": {
-  "h": "87b6022deaa62dff",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "873870f6bfe35580",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCGuardXPrivacy.html": {
-  "h": "79d5fd39307febc9",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "4ea549b3fa22eef2",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCScreenRecorderProPrivacy.html": {
-  "h": "e11d021f68c307d2",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c6f887999f6a8c69",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCSenseXPrivacy.html": {
   "h": "e73562ec806eca7e",
   "t": "2026-09-04T17:22:00+00:00"
  },
  "privacy/PCTuneXPrivacy.html": {
-  "h": "3e49cc9b0143409a",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "12561948825a9b6e",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCTurboXUltraPrivacy.html": {
-  "h": "c98ab902d954bfc3",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "86f9390e0bf51601",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PCVisionBulwarkPrivacy.html": {
-  "h": "93c86956e8e16941",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "ec015bdf3eebfbf9",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PixumbraStudioPrivacy.html": {
-  "h": "69e0023fd0468925",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "7c8a685d5fd7aa1d",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PlanetXEarthExplorerPrivacy.html": {
-  "h": "05554c6d3ffe87cb",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "2b6ed2537d7b7be7",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/PlanetXInfinityPrivacy.html": {
-  "h": "d57fa24543798d6a",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "83609703c34d2be0",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/QRCreatorStudioPrivacy.html": {
-  "h": "9828fc8c7115deec",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "13c6a9fa42fc6ebd",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/QuantumDropPrivacy.html": {
-  "h": "193606a97ae4ac6d",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "d30d7b4ff00737cd",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/SolsticeOSPrivacy.html": {
-  "h": "7b96c8efa20991cf",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "c9885c9ce867628a",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/SpatiaXMobilePrivacy.html": {
-  "h": "6594b48c15ddf674",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "6108adcecb8e5cd2",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/SpatiaXUltraPrivacy.html": {
-  "h": "a64dd471cc9e4ccb",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "573a70ef480ccf81",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/VAudioElitePrivacy.html": {
-  "h": "3d2958c9be02395f",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "b25752a1546d633b",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/VectalonOSPrivacy.html": {
-  "h": "cbeb097c664e43aa",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "4c01f81af17e278c",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/WorkXSuitePrivacy.html": {
-  "h": "d26d8ef5ce6014fe",
-  "t": "2026-09-23T00:27:00+00:00"
+  "h": "7c42634b47d727b5",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "privacy/XSeasonsPrivacy.html": {
-  "h": "dbb528c452ed7811",
-  "t": "2026-09-25T13:23:00+00:00"
+  "h": "3b5ef68616a14aed",
+  "t": "2026-10-01T20:18:00+00:00"
  },
  "qx-link.html": {
   "h": "0f9ab22e5ffd9f06",
