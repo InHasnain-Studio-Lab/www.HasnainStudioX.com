@@ -11,6 +11,8 @@
     transition:border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
 }
 .camp-pills a:hover,.camp-pills a:focus-visible{border-color:var(--accent-line);transform:translateY(-2px);}
+.camp-pills--kits a{flex:1 1 0;min-width:0;padding:.8rem .9rem;}
+.camp-pills--kits b{white-space:nowrap;}
 .camp-pills b{font-family:var(--f-display);font-weight:500;font-size:.95rem;color:var(--ink);}
 .camp-pills span{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);}
 
@@ -200,6 +202,7 @@ a.camp-next-card:hover{border-color:var(--accent-line);transform:translateY(-3px
     .camp-strip{grid-template-columns:repeat(2,minmax(0,1fr));}
     .camp-band{padding:1.5rem;}
     .camp-pills a{min-width:0;flex:1 1 9rem;}
+    .camp-pills--kits b{white-space:normal;}
 }
 @media (max-width:560px){
     .camp-strip{grid-template-columns:1fr;}

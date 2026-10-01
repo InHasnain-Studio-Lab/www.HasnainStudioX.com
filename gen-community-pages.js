@@ -88,3 +88,84 @@ ${items.map(i => {
 }
 
 module.exports = { build: (win, and, appSlug) => [roadmap(win, and, appSlug), showcase(win, and, appSlug)].filter(Boolean).join('\n') };
+
+/* New PC kits: every live app, in five Windows kits and one for the phone. The lists set
+   the order and the picks that do not follow the catalogue group; any other live app lands
+   by its group, so a new app is never missing. */
+const KITS = [
+  { id: 'productivity', name: 'Productivity', blurb: 'Documents, writing, focus, files and the small jobs you repeat every day.',
+    ids: ['workxsuite', 'writedesk', 'docmento', 'focusroomultra', 'nimbusdock', 'automafy', 'quantumdrop', 'pcdownloadmanagerultra',
+          'convertxpro', 'handsfreepc', 'browsex', 'horizonos', 'flipxstudio', 'castvisuality', 'autoclickx', 'docclarity',
+          'socialdeckpro', 'pocktium', 'execrafter', 'qrcreatorstudio', 'nanocodify'] },
+  { id: 'safety', name: 'Safety and care', blurb: 'Privacy, backups, recovery and keeping the PC quick as it fills up.',
+    ids: ['pcguardx', 'fileguardianultra', 'bootforge', 'pcarchivepro', 'pctunex', 'mediatidyultra', 'pcvisionbulwark', 'pcturboxultra', 'pcbenchxultra'] },
+  { id: 'creativity', name: 'Creativity', blurb: 'Recording, editing, photos, sound and design.',
+    ids: ['pcscreenrecorderpro', 'primecut', 'photovidix', 'glowlab', 'creatorxstudio', 'spillframe', 'beatxpro', 'vaudioelite',
+          'spatiaxultra', 'hypersonusultra', 'medialucent', 'webxstudio', 'image3dx', 'sensecapture', 'nanovisuality', 'pixumbrastudio'] },
+  { id: 'ai', name: 'Local AI', blurb: 'Image, video and writing models that run on your own graphics card, with nothing uploaded.',
+    ids: ['hsxstudioflow', 'dreammintai', 'forgexpro', 'fototensor', 'novadiffux', 'artgenstudio', 'quantumxai', 'dreamgenaiultra',
+          'infinitegenai', 'pixunica', 'nostalgicel', 'morphlora'] },
+  { id: 'explore', name: 'Explore and play', blurb: 'Globes, worlds, games and desktops that make the PC your own.',
+    ids: ['planetx', 'planetxearthexplorer', 'terraorbitix', 'planetxinfinity', 'aetheris', 'gamefabrix', 'xseasons', 'nexusos',
+          'quantumos', 'earthos'] },
+];
+const GROUP_KIT = { 'Local generation': 'ai', 'Worlds and play': 'explore', 'Audio and video': 'creativity',
+  'Design and documents': 'productivity', 'Files and transfer': 'productivity', 'Performance and control': 'safety' };
+const CAT_KIT = { ai: 'ai', media: 'creativity', productivity: 'productivity', utilities: 'safety' };
+
+function kits(win, and, appSlug) {
+  const cat = load('hub-catalog.json', {});
+  const hub = new Map((cat.ps || []).map(p => [p.i, p]));
+  const live = win.filter(a => a.status === 'live');
+  const byId = new Map(live.map(a => [a.id, a]));
+  const lists = new Map(KITS.map(k => [k.id, []]));
+  const placed = new Set();
+  for (const k of KITS) for (const id of k.ids) if (byId.has(id) && !placed.has(id)) { lists.get(k.id).push(byId.get(id)); placed.add(id); }
+  for (const a of live) {
+    if (placed.has(a.id)) continue;
+    const h = hub.get(a.id);
+    lists.get((h && GROUP_KIT[h.g]) || CAT_KIT[a.category] || 'productivity').push(a);
+  }
+  const storeOf = a => { const m = /apps\.microsoft\.com\/detail\/([A-Z0-9]+)/i.exec(a.storeUrl || ''); return m ? 'https://apps.microsoft.com/detail/' + m[1].toUpperCase() : a.storeUrl; };
+  const card = (a, platform) => {
+    const h = hub.get(a.id);
+    const play = platform === 'Android';
+    return `                    <article class="kit-app">
+                        <span class="kit-dot" style="--app:${esc((h && h.a) || '#C7A5F7')}" aria-hidden="true"></span>
+                        <h3><a href="apps/${appSlug(a.name, platform)}.html">${esc(a.name)}</a></h3>
+                        <p>${esc(a.tagline || '')}</p>
+                        <a class="kit-store" href="${esc(play ? a.storeUrl : storeOf(a))}" target="_blank" rel="noopener">${play ? 'Get it on Google Play' : 'Free trial on Microsoft Store'}<span class="visually-hidden"> for ${esc(a.name)}</span></a>
+                    </article>`;
+  };
+  const phone = and.filter(a => a.status === 'live');
+  const total = KITS.length;
+  const sections = KITS.map((k, i) => `        <section class="section kit" id="${k.id}" data-cid="newpc-${k.id}" aria-labelledby="kit-${k.id}">
+            <div class="section-header">
+                <span class="kit-kicker">Kit ${i + 1} of ${total}</span>
+                <h2 id="kit-${k.id}">${esc(k.name)}</h2>
+                <p>${esc(k.blurb)}</p>
+            </div>
+            <div class="kit-grid">
+${lists.get(k.id).map(a => card(a, 'Windows')).join('\n')}
+            </div>
+        </section>`);
+  if (phone.length) sections.push(`        <section class="section kit" id="phone" data-cid="newpc-phone" aria-labelledby="kit-phone">
+            <div class="section-header">
+                <span class="kit-kicker">And your phone</span>
+                <h2 id="kit-phone">Android</h2>
+                <p>The same idea on your phone: no account, no cloud, free on Google Play with an optional one-time Pro unlock.</p>
+            </div>
+            <div class="kit-grid">
+${phone.map(a => card(a, 'Android')).join('\n')}
+            </div>
+        </section>`);
+  const pills = `            <nav class="camp-pills camp-pills--kits" aria-label="The kits">
+${KITS.map(k => `                <a href="#${k.id}"><b>${esc(k.name)}</b><span>${lists.get(k.id).length} apps</span></a>`).join('\n')}${phone.length ? `
+                <a href="#phone"><b>Android</b><span>${phone.length} apps</span></a>` : ''}
+            </nav>`;
+  const ok = fill('new-pc.html', 'KITS', sections.join('\n\n')) && fill('new-pc.html', 'KITPILLS', pills);
+  const n = [...lists.values()].reduce((x, l) => x + l.length, 0);
+  return ok ? `  new PC kits           ${n} of ${live.length} Windows apps, ${phone.length} Android` : '';
+}
+
+module.exports.build = ((prev) => (win, and, appSlug) => [prev(win, and, appSlug), kits(win, and, appSlug)].filter(Boolean).join('\n'))(module.exports.build);
