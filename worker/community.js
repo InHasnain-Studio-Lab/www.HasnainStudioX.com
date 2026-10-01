@@ -1,5 +1,5 @@
 /* The community board on hasnainstudiox.com: the favourite app vote, app feedback,
-   ideas for new apps and improvements, and the Bug Hunt reports.
+   ideas for new apps and improvements, the Bug Hunt reports and showcase entries.
 
    Everything is stored in D1 and a copy of each written submission is mailed to the
    studio. Votes carry no name, email or IP address: a voter is a random id the
@@ -11,7 +11,7 @@ const EXTRA_APPS = ['HSX Apps Hub'];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const VOTER_RE = /^[A-Za-z0-9-]{16,64}$/;
 
-const LIMITS = { vote: 6, feedback: 8, bug: 6 };   // per network per day; votes per network per month
+const LIMITS = { vote: 6, feedback: 8, bug: 6, showcase: 4 };   // per network per day; votes per network per month
 const MAX = { short: 80, line: 160, text: 4000 };
 
 let appCache = { at: 0, names: null };
@@ -174,6 +174,38 @@ async function bug(body, request, env) {
   return [200, { ok: true, reference: ref }];
 }
 
+/* Showcase entries are links to work already published elsewhere; nothing is shown
+   on the site until the studio has looked at it and added it by hand. */
+async function showcase(body, request, env) {
+  const f = {
+    app: clip(body.app, MAX.short), title: clip(body.title, MAX.line), link: clip(body.link, 300),
+    about: clip(body.about, MAX.text), name: clip(body.name, MAX.short), email: clip(body.email, MAX.line),
+  };
+  if (!(await appNames()).has(f.app)) return [400, { ok: false, error: 'Choose the app you used.' }];
+  if (f.title.length < 3) return [400, { ok: false, error: 'Give your work a title.' }];
+  let host = '';
+  try { const u = new URL(f.link); if (!/^https?:$/.test(u.protocol)) throw 0; host = u.hostname; } catch (e) {
+    return [400, { ok: false, error: 'Add a full link to where the work is published, starting with https://' }];
+  }
+  if (f.about.length < 20) return [400, { ok: false, error: 'Tell us a little about how you made it.' }];
+  if (!f.name) return [400, { ok: false, error: 'Add the name to credit.' }];
+  if (!EMAIL_RE.test(f.email)) return [400, { ok: false, error: 'A valid email address is required, so we can check before publishing.' }];
+  if (body.agree !== true) return [400, { ok: false, error: 'Please confirm the work is yours and can be shown.' }];
+
+  const hash = await netHash(request, env, day());
+  if (await overLimit(env, 'showcase', hash, day(), LIMITS.showcase))
+    return [429, { ok: false, error: 'That is the most entries one connection can send in a day. Please send the rest tomorrow.' }];
+
+  const id = crypto.randomUUID();
+  await env.MAIL.prepare('INSERT INTO showcase (id, app, title, link, about, name, email, net_hash, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)')
+    .bind(id, f.app, f.title, f.link, f.about, f.name, f.email, hash, now()).run();
+  const ref = 'SC-' + id.slice(0, 8).toUpperCase();
+  await notify(env, `Showcase ${ref}: ${f.app}, ${f.title}`,
+    [['App', f.app], ['Title', f.title], ['Link', f.link], ['Site', host], ['Credit as', f.name], ['Email', f.email], ['Reference', ref]],
+    [['How it was made', f.about]], f.email);
+  return [200, { ok: true, reference: ref }];
+}
+
 /* answers /community/* paths; json() and origin checks come from the main worker */
 export async function handleCommunity(request, env, url, json, origin, allowed) {
   if (!env.VOTE_SALT) {
@@ -196,7 +228,7 @@ export async function handleCommunity(request, env, url, json, origin, allowed) 
     /* the hidden trap only a bot fills */
     if (body.hsx_ref) { console.log('community trap filled'); return json({ ok: true, reference: 'OK' }, 200, origin); }
 
-    const handler = { '/community/vote': vote, '/community/feedback': feedback, '/community/bug': bug }[path];
+    const handler = { '/community/vote': vote, '/community/feedback': feedback, '/community/bug': bug, '/community/showcase': showcase }[path];
     if (!handler) return json({ ok: false, error: 'Not found.' }, 404, origin);
     const [status, out] = await handler(body, request, env);
     return json(out, status, origin);

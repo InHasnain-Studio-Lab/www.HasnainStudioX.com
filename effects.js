@@ -795,6 +795,7 @@
         brand.style.cursor = 'pointer';
         var canvas = document.createElement('canvas');
         canvas.className = 'ink-splat-canvas';
+        canvas.setAttribute('aria-hidden', 'true');
         document.body.appendChild(canvas);
         var ctx = canvas.getContext('2d');
         if (!ctx) return;
@@ -1060,6 +1061,7 @@
         if (!SR) return;
         var ind = document.createElement('div');
         ind.className = 'voice-indicator';
+        ind.setAttribute('role', 'status');
         ind.innerHTML = '<span id="vi-text">Listening</span><span id="vi-res"></span>';
         document.body.appendChild(ind);
         var viText = ind.querySelector('#vi-text'), viRes = ind.querySelector('#vi-res');

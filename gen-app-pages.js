@@ -273,6 +273,56 @@ ${steps.map(([h, p]) => `                <li><h3>${esc(h)}</h3><p>${esc(p)}</p><
 `;
 }
 
+/* "Is it right for my PC?": the requirements Microsoft publishes on each Store
+   page, read by fetch-store-facts.js, plus a check the browser can run locally. */
+const STORE = (() => { try { return JSON.parse(read('store-facts.json')).products || {}; } catch (e) { return {}; } })();
+const WINVER = { 17763: 'Windows 10 (version 1809) or Windows 11', 18362: 'Windows 10 (version 1903) or Windows 11',
+                 19041: 'Windows 10 (version 2004) or Windows 11', 22000: 'Windows 11' };
+const FIT_ORDER = ['OS', 'Processor', 'Memory', 'Graphics Processor', 'Video Memory', 'DirectX', 'Camera'];
+const FIT_LABEL = { OS: 'Windows', 'Graphics Processor': 'Graphics', 'Video Memory': 'Graphics memory' };
+const fitText = (name, v) => {
+  if (name !== 'OS') return v;
+  const b = (v.match(/(\d{5})/) || [])[1];
+  return WINVER[b] || v;
+};
+const gbOf = v => { const m = /(\d+)\s*GB/i.exec(v || ''); return m ? +m[1] : 0; };
+const coresOf = v => {
+  const w = { dual: 2, quad: 4, hexa: 6, octa: 8 };
+  const m = /(\d+)[- ]?core/i.exec(v || '') || /\b(dual|quad|hexa|octa)\b/i.exec(v || '');
+  return m ? (w[m[1].toLowerCase()] || +m[1]) : 0;
+};
+const sizeOf = b => b >= 1e9 ? (b / 1e9).toFixed(1) + ' GB' : Math.max(1, Math.round(b / 1e6)) + ' MB';
+
+function fitFor(a) {
+  const f = STORE[a.id];
+  if (a.platform === 'Android' || !f || !f.req || !f.req.min.length) return '';
+  const min = new Map(f.req.min), rec = new Map(f.req.rec);
+  const names = FIT_ORDER.filter(n => min.has(n) || rec.has(n));
+  const showRec = names.some(n => rec.has(n) && rec.get(n) !== min.get(n));
+  const cell = (m, n) => m.has(n) ? esc(fitText(n, m.get(n))) : '<span class="fit-none">Not stated</span>';
+  const rows = names.map(n => `                    <tr><th scope="row">${esc(FIT_LABEL[n] || n)}</th><td>${cell(min, n)}</td>${showRec ? `<td>${cell(rec, n)}</td>` : ''}</tr>`);
+  const build = (/(\d{5})/.exec(min.get('OS') || '') || [])[1] || '';
+  return `
+        <section class="section" aria-labelledby="fit-title">
+            <div class="section-header"><h2 id="fit-title">Is ${esc(a.name)} right for my PC?</h2>
+                <p>The requirements Microsoft lists on the ${esc(a.name)} Store page${f.size ? `, and a download of about ${sizeOf(f.size)}` : ''}.</p></div>
+            <div class="fit">
+                <table class="fit-table">
+                    <thead><tr><th scope="col"><span class="visually-hidden">Part</span></th><th scope="col">Minimum</th>${showRec ? '<th scope="col">Recommended</th>' : ''}</tr></thead>
+                    <tbody>
+${rows.join('\n')}
+                    </tbody>
+                </table>
+                <div class="fit-check" data-build="${build}" data-mem="${gbOf(min.get('Memory'))}" data-cores="${coresOf(min.get('Processor'))}">
+                    <button type="button" class="btn btn--secondary fit-run">Check this PC</button>
+                    <ul class="fit-out" aria-live="polite"></ul>
+                    <p class="fit-note">The check runs in your browser and sends nothing anywhere. Browsers only report part of the picture, so the Microsoft Store makes the final check when you install.</p>
+                </div>
+            </div>
+        </section>
+`;
+}
+
 /* "AI Tools" must not become "ai tools" in the middle of a sentence. */
 const catPhrase = c => c.label.toLowerCase().replace(/\bai\b/g, 'AI');
 
@@ -607,7 +657,7 @@ ${hero ? `
 ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
             </ul>
         </section>
-${out ? firstHourOf(a, ad) : ''}${video ? `
+${out ? fitFor(a) : ''}${out ? firstHourOf(a, ad) : ''}${video ? `
         <section class="section" aria-labelledby="video-title">
             <div class="section-header"><h2 id="video-title">Watch: ${esc(video.title)}</h2></div>
             <div class="app-video">

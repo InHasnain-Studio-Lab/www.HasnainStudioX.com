@@ -265,6 +265,30 @@
         filter();
     }
 
+    /* ---- showcase entries ---- */
+
+    var showForm = document.getElementById('show-form');
+    if (showForm) {
+        showForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var f = showForm;
+            if (!f.reportValidity()) return;
+            var body = {
+                app: f.elements['app'].value, title: f.elements['title'].value, link: f.elements['link'].value,
+                about: f.elements['about'].value, name: f.elements['name'].value, email: f.elements['email'].value,
+                agree: f.elements['agree'].checked, hsx_ref: f.elements['hsx_ref'].value
+            };
+            var button = f.querySelector('button[type="submit"]');
+            button.disabled = true;
+            send('showcase', body).then(function (data) {
+                f.reset();
+                status(f, 'Thank you, it is in. Reference ' + data.reference + '. We will email you before anything is published.', true);
+            }).catch(function (err) {
+                status(f, err.message, false);
+            }).then(function () { button.disabled = false; });
+        });
+    }
+
     /* ---- bug reports ---- */
 
     var bugForm = document.getElementById('bug-form');

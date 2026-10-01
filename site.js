@@ -472,3 +472,184 @@ window.AppViz = (function () {
     }, true);
   });
 })();
+
+/* "Check this PC" on app pages: compares what the browser reports with the Store minimums. Nothing leaves the page. */
+(function () {
+    var box = document.querySelector('.fit-check');
+    if (!box) return;
+    var out = box.querySelector('.fit-out');
+    var line = function (ok, text) {
+        var li = document.createElement('li');
+        li.className = ok === true ? 'fit-ok' : ok === false ? 'fit-low' : 'fit-unknown';
+        li.textContent = text;
+        out.appendChild(li);
+    };
+    box.querySelector('.fit-run').addEventListener('click', function () {
+        out.textContent = '';
+        var needBuild = +box.getAttribute('data-build') || 0;
+        var needMem = +box.getAttribute('data-mem') || 0;
+        var needCores = +box.getAttribute('data-cores') || 0;
+        var uad = navigator.userAgentData;
+        var isWin = uad ? uad.platform === 'Windows' : /Windows NT/.test(navigator.userAgent);
+        var osDone = (uad && uad.getHighEntropyValues && isWin
+            ? uad.getHighEntropyValues(['platformVersion']).then(function (v) { return parseInt(v.platformVersion, 10); })
+            : Promise.resolve(null)
+        ).then(function (major) {
+            if (!isWin) return line(false, 'This browser is not running on Windows. The app installs on a Windows PC from the Microsoft Store.');
+            if (major >= 13) return line(true, 'Windows 11 - meets the Windows requirement.');
+            if (major > 0) return line(needBuild >= 22000 ? false : null, needBuild >= 22000
+                ? 'Windows 10 - this app needs Windows 11.'
+                : 'Windows 10 - fine if it is up to date (version 2004 or later). Settings, then System, then About shows your version.');
+            line(null, 'Windows - this browser does not say which version. Settings, then System, then About shows it.');
+        }).catch(function () { line(null, 'Windows - this browser does not say which version.'); });
+        osDone.then(function () {
+            if (!isWin) return;
+            var threads = navigator.hardwareConcurrency || 0;
+            if (needCores && threads) {
+                line(threads >= needCores ? true : null, threads >= needCores
+                    ? 'Processor - ' + threads + ' logical processors reported; the minimum is ' + needCores + ' cores.'
+                    : 'Processor - ' + threads + ' logical processors reported; the minimum is ' + needCores + ' cores, so it may struggle.');
+            }
+            var mem = navigator.deviceMemory;
+            if (needMem && mem) {
+                if (mem >= needMem) line(true, 'Memory - at least ' + mem + ' GB reported; the minimum is ' + needMem + ' GB.');
+                else if (mem >= 8) line(null, 'Memory - browsers report at most 8 GB; the minimum is ' + needMem + ' GB. Task Manager, then Performance, shows the real figure.');
+                else line(false, 'Memory - about ' + mem + ' GB reported; the minimum is ' + needMem + ' GB.');
+            } else if (needMem) {
+                line(null, 'Memory - this browser does not report it. Task Manager, then Performance, shows it; the minimum is ' + needMem + ' GB.');
+            }
+        });
+    });
+})();
+
+/* Site search: a header button, "/" or Ctrl+K. The index loads on first use and every match happens in the page. */
+(function () {
+    var root = (function () {
+        var s = document.querySelector('script[src*="site."]');
+        return s ? s.src.replace(/site\.[^\/]*$/, '') : '/';
+    })();
+    var data = null, dlg, input, list, items = [], active = -1;
+
+    function build() {
+        dlg = document.createElement('div');
+        dlg.className = 'srch';
+        dlg.setAttribute('role', 'dialog');
+        dlg.setAttribute('aria-modal', 'true');
+        dlg.setAttribute('aria-label', 'Search the site');
+        dlg.hidden = true;
+        dlg.innerHTML = '<div class="srch-box"><label class="visually-hidden" for="srch-q">Search apps, guides and fixes</label>' +
+            '<input id="srch-q" class="srch-q" type="search" autocomplete="off" placeholder="Search apps, guides and fixes" role="combobox" aria-expanded="true" aria-controls="srch-list">' +
+            '<ul id="srch-list" class="srch-list" role="listbox"></ul>' +
+            '<p class="srch-hint"><kbd>Enter</kbd> open <kbd>&uarr;</kbd><kbd>&darr;</kbd> move <kbd>Esc</kbd> close</p></div>';
+        document.body.appendChild(dlg);
+        input = dlg.querySelector('.srch-q');
+        list = dlg.querySelector('.srch-list');
+        dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+        input.addEventListener('input', run);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (!items.length) return;
+                active = (active + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+                paint();
+            } else if (e.key === 'Enter' && items[active]) {
+                location.href = root + items[active].u;
+            } else if (e.key === 'Escape') {
+                close();
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+            }
+        });
+    }
+
+    function score(it, terms) {
+        var t = it.t.toLowerCase(), all = (it.t + ' ' + it.d + ' ' + (it.w || '') + ' ' + it.k).toLowerCase(), s = 0;
+        for (var i = 0; i < terms.length; i++) {
+            if (all.indexOf(terms[i]) === -1) return 0;
+            s += t.indexOf(terms[i]) === 0 ? 6 : t.indexOf(terms[i]) !== -1 ? 4 : 1;
+        }
+        return s + (it.k === 'Windows app' || it.k === 'Android app' ? 1 : 0);
+    }
+
+    function run() {
+        var terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+        items = !terms.length || !data ? [] : data
+            .map(function (it) { return { it: it, s: score(it, terms) }; })
+            .filter(function (x) { return x.s; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12).map(function (x) { return x.it; });
+        active = items.length ? 0 : -1;
+        paint();
+    }
+
+    function paint() {
+        list.textContent = '';
+        if (!items.length && input.value.trim()) {
+            var none = document.createElement('li');
+            none.className = 'srch-none';
+            none.textContent = data ? 'Nothing found. Try another word, or browse the Fix it page.' : 'Loading...';
+            list.appendChild(none);
+            return;
+        }
+        items.forEach(function (it, i) {
+            var li = document.createElement('li');
+            li.setAttribute('role', 'option');
+            li.id = 'srch-o' + i;
+            li.setAttribute('aria-selected', i === active ? 'true' : 'false');
+            var a = document.createElement('a');
+            a.href = root + it.u;
+            var k = document.createElement('span'); k.className = 'srch-k'; k.textContent = it.k;
+            var t = document.createElement('b'); t.textContent = it.t;
+            var d = document.createElement('span'); d.className = 'srch-d'; d.textContent = it.d;
+            a.appendChild(k); a.appendChild(t); a.appendChild(d);
+            li.appendChild(a);
+            list.appendChild(li);
+        });
+        input.setAttribute('aria-activedescendant', active >= 0 ? 'srch-o' + active : '');
+        var cur = list.children[active];
+        if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest' });
+    }
+
+    var opener = null;
+    function open() {
+        if (!dlg) build();
+        opener = document.activeElement;
+        dlg.hidden = false;
+        document.documentElement.classList.add('srch-open');
+        input.focus();
+        input.select();
+        if (!data) {
+            fetch(root + 'search-index.json').then(function (r) { return r.json(); })
+                .then(function (d) { data = d; run(); })
+                .catch(function () { data = []; });
+        }
+    }
+    function close() {
+        dlg.hidden = true;
+        document.documentElement.classList.remove('srch-open');
+        if (opener && opener.focus) opener.focus();
+    }
+
+    function addButton() {
+        var bar = document.querySelector('.top-bar');
+        if (!bar || bar.querySelector('.srch-btn')) return;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'tool-btn srch-btn';
+        b.setAttribute('aria-label', 'Search the site');
+        b.title = 'Search (/)';
+        b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="lbl">SEARCH</span>';
+        b.addEventListener('click', open);
+        var nav = bar.querySelector('nav');
+        bar.insertBefore(b, nav ? nav.nextSibling : null);
+    }
+    addButton();
+
+    document.addEventListener('keydown', function (e) {
+        var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable;
+        if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || (e.key === '/' && !typing)) {
+            e.preventDefault();
+            if (dlg && !dlg.hidden) close(); else open();
+        }
+    });
+})();

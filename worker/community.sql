@@ -48,3 +48,18 @@ CREATE TABLE IF NOT EXISTS bug_reports (
   status      TEXT NOT NULL DEFAULT 'new' -- new | confirmed | duplicate | not-a-bug | fixed
 );
 CREATE INDEX IF NOT EXISTS idx_bugs_net ON bug_reports(net_hash, created_at);
+
+/* Showcase entries: links to work made with the apps. Shown on the site only after review. */
+CREATE TABLE IF NOT EXISTS showcase (
+  id          TEXT PRIMARY KEY,
+  app         TEXT NOT NULL,
+  title       TEXT NOT NULL,
+  link        TEXT NOT NULL,
+  about       TEXT NOT NULL,
+  name        TEXT NOT NULL,
+  email       TEXT NOT NULL,
+  net_hash    TEXT NOT NULL,
+  created_at  TEXT NOT NULL,
+  status      TEXT NOT NULL DEFAULT 'new' -- new | published | declined
+);
+CREATE INDEX IF NOT EXISTS idx_showcase_net ON showcase(net_hash, created_at);

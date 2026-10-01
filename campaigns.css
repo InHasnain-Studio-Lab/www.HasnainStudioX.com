@@ -179,6 +179,22 @@ a.camp-next-card:hover{border-color:var(--accent-line);transform:translateY(-3px
 .fix-app .fix-label{color:var(--accent);}
 .fix-none{margin-top:1rem;color:var(--ink-soft);}
 
+/* roadmap and showcase */
+.road-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem;}
+.road-item,.show-card{display:flex;flex-direction:column;gap:.45rem;padding:1.2rem 1.3rem;border-radius:var(--r-lg);background:var(--card-bg);border:1px solid var(--card-border);}
+.road-item h3,.show-card h3{margin:0;font-family:var(--f-display);font-weight:500;font-size:1.02rem;line-height:1.35;}
+.road-item h3 a,.show-card h3 a{color:var(--ink);text-decoration:none;}
+.road-item h3 a:hover,.show-card h3 a:hover{color:var(--accent);}
+.road-item p,.show-card p{margin:0;color:var(--ink-soft);font-size:.92rem;line-height:1.55;}
+.road-tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+.road-tag a{color:inherit;}
+.road-shipped .road-tag{color:#9FE8D6;}
+.road-planned .road-tag{color:#BCD9F4;}
+.road-credit,.show-by{font-size:.82rem!important;color:var(--ink-faint)!important;}
+.road-empty{margin:0;padding:1.3rem 1.4rem;border-radius:var(--r-lg);border:1px dashed var(--card-border);color:var(--ink-soft);}
+.show-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));gap:1rem;}
+.show-card p:not(.show-by){flex:1;}
+
 @media (max-width:860px){
     .vote-wrap{grid-template-columns:1fr;}
     .camp-strip{grid-template-columns:repeat(2,minmax(0,1fr));}

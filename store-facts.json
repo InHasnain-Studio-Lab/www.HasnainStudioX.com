@@ -1,481 +1,3201 @@
 {
- "built": "2026-09-27T00:34:12.487Z",
+ "built": "2026-10-01T23:09:11.000Z",
  "products": {
   "pctunex": {
    "id": "9NM5CJRT7D06",
    "released": "2026-04-18",
-   "updated": "2026-08-21",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "PC TuneX"
+   "title": "PC TuneX",
+   "size": 90577555,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "4-core / 2.0 GHz+ Processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "8-core / 3.0 GHz+ Processor x64"
+     ]
+    ]
+   }
   },
   "nimbusdock": {
    "id": "9PK74T4FJR1Q",
    "released": "2026-05-19",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "NimbusDock – Floating Glass Dock & App Launcher"
+   "title": "NimbusDock – Floating Glass Dock & App Launcher",
+   "size": 88026871,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multicore Processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "quantumdrop": {
    "id": "9ND6HR1VM9FF",
    "released": "2026-06-03",
-   "updated": "2026-08-26",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "QuantumDrop – Fast Local File Sharing & Wi-Fi Drop"
+   "title": "QuantumDrop – Fast Local File Sharing & Wi-Fi Drop",
+   "size": 83391100,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor x64"
+     ]
+    ]
+   }
   },
   "xseasons": {
    "id": "9PDK0BLBHJHS",
    "released": "2026-05-23",
-   "updated": "2026-08-26",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "XSeasons – Live Wallpaper & Seasonal Desktop Widgets"
+   "title": "XSeasons – Live Wallpaper & Seasonal Desktop Widgets",
+   "size": 479392305,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multi core processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "pcturboxultra": {
    "id": "9PH35J8QM8TH",
    "released": "2026-06-22",
-   "updated": "2026-08-21",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "PC TurboX Ultra"
+   "title": "PC TurboX Ultra",
+   "size": 95333680,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Multicore Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "spatiaxultra": {
    "id": "9NC2PT8X077H",
    "released": "2026-05-19",
-   "updated": "2026-08-21",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "SpatiaX Ultra"
+   "title": "SpatiaX Ultra",
+   "size": 89706410,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multicore processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "flipxstudio": {
    "id": "9N5FWK5V0760",
    "released": "2026-05-03",
-   "updated": "2026-09-26",
+   "updated": "2026-10-01",
    "publisher": "Hasnain Studio X",
-   "title": "FlipX Studio – Video & Audio Media Converter"
+   "title": "FlipX Studio – Video & Audio Media Converter",
+   "size": 218378572,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multi-core processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "vaudioelite": {
    "id": "9NPTCQS39L08",
    "released": "2026-05-18",
-   "updated": "2026-08-23",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "VAudio Elite"
+   "title": "VAudio Elite",
+   "size": 407259373,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 17763.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multi core proccesor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 17763.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "hypersonusultra": {
    "id": "9N248NK4CT19",
    "released": "2026-06-19",
-   "updated": "2026-08-21",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "Hypersonus Ultra"
+   "title": "Hypersonus Ultra",
+   "size": 90356190,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multi Core Processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "medialucent": {
    "id": "9N9QFDHKPKM3",
    "released": "2026-06-20",
    "updated": "2026-09-20",
    "publisher": "Hasnain Studio X",
-   "title": "HSX MediaLucent – Media Player & Streaming Hub"
+   "title": "HSX MediaLucent – Media Player & Streaming Hub",
+   "size": 525263935,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "workxsuite": {
    "id": "9P2GLHQLQ1BX",
    "released": "2026-05-11",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX WorkX Suite – PDF, Office Docs & Sheets Studio"
+   "title": "HSX WorkX Suite – PDF, Office Docs & Sheets Studio",
+   "size": 2279151956,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "webxstudio": {
    "id": "9PM0GJJQGKLL",
    "released": "2026-06-12",
-   "updated": "2026-08-24",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX WebX Studio"
+   "title": "HSX WebX Studio",
+   "size": 469913460,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa core Processor X64"
+     ]
+    ]
+   }
   },
   "forgexpro": {
    "id": "9PMS5ZG4NXXS",
    "released": "2026-05-11",
-   "updated": "2026-09-10",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX PromptKinetics – Prompt Builder & Quality Studio"
+   "title": "HSX PromptKinetics – Prompt Builder & Quality Studio",
+   "size": 593856898,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 17763.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 17763.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "hsxstudioflow": {
    "id": "9P6NZMCG20P8",
    "released": "2026-06-08",
    "updated": "2026-09-25",
    "publisher": "Hasnain Studio X",
-   "title": "HSX StudioFlow – Offline AI Image & Video Studio"
+   "title": "HSX StudioFlow – Offline AI Image & Video Studio",
+   "size": 5431699035,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad-core x64 CPU, 2.5 GHz or faster (Intel Core i5 / AMD Ryzen 5 or better)"
+     ],
+     [
+      "Graphics Processor",
+      "NVIDIA GPU with CUDA, 4 GB VRAM (GTX 1650 or newer). Runs in Low VRAM mode."
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa-core x64 CPU, 3.0 GHz or faster (Intel Core i7 / AMD Ryzen 7 or better)"
+     ],
+     [
+      "Graphics Processor",
+      "NVIDIA RTX GPU with 6 GB+ VRAM (RTX 3060 or newer) for fast generation"
+     ]
+    ]
+   }
   },
   "fototensor": {
    "id": "9NJF6CLN5RPD",
    "released": "2026-06-19",
    "updated": "2026-09-25",
    "publisher": "Hasnain Studio X",
-   "title": "HSX FotoTensor – Offline AI Image & Art Studio"
+   "title": "HSX FotoTensor – Offline AI Image & Art Studio",
+   "size": 13693879666,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Multi‑core x64 CPU, 2.5 GHz or faster (Intel Core i5 / AMD Ryzen 5 or better)"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU with 6 GB+ VRAM required (NVIDIA / AMD / Intel discrete). Integrated graphics not supported for image generation"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Processor",
+      "Octa‑core x64 CPU, 3.0 GHz or faster (Intel Core i7 / AMD Ryzen 7 or better)"
+     ],
+     [
+      "Graphics Processor",
+      "NVIDIA RTX or modern discrete AMD/Intel GPU, 8 GB+ VRAM"
+     ]
+    ]
+   }
   },
   "horizonos": {
    "id": "9PDWPB52FRZJ",
    "released": "2026-06-09",
-   "updated": "2026-08-21",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "SolsticeOS"
+   "title": "SolsticeOS",
+   "size": 1183784523,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64 Or Better"
+     ]
+    ]
+   }
   },
   "pcguardx": {
    "id": "9NVK1JPFSQHL",
    "released": "2026-06-09",
-   "updated": "2026-08-21",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "PC GuardX"
+   "title": "PC GuardX",
+   "size": 96891800,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Dual Core processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multicore processor x64"
+     ]
+    ]
+   }
   },
   "pcbenchxultra": {
    "id": "9PN9GKX39X9L",
    "released": "2026-09-25",
    "updated": "2026-09-25",
    "publisher": "Hasnain Studio X",
-   "title": "PC BenchX Ultra"
+   "title": "PC BenchX Ultra",
+   "size": 86564134,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Multicore processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ]
+    ]
+   }
   },
   "pocktium": {
    "id": "9PFFP713N7X2",
    "released": "2026-06-18",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX Pocktium – Offline AI Chat, Code & Workspace"
+   "title": "HSX Pocktium – Offline AI Chat, Code & Workspace",
+   "size": 5832303530,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "64-bit quad-core"
+     ],
+     [
+      "Graphics Processor",
+      "NVIDIA GPU with 6 GB VRAM"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Processor",
+      "Modern 8-core (Intel Core i7 / AMD Ryzen 7 or better)"
+     ],
+     [
+      "Graphics Processor",
+      "NVIDIA RTX GPU with 8 GB+ VRAM"
+     ]
+    ]
+   }
   },
   "photovidix": {
    "id": "9NR32X1TLJZT",
    "released": "2026-06-18",
-   "updated": "2026-09-16",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX PhotoVidix – Photo & Video Editor AI Studio"
+   "title": "HSX PhotoVidix – Photo & Video Editor AI Studio",
+   "size": 893991107,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "castvisuality": {
    "id": "9NTKDHQVR57X",
    "released": "2026-08-19",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX CastVisuality – Screen Mirror & Remote Control"
+   "title": "HSX CastVisuality – Screen Mirror & Remote Control",
+   "size": 170752771,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "browsex": {
    "id": "9P49PDPB9DF4",
    "released": "2026-06-22",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX AI Browser – Smart, Private Web Browser & AdBlock"
+   "title": "HSX AI Browser – Smart, Private Web Browser & AdBlock",
+   "size": 1525848286,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Quad core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Octa core Processor X64"
+     ]
+    ]
+   }
   },
   "socialdeckpro": {
    "id": "9N4MDVRRP319",
    "released": "2026-09-10",
-   "updated": "2026-09-10",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX SocialDeck Pro"
+   "title": "HSX SocialDeck Pro",
+   "size": 1454314534,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Video Memory",
+      "1 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "convertxpro": {
    "id": "9NJBGZT21JX3",
    "released": "2026-07-02",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX ConvertStudio – 63-in-1 Media & File Converter"
+   "title": "HSX ConvertStudio – 63-in-1 Media & File Converter",
+   "size": 303596994,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multicore Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "creatorxstudio": {
    "id": "9N450XQXPPMC",
    "released": "2026-06-23",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX CreatorStudio – Live Stream & Screen Recorder"
+   "title": "HSX CreatorStudio – Live Stream & Screen Recorder",
+   "size": 574028276,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad-core 64-bit"
+     ],
+     [
+      "Graphics Processor",
+      "DirectX 11 capable GPU"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Camera",
+      "Integrated Camera"
+     ],
+     [
+      "Processor",
+      "6-core or better"
+     ],
+     [
+      "Graphics Processor",
+      "edicated GPU with a hardware H.264 encoder"
+     ]
+    ]
+   }
   },
   "docclarity": {
    "id": "9N38W044GM3C",
    "released": "2026-07-01",
-   "updated": "2026-09-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX DocClarity – Offline AI Document & Contract Analysis"
+   "title": "HSX DocClarity – Offline AI Document & Contract Analysis",
+   "size": 2566731703,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "12 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "docmento": {
    "id": "9P79HJ9DTZ9G",
    "released": "2026-07-02",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX DocMento – Offline PDF Editor & Translator"
+   "title": "HSX DocMento – Offline PDF Editor & Translator",
+   "size": 1163656836,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multicore Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "glowlab": {
    "id": "9NW8DRCTF11G",
    "released": "2026-07-09",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX GlowCraft – RAW Photo Editor & AI Studio"
+   "title": "HSX GlowCraft – RAW Photo Editor & AI Studio",
+   "size": 633664084,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "6-core processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "8-core or better processor x64"
+     ]
+    ]
+   }
   },
   "pcvisionbulwark": {
    "id": "9N6FZTTNWQBH",
    "released": "2026-06-29",
-   "updated": "2026-08-17",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "PC VisionBulwark"
+   "title": "PC VisionBulwark",
+   "size": 84688626,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad core processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Octa core processor X64"
+     ]
+    ]
+   }
   },
   "planetx": {
    "id": "9PKHTFGG73R9",
    "released": "2026-06-29",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX PlanetX – 3D Solar System & Universe Atlas"
+   "title": "HSX PlanetX – 3D Solar System & Universe Atlas",
+   "size": 113850740,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad-core, 2.5 GHz or faster"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa-core, 2.5 GHz or faster"
+     ]
+    ]
+   }
   },
   "pcarchivepro": {
    "id": "9PCBBQSHJ9BK",
    "released": "2026-07-07",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "PC Archive Pro"
+   "title": "PC Archive Pro",
+   "size": 74605083,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "pcdownloadmanagerultra": {
    "id": "9PBXW1GJJ5KN",
    "released": "2026-07-09",
-   "updated": "2026-08-21",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "PC Download Manager Ultra"
+   "title": "PC Download Manager Ultra",
+   "size": 551825835,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Multicore Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ]
+    ]
+   }
   },
   "handsfreepc": {
    "id": "9N21T5VTT7FR",
    "released": "2026-07-15",
-   "updated": "2026-09-04",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX HandsFree PC – Offline Voice & Sound Control"
+   "title": "HSX HandsFree PC – Offline Voice & Sound Control",
+   "size": 140594638,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad-core Processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa-core Processor x64 or better"
+     ]
+    ]
+   }
   },
   "planetxearthexplorer": {
    "id": "9N11TS5BDSWD",
    "released": "2026-07-03",
-   "updated": "2026-08-21",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "PlanetX: Earth Explorer"
+   "title": "PlanetX: Earth Explorer",
+   "size": 88154368,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Multicore Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "terraorbitix": {
    "id": "9NFQSMR84HLP",
    "released": "2026-07-27",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX TerraOrbitix 3D"
+   "title": "HSX TerraOrbitix 3D",
+   "size": 1326739079,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 17763.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 17763.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "planetxinfinity": {
    "id": "9NVVVT3RGFFT",
    "released": "2026-07-08",
-   "updated": "2026-08-21",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "PlanetX: Infinity"
+   "title": "PlanetX: Infinity",
+   "size": 678421217,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad core 3.0 GHz"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ]
+    ]
+   }
   },
   "primecut": {
    "id": "9PCCGCBTG9PF",
    "released": "2026-07-10",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX PrimeCut Ultra – Video Editor & Auto Subtitles"
+   "title": "HSX PrimeCut Ultra – Video Editor & Auto Subtitles",
+   "size": 399442055,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad core 3.0 GHz x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "8 Core Processor 3.0 GHz x64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU (NVIDIA, Intel or AMD), For Faster Exports"
+     ]
+    ]
+   }
   },
   "autoclickx": {
    "id": "9NX5BLJ4XGVC",
    "released": "2026-07-10",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX SmartClicker – Auto Clicker & Macro Studio"
+   "title": "HSX SmartClicker – Auto Clicker & Macro Studio",
+   "size": 89398152,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Quad core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "8 core Processor x64 Quad core or better"
+     ]
+    ]
+   }
   },
   "image3dx": {
    "id": "9NR4XC4TCG73",
    "released": "2026-07-13",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX DepthStudio 3D – Photo to 3D Relief & STL"
+   "title": "HSX DepthStudio 3D – Photo to 3D Relief & STL",
+   "size": 87930281,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "8 Core Processor X64"
+     ]
+    ]
+   }
   },
   "sensecapture": {
    "id": "9PNN24092WS3",
    "released": "2026-07-13",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX SenseCapture – Sound-Triggered Camera & Audio Recorder"
+   "title": "HSX SenseCapture – Sound-Triggered Camera & Audio Recorder",
+   "size": 305580848,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Camera",
+      "Integrated Camera"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Quad core processor x64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Octa core processor x64"
+     ]
+    ]
+   }
   },
   "nexusos": {
    "id": "9NMP8D2QHM40",
    "released": "2026-07-22",
-   "updated": "2026-08-24",
+   "updated": "2026-09-28",
    "publisher": "Hasnain Studio X",
-   "title": "VectalonOS"
+   "title": "VectalonOS",
+   "size": 90786742,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa core Processor X64"
+     ]
+    ]
+   }
   },
   "novadiffux": {
    "id": "9MW265HR80PZ",
    "released": "2026-08-07",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX NovaDiffux – Offline AI Image & Art Studio"
+   "title": "HSX NovaDiffux – Offline AI Image & Art Studio",
+   "size": 4727052122,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad-core x64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU with 4 GB video memory (required)"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Processor",
+      "Octa-core x64 or faster"
+     ],
+     [
+      "Graphics Processor",
+      "8 GB or more video memory"
+     ]
+    ]
+   }
   },
   "beatxpro": {
    "id": "9PNFQVSQXQNP",
    "released": "2026-07-16",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX BeatGrid – DJ Mixer & AI Stem Studio"
+   "title": "HSX BeatGrid – DJ Mixer & AI Stem Studio",
+   "size": 516626733,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64 or better"
+     ]
+    ]
+   }
   },
   "spillframe": {
    "id": "9N0KSTXH4B39",
    "released": "2026-07-22",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX SpillFrame – 2D Animation & Drawing Studio"
+   "title": "HSX SpillFrame – 2D Animation & Drawing Studio",
+   "size": 84491040,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "execrafter": {
    "id": "9N0KLL3XR76C",
    "released": "2026-07-20",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX ExeCrafter – No-Code Windows App & EXE Maker"
+   "title": "HSX ExeCrafter – No-Code Windows App & EXE Maker",
+   "size": 95209374,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "qrcreatorstudio": {
    "id": "9PJWVZ4C4PW9",
    "released": "2026-05-18",
-   "updated": "2026-08-21",
+   "updated": "2026-09-29",
    "publisher": "Hasnain Studio X",
-   "title": "QR Creator Studio"
+   "title": "QR Creator Studio",
+   "size": 106886465,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "automafy": {
    "id": "9NDZ90KKPCVB",
    "released": "2026-07-20",
-   "updated": "2026-09-26",
+   "updated": "2026-10-01",
    "publisher": "Hasnain Studio X",
-   "title": "HSX Automafy – Desktop RPA & Automation"
+   "title": "HSX Automafy – Desktop RPA & Automation",
+   "size": 184550490,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64 Or Better"
+     ]
+    ]
+   }
   },
   "quantumos": {
    "id": "9N34W0QD2R93",
    "released": "2026-07-23",
-   "updated": "2026-08-23",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "KatanicOS"
+   "title": "KatanicOS",
+   "size": 662425548,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "focusroomultra": {
    "id": "9NWWWHKZSWTK",
    "released": "2026-08-05",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "FocusRoom Ultra"
+   "title": "FocusRoom Ultra",
+   "size": 114753979,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Procsessor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Procsessor X64"
+     ]
+    ]
+   }
   },
   "bootforge": {
    "id": "9MXF635P5WHV",
    "released": "2026-07-14",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX BootForge – Bootable USB Creator & Flasher"
+   "title": "HSX BootForge – Bootable USB Creator & Flasher",
+   "size": 82937882,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "fileguardianultra": {
    "id": "9P7V2XD0LZJQ",
    "released": "2026-08-02",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "FileGuardian Ultra"
+   "title": "FileGuardian Ultra",
+   "size": 73743455,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad core processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa core processor X64"
+     ]
+    ]
+   }
   },
   "aetheris": {
    "id": "9NSBHJQRJPD8",
    "released": "2026-08-05",
-   "updated": "2026-09-05",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX LaunchHarbor – Game Launcher & Library Hub"
+   "title": "HSX LaunchHarbor – Game Launcher & Library Hub",
+   "size": 475767890,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "gamefabrix": {
    "id": "9NNLWKTWX46F",
    "released": "2026-07-20",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX GameFabrix – 2D Game Engine & Maker"
+   "title": "HSX GameFabrix – 2D Game Engine & Maker",
+   "size": 157879458,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "artgenstudio": {
    "id": "9NDT39K51XLK",
    "released": "2026-08-03",
    "updated": "2026-09-25",
    "publisher": "Hasnain Studio X",
-   "title": "HSX ArtGen Studio"
+   "title": "HSX ArtGen Studio",
+   "size": 4401384894,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Vulkan capable graphics, 4 GB minimum - integrated included"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU with 6–8 GB VRAM or more"
+     ]
+    ]
+   }
   },
   "dreammintai": {
    "id": "9MZLQVV07PVB",
    "released": "2026-09-02",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX DreamMint AI – Offline AI Image & Art Studio"
+   "title": "HSX DreamMint AI – Offline AI Image & Art Studio",
+   "size": 4394546860,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Requires a dedicated GPU with at least 4 GB VRAM from NVIDIA, AMD, or Intel."
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU with 6 GB VRAM from NVIDIA, AMD, or Intel."
+     ]
+    ]
+   }
   },
   "earthos": {
    "id": "9NNSDQ69C3XJ",
    "released": "2026-08-03",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX EarthShell – Live Earth Desktop & Shell"
+   "title": "HSX EarthShell – Live Earth Desktop & Shell",
+   "size": 469462590,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "mediatidyultra": {
    "id": "9NLRFFH5T9G7",
    "released": "2026-08-05",
-   "updated": "2026-08-21",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "MediaTidy Ultra"
+   "title": "MediaTidy Ultra",
+   "size": 174226826,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "pcscreenrecorderpro": {
    "id": "9NCPPXGRVF9J",
    "released": "2026-08-05",
-   "updated": "2026-08-21",
+   "updated": "2026-10-01",
    "publisher": "Hasnain Studio X",
-   "title": "PC Screen Recorder Pro"
+   "title": "PC Screen Recorder Pro",
+   "size": 91321752,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "quantumxai": {
    "id": "9NCGM2XJFQT3",
    "released": "2026-08-10",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX QuantumGen AI Studio"
+   "title": "HSX QuantumGen AI Studio",
+   "size": 4348765395,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad core processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Vulkan GPU Minimum 4GB VRAM"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa core processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Vulkan GPU 6GB VRAM Recommended"
+     ]
+    ]
+   }
   },
   "dreamgenaiultra": {
    "id": "9PLPCW4T3FFW",
    "released": "2026-08-12",
    "updated": "2026-09-25",
    "publisher": "Hasnain Studio X",
-   "title": "HSX DreamVivid AI – Offline AI Art & Image Maker"
+   "title": "HSX DreamVivid AI – Offline AI Art & Image Maker",
+   "size": 8320641500,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated card, 6 GB of VRAM Minimum ( Nividia, Intel, AMD )"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated card, 8 GB VRAM or more for Excellent performance"
+     ]
+    ]
+   }
   },
   "infinitegenai": {
    "id": "9NFGT2DJVZMB",
    "released": "2026-08-09",
-   "updated": "2026-09-04",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX InfiniteGen Studio – Offline AI Art & Video Clips"
+   "title": "HSX InfiniteGen Studio – Offline AI Art & Video Clips",
+   "size": 4498997034,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad core Processor x64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU with Minimum 4GB RAM"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa core Processor x64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated GPU with 6GB RAM for Excellent performance"
+     ]
+    ]
+   }
   },
   "nanovisuality": {
    "id": "9PF4C8VFHNQ5",
    "released": "2026-08-27",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX NanoVisuality - AI Photo Enhancer, 4K Upscaler & Image Restorer"
+   "title": "HSX NanoVisuality - AI Photo Enhancer, 4K Upscaler & Image Restorer",
+   "size": 1277437100,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "pixumbrastudio": {
    "id": "9PB29K34D2RS",
    "released": "2026-08-25",
    "updated": "2026-09-02",
    "publisher": "Hasnain Studio X",
-   "title": "Pixumbra Studio"
+   "title": "Pixumbra Studio",
+   "size": 1021767791,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "A dedicated graphics card ( For Best Performance )"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "nanocodify": {
    "id": "9PKCQP2BVFLH",
    "released": "2026-08-18",
-   "updated": "2026-08-26",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX NanoCodify – Offline AI Coding Assistant & Studio"
+   "title": "HSX NanoCodify – Offline AI Coding Assistant & Studio",
+   "size": 5820026188,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Graphics with 4 GB dedicated VRAM Minimum memory"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Graphics with 6 GB or + dedicated VRAM for Fast performance"
+     ]
+    ]
+   }
   },
   "writedesk": {
    "id": "9NF4MFW7SBZB",
    "released": "2026-09-01",
-   "updated": "2026-09-01",
+   "updated": "2026-09-27",
    "publisher": "Hasnain Studio X",
-   "title": "HSX WriteDesk – Offline AI Writer"
+   "title": "HSX WriteDesk – Offline AI Writer",
+   "size": 1067033243,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ]
+    ]
+   }
   },
   "pixunica": {
    "id": "9N7JW6XTHG9P",
    "released": "2026-09-04",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX PixUnica – Offline AI Image Generator"
+   "title": "HSX PixUnica – Offline AI Image Generator",
+   "size": 4723594917,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Any Vulkan capable adapter, including integrated"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated graphics card"
+     ]
+    ]
+   }
   },
   "nostalgicel": {
    "id": "9P19V9GM71D1",
    "released": "2026-09-03",
    "updated": "2026-09-25",
    "publisher": "Hasnain Studio X",
-   "title": "HSX Nostalgicel - Retro Anime Studio"
+   "title": "HSX Nostalgicel - Retro Anime Studio",
+   "size": 3856153377,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Minimum 4GB Dedicated GPU ( Nividia, Intel Or AMD )"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Ocata Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "6GB Dedicated GPU ( Nividia, Intel Or AMD ) Best Performance"
+     ]
+    ]
+   }
   },
   "morphlora": {
    "id": "9ND77VPV91LR",
    "released": "2026-09-08",
    "updated": "2026-09-26",
    "publisher": "Hasnain Studio X",
-   "title": "HSX MorphLora – AI Restyle and Photo Studio"
+   "title": "HSX MorphLora – AI Restyle and Photo Studio",
+   "size": 6017377320,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Dedicated Minimum 4 GB VRAM ( Intel, Nividia, AMD )"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "20 GB"
+     ],
+     [
+      "Video Memory",
+      "6 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Processor X64"
+     ],
+     [
+      "Graphics Processor",
+      "Best Performance Dedicated - 6 GB+ VRAM ( Intel, Nividia, AMD )"
+     ]
+    ]
+   }
   }
  }
 }

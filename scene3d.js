@@ -2,12 +2,12 @@
    Homepage only. One particle field that reshapes itself for the section in
    view. It runs while the night sky is off, the homepage default; SKY ON
    brings the stars and moon back and stops it. */
-import {
-  WebGLRenderer, Scene, PerspectiveCamera, BufferGeometry, BufferAttribute,
-  Points, ShaderMaterial, AdditiveBlending, Color, Clock,
-} from './vendor/three.r186.min.js';
+/* three.js is loaded only once the page has rendered, and not at all on
+   devices that ask for less data or report little memory */
+let WebGLRenderer, Scene, PerspectiveCamera, BufferGeometry, BufferAttribute,
+  Points, ShaderMaterial, AdditiveBlending, Color, Clock;
 
-const PALETTE = ['#f2dfb8', '#f3b3cf', '#c7a5f7', '#9fe8d6', '#bcd9f4'].map((c) => new Color(c));
+let PALETTE;
 const SUITES = [
   { k: 'system', a: '#C7A5F7', c: 24 },
   { k: 'ai', a: '#F2DFB8', c: 15 },
@@ -540,14 +540,26 @@ function start(canvas, reduced) {
   kick();
 }
 
-const canvas = document.createElement('canvas');
-canvas.id = 'scene3d';
-canvas.setAttribute('aria-hidden', 'true');
-if (window.__skyOn === true) canvas.classList.add('off');
-document.body.prepend(canvas);
-try {
-  start(canvas, window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-} catch (e) {
-  canvas.remove();
-  console.warn('3D scene unavailable:', e);
+async function boot() {
+  ({ WebGLRenderer, Scene, PerspectiveCamera, BufferGeometry, BufferAttribute,
+     Points, ShaderMaterial, AdditiveBlending, Color, Clock } = await import('./vendor/three.r186.min.js'));
+  PALETTE = ['#f2dfb8', '#f3b3cf', '#c7a5f7', '#9fe8d6', '#bcd9f4'].map((c) => new Color(c));
+  const canvas = document.createElement('canvas');
+  canvas.id = 'scene3d';
+  canvas.setAttribute('aria-hidden', 'true');
+  if (window.__skyOn === true) canvas.classList.add('off');
+  document.body.prepend(canvas);
+  try {
+    start(canvas, window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  } catch (e) {
+    canvas.remove();
+    console.warn('3D scene unavailable:', e);
+  }
+}
+
+const lean = (navigator.connection && navigator.connection.saveData) ||
+  (navigator.deviceMemory && navigator.deviceMemory < 4);
+if (!lean) {
+  const later = () => (window.requestIdleCallback ? requestIdleCallback(() => boot(), { timeout: 2500 }) : setTimeout(boot, 600));
+  if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
 }

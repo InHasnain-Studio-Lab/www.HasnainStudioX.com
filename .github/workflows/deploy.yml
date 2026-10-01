@@ -49,6 +49,9 @@ jobs:
           node update-gallery.js || true
           python optimise-images.py || true
 
+      - name: Refresh release dates and requirements from the Microsoft Store
+        run: node fetch-store-facts.js || true
+
       - name: Build catalogue, structured data and sitemap
         run: node build.js
 

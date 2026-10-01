@@ -230,7 +230,7 @@ let sitemapMsg = '';
             + '<span class="tile-hero-scrim"></span>'
             + '</div>'
           : '';
-        return '<article class="app-tile c-'+a.cat+(hero?' app-tile--hero':'')+'" role="listitem" tabindex="0" data-id="'+a.id+'"'
+        return '<article class="app-tile c-'+a.cat+(hero?' app-tile--hero':'')+'" tabindex="0" data-id="'+a.id+'"'
           + ' aria-label="'+escAttr(a.name+': '+a.tagline)+'">'
           + '<div class="tile-in">'
           +   heroHTML
@@ -253,7 +253,7 @@ let sitemapMsg = '';
       const FLAT = APPS.length < 8;
       let grid;
       if (FLAT) {
-        grid = '<div class="apps-grid" role="list">'+APPS.map(tile).join('')+'</div>';
+        grid = '<div class="apps-grid">'+APPS.map(tile).join('')+'</div>';
       } else {
         let shown = 0;
         grid = CATS.map((c,ci)=>{
@@ -263,7 +263,7 @@ let sitemapMsg = '';
           return '<section class="cat-sec">'
             + '<div class="cat-head"><span class="cat-idx">'+('00'+(ci+1)).slice(-3)+'</span>'
             + '<h2>'+esc(c.t)+'</h2><span class="cat-rule"></span><span class="cat-cnt">'+items.length+'</span></div>'
-            + '<div class="apps-grid" role="list">'+items.map(tile).join('')+'</div>'
+            + '<div class="apps-grid">'+items.map(tile).join('')+'</div>'
             + '</section>';
         }).join('');
       }
@@ -383,9 +383,9 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
        cannot quietly put it in the sitemap. */
     const TOKEN = /^(naver[0-9a-f]{16,}\.html|yandex_[0-9a-f]{8,}\.html|google[0-9a-f]{8,}\.html|BingSiteAuth\.xml)$/i;
     const PRIORITY = { 'index.html':'1.0','Windows-apps.html':'0.9','android-apps.html':'0.9',
-                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','ownership.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5','new-pc.html':'0.8','fix.html':'0.8','community.html':'0.6','bug-hunt.html':'0.6' };
+                       'HSXAIstudio.html':'0.8','about.html':'0.8','contact.html':'0.7','privacy-policies.html':'0.6','ownership.html':'0.6','privacy.html':'0.5','contest-rules.html':'0.5','new-pc.html':'0.8','fix.html':'0.8','roadmap.html':'0.6','showcase.html':'0.6','community.html':'0.6','bug-hunt.html':'0.6' };
     const FREQ = { 'index.html':'weekly','Windows-apps.html':'weekly','android-apps.html':'weekly',
-                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','ownership.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly','new-pc.html':'monthly','fix.html':'monthly','community.html':'weekly','bug-hunt.html':'monthly' };
+                   'HSXAIstudio.html':'monthly','about.html':'monthly','contact.html':'monthly','privacy-policies.html':'monthly','ownership.html':'monthly','privacy.html':'yearly','contest-rules.html':'monthly','new-pc.html':'monthly','fix.html':'monthly','roadmap.html':'weekly','showcase.html':'weekly','community.html':'weekly','bug-hunt.html':'monthly' };
 
     const rootPages = fs.readdirSync(ROOT)
       .filter(f => f.endsWith('.html') && !f.startsWith('_') && !SKIP.has(f) && !TOKEN.test(f))
@@ -655,7 +655,7 @@ function syncSocialMeta() {
     'about.html': 'og-about.png', 'contact.html': 'og-contact.png',
     'contest-rules.html': 'og-home.png', 'privacy-policies.html': 'og-privacy.png',
     'privacy.html': 'og-privacy.png',
-    'new-pc.html': 'og-windows.png', 'fix.html': 'og-windows.png', 'community.html': 'og-home.png', 'bug-hunt.html': 'og-home.png',
+    'new-pc.html': 'og-windows.png', 'fix.html': 'og-windows.png', 'roadmap.html': 'og-home.png', 'showcase.html': 'og-home.png', 'community.html': 'og-home.png', 'bug-hunt.html': 'og-home.png',
     '404.html': 'og-home.png'
   };
   const escq = v => String(v).replace(/"/g, '&quot;');
@@ -1134,7 +1134,7 @@ const footerMsg = syncFooters();
    policy, which AdSense requires visitors to be able to find, so it is
    generated on the same terms: one definition, applied everywhere. */
 function syncFooterCompany() {
-  const WANT = ['community.html|Vote and Feedback', 'bug-hunt.html|Bug Hunt',
+  const WANT = ['community.html|Vote and Feedback', 'bug-hunt.html|Bug Hunt', 'roadmap.html|Roadmap', 'showcase.html|Showcase',
                 'contest-rules.html|Competition Rules', 'about.html|About Hasnain Butt Akhtar',
                 '|Home', 'contact.html|Contact',
                 'privacy-policies.html|App Privacy Policies', 'ownership.html|Ownership and Copyright',
@@ -1259,6 +1259,45 @@ if (footerMsg) sitemapMsg += '\n' + footerMsg;
 if (footerCoMsg) sitemapMsg += '\n' + footerCoMsg;
 if (fontMsg) sitemapMsg += '\n' + fontMsg;
 if (copyMsg)   sitemapMsg += '\n' + copyMsg;
+
+/* 3f2. the site search index: apps, guides, Fix it problems and the main pages.
+   site.js loads it the first time someone opens search. */
+function writeSearchIndex() {
+  const metaOf = s => ({
+    t: ((/<title>([^<|]*)/.exec(s) || [])[1] || '').trim(),
+    d: ((/<meta name="description" content="([^"]*)"/.exec(s) || [])[1] || '').replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"'),
+  });
+  const items = [];
+  for (const a of [...win, ...and]) {
+    const page = 'apps/' + appSlug(a.name, a.platform || (and.includes(a) ? 'Android' : 'Windows')) + '.html';
+    if (!fs.existsSync(P(page))) continue;
+    items.push({ t: a.name, u: page, k: (and.includes(a) ? 'Android app' : 'Windows app') + (a.status === 'live' ? '' : ', coming soon'),
+                 d: a.tagline || '', w: [a.category, ...(a.features || [])].join(' ') });
+  }
+  for (const f of fs.readdirSync(P('guides')).filter(f => f.endsWith('.html') && f !== 'index.html')) {
+    const m = metaOf(read('guides/' + f));
+    items.push({ t: m.t, u: 'guides/' + f, k: 'Guide', d: m.d });
+  }
+  if (fs.existsSync(P('fix.html'))) {
+    const s = read('fix.html');
+    const re = /<article class="fix-card" id="([^"]+)"[^>]*data-words="([^"]*)"[^>]*>\s*<h3>([^<]+)<\/h3>[\s\S]*?<b>([^<]+)<\/b>/g;
+    let m;
+    while ((m = re.exec(s))) items.push({ t: m[3].replace(/&#x27;|&#39;/g, "'"), u: 'fix.html#' + m[1], k: 'Fix it', d: 'Fixed by ' + m[4], w: m[2] });
+  }
+  const PAGES = ['new-pc.html', 'fix.html', 'community.html', 'bug-hunt.html', 'roadmap.html', 'showcase.html',
+    'Windows-apps.html', 'android-apps.html', 'HSXAIstudio.html', 'guides/index.html', 'about.html', 'contact.html',
+    'privacy-policies.html', 'privacy.html', 'ownership.html', 'contest-rules.html'];
+  for (const p of PAGES.filter(p => fs.existsSync(P(p)))) {
+    const m = metaOf(read(p));
+    items.push({ t: m.t, u: p.replace(/index\.html$/, ''), k: 'Page', d: m.d });
+  }
+  write('search-index.json', JSON.stringify(items));
+  return '  search index          ' + items.length + ' entries';
+}
+const communityMsg = require('./gen-community-pages.js').build(win, and, appSlug);
+if (communityMsg) sitemapMsg += '\n' + communityMsg;
+const searchMsg = writeSearchIndex();
+if (searchMsg) sitemapMsg += '\n' + searchMsg;
 
 /* 3g. the studio's trademark register, on the About page */
 function syncTrademarks() {
