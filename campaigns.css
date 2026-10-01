@@ -150,6 +150,12 @@ a.camp-next-card:hover{border-color:var(--accent-line);transform:translateY(-3px
 .camp-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;}
 .camp-strip .camp-next-card{display:flex;flex-direction:column;}
 .camp-strip .camp-next-card p{flex:1;}
+.camp-banner{position:relative;overflow:hidden;}
+.camp-banner:hover{border-color:var(--c);}
+.camp-banner .kit-kicker{color:var(--c);}
+.camp-banner strong{display:block;margin:.5rem 0 .3rem;font-family:var(--f-display);font-weight:800;font-size:clamp(1.7rem,2.6vw,2.3rem);line-height:1.05;color:var(--c);}
+.camp-banner h3{margin:0 0 .35rem;}
+.camp-banner .camp-go{color:var(--c);}
 .camp-go{margin-top:1rem;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
 
 /* problem finder */
