@@ -13,6 +13,8 @@ effects.*.js
 fluid.*.js
 gallery-data.*.js
 scene3d.*.js
+campaigns.*.css
+campaigns.*.js
 
 # raw store screenshots, downloaded by fetch-store-shots.js
 store-shots/

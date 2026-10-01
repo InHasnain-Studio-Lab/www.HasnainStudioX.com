@@ -1,4 +1,5 @@
 import { handleMail, receive } from './mailbox.js';
+import { handleCommunity } from './community.js';
 
 const ALLOWED_ORIGINS = [
   'https://hasnainstudiox.com',
@@ -75,7 +76,9 @@ export default {
     const url = new URL(request.url);
 
     if (request.method === 'OPTIONS') {
-      return new Response(null, { status: 204, headers: corsHeaders(origin) });
+      const headers = corsHeaders(origin);
+      if (env.DEV === '1' && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) headers['Access-Control-Allow-Origin'] = origin;
+      return new Response(null, { status: 204, headers });
     }
 
     /* the studio mailbox: keyed, never browser facing, so it is answered before
@@ -87,6 +90,17 @@ export default {
         status: 404,
         headers: { 'Content-Type': 'application/json' },
       });
+    }
+    /* the community board; a local origin is accepted only under wrangler dev */
+    if (url.pathname.startsWith('/community/')) {
+      const local = env.DEV === '1' && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+      const allowed = ALLOWED_ORIGINS.includes(origin) || local;
+      const reply = (body, status) => {
+        const res = json(body, status, origin);
+        if (local) res.headers.set('Access-Control-Allow-Origin', origin);
+        return res;
+      };
+      return handleCommunity(request, env, url, reply, origin, allowed);
     }
     /* identifies this worker, so a wrong one on the route is obvious */
     if (request.method === 'GET' && url.pathname === '/contact') {
