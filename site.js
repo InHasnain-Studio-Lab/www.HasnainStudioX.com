@@ -522,7 +522,7 @@ window.AppViz = (function () {
     });
 })();
 
-/* Site search: a header button, "/" or Ctrl+K. The index loads on first use and every match happens in the page. */
+/* Site search: "/" or Ctrl+K. The index loads on first use and every match happens in the page. */
 (function () {
     var root = (function () {
         var s = document.querySelector('script[src*="site."]');
@@ -629,21 +629,6 @@ window.AppViz = (function () {
         document.documentElement.classList.remove('srch-open');
         if (opener && opener.focus) opener.focus();
     }
-
-    function addButton() {
-        var bar = document.querySelector('.top-bar');
-        if (!bar || bar.querySelector('.srch-btn')) return;
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'tool-btn srch-btn';
-        b.setAttribute('aria-label', 'Search the site');
-        b.title = 'Search (/)';
-        b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="lbl">SEARCH</span>';
-        b.addEventListener('click', open);
-        var nav = bar.querySelector('nav');
-        bar.insertBefore(b, nav ? nav.nextSibling : null);
-    }
-    addButton();
 
     document.addEventListener('keydown', function (e) {
         var typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable;

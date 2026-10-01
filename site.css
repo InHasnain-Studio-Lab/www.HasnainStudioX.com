@@ -2705,7 +2705,6 @@ a.tile-btn-details { display: inline-flex; align-items: center; }
 @media (max-width:860px){.fit{grid-template-columns:1fr;}.fit-table th,.fit-table td{padding:.6rem .7rem;}.fit-table tbody th{white-space:normal;}}
 
 /* site search */
-.srch-btn{margin-left:auto;}
 .srch{position:fixed;inset:0;z-index:1000;display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 16px;background:rgba(4,4,10,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
 .srch[hidden]{display:none;}
 .srch-box{width:100%;max-width:40rem;max-height:76vh;display:flex;flex-direction:column;border-radius:var(--r-lg);background:var(--bg-2,#0d0d16);border:1px solid var(--accent-line);box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden;}
