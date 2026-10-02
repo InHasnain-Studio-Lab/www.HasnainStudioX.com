@@ -236,6 +236,7 @@ function build(app, index, platform, siteCategory, marks, heroes, pages) {
             n: String(note.t || '').split(String.fromCharCode(10)).map(clean).filter(Boolean),
         })).filter(note => note.v),
         gl: marks[app.id] ? toStrokes(marks[app.id]) : [],
+        ...requirementsOf(app.id),
     };
 }
 
@@ -339,6 +340,51 @@ function events(products, releases) {
         .slice(0, KEEP_EVENTS);
 }
 
+/* ── requirements, Fix it and Take part ────────────────────────────────── */
+
+/* what the Microsoft Store lists for each app, as fetch-store-facts.js on the site read it */
+const FACTS = (() => {
+    try { return JSON.parse(read('store-facts.json')).products || {}; } catch { return {}; }
+})();
+
+function requirementsOf(key) {
+    const f = FACTS[key];
+    if (!f || !f.req || !f.req.min || !f.req.min.length) return {};
+    const rows = list => (list || []).map(([n, v]) => [clean(n), clean(v)]);
+    return { rq: { mn: rows(f.req.min), rc: rows(f.req.rec) }, ...(f.size ? { sz: f.size } : {}) };
+}
+
+const decode = s => String(s).replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+
+/* the problem finder on fix.html: the free way first, then the app that goes further */
+function readFixes(nameToKey) {
+    let source;
+    try { source = read('fix.html'); } catch { return { fc: [], fx: [] }; }
+    const fc = [...source.matchAll(/<button type="button" class="fix-chip" data-cat="([a-z]+)"[^>]*>([^<]+)<\/button>/g)]
+        .map(m => ({ k: m[1], n: decode(m[2]) }));
+    const fx = [];
+    const card = /<article class="fix-card" id="([^"]+)" data-cat="([^"]+)"[^>]*data-words="([^"]*)">([\s\S]*?)<\/article>/g;
+    let m;
+    while ((m = card.exec(source))) {
+        const body = m[4];
+        const q = (/<h3>([^<]+)<\/h3>/.exec(body) || [])[1];
+        const free = (/<div class="fix-free">[\s\S]*?<p>([^<]+)<\/p>/.exec(body) || [])[1];
+        const app = /<a href="[^"]+"><b>([^<]+)<\/b><\/a>\. ([^<]+)<\/p>/.exec(body);
+        if (!q || !free || !app || !nameToKey.has(decode(app[1]))) continue;
+        fx.push({ i: m[1], c: m[2], q: decode(q), w: decode(free), k: nameToKey.get(decode(app[1])), a: decode(app[2]), s: decode(m[3]) });
+    }
+    return { fc, fx };
+}
+
+/* campaign pages on the site; the Hub shows them on Home */
+const TAKE_PART = [
+    { k: 'newpc', n: 'New PC?', t: 'The apps it is missing', d: 'A first-hour checklist and every app in kits, each with a free trial.', u: 'https://hasnainstudiox.com/new-pc.html', a: '#BCD9F4' },
+    { k: 'vote', n: 'Vote', t: 'Pick your favourite app', d: 'Then say what to improve, or which app you wish existed.', u: 'https://hasnainstudiox.com/community.html', a: '#9FE8D6' },
+    { k: 'bughunt', n: 'Bug Hunt', t: 'Find a bug, report it', d: 'The most useful report each month wins a lifetime licence.', u: 'https://hasnainstudiox.com/bug-hunt.html', a: '#F3B3CF' },
+    { k: 'showcase', n: 'Showcase', t: 'Show what you made', d: 'Send a link to work made with the apps and get credited.', u: 'https://hasnainstudiox.com/showcase.html', a: '#F2DFB8' },
+    { k: 'roadmap', n: 'Roadmap', t: 'What ships next', d: 'Recent releases and the community ideas being built.', u: 'https://hasnainstudiox.com/roadmap.html', a: '#C7A5F7' },
+];
+
 const catmap = readMap('Windows-apps.html', 'CATMAP');
 const winMarks = readMarks('Windows-apps.html');
 const andMarks = readMarks('android-apps.html');
@@ -385,6 +431,8 @@ const catalogue = {
     cs: SUITES,
     ps: products,
     ns: events(products, releases),
+    ...readFixes(new Map(products.map(p => [p.n, p.i]))),
+    tp: TAKE_PART,
 };
 
 const payload = JSON.stringify(catalogue);
@@ -420,6 +468,7 @@ console.log(withBuild
     ? `  published builds: ${withBuild}`
     : '  published builds: none (record one with Tools/Release.js)');
 console.log(`  contact form ${catalogue.ct.e ? 'found' : 'not found'}`);
+console.log(`  requirements ${products.filter(p => p.rq).length}, fix it ${catalogue.fx.length}, take part ${catalogue.tp.length}`);
 if (bundling) console.log(`\nbundled   ${BUNDLED}`);
 console.log(`published ${PUBLISHED}`);
 
