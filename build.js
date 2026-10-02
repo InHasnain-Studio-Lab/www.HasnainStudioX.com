@@ -392,7 +392,7 @@ if (policyRobotsMsg) console.log(policyRobotsMsg);
       .filter(f => !/name="robots"[^>]*noindex/i.test(read(f)))
       .sort((a,b) => (+(PRIORITY[b]||0.3)) - (+(PRIORITY[a]||0.3)) || a.localeCompare(b));
 
-    /* the policies live in privacy/; the root files are redirect stubs */
+    /* the policies live in privacy/ */
     let privPages = [];
     try {
       privPages = fs.readdirSync(path.join(ROOT, 'privacy'))
@@ -862,12 +862,12 @@ function syncAssetVersions() {
   return '  asset filenames       ' + Object.keys(map).length + ' hashed, ' + refs
        + ' references across ' + targets.length + ' pages';
 }
-const ownershipMsg = require('./gen-ownership.js').build();
 const heroesMsg = syncHeroes();
-console.log(ownershipMsg);
-
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
+/* after the page map, so a renamed app links to its current page */
+const ownershipMsg = require('./gen-ownership.js').build();
+console.log(ownershipMsg);
 
 /* 3c. static gallery, so non-JavaScript crawlers read the artwork */
 function syncGalleryStatic() {
@@ -1366,57 +1366,6 @@ function syncTrademarks() {
 }
 const tmMsg = syncTrademarks();
 if (tmMsg) sitemapMsg += '\n' + tmMsg;
-
-/* 3h. every policy also answers at its root URL
-   Store listings point at the root form (hasnainstudiox.com/XPrivacy.html).
-   Those URLs serve the full policy text plus an instant redirect to the
-   canonical copy in privacy/, so a certification checker that does not follow
-   the redirect still reads a complete policy. Regenerated every build so a new
-   or renamed policy can never be missing its root URL. */
-function syncPrivacyStubs() {
-  const dir = path.join(ROOT, 'privacy');
-  if (!fs.existsSync(dir)) return '';
-  const MARK = '<!--HSX:PRIVACY-REDIRECT-->';
-  let written = 0, skipped = 0;
-
-  for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.html'))) {
-    const full = read('privacy/' + f);
-    if (/HSX:RENAME-REDIRECT/.test(full)) { skipped++; continue; }   // retired name
-    const target = 'privacy/' + f;
-    const title = (full.match(/<title>([^<]*)<\/title>/) || [, f])[1];
-    const m = full.match(/<main[\s\S]*?<\/main>/);
-    const inner = m ? m[0].replace(/(href|src)="\.\.\//g, '$1="') : '';
-    const stub = `<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-${MARK}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${title}</title>
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://hasnainstudiox.com/${target}">
-<meta http-equiv="refresh" content="0; url=https://hasnainstudiox.com/${target}">
-<link rel="stylesheet" href="site.css"/>
-<script>location.replace('https://hasnainstudiox.com/${target}');</script>
-</head>
-<body>
-<p style="font-family:sans-serif;padding:1rem">
-  This policy now lives at <a href="https://hasnainstudiox.com/${target}">https://hasnainstudiox.com/${target}</a>.
-  The full text is reproduced below.
-</p>
-${inner}
-</body>
-</html>
-`;
-    const at = P(f);
-    if (!fs.existsSync(at) || fs.readFileSync(at, 'utf8') !== stub) { fs.writeFileSync(at, stub, 'utf8'); written++; }
-  }
-  return '  policy root URLs      ' + written + ' written'
-       + (skipped ? ', ' + skipped + ' retired name' + (skipped === 1 ? '' : 's') + ' left redirecting' : '');
-}
-const stubMsg = syncPrivacyStubs();
-if (stubMsg) sitemapMsg += '\n' + stubMsg;
-
 
 const policyMsg = syncPolicyIndex();
 if (policyMsg) sitemapMsg += '\n' + policyMsg;
