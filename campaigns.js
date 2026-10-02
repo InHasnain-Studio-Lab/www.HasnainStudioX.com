@@ -232,6 +232,188 @@
         });
     }
 
+    /* ---- new PC planner: everything is worked out in the page, nothing is sent ---- */
+
+    var planBox = document.querySelector('.plan-box');
+    if (planBox) {
+        var planForm = planBox.querySelector('.plan-form');
+        var planOut = planBox.querySelector('.plan-out');
+        var goalsEl = planBox.querySelector('[data-plan-goals]');
+        var vramWrap = planBox.querySelector('.plan-vram');
+        var found = planBox.querySelector('.plan-found');
+        var cat = null;
+
+        var el = function (tag, cls, text) {
+            var n = document.createElement(tag);
+            if (cls) n.className = cls;
+            if (text != null) n.textContent = text;
+            return n;
+        };
+        var pagePath = function (p) { return (p.su || '').replace(/^https:\/\/hasnainstudiox\.com\//, ''); };
+
+        var gpuChoice = function () { return (planForm.querySelector('input[name="gpu"]:checked') || {}).value || 'unsure'; };
+        var syncVram = function () { vramWrap.hidden = gpuChoice() !== 'card'; };
+        planForm.querySelectorAll('input[name="gpu"]').forEach(function (r) { r.addEventListener('change', syncVram); });
+
+        planBox.querySelector('.plan-detect').addEventListener('click', function () {
+            var name = '';
+            try {
+                var gl = document.createElement('canvas').getContext('webgl');
+                var info = gl && gl.getExtension('WEBGL_debug_renderer_info');
+                name = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+            } catch (e) { name = ''; }
+            name = name.replace(/^ANGLE \(/, '').replace(/,? ?(Direct3D|D3D|OpenGL|Vulkan).*$/i, '').replace(/\)$/, '').split(',').pop().replace(/\s*\(0x[0-9a-f]+\)?/ig, '').trim();
+            if (!name || /swiftshader|basic render|llvmpipe/i.test(name)) {
+                found.textContent = 'This browser does not say. Task Manager shows it under Performance, then GPU.';
+                return;
+            }
+            var builtIn = /(UHD|Iris|HD Graphics|Radeon\(TM\) Graphics|Radeon Graphics$|Vega \d+|Arc\(TM\) Graphics|Adreno|Mali)/i.test(name);
+            var isCard = !builtIn && /(GeForce|RTX|GTX|Quadro|Radeon RX|Radeon Pro|Arc\(TM\) A\d|Arc A\d)/i.test(name);
+            var pick = isCard ? 'card' : builtIn ? 'none' : 'unsure';
+            planForm.querySelector('input[name="gpu"][value="' + pick + '"]').checked = true;
+            syncVram();
+            found.textContent = 'This browser reports ' + name + (isCard ? ', a graphics card. Pick its memory above if you know it.' : builtIn ? ', which looks like built-in graphics.' : '.');
+        });
+
+        var card = function (p, fit) {
+            var art = el('article', 'kit-app');
+            var dot = el('span', 'kit-dot');
+            dot.style.setProperty('--app', p.a || '#C7A5F7');
+            dot.setAttribute('aria-hidden', 'true');
+            var h = el('h3');
+            var a = el('a', null, p.n);
+            a.href = pagePath(p);
+            h.appendChild(a);
+            art.appendChild(dot);
+            art.appendChild(h);
+            art.appendChild(el('p', null, p.t));
+            if (fit) art.appendChild(el('span', 'plan-fit ' + fit.cls, fit.text));
+            var store = el('a', 'kit-store', p.pf === 'and' ? 'Get it on Google Play' : 'Free trial on Microsoft Store');
+            store.href = p.p ? 'https://apps.microsoft.com/detail/' + p.p : p.u;
+            store.target = '_blank';
+            store.rel = 'noopener';
+            art.appendChild(store);
+            return art;
+        };
+
+        var fitOf = function (p, gpu, vram) {
+            if (p.pf === 'and') return { ok: true, fit: { cls: 'is-ok', text: 'For your Android phone' } };
+            if (!p.vr) return { ok: true, fit: null };
+            var need = 'Needs ' + p.vr + ' GB graphics memory';
+            if (gpu === 'none') return { ok: false, fit: null };
+            if (gpu === 'card' && vram > 0) {
+                return vram >= p.vr
+                    ? { ok: true, fit: { cls: 'is-ok', text: need + ', yours has ' + vram + ' GB' } }
+                    : { ok: false, fit: null };
+            }
+            return { ok: true, fit: { cls: 'is-info', text: need } };
+        };
+
+        var render = function () {
+            var chosen = [].slice.call(goalsEl.querySelectorAll('input:checked')).map(function (i) { return i.value; });
+            planOut.textContent = '';
+            if (!chosen.length) {
+                planOut.appendChild(el('p', 'plan-note', 'Choose at least one thing you will use the PC for.'));
+                return;
+            }
+            var gpu = gpuChoice();
+            var vram = Number((planForm.elements['vram'] || {}).value || 0);
+            var byKey = {};
+            cat.ps.forEach(function (p) { byKey[p.i] = p; });
+            var shown = {};
+
+            planOut.appendChild(el('h3', 'plan-title', 'Your plan'));
+            cat.np.g.filter(function (g) { return chosen.indexOf(g.k) !== -1; }).forEach(function (g) {
+                var group = el('section', 'plan-goal');
+                group.setAttribute('data-cid', 'fix-plan-' + g.k);
+                group.appendChild(el('h4', null, g.n));
+                group.appendChild(el('p', 'plan-goal-d', g.d));
+
+                if (g.gpu) {
+                    var ai = cat.np.ai || {};
+                    var box = el('div', 'plan-ai');
+                    if (gpu === 'none') {
+                        box.appendChild(el('p', null, ai.n));
+                    } else {
+                        box.appendChild(el('strong', null, gpu === 'card' ? ai.t : 'With a graphics card, AI runs on this PC'));
+                        var ul = el('ul');
+                        (ai.b || []).forEach(function (b) { ul.appendChild(el('li', null, b)); });
+                        box.appendChild(ul);
+                        box.appendChild(el('p', 'plan-small', ai.c));
+                    }
+                    group.appendChild(box);
+                }
+
+                var fits = [], short = [];
+                g.a.forEach(function (k) {
+                    var p = byKey[k];
+                    if (!p || p.st !== 'live') return;
+                    var f = fitOf(p, gpu, vram);
+                    (f.ok ? fits : short).push({ p: p, f: f });
+                });
+                var fresh = fits.filter(function (x) { return !shown[x.p.i]; });
+                var picks = fresh.slice(0, 4);
+                fits.forEach(function (x) { if (picks.length < 4 && picks.indexOf(x) === -1) picks.push(x); });
+                var grid = el('div', 'kit-grid');
+                picks.forEach(function (x) { shown[x.p.i] = true; grid.appendChild(card(x.p, x.f.fit)); });
+                if (picks.length) group.appendChild(grid);
+
+                var more = fits.filter(function (x) { return picks.indexOf(x) === -1; });
+                if (more.length) {
+                    var line = el('p', 'plan-more', 'Also for this: ');
+                    more.forEach(function (x, i) {
+                        var a = el('a', null, x.p.n);
+                        a.href = pagePath(x.p);
+                        line.appendChild(a);
+                        if (i < more.length - 1) line.appendChild(document.createTextNode(', '));
+                    });
+                    group.appendChild(line);
+                }
+                if (short.length) {
+                    group.appendChild(el('p', 'plan-more', (gpu === 'none' ? 'Need a graphics card: ' : 'Need more graphics memory than this PC has: ')
+                        + short.map(function (x) { return x.p.n + ' (' + x.p.vr + ' GB)'; }).join(', ') + '.'));
+                }
+                planOut.appendChild(group);
+            });
+
+            var next = el('p', 'plan-note');
+            next.appendChild(document.createTextNode('Next: the '));
+            var hour = el('a', null, 'first hour with a new PC');
+            hour.href = 'new-pc.html#first-hour';
+            next.appendChild(hour);
+            next.appendChild(document.createTextNode(' checklist, or every app in the '));
+            var kits = el('a', null, 'New PC kits');
+            kits.href = 'new-pc.html#kit';
+            next.appendChild(kits);
+            next.appendChild(document.createTextNode('.'));
+            planOut.appendChild(next);
+            planOut.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        fetch('hub-catalog.json').then(function (r) { return r.json(); }).then(function (d) {
+            if (!d.np || !d.np.g) throw new Error('no plan');
+            cat = d;
+            goalsEl.textContent = '';
+            d.np.g.forEach(function (g) {
+                var label = el('label', 'plan-chip');
+                var input = el('input');
+                input.type = 'checkbox';
+                input.value = g.k;
+                label.appendChild(input);
+                label.appendChild(el('span', null, g.n));
+                goalsEl.appendChild(label);
+            });
+        }).catch(function () {
+            goalsEl.textContent = '';
+            goalsEl.appendChild(el('p', 'plan-wait', 'The planner could not load. Please refresh the page.'));
+        });
+
+        planForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (cat) render();
+        });
+    }
+
     /* ---- problem finder ---- */
 
     var fixGrid = document.querySelector('.fix-grid');

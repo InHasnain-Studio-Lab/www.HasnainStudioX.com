@@ -120,7 +120,7 @@ function toStrokes(svg) {
         if (/^<\/g/.test(token)) { groups.pop(); continue; }
         if (/^<g/.test(token)) { groups.push(attr(token, 'class') || ''); continue; }
 
-        const classes = (groups.join(' ') + ' ' + (attr(token, 'class') || '')).trim().split(String.fromCharCode(10)).filter(Boolean);
+        const classes = (groups.join(' ') + ' ' + (attr(token, 'class') || '')).trim().split(/\s+/).filter(Boolean);
         let figure = null;
 
         if (/^<path/.test(token)) figure = attr(token, 'd');
@@ -347,11 +347,35 @@ const FACTS = (() => {
     try { return JSON.parse(read('store-facts.json')).products || {}; } catch { return {}; }
 })();
 
+/* the studio's own minimum graphics memory for GPU apps, in GB */
+const GPU_VRAM = (() => {
+    try { return require(path.join(SITE, 'hsx-taxonomy.js')).GPU_VRAM || {}; } catch { return {}; }
+})();
+
 function requirementsOf(key) {
     const f = FACTS[key];
-    if (!f || !f.req || !f.req.min || !f.req.min.length) return {};
+    const listed = f && f.req && f.req.min ? f.req.min.find(([n]) => n === 'Video Memory') : null;
+    const storeGb = listed ? parseFloat(listed[1]) || 0 : 0;
+    /* the stricter of the Store listing and the studio figure, so nothing is suggested that will not run */
+    const vram = Math.max(storeGb, GPU_VRAM[key] || 0);
+    const out = vram > 0 ? { vr: vram } : {};
+    if (!f || !f.req || !f.req.min || !f.req.min.length) return out;
     const rows = list => (list || []).map(([n, v]) => [clean(n), clean(v)]);
-    return { rq: { mn: rows(f.req.min), rc: rows(f.req.rec) }, ...(f.size ? { sz: f.size } : {}) };
+    return { ...out, rq: { mn: rows(f.req.min), rc: rows(f.req.rec) }, ...(f.size ? { sz: f.size } : {}) };
+}
+
+/* the "Bought a new PC?" planner, edited on the site in newpc-plan.json */
+function readPlan(keys) {
+    let plan;
+    try { plan = JSON.parse(read('newpc-plan.json')); } catch { return {}; }
+    const goals = (plan.goals || []).map(g => ({
+        k: clean(g.k), n: clean(g.n), d: clean(g.d), ...(g.gpu ? { gpu: 1 } : {}),
+        a: (g.apps || []).filter(k => keys.has(k)),
+    })).filter(g => g.k && g.a.length);
+    if (!goals.length) return {};
+    const ai = plan.ai || {};
+    return { np: { t: clean(plan.t), d: clean(plan.d), g: goals,
+        ai: { t: clean(ai.t), b: (ai.b || []).map(clean), c: clean(ai.c), n: clean(ai.n) } } };
 }
 
 const decode = s => String(s).replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
@@ -433,6 +457,7 @@ const catalogue = {
     ns: events(products, releases),
     ...readFixes(new Map(products.map(p => [p.n, p.i]))),
     tp: TAKE_PART,
+    ...readPlan(new Set(products.filter(p => p.st === 'live').map(p => p.i))),
 };
 
 const payload = JSON.stringify(catalogue);
@@ -468,7 +493,7 @@ console.log(withBuild
     ? `  published builds: ${withBuild}`
     : '  published builds: none (record one with Tools/Release.js)');
 console.log(`  contact form ${catalogue.ct.e ? 'found' : 'not found'}`);
-console.log(`  requirements ${products.filter(p => p.rq).length}, fix it ${catalogue.fx.length}, take part ${catalogue.tp.length}`);
+console.log(`  requirements ${products.filter(p => p.rq).length}, fix it ${catalogue.fx.length}, take part ${catalogue.tp.length}, new PC goals ${catalogue.np ? catalogue.np.g.length : 0}, graphics needs ${products.filter(p => p.vr).length}`);
 if (bundling) console.log(`\nbundled   ${BUNDLED}`);
 console.log(`published ${PUBLISHED}`);
 

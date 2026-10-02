@@ -1,0 +1,31 @@
+{
+  "t": "Bought a new PC?",
+  "d": "Answer two quick questions and get a short list of apps for what you will actually do with it, checked against your hardware. Nothing you choose is sent anywhere.",
+  "goals": [
+    { "k": "work", "n": "Work and documents", "d": "Documents, PDFs, writing, focus and the jobs you repeat every day.",
+      "apps": ["workxsuite", "writedesk", "docmento", "focusroomultra", "automafy", "nimbusdock", "pcdownloadmanagerultra", "autoclickx"] },
+    { "k": "create", "n": "Video, photos and music", "d": "Record, edit and finish your own footage, pictures and sound.",
+      "apps": ["primecut", "pcscreenrecorderpro", "glowlab", "photovidix", "beatxpro", "creatorxstudio", "pixumbrastudio", "nanovisuality", "spatiaxultra"] },
+    { "k": "ai", "n": "AI on this PC", "d": "Chat, images, video and writing with models that run on your own hardware.", "gpu": true,
+      "apps": ["pocktium", "writedesk", "hsxstudioflow", "dreammintai", "fototensor", "docclarity", "forgexpro", "novadiffux", "quantumxai", "dreamgenaiultra", "infinitegenai", "pixunica", "nostalgicel", "morphlora", "socialdeckpro"] },
+    { "k": "safe", "n": "Safety, privacy and backups", "d": "Fewer things shared, files that survive a mistake, and a way back if Windows will not start.",
+      "apps": ["pcguardx", "fileguardianultra", "bootforge", "pcarchivepro", "browsex"] },
+    { "k": "tidy", "n": "Keep it quick and tidy", "d": "Startup, space and duplicates, so the PC stays the way it arrived.",
+      "apps": ["pctunex", "pcturboxultra", "mediatidyultra", "pcvisionbulwark", "pcbenchxultra"] },
+    { "k": "play", "n": "Games, globes and play", "d": "One home for your games, worlds to explore and a desktop that is yours.",
+      "apps": ["aetheris", "gamefabrix", "planetxearthexplorer", "planetx", "terraorbitix", "planetxinfinity", "xseasons"] },
+    { "k": "phone", "n": "Phone and PC together", "d": "Move files, share your screen and keep your phone in step with the PC.",
+      "apps": ["quantumdrop", "castvisuality", "mobiletunex", "workxsuiteandroid", "convertmasterultra", "docsmining", "spatiaxmobile"] }
+  ],
+  "ai": {
+    "t": "Your graphics card can run AI on this PC",
+    "b": [
+      "Private by design. Your prompts, photos and documents are processed on this PC and are not uploaded.",
+      "No credits or subscriptions. Buy the app once and create as much as your hardware allows.",
+      "Works without the internet once the app and its models are installed.",
+      "Puts the graphics card you paid for to work on images, video, chat and writing."
+    ],
+    "c": "How fast it runs depends on your graphics card. Each app lists the graphics memory it needs.",
+    "n": "Most AI apps need a dedicated graphics card. These ones run without one, and the rest are listed with what they need."
+  }
+}
