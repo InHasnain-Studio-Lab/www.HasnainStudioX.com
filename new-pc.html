@@ -156,7 +156,7 @@
             <p class="hero-sub">A new Windows PC arrives ready to run, not ready to work. Hasnain Studio X builds apps for everything you bought it for: getting work done, keeping it safe, making things, running AI on your own hardware, and exploring and playing. Every app works on your device rather than in someone's cloud, and every Windows app has a free trial on the Microsoft Store.</p>
             <div class="hero-actions">
                 <a class="btn btn--primary" href="https://apps.microsoft.com/detail/9P0SCSV68797" target="_blank" rel="noopener">Start with HSX Apps Hub, free</a>
-                <a class="btn btn--secondary" href="#kit">See the kits</a>
+                <a class="btn btn--secondary" href="#plan">Plan my new PC</a>
             </div>
             <!--KITPILLS_START-->
             <nav class="camp-pills camp-pills--kits" aria-label="The kits">
@@ -168,6 +168,41 @@
                 <a href="#phone"><b>Android</b><span>5 apps</span></a>
             </nav>
             <!--KITPILLS_END-->
+        </section>
+
+        <section class="section" id="plan" aria-labelledby="plan-title" data-cid="newpc-plan">
+            <div class="plan-box">
+                <span class="kit-kicker">New PC planner</span>
+                <h2 id="plan-title">Bought a new PC?</h2>
+                <p class="plan-lead">Answer two quick questions and get a short list of apps for what you will actually do with it, checked against your hardware. Nothing you choose is sent anywhere.</p>
+                <form class="plan-form" novalidate>
+                    <fieldset class="plan-q">
+                        <legend><span class="plan-n">1</span> What will you use it for? <small>Choose any</small></legend>
+                        <div class="plan-goals" data-plan-goals><p class="plan-wait">Loading the plan</p></div>
+                    </fieldset>
+                    <fieldset class="plan-q">
+                        <legend><span class="plan-n">2</span> What graphics does it have?</legend>
+                        <div class="plan-gpu">
+                            <label class="plan-opt"><input type="radio" name="gpu" value="card"/> <span>A graphics card <small>NVIDIA GeForce, AMD Radeon RX or Intel Arc A-series</small></span></label>
+                            <label class="plan-opt"><input type="radio" name="gpu" value="none"/> <span>Built-in graphics only <small>Common on thin laptops</small></span></label>
+                            <label class="plan-opt"><input type="radio" name="gpu" value="unsure" checked/> <span>Not sure <small>We will show what each app needs</small></span></label>
+                        </div>
+                        <label class="plan-vram" hidden>Graphics memory, if you know it
+                            <select name="vram">
+                                <option value="0">Not sure</option>
+                                <option value="4">4 GB</option>
+                                <option value="6">6 GB</option>
+                                <option value="8">8 GB</option>
+                                <option value="12">12 GB</option>
+                                <option value="16">16 GB or more</option>
+                            </select>
+                        </label>
+                        <p class="plan-help"><button type="button" class="plan-detect">Check with this browser</button> or open Task Manager, then Performance, then GPU. <span class="plan-found" aria-live="polite"></span></p>
+                    </fieldset>
+                    <button type="submit" class="btn btn--primary">Show my plan</button>
+                </form>
+                <div class="plan-out" aria-live="polite"></div>
+            </div>
         </section>
 
         <section class="section" aria-labelledby="first-hour">

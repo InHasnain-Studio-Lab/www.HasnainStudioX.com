@@ -242,6 +242,9 @@
         var vramWrap = planBox.querySelector('.plan-vram');
         var found = planBox.querySelector('.plan-found');
         var cat = null;
+        var planSection = planBox.closest('[data-cid]');
+        var planCid = planSection ? planSection.getAttribute('data-cid') : 'plan';
+        var onNewPc = /new-pc\.html$/.test(location.pathname);
 
         var el = function (tag, cls, text) {
             var n = document.createElement(tag);
@@ -325,7 +328,7 @@
             planOut.appendChild(el('h3', 'plan-title', 'Your plan'));
             cat.np.g.filter(function (g) { return chosen.indexOf(g.k) !== -1; }).forEach(function (g) {
                 var group = el('section', 'plan-goal');
-                group.setAttribute('data-cid', 'fix-plan-' + g.k);
+                group.setAttribute('data-cid', planCid + '-' + g.k);
                 group.appendChild(el('h4', null, g.n));
                 group.appendChild(el('p', 'plan-goal-d', g.d));
 
@@ -379,11 +382,11 @@
             var next = el('p', 'plan-note');
             next.appendChild(document.createTextNode('Next: the '));
             var hour = el('a', null, 'first hour with a new PC');
-            hour.href = 'new-pc.html#first-hour';
+            hour.href = (onNewPc ? '' : 'new-pc.html') + '#first-hour';
             next.appendChild(hour);
             next.appendChild(document.createTextNode(' checklist, or every app in the '));
             var kits = el('a', null, 'New PC kits');
-            kits.href = 'new-pc.html#kit';
+            kits.href = (onNewPc ? '' : 'new-pc.html') + '#kit';
             next.appendChild(kits);
             next.appendChild(document.createTextNode('.'));
             planOut.appendChild(next);
