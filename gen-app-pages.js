@@ -248,7 +248,7 @@ function subjectOf(a) {
 /* "Your first hour": a short plan that gets a trial to a real result before it ends.
    The middle steps are the app's own features; promises about privacy or price are
    left out because they are not something to try. */
-const NOT_A_STEP = /\b(never|telemetry|no cloud|no account|no accounts|no sign-in|no analytics|no crash|privacy|private|zero[- ]|fully offline|completely offline|fully local|runs entirely|all processing|all conversion|all edits|everything (is )?(stored|generated|stays|processed)|stays? on[- ]device|stay on[- ]device|kept locally|on your own (device|hardware|pc)|built on|trial|one-time|lightweight|network access|no background|offline - no|works offline)\b/i;
+const NOT_A_STEP = /\b(never|telemetry|no cloud|no account|no accounts|no sign-in|no analytics|no crash|privacy|private|zero[- ]|fully offline|completely offline|fully local|runs entirely|all processing|all conversion|all edits|everything (is )?(stored|generated|stays|processed)|stays? on[- ]device|stay on[- ]device|kept locally|on your own (device|hardware|pc)|on your (pc|phone|device|machine)|locally|uploaded|transmitted|built on|trial|one-time|lightweight|network access|no background|offline - no|works offline)\b/i;
 
 function firstHourOf(a, ad) {
   const tries = a.features.filter(f => !NOT_A_STEP.test(f)).slice(0, 3);
