@@ -223,7 +223,7 @@ module.exports.INTENT = {
   convertxpro:            'Offline File Converter for Windows',
   pcarchivepro:           'Zip, Extract and Encrypt Files on Windows',
   pcdownloadmanagerultra: 'Fast Resumable Download Manager',
-  fileguardianultra:      'Offline File Backup and Version History',
+  fileguardianultra:      'Offline File Backup and Versioning',
 
   /* audio and video */
   spatiaxultra:           '3D Spatial Audio Software for Windows',
