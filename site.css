@@ -869,6 +869,8 @@ a:hover{color:var(--accent);}
     text-transform:uppercase;color:var(--ink-faint);
 }
 .bento-cell .bento-cta{margin-top:auto;padding-top:1rem;}
+.bento-cell p.bento-note{margin-top:.7rem;font-size:.84rem;}
+.bento-cell p.bento-note a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;}
 .bento-art{
     display:flex;align-items:center;justify-content:center;
     min-height:96px;margin:.4rem 0;
