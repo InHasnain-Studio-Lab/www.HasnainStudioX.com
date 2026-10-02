@@ -20,7 +20,7 @@ const SECTIONS = [
   ['#browse-title', 'bloom'],
   ['#why-local', 'vault'],
   ['#about', 'mark'],
-  ['#founder-note', 'floor'],
+  ['.site-footer', 'floor'],
 ];
 
 const vertex = `
