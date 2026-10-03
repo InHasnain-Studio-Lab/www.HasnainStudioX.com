@@ -42,7 +42,7 @@ const SCHEMA_CAT = {
   hsxstudioflow:'MultimediaApplication', fototensor:'MultimediaApplication',
   spatiaxmobile:'MultimediaApplication',
   workxsuite:'BusinessApplication', docmento:'BusinessApplication',
-  pocktium:'BusinessApplication', docclarity:'BusinessApplication',
+  pocktium:'BusinessApplication', docclarity:'BusinessApplication', aiassistantpro:'BusinessApplication',
   docsmining:'BusinessApplication',
   creatorxstudio:'DesignApplication', webxstudio:'DesignApplication', drop2qr:'DesignApplication',
   forgexpro:'DeveloperApplication',

@@ -197,6 +197,7 @@ module.exports.INTENT = {
   pixunica:       'Offline 4K AI Image Generator for Windows',
   writedesk:      'Offline AI Writing Assistant for Windows',
   socialdeckpro:  'Offline Social Post Writer for Windows',
+  aiassistantpro: 'Private Offline AI Chat for Windows',
   /* system and performance */
   pctunex:                'Windows PC Cleaner and Startup Manager',
   pcbenchxultra:          'Windows PC Benchmark and Hardware Test',

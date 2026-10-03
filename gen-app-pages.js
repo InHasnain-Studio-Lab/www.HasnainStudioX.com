@@ -74,7 +74,8 @@ const CAT = {
 /* A handful of titles do not fit their category's stock sentence. Overriding
    one line is better than inventing a category for a single application. */
 const WHO_OVERRIDE = {
-  writedesk: 'writers, students and professionals who want drafting and rewriting help that never sends a word of their work to anyone else'
+  writedesk: 'writers, students and professionals who want drafting and rewriting help that never sends a word of their work to anyone else',
+  aiassistantpro: 'students, professionals and anyone who wants an everyday AI assistant without handing their questions and files to a cloud service'
 };
 const CATMAP = eval('({' + grab(read('Windows-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
 const CATMAP_A = eval('({' + grab(read('android-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
@@ -239,7 +240,12 @@ const SUBJECT_RULES = [
 ];
 /* Every phrase is plural so the surrounding sentences agree without special
    cases. */
+/* Titles that touch every kind of data, where the first matching rule names the wrong one. */
+const SUBJECT_OVERRIDE = {
+  aiassistantpro: { short: 'your questions and files', long: 'the conversations, pictures and documents you work with' }
+};
 function subjectOf(a) {
+  if (SUBJECT_OVERRIDE[a.id]) return SUBJECT_OVERRIDE[a.id];
   const hay = [a.name, a.tagline, a.description].filter(Boolean).join(' ');
   for (const [re, short, long] of SUBJECT_RULES) if (re.test(hay)) return { short, long };
   return { short: 'your files', long: 'the files you point it at' };
