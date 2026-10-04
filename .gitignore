@@ -23,3 +23,7 @@ store-shots/
 .fuse_hidden*
 node_modules/
 .claude/
+
+# wrangler's local state holds a copy of the mail database; .dev.vars holds keys
+.wrangler/
+.dev.vars
