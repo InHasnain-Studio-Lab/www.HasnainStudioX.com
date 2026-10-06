@@ -538,13 +538,15 @@ window.AppViz = (function () {
         dlg.setAttribute('aria-label', 'Search the site');
         dlg.hidden = true;
         dlg.innerHTML = '<div class="srch-box"><label class="visually-hidden" for="srch-q">Search apps, guides and fixes</label>' +
-            '<input id="srch-q" class="srch-q" type="search" autocomplete="off" placeholder="Search apps, guides and fixes" role="combobox" aria-expanded="true" aria-controls="srch-list">' +
+            '<div class="srch-top"><input id="srch-q" class="srch-q" type="search" autocomplete="off" placeholder="Search apps, guides and fixes" role="combobox" aria-expanded="true" aria-controls="srch-list">' +
+            '<button type="button" class="srch-x" aria-label="Close search">Close</button></div>' +
             '<ul id="srch-list" class="srch-list" role="listbox"></ul>' +
             '<p class="srch-hint"><kbd>Enter</kbd> open <kbd>&uarr;</kbd><kbd>&darr;</kbd> move <kbd>Esc</kbd> close</p></div>';
         document.body.appendChild(dlg);
         input = dlg.querySelector('.srch-q');
         list = dlg.querySelector('.srch-list');
         dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+        dlg.querySelector('.srch-x').addEventListener('click', close);
         input.addEventListener('input', run);
         input.addEventListener('keydown', function (e) {
             if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -637,4 +639,47 @@ window.AppViz = (function () {
             if (dlg && !dlg.hidden) close(); else open();
         }
     });
+
+    /* the phone header's search button, which has no keyboard to press */
+    document.addEventListener('hsx:search', open);
+})();
+
+/* Phone header: below 760px the links and the header tools fold into a menu
+   behind one button, beside a search button. Wider screens keep the pill bar. */
+(function () {
+    var bar = document.querySelector('.top-bar');
+    var nav = bar && bar.querySelector('nav');
+    if (!bar || !nav) return;
+
+    nav.id = nav.id || 'primary-nav';
+    var tools = document.createElement('div');
+    tools.className = 'm-tools';
+    tools.innerHTML =
+        '<button type="button" class="m-btn m-search" aria-label="Search the site">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>' +
+        '<button type="button" class="m-btn m-menu" aria-label="Menu" aria-expanded="false" aria-controls="' + nav.id + '">' +
+        '<span class="m-bars" aria-hidden="true"><i></i><i></i><i></i></span></button>';
+    bar.insertBefore(tools, nav);
+
+    var menu = tools.querySelector('.m-menu');
+    function set(open) {
+        bar.classList.toggle('open', open);
+        menu.setAttribute('aria-expanded', open ? 'true' : 'false');
+        menu.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+    }
+
+    menu.addEventListener('click', function () { set(!bar.classList.contains('open')); });
+    tools.querySelector('.m-search').addEventListener('click', function () {
+        set(false);
+        document.dispatchEvent(new Event('hsx:search'));
+    });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) set(false); });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && bar.classList.contains('open')) { set(false); menu.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+        if (bar.classList.contains('open') && !bar.contains(e.target)) set(false);
+    });
+    /* turning a tablet or widening a window past the breakpoint leaves no menu open */
+    window.matchMedia('(min-width: 761px)').addEventListener('change', function (m) { if (m.matches) set(false); });
 })();

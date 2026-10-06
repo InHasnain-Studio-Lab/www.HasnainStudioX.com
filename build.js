@@ -1272,7 +1272,7 @@ function writeSearchIndex() {
     const page = 'apps/' + appSlug(a.name, a.platform || (and.includes(a) ? 'Android' : 'Windows')) + '.html';
     if (!fs.existsSync(P(page))) continue;
     items.push({ t: a.name, u: page, k: (and.includes(a) ? 'Android app' : 'Windows app') + (a.status === 'live' ? '' : ', coming soon'),
-                 d: a.tagline || '', w: [a.category, ...(a.features || [])].join(' ') });
+                 d: a.tagline || '', w: [a.category, a.description || '', ...(a.features || [])].join(' ') });
   }
   for (const f of fs.readdirSync(P('guides')).filter(f => f.endsWith('.html') && f !== 'index.html')) {
     const m = metaOf(read('guides/' + f));

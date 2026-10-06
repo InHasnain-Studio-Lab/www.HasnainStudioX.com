@@ -557,8 +557,11 @@ async function boot() {
   }
 }
 
+/* a phone keeps its battery: the WebGL scene runs continuously, and on a narrow
+   screen it sits behind the hero text rather than beside it */
 const lean = (navigator.connection && navigator.connection.saveData) ||
-  (navigator.deviceMemory && navigator.deviceMemory < 4);
+  (navigator.deviceMemory && navigator.deviceMemory < 4) ||
+  window.matchMedia('(pointer: coarse) and (max-width: 760px)').matches;
 if (!lean) {
   const later = () => (window.requestIdleCallback ? requestIdleCallback(() => boot(), { timeout: 2500 }) : setTimeout(boot, 600));
   if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
