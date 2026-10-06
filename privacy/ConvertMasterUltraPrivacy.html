@@ -114,7 +114,7 @@
           "@id": "https://hasnainstudiox.com/#organization"
         }
       },
-      "dateModified": "2026-10-04T00:48:00+00:00",
+      "dateModified": "2026-10-06T12:00:00+00:00",
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -178,10 +178,10 @@
                 <h1>Privacy Policy</h1>
                 <p class="lead">ConvertMaster Ultra is developed by Hasnain Studio X with a local&#8209;first, privacy&#8209;first design philosophy. Every conversion runs on your device.</p>
                 <p style="color:var(--text-muted); font-size:0.88rem; margin-top:8px;">
-                    <strong style="color:var(--text-main);">Effective date:</strong> 30 July 2026 &nbsp;&middot;&nbsp;
+                    <strong style="color:var(--text-main);">Effective date:</strong> 6 October 2026 &nbsp;&middot;&nbsp;
                     <strong style="color:var(--text-main);">Publisher:</strong> Hasnain Studio X &nbsp;&middot;&nbsp;
                     <strong style="color:var(--text-main);">Developer:</strong> Hasnain Butt Akhtar &nbsp;&middot;&nbsp;
-                    <strong style="color:var(--text-main);">Applies to:</strong> ConvertMaster Ultra for Android, version 0.3.0
+                    <strong style="color:var(--text-main);">Applies to:</strong> ConvertMaster Ultra for Android, version 0.4.0
                 </p>
             </div>
         </section>
@@ -191,7 +191,7 @@
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>ConvertMaster Ultra converts and compresses video, audio, image and PDF files entirely on your device, using an on&#8209;device media engine.</p>
+                    <p>ConvertMaster Ultra converts and compresses video, audio and image files, and turns images into PDFs and PDF pages into images, entirely on your device, using an on&#8209;device media engine.</p>
                     <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:2;">
                         <li>We do not collect personal data.</li>
                         <li>We do not upload your media to any server.</li>
@@ -237,7 +237,7 @@
                 </article>
                 <article class="card" role="listitem" style="grid-column:1/-1;">
                     <div class="card-accent"></div>
-                    <p><strong>We run no server of our own, so your media cannot be uploaded even by accident. The only outbound calls the app can make are listed in section 4.</strong></p>
+                    <p><strong>No server ever receives your media, so it cannot be uploaded even by accident. The only outbound calls the app can make are listed in section 4.</strong></p>
                 </article>
             </div>
         </section>
@@ -260,12 +260,12 @@
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Local Cache</h3>
-                    <p>Temporary working files created during a conversion, held in the app private storage.</p>
+                    <p>Temporary working files created during a conversion, and copies of the files you pick or share into the app, held in the app private storage. Picked copies are cleared when the app starts with no queued job that still needs them.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Local Licence State</h3>
-                    <p>A local flag recording whether the one&#8209;time Pro unlock is active, plus any temporary rewarded unlock window.</p>
+                    <p>A local flag recording whether the one&#8209;time Pro unlock is active and when it was last confirmed, plus the Google Play purchase token while a purchase is waiting to be confirmed.</p>
                 </article>
                 <article class="card" role="listitem" style="grid-column:1/-1;">
                     <div class="card-accent"></div>
@@ -283,7 +283,7 @@
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Purchase Validation</h3>
-                    <p>When you buy or restore the Pro unlock, the app sends the product id, the Google Play purchase token, and the app package name to a Hasnain Studio X validation endpoint so the purchase can be verified with Google Play. No media and no personal data are included.</p>
+                    <p>When you buy or restore the Pro unlock, and about once a week afterwards to re&#8209;confirm it, the app sends the product id, the Google Play purchase token, and the app package name to a Hasnain Studio X validation endpoint so the purchase can be verified with Google Play. No media and no personal data are included.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -292,8 +292,8 @@
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>Google AdMob</h3>
-                    <p>Builds with advertising enabled show Google AdMob ads, which use the Android Advertising ID and standard ad request data. Ads never receive your media or your file names. The Pro unlock removes advertising.</p>
+                    <h3>Google Fonts</h3>
+                    <p>The app&rsquo;s typeface (Inter) is downloaded from Google Fonts the first time it is needed and then kept on the device. The request carries your IP address and standard request headers to Google. No media, file names or personal data are included.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -325,13 +325,13 @@
             <div class="grid" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <h3>Media and File Access</h3>
-                    <p>Used only to read the files you pick for a conversion and to write the result. The app does not scan or index your library in the background.</p>
+                    <h3>Files and Media</h3>
+                    <p>The app requests no storage or media permission. Files you pick in the Android file picker, or share into the app from another app, are read for that conversion only. Results are written to the app private storage, and Save to device writes only to the place you choose. The app does not scan or index your library.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Internet and Network State</h3>
-                    <p>Used for purchase validation and, in builds with advertising enabled, for ad requests. It is never used to transmit your media.</p>
+                    <p>Used for purchase validation and to download the app&rsquo;s typeface. It is never used to transmit your media.</p>
                 </article>
                 <article class="card" role="listitem" style="grid-column:1/-1;">
                     <div class="card-accent"></div>
@@ -355,7 +355,7 @@
             <div class="grid" style="grid-template-columns:1fr;" role="list">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>This policy is updated whenever the app data behaviour changes, and the effective date and version at the top are updated with it. The current version corresponds to ConvertMaster Ultra 0.3.0, effective 30 July 2026. Any change will remain consistent with our core principle: <strong>your data stays on your device.</strong></p>
+                    <p>This policy is updated whenever the app data behaviour changes, and the effective date and version at the top are updated with it. The current version corresponds to ConvertMaster Ultra 0.4.0, effective 6 October 2026. Any change will remain consistent with our core principle: <strong>your data stays on your device.</strong></p>
                 </article>
             </div>
         </section>
