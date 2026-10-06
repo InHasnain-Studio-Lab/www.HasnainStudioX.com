@@ -36,6 +36,21 @@ async function one(id) {
     title: p.Title || null,
     size: p.ApproximateSizeInBytes || null,
     req: requirements(p.SystemRequirements),
+    price: priceOf(p),
+  };
+}
+
+/* The UK price as the Store shows it today. `was` is the Store's own regular
+   price during a sale, so a reduction is only ever claimed when Microsoft does. */
+function priceOf(p) {
+  const full = (p.Skus || []).find(s => s.SkuType === 'full') || p;
+  if (typeof full.Price !== 'number' || !full.DisplayPrice) return null;
+  return {
+    value: full.Price,
+    shown: full.DisplayPrice,
+    was: full.StrikethroughPrice || null,
+    currency: full.CurrencyCode || 'GBP',
+    trial: p.HasFreeTrial === true && full.Price > 0,
   };
 }
 

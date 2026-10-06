@@ -644,6 +644,57 @@ window.AppViz = (function () {
     document.addEventListener('hsx:search', open);
 })();
 
+/* Phone homepage: the longest lists show their first few items and a button
+   for the rest, so the page is not seventeen screens of scrolling. Nothing is
+   removed, and wider screens see every item as before. */
+(function () {
+    var FOLDS = [
+        ['.bento', 4, 'Show our four principles'],
+        ['.camp-strip', 2, null],
+        ['.cat-siblings', 4, null],
+        ['#reviews .rev-grid', 2, null]
+    ];
+    var phone = window.matchMedia('(max-width: 760px)');
+    var made = [];
+
+    function fold() {
+        FOLDS.forEach(function (f) {
+            var box = document.querySelector(f[0]);
+            if (!box || box.dataset.folded) return;
+            var items = Array.prototype.slice.call(box.children).filter(function (c) { return c.nodeType === 1; });
+            if (items.length <= f[1] + 1) return;
+            var rest = items.slice(f[1]);
+            rest.forEach(function (c) { c.classList.add('fold-hidden'); });
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'fold-more';
+            btn.textContent = f[2] || ('Show all ' + items.length);
+            btn.addEventListener('click', function () {
+                rest.forEach(function (c) { c.classList.remove('fold-hidden'); });
+                btn.remove();
+                /* keyboard and screen reader users land on the first item revealed */
+                rest[0].setAttribute('tabindex', '-1');
+                rest[0].focus({ preventScroll: true });
+            });
+            box.insertAdjacentElement('afterend', btn);
+            box.dataset.folded = '1';
+            made.push({ box: box, rest: rest, btn: btn });
+        });
+    }
+
+    function unfold() {
+        made.forEach(function (m) {
+            m.rest.forEach(function (c) { c.classList.remove('fold-hidden'); });
+            m.btn.remove();
+            delete m.box.dataset.folded;
+        });
+        made = [];
+    }
+
+    if (phone.matches) fold();
+    phone.addEventListener('change', function (m) { if (m.matches) fold(); else unfold(); });
+})();
+
 /* Phone header: below 760px the links and the header tools fold into a menu
    behind one button, beside a search button. Wider screens keep the pill bar. */
 (function () {

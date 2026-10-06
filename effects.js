@@ -359,10 +359,14 @@
     }
 
     /* Signature intro: handwritten HASNAIN, once per session */
+    /* the signature plays once per visitor, not once per visit, and any click,
+       key or scroll skips straight to the page */
     function initSignature() {
         if (RM) return;
-        if (sessionStorage.getItem('hsx-sig-seen')) return;
-        sessionStorage.setItem('hsx-sig-seen', '1');
+        try {
+            if (localStorage.getItem('hsx-sig-seen') || sessionStorage.getItem('hsx-sig-seen')) return;
+            localStorage.setItem('hsx-sig-seen', '1');
+        } catch (e) { return; }
         var LETTERS = [
             { d: 'M 18,28 C 18,68 17,122 18,165 M 18,97 C 38,86 60,86 82,97 M 82,28 C 82,68 82,122 82,165', delay: 0 },
             { d: 'M 82,165 C 96,165 108,158 114,144', delay: 260 },
@@ -401,10 +405,16 @@
                 path.style.strokeDashoffset = '0';
             }, letter.delay);
         });
-        setTimeout(function () {
+        var ended = false;
+        function finish() {
+            if (ended) return;
+            ended = true;
+            ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (t) { removeEventListener(t, finish, true); });
             overlay.classList.add('done');
             setTimeout(function () { overlay.remove(); }, 950);
-        }, TOTAL);
+        }
+        ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (t) { addEventListener(t, finish, { capture: true, passive: true }); });
+        setTimeout(finish, TOTAL);
     }
 
     /* Custom cursor + iridescent snake trail (desktop) */

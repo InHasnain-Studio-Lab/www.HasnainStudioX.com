@@ -240,7 +240,7 @@ let sitemapMsg = '';
           +   '</div>'
           +   '<div class="tile-tagline">'+esc(a.tagline)+'</div>'
           +   '<div class="tile-footer">'
-          +     '<i class="tile-dot'+(soon?' soon':'')+'"></i>'+(soon?(a.stage==='certification'?'In certification':'In development'):'Available')
+          +     '<i class="tile-dot'+(soon?' soon':'')+'"></i>'+(soon?(a.stage==='certification'?'In certification':'In development'):(tilePrice(a)||'Available'))
           +     '<span class="tile-acts">'
           +       (priv ? '<a class="tile-btn tile-btn-details" href="'+priv+'" aria-label="'+escAttr('Details and privacy policy for '+a.name)+'">Details</a>' : '')
           +       '<a class="tile-btn tile-btn-get" href="'+a.storeUrl+'"'+(ext?' target="_blank" rel="noopener"':'')
@@ -841,6 +841,28 @@ ${cards.join('\n')}
   return `  buyer reviews         ${shown.length} on the homepage, ${reviews.length} written in all`;
 }
 
+/* the short price a tile shows in place of "Available": today's UK price from
+   the Store, and whether a free trial comes first */
+function tilePrice(a) {
+  /* kept on the function, since the tile grid is drawn before this part of the file runs */
+  if (!tilePrice.facts) {
+    try { tilePrice.facts = JSON.parse(read('store-facts.json')).products || {}; } catch (e) { tilePrice.facts = {}; }
+  }
+  const p = (tilePrice.facts[a.id] || {}).price;
+  if (!p) return '';
+  return (p.value > 0 ? p.shown : 'Free') + (p.trial ? ' &middot; Free trial' : '');
+}
+
+function syncPrices() {
+  const src = read('Windows-apps.html');
+  const re = /\/\*PRICES_START\*\/[\s\S]*?\/\*PRICES_END\*\//;
+  if (!re.test(src)) return '  ! Windows-apps.html PRICES marker not found';
+  const map = {};
+  for (const a of win) if (a.status === 'live' && tilePrice(a)) map[a.id] = tilePrice(a);
+  write('Windows-apps.html', src.replace(re, '/*PRICES_START*/ var PRICES = ' + JSON.stringify(map) + '; /*PRICES_END*/'));
+  return '  tile prices           ' + Object.keys(map).length + ' Windows apps priced';
+}
+
 function syncHeroes() {
   const map = {};
   for (const [apps, platform] of [[win, 'Windows'], [and, 'Android']])
@@ -913,6 +935,7 @@ function syncAssetVersions() {
 }
 const heroesMsg = syncHeroes();
 console.log(syncReviews());
+console.log(syncPrices());
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
 /* after the page map, so a renamed app links to its current page */

@@ -2771,3 +2771,9 @@ html.srch-open{overflow:hidden;}
 .rev-card .rev-clamp{display:-webkit-box;-webkit-line-clamp:6;line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
 .rev-more{align-self:flex-start;font-size:.86rem;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;}
 .rev-more:hover{color:var(--ink);}
+.buy-price{margin:1.1rem 0 0;color:var(--ink-soft);font-size:.95rem;line-height:1.5;}
+.buy-price b{color:var(--ink);font-family:var(--f-display);font-size:1.35rem;font-weight:600;margin-right:.35rem;}
+.buy-price span{display:block;margin-top:.2rem;color:var(--ink-faint);font-size:.8rem;}
+.fold-hidden{display:none !important;}
+.fold-more{display:block;margin:1rem auto 0;min-height:44px;padding:.65rem 1.3rem;border-radius:var(--r-pill);border:1px solid var(--card-border);background:rgba(255,255,255,.04);color:var(--ink);font:inherit;font-size:.92rem;cursor:pointer;}
+.fold-more:hover,.fold-more:focus-visible{border-color:var(--accent-line);background:rgba(255,255,255,.07);}

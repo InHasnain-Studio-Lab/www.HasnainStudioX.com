@@ -4,6 +4,10 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  # prices and reviews come from the Store, so the site is rebuilt every morning
+  # even when nothing is pushed: a sale that ends is off the site within a day
+  schedule:
+    - cron: "15 5 * * *"
 
 permissions:
   contents: read

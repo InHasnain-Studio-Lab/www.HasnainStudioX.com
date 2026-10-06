@@ -288,6 +288,17 @@ const STORE = (() => { try { return JSON.parse(read('store-facts.json')).product
 /* every written Microsoft Store review of an app, as the Store holds it, with
    the studio's published reply; a trial reviewer is labelled as one */
 const REVIEWS = (() => { try { return JSON.parse(read('store-reviews.json')).reviews || []; } catch (e) { return []; } })();
+/* the UK price the Store showed when the site was last built, refreshed daily.
+   Only today's price is shown: a regular price the Store crosses out during a
+   sale is not repeated here, since a reduction that never ends is not one. */
+const PRICED = (() => { try { return JSON.parse(read('store-facts.json')).built || ''; } catch (e) { return ''; } })();
+function priceOf(a) {
+  const p = (STORE[a.id] || {}).price;
+  if (a.platform === 'Android' || !p) return null;
+  const checked = PRICED ? new Date(PRICED).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '';
+  return { ...p, checked };
+}
+
 const COUNTRY = (() => { try { const n = new Intl.DisplayNames(['en'], { type: 'region' }); return c => n.of(c) || c; } catch (e) { return c => c; } })();
 const MONTH = d => { const t = new Date(d + 'T00:00:00Z'); return isNaN(t) ? '' : t.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }); };
 function reviewsOf(a) {
@@ -412,6 +423,7 @@ function pageFor(a) {
   const osFull = ad ? `Android ${ad.minAndroid} or later` : a.platform === 'Android' ? 'Android' : 'Windows 10, Windows 11';
   const storeName = a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store';
   const out = isOut(a), cert = isCert(a), stageLine = stageOf(a);
+  const price = out ? priceOf(a) : null;
   const storeHref = out ? a.storeUrl : '../contact.html';
   const ctaLabel  = out ? (a.storeLabel || 'Get the app') : 'Tell me when it lands';
   const catalogue = a.platform === 'Android' ? '../android-apps.html' : '../Windows-apps.html';
@@ -557,7 +569,7 @@ function pageFor(a) {
         author: { '@id': BASE + '#founder' },
         creator: { '@id': BASE + '#founder' },
         offers: { '@type': 'Offer', category: ad ? 'Free, optional one-time Pro unlock' : 'Free trial, then one-time purchase',
-                  price: ad ? '0' : undefined, priceCurrency: ad ? 'USD' : undefined,
+                  price: ad ? '0' : price ? String(price.value) : undefined, priceCurrency: ad ? 'USD' : price ? price.currency : undefined,
                   availability: out ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
                   url: out ? a.storeUrl : BASE + 'contact.html' } },
       video ? { '@type': 'VideoObject', '@id': url + '#video', name: video.title, description: video.description,
@@ -672,7 +684,8 @@ ${hero ? `
             </div>${out && ad ? `
             <p class="buy-promise">Free on Google Play, with an optional one-time Pro unlock. There is no
             subscription and no account to keep it working. Genuine copies are published only on Google Play.</p>` : out ? `
-            <p class="buy-promise">Buy it once through ${esc(storeName)}. There is no renewal, and no account to
+${price ? `            <p class="buy-price"><b>${price.value > 0 ? esc(price.shown) : 'Free'}</b> on the Microsoft Store (UK)${price.trial ? ', with a free trial first' : ''}<span>Price checked ${esc(price.checked)}. Prices differ by country; the Store shows yours.</span></p>
+` : ''}            <p class="buy-promise">Buy it once through ${esc(storeName)}. There is no renewal, and no account to
             keep it working: the copy on your machine keeps running whether or not this studio is still here.
             Genuine copies are sold only on ${esc(storeName)}.</p>` : ''}${vram ? `
             <p class="gpu-badge">
@@ -777,7 +790,7 @@ ${ad.asks.map(([k, v]) => `                <div class="spec-cell"><dt>${esc(k)}<
                 <div class="spec-cell"><dt>Platform</dt><dd>${esc(osFull)}</dd></div>
                 <div class="spec-cell"><dt>Distribution</dt><dd>${esc(storeName === 'the Microsoft Store' ? 'Microsoft Store' : 'Google Play')}</dd></div>
                 <div class="spec-cell spec-cell--${out ? 'good' : 'wait'}"><dt>Availability</dt><dd><span class="spec-dot" aria-hidden="true"></span>${out ? 'Available now' : (cert ? 'In certification' : 'In development')}</dd></div>
-                <div class="spec-cell"><dt>Licence</dt><dd>${ad ? 'Free, optional one-time Pro' : 'Free trial, then one purchase'}</dd></div>${vram ? `
+                <div class="spec-cell"><dt>Licence</dt><dd>${ad ? 'Free, optional one-time Pro' : price && price.value > 0 ? 'Free trial, then ' + esc(price.shown) + ' once (UK)' : 'Free trial, then one purchase'}</dd></div>${vram ? `
                 <div class="spec-cell"><dt>Graphics</dt><dd>${vram} GB+ dedicated VRAM</dd></div>` : ''}
                 <div class="spec-cell spec-cell--${ad ? 'note' : isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? esc(ad.netShort) : isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>

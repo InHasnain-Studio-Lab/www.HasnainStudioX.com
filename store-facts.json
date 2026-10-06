@@ -1,5 +1,5 @@
 {
- "built": "2026-10-01T23:09:11.000Z",
+ "built": "2026-10-06T22:22:43.649Z",
  "products": {
   "pctunex": {
    "id": "9NM5CJRT7D06",
@@ -41,6 +41,13 @@
       "8-core / 3.0 GHz+ Processor x64"
      ]
     ]
+   },
+   "price": {
+    "value": 14.99,
+    "shown": "£14.99",
+    "was": "£19.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "nimbusdock": {
@@ -75,6 +82,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 11.61,
+    "shown": "£11.61",
+    "was": "£15.49",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "quantumdrop": {
@@ -113,6 +127,13 @@
       "Octa Core Processor x64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.61,
+    "shown": "£11.61",
+    "was": "£15.49",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "xseasons": {
@@ -147,6 +168,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcturboxultra": {
@@ -181,6 +209,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 13.49,
+    "shown": "£13.49",
+    "was": "£17.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "spatiaxultra": {
@@ -215,6 +250,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "flipxstudio": {
@@ -249,6 +291,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 10.49,
+    "shown": "£10.49",
+    "was": "£14.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "vaudioelite": {
@@ -283,6 +332,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 11.71,
+    "shown": "£11.71",
+    "was": "£16.74",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "hypersonusultra": {
@@ -317,12 +373,19 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 12.74,
+    "shown": "£12.74",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "medialucent": {
    "id": "9N9QFDHKPKM3",
    "released": "2026-06-20",
-   "updated": "2026-09-20",
+   "updated": "2026-10-02",
    "publisher": "Hasnain Studio X",
    "title": "HSX MediaLucent – Media Player & Streaming Hub",
    "size": 525263935,
@@ -363,6 +426,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 12.74,
+    "shown": "£12.74",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "workxsuite": {
@@ -401,15 +471,22 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 18.19,
+    "shown": "£18.19",
+    "was": "£25.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "webxstudio": {
    "id": "9PM0GJJQGKLL",
    "released": "2026-06-12",
-   "updated": "2026-09-27",
+   "updated": "2026-10-05",
    "publisher": "Hasnain Studio X",
-   "title": "HSX WebX Studio",
-   "size": 469913460,
+   "title": "HSX WebX Studio - Visual Web Design & HTML Builder",
+   "size": 3012426016,
    "req": {
     "min": [
      [
@@ -443,24 +520,35 @@
       "16 GB"
      ],
      [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
       "Processor",
       "Octa core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 40.99,
+    "shown": "£40.99",
+    "was": null,
+    "currency": "GBP",
+    "trial": true
    }
   },
   "forgexpro": {
    "id": "9PMS5ZG4NXXS",
    "released": "2026-05-11",
-   "updated": "2026-09-27",
+   "updated": "2026-10-05",
    "publisher": "Hasnain Studio X",
    "title": "HSX PromptKinetics – Prompt Builder & Quality Studio",
-   "size": 593856898,
+   "size": 2628543216,
    "req": {
     "min": [
      [
       "OS",
-      "Windows 10 version 17763.0 or higher"
+      "Windows 10 version 19041.0 or higher"
      ],
      [
       "DirectX",
@@ -482,7 +570,7 @@
     "rec": [
      [
       "OS",
-      "Windows 10 version 17763.0 or higher"
+      "Windows 10 version 19041.0 or higher"
      ],
      [
       "DirectX",
@@ -501,6 +589,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 14.69,
+    "shown": "£14.69",
+    "was": "£20.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "hsxstudioflow": {
@@ -563,6 +658,13 @@
       "NVIDIA RTX GPU with 6 GB+ VRAM (RTX 3060 or newer) for fast generation"
      ]
     ]
+   },
+   "price": {
+    "value": 35.69,
+    "shown": "£35.69",
+    "was": "£50.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "fototensor": {
@@ -621,6 +723,13 @@
       "NVIDIA RTX or modern discrete AMD/Intel GPU, 8 GB+ VRAM"
      ]
     ]
+   },
+   "price": {
+    "value": 34.99,
+    "shown": "£34.99",
+    "was": "£49.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "horizonos": {
@@ -667,6 +776,13 @@
       "Octa Core Processor X64 Or Better"
      ]
     ]
+   },
+   "price": {
+    "value": 11.61,
+    "shown": "£11.61",
+    "was": "£15.49",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcguardx": {
@@ -705,6 +821,13 @@
       "Multicore processor x64"
      ]
     ]
+   },
+   "price": {
+    "value": 10.39,
+    "shown": "£10.39",
+    "was": "£12.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcbenchxultra": {
@@ -739,6 +862,13 @@
       "8 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 8.44,
+    "shown": "£8.44",
+    "was": "£12.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pocktium": {
@@ -797,6 +927,13 @@
       "NVIDIA RTX GPU with 8 GB+ VRAM"
      ]
     ]
+   },
+   "price": {
+    "value": 38.49,
+    "shown": "£38.49",
+    "was": "£54.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "photovidix": {
@@ -847,6 +984,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 24.49,
+    "shown": "£24.49",
+    "was": "£34.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "castvisuality": {
@@ -893,6 +1037,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 10.49,
+    "shown": "£10.49",
+    "was": "£14.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "browsex": {
@@ -947,6 +1098,13 @@
       "Octa core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "socialdeckpro": {
@@ -1001,6 +1159,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 13.99,
+    "shown": "£13.99",
+    "was": "£19.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "convertxpro": {
@@ -1035,6 +1200,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 12.59,
+    "shown": "£12.59",
+    "was": "£17.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "creatorxstudio": {
@@ -1089,15 +1261,22 @@
       "edicated GPU with a hardware H.264 encoder"
      ]
     ]
+   },
+   "price": {
+    "value": 26.24,
+    "shown": "£26.24",
+    "was": "£34.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "docclarity": {
    "id": "9N38W044GM3C",
    "released": "2026-07-01",
-   "updated": "2026-09-27",
+   "updated": "2026-10-06",
    "publisher": "Hasnain Studio X",
    "title": "HSX DocClarity – Offline AI Document & Contract Analysis",
-   "size": 2566731703,
+   "size": 2594165424,
    "req": {
     "min": [
      [
@@ -1139,15 +1318,22 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 17.49,
+    "shown": "£17.49",
+    "was": "£24.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "docmento": {
    "id": "9P79HJ9DTZ9G",
    "released": "2026-07-02",
-   "updated": "2026-09-26",
+   "updated": "2026-10-06",
    "publisher": "Hasnain Studio X",
    "title": "HSX DocMento – Offline PDF Editor & Translator",
-   "size": 1163656836,
+   "size": 2654776629,
    "req": {
     "min": [
      [
@@ -1155,8 +1341,16 @@
       "Windows 10 version 19041.0 or higher"
      ],
      [
+      "DirectX",
+      "Version 11"
+     ],
+     [
       "Memory",
       "8 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
      ],
      [
       "Processor",
@@ -1169,10 +1363,25 @@
       "Windows 10 version 19041.0 or higher"
      ],
      [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
       "Memory",
       "16 GB"
+     ],
+     [
+      "Video Memory",
+      "4 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 18.74,
+    "shown": "£18.74",
+    "was": "£24.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "glowlab": {
@@ -1219,6 +1428,13 @@
       "8-core or better processor x64"
      ]
     ]
+   },
+   "price": {
+    "value": 14.69,
+    "shown": "£14.69",
+    "was": "£20.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcvisionbulwark": {
@@ -1265,6 +1481,13 @@
       "Octa core processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "planetx": {
@@ -1307,15 +1530,22 @@
       "Octa-core, 2.5 GHz or faster"
      ]
     ]
+   },
+   "price": {
+    "value": 9.74,
+    "shown": "£9.74",
+    "was": "£14.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcarchivepro": {
    "id": "9PCBBQSHJ9BK",
    "released": "2026-07-07",
-   "updated": "2026-09-27",
+   "updated": "2026-10-02",
    "publisher": "Hasnain Studio X",
    "title": "PC Archive Pro",
-   "size": 74605083,
+   "size": 86458528,
    "req": {
     "min": [
      [
@@ -1353,6 +1583,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.04,
+    "shown": "£11.04",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcdownloadmanagerultra": {
@@ -1395,6 +1632,13 @@
       "8 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "handsfreepc": {
@@ -1441,15 +1685,22 @@
       "Octa-core Processor x64 or better"
      ]
     ]
+   },
+   "price": {
+    "value": 13.99,
+    "shown": "£13.99",
+    "was": "£19.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "planetxearthexplorer": {
    "id": "9N11TS5BDSWD",
    "released": "2026-07-03",
-   "updated": "2026-09-28",
+   "updated": "2026-10-02",
    "publisher": "Hasnain Studio X",
    "title": "PlanetX: Earth Explorer",
-   "size": 88154368,
+   "size": 97901096,
    "req": {
     "min": [
      [
@@ -1475,6 +1726,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 11.04,
+    "shown": "£11.04",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "terraorbitix": {
@@ -1521,6 +1779,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 14.69,
+    "shown": "£14.69",
+    "was": "£20.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "planetxinfinity": {
@@ -1563,6 +1828,13 @@
       "16 GB"
      ]
     ]
+   },
+   "price": {
+    "value": 17.24,
+    "shown": "£17.24",
+    "was": "£22.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "primecut": {
@@ -1617,6 +1889,13 @@
       "Dedicated GPU (NVIDIA, Intel or AMD), For Faster Exports"
      ]
     ]
+   },
+   "price": {
+    "value": 24.39,
+    "shown": "£24.39",
+    "was": "£30.49",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "autoclickx": {
@@ -1663,6 +1942,13 @@
       "8 core Processor x64 Quad core or better"
      ]
     ]
+   },
+   "price": {
+    "value": 10.86,
+    "shown": "£10.86",
+    "was": "£14.49",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "image3dx": {
@@ -1709,6 +1995,13 @@
       "8 Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 18.19,
+    "shown": "£18.19",
+    "was": "£25.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "sensecapture": {
@@ -1759,6 +2052,13 @@
       "Octa core processor x64"
      ]
     ]
+   },
+   "price": {
+    "value": 9.09,
+    "shown": "£9.09",
+    "was": "£12.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "nexusos": {
@@ -1805,6 +2105,13 @@
       "Octa core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 10.49,
+    "shown": "£10.49",
+    "was": "£14.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "novadiffux": {
@@ -1863,6 +2170,13 @@
       "8 GB or more video memory"
      ]
     ]
+   },
+   "price": {
+    "value": 37.49,
+    "shown": "£37.49",
+    "was": "£49.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "beatxpro": {
@@ -1909,6 +2223,13 @@
       "Octa Core Processor X64 or better"
      ]
     ]
+   },
+   "price": {
+    "value": 18.19,
+    "shown": "£18.19",
+    "was": "£25.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "spillframe": {
@@ -1955,6 +2276,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "execrafter": {
@@ -2001,6 +2329,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 32.99,
+    "shown": "£32.99",
+    "was": null,
+    "currency": "GBP",
+    "trial": true
    }
   },
   "qrcreatorstudio": {
@@ -2047,6 +2382,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "automafy": {
@@ -2093,6 +2435,13 @@
       "Octa Core Processor X64 Or Better"
      ]
     ]
+   },
+   "price": {
+    "value": 21.69,
+    "shown": "£21.69",
+    "was": "£30.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "quantumos": {
@@ -2143,14 +2492,21 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "focusroomultra": {
    "id": "9NWWWHKZSWTK",
    "released": "2026-08-05",
-   "updated": "2026-09-26",
+   "updated": "2026-10-02",
    "publisher": "Hasnain Studio X",
-   "title": "FocusRoom Ultra",
+   "title": "HSX FocusRoom Ultra",
    "size": 114753979,
    "req": {
     "min": [
@@ -2181,6 +2537,13 @@
       "Octa Core Procsessor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 10.79,
+    "shown": "£10.79",
+    "was": "£17.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "bootforge": {
@@ -2227,14 +2590,21 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 9.74,
+    "shown": "£9.74",
+    "was": "£12.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "fileguardianultra": {
    "id": "9P7V2XD0LZJQ",
    "released": "2026-08-02",
-   "updated": "2026-09-26",
+   "updated": "2026-10-02",
    "publisher": "Hasnain Studio X",
-   "title": "FileGuardian Ultra",
+   "title": "HSX FileGuardian Ultra",
    "size": 73743455,
    "req": {
     "min": [
@@ -2265,6 +2635,13 @@
       "Octa core processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 9.74,
+    "shown": "£9.74",
+    "was": "£14.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "aetheris": {
@@ -2303,6 +2680,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "gamefabrix": {
@@ -2349,6 +2733,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 34.99,
+    "shown": "£34.99",
+    "was": null,
+    "currency": "GBP",
+    "trial": true
    }
   },
   "artgenstudio": {
@@ -2411,6 +2802,13 @@
       "Dedicated GPU with 6–8 GB VRAM or more"
      ]
     ]
+   },
+   "price": {
+    "value": 32.19,
+    "shown": "£32.19",
+    "was": "£45.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "dreammintai": {
@@ -2473,6 +2871,13 @@
       "Dedicated GPU with 6 GB VRAM from NVIDIA, AMD, or Intel."
      ]
     ]
+   },
+   "price": {
+    "value": 19.59,
+    "shown": "£19.59",
+    "was": "£27.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "earthos": {
@@ -2519,6 +2924,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 14.69,
+    "shown": "£14.69",
+    "was": "£20.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "mediatidyultra": {
@@ -2557,6 +2969,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 11.89,
+    "shown": "£11.89",
+    "was": "£16.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pcscreenrecorderpro": {
@@ -2595,6 +3014,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 10.14,
+    "shown": "£10.14",
+    "was": "£14.49",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "quantumxai": {
@@ -2657,6 +3083,13 @@
       "Vulkan GPU 6GB VRAM Recommended"
      ]
     ]
+   },
+   "price": {
+    "value": 23.09,
+    "shown": "£23.09",
+    "was": "£32.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "dreamgenaiultra": {
@@ -2719,6 +3152,13 @@
       "Dedicated card, 8 GB VRAM or more for Excellent performance"
      ]
     ]
+   },
+   "price": {
+    "value": 35.69,
+    "shown": "£35.69",
+    "was": "£50.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "infinitegenai": {
@@ -2781,6 +3221,13 @@
       "Dedicated GPU with 6GB RAM for Excellent performance"
      ]
     ]
+   },
+   "price": {
+    "value": 24.49,
+    "shown": "£24.49",
+    "was": "£34.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "nanovisuality": {
@@ -2835,12 +3282,19 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 17.49,
+    "shown": "£17.49",
+    "was": "£24.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pixumbrastudio": {
    "id": "9PB29K34D2RS",
    "released": "2026-08-25",
-   "updated": "2026-09-02",
+   "updated": "2026-10-02",
    "publisher": "Hasnain Studio X",
    "title": "Pixumbra Studio",
    "size": 1021767791,
@@ -2893,6 +3347,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 17.49,
+    "shown": "£17.49",
+    "was": "£24.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "nanocodify": {
@@ -2955,6 +3416,13 @@
       "Graphics with 6 GB or + dedicated VRAM for Fast performance"
      ]
     ]
+   },
+   "price": {
+    "value": 25.19,
+    "shown": "£25.19",
+    "was": "£35.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "writedesk": {
@@ -3009,6 +3477,13 @@
       "Octa Core Processor X64"
      ]
     ]
+   },
+   "price": {
+    "value": 17.49,
+    "shown": "£17.49",
+    "was": "£24.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "pixunica": {
@@ -3071,6 +3546,13 @@
       "Dedicated graphics card"
      ]
     ]
+   },
+   "price": {
+    "value": 24.49,
+    "shown": "£24.49",
+    "was": "£34.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "nostalgicel": {
@@ -3133,6 +3615,13 @@
       "6GB Dedicated GPU ( Nividia, Intel Or AMD ) Best Performance"
      ]
     ]
+   },
+   "price": {
+    "value": 34.99,
+    "shown": "£34.99",
+    "was": "£49.99",
+    "currency": "GBP",
+    "trial": true
    }
   },
   "morphlora": {
@@ -3195,6 +3684,70 @@
       "Best Performance Dedicated - 6 GB+ VRAM ( Intel, Nividia, AMD )"
      ]
     ]
+   },
+   "price": {
+    "value": 23.09,
+    "shown": "£23.09",
+    "was": "£32.99",
+    "currency": "GBP",
+    "trial": true
+   }
+  },
+  "halovoxultra": {
+   "id": "9NTNL7LTWNJ0",
+   "released": "2026-10-03",
+   "updated": "2026-10-03",
+   "publisher": "Hasnain Studio X",
+   "title": "HSX HaloVox Ultra",
+   "size": 1292723699,
+   "req": {
+    "min": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "Version 11"
+     ],
+     [
+      "Memory",
+      "8 GB"
+     ],
+     [
+      "Processor",
+      "Quad Core Procsessor X64"
+     ]
+    ],
+    "rec": [
+     [
+      "OS",
+      "Windows 10 version 19041.0 or higher"
+     ],
+     [
+      "DirectX",
+      "DirectX 12 API, Hardware Feature Level 12"
+     ],
+     [
+      "Memory",
+      "16 GB"
+     ],
+     [
+      "Video Memory",
+      "2 GB"
+     ],
+     [
+      "Processor",
+      "Octa Core Procsessor X64"
+     ]
+    ]
+   },
+   "price": {
+    "value": 25.19,
+    "shown": "£25.19",
+    "was": "£35.99",
+    "currency": "GBP",
+    "trial": true
    }
   }
  }
