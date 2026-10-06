@@ -792,6 +792,55 @@ const catStripMsg = syncCategoryStrip();
    <slug>-hero.webp and <slug>-hero-sm.webp. The map is rebuilt from the files
    that actually exist, so dropping a new tile into the folder is all it takes
    to illustrate an app, and an app with no tile keeps the plain card. */
+/* 3b7. What buyers say: written Microsoft Store reviews from people who bought
+   the app, newest first, exactly as the Store holds them. A review written on
+   the free trial is left to the app's own page. No average is shown: a handful
+   of ratings is not a score. */
+function syncReviews() {
+  /* reviewers' own words go into the page, so every character that means
+     something in HTML is escaped */
+  const esc = t => String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  let reviews = [];
+  try { reviews = JSON.parse(read('store-reviews.json')).reviews || []; } catch (e) { /* none fetched yet */ }
+  const byId = new Map(win.filter(a => a.status === 'live').map(a => [a.id, a]));
+  const country = (() => { try { const n = new Intl.DisplayNames(['en'], { type: 'region' }); return c => n.of(c) || c; } catch (e) { return c => c; } })();
+  const month = d => { const t = new Date(d + 'T00:00:00Z'); return isNaN(t) ? '' : t.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }); };
+
+  const shown = reviews.filter(r => !r.trial && r.rating >= 4 && byId.has(r.app)).slice(0, 6);
+  const cards = shown.map(r => {
+    const app = byId.get(r.app);
+    const page = 'apps/' + appSlug(app.name, 'Windows') + '.html';
+    /* a long review is cut short by the layout only, never in its words; the
+       whole of it is on the app's page */
+    const long = r.text.length > 260;
+    return `                    <figure class="rev-card">
+                        <div class="rev-stars" role="img" aria-label="${r.rating} out of 5 stars">${'&#9733;'.repeat(r.rating)}${'&#9734;'.repeat(5 - r.rating)}</div>
+                        <blockquote>${r.title ? `<p class="rev-title">${esc(r.title)}</p>` : ''}${r.text ? `<p${long ? ' class="rev-clamp"' : ''}>${esc(r.text)}</p>` : ''}</blockquote>${long ? `
+                        <a class="rev-more" href="${page}#rev-title">Read the full review</a>` : ''}
+                        <figcaption><b>${esc(r.name)}</b>, ${esc(country(r.market))}${month(r.date) ? `, ${month(r.date)}` : ''}<br>
+                            on <a href="${page}">${esc(app.name)}</a> &middot; <a href="https://apps.microsoft.com/detail/${esc(r.product)}" target="_blank" rel="noopener">see it on the Microsoft Store</a></figcaption>
+                    </figure>`;
+  });
+
+  const block = shown.length ? `
+            <section class="section reveal" id="reviews" aria-labelledby="reviews-title">
+                <div class="section-header">
+                    <h2 id="reviews-title">What buyers say</h2>
+                    <p>Written reviews from people who bought an app on the Microsoft Store, word for word, newest first.</p>
+                </div>
+                <div class="rev-grid">
+${cards.join('\n')}
+                </div>
+            </section>
+            ` : '';
+
+  const s = read('index.html');
+  const next = s.replace(/<!--REVIEWS_START-->[\s\S]*?<!--REVIEWS_END-->/, '<!--REVIEWS_START-->' + block + '<!--REVIEWS_END-->');
+  if (next !== s) write('index.html', next);
+  return `  buyer reviews         ${shown.length} on the homepage, ${reviews.length} written in all`;
+}
+
 function syncHeroes() {
   const map = {};
   for (const [apps, platform] of [[win, 'Windows'], [and, 'Android']])
@@ -863,6 +912,7 @@ function syncAssetVersions() {
        + ' references across ' + targets.length + ' pages';
 }
 const heroesMsg = syncHeroes();
+console.log(syncReviews());
 const appPagesMsg = syncAppPages();
 if (appPagesMsg) sitemapMsg += '\n' + appPagesMsg;
 /* after the page map, so a renamed app links to its current page */

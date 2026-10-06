@@ -1,0 +1,115 @@
+{
+ "built": "2026-10-06T22:01:11.586Z",
+ "reviews": [
+  {
+   "id": "18bd718e-70d5-2f02-ced7-afb9aef33213",
+   "app": "browsex",
+   "product": "9P49PDPB9DF4",
+   "name": "Ilias",
+   "rating": 5,
+   "title": "Smart BROWSER",
+   "text": "Excellent Browser.",
+   "market": "GR",
+   "trial": false,
+   "date": "2026-10-02",
+   "reply": {
+    "text": "Thanks for the 5‑star rating! Glad you’re enjoying the browser. More updates ahead.",
+    "date": "2026-10-03"
+   }
+  },
+  {
+   "id": "8da2db06-b911-3a6a-239f-bb53a23290e3",
+   "app": "dreamgenaiultra",
+   "product": "9PLPCW4T3FFW",
+   "name": "Tony",
+   "rating": 5,
+   "title": "This is better than I imagined it would be...",
+   "text": "This app runs fluidly and really does a nice job creating images with excellent detail. I would like to see the prompt area longer to fit longer more detailed prompts but honestly that is the only gripe I have. This really does work well and for the cost is a steal.",
+   "market": "US",
+   "trial": false,
+   "date": "2026-09-28",
+   "reply": {
+    "text": "Thank you for the great review and helpful feedback! I’m glad you’re enjoying DreamVivid AI. I’ll be improving the prompt area in an upcoming update.",
+    "date": "2026-10-03"
+   }
+  },
+  {
+   "id": "ce4e79ac-4677-09a4-ed09-2124f793289e",
+   "app": "pixumbrastudio",
+   "product": "9PB29K34D2RS",
+   "name": "Paolo Nel",
+   "rating": 5,
+   "title": "Excellent software and outstanding support",
+   "text": "I started using Pixumbra Studio to improve and restore some of my old photographs, and my first impressions have been very positive. I particularly like the Portrait feature, which was able to recover facial details while keeping the results natural and faithful to the original photograph. I would also like to highlight the quality of the developer support. I encountered an issue when first launching the application and sent them the log file. The developer quickly identified and reproduced the problem, and it was fixed with the Pixumbra Studio 1.0.1 update. That level of attention and responsiveness is something I really appreciate. Another important advantage for me is that the AI processing runs locally on my PC. I am still exploring everything Pixumbra Studio can do, but based on my experience so far, it is a very interesting and well-designed application backed by a developer who genuinely listens to users. Highly recommended. 5 stars.",
+   "market": "IT",
+   "trial": false,
+   "date": "2026-09-03",
+   "reply": null
+  },
+  {
+   "id": "bde92db7-c262-8dc7-d020-d690a7eefa9e",
+   "app": "pctunex",
+   "product": "9NM5CJRT7D06",
+   "name": "Neha",
+   "rating": 5,
+   "title": "Simple and Effective Deep PC Cleanup Tool",
+   "text": "Definitely recommend it totally worth it.",
+   "market": "GB",
+   "trial": false,
+   "date": "2026-08-09",
+   "reply": null
+  },
+  {
+   "id": "5256fdb9-9556-bcc5-b172-d124874c4b4a",
+   "app": "pcturboxultra",
+   "product": "9PH35J8QM8TH",
+   "name": "Neha",
+   "rating": 5,
+   "title": "Does what its says",
+   "text": "used for temp and cache removal love the Gaming UI",
+   "market": "GB",
+   "trial": true,
+   "date": "2026-08-09",
+   "reply": null
+  },
+  {
+   "id": "8e3164ad-6345-8658-1dfc-5123df0f4fc4",
+   "app": "pcguardx",
+   "product": "9NVK1JPFSQHL",
+   "name": "Neha",
+   "rating": 5,
+   "title": "As I expected, it worked",
+   "text": "Good app, like the privacy features and glass UI",
+   "market": "GB",
+   "trial": true,
+   "date": "2026-08-09",
+   "reply": null
+  },
+  {
+   "id": "f6064f39-6f18-72cf-6dc9-78a0a1dc2c7e",
+   "app": "xseasons",
+   "product": "9PDK0BLBHJHS",
+   "name": "Lorna",
+   "rating": 5,
+   "title": "Excellent App",
+   "text": "Made my laptop window look amazing , customization was quick",
+   "market": "GB",
+   "trial": true,
+   "date": "2026-05-29",
+   "reply": null
+  },
+  {
+   "id": "7f912be9-f571-9537-9d9e-68d3440156d6",
+   "app": "pctunex",
+   "product": "9NM5CJRT7D06",
+   "name": "Lorna",
+   "rating": 5,
+   "title": "Good app",
+   "text": "Excellent App, made easy for me to print report , I am it technician",
+   "market": "GB",
+   "trial": false,
+   "date": "2026-04-24",
+   "reply": null
+  }
+ ]
+}

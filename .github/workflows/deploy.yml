@@ -52,6 +52,10 @@ jobs:
       - name: Refresh release dates and requirements from the Microsoft Store
         run: node fetch-store-facts.js || true
 
+      # written reviews for What buyers say; a run that cannot reach the Store keeps the saved ones
+      - name: Refresh written reviews from the Microsoft Store
+        run: node fetch-store-reviews.js || true
+
       - name: Build catalogue, structured data and sitemap
         run: node build.js
 
@@ -73,7 +77,7 @@ jobs:
       - name: Strip build sources from the published site
         run: |
           rm -rf articles-src guides-src og-src worker
-          rm -f build.js gen-app-pages.js gen-category-pages.js gen-guide-pages.js gen-home-panels.js \
+          rm -f build.js fetch-store-reviews.js gen-app-pages.js gen-category-pages.js gen-guide-pages.js gen-home-panels.js \
                 publish-guide.js hsx-taxonomy.js update-gallery.js optimise-images.py \
                 make-app-art.py make-icons.py brand-icon-master.png \
                 fetch-store-shots.js make-app-shots.py README.md app-videos.json

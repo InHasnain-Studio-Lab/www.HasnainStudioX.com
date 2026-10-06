@@ -284,6 +284,31 @@ ${steps.map(([h, p]) => `                <li><h3>${esc(h)}</h3><p>${esc(p)}</p><
 /* "Is it right for my PC?": the requirements Microsoft publishes on each Store
    page, read by fetch-store-facts.js, plus a check the browser can run locally. */
 const STORE = (() => { try { return JSON.parse(read('store-facts.json')).products || {}; } catch (e) { return {}; } })();
+
+/* every written Microsoft Store review of an app, as the Store holds it, with
+   the studio's published reply; a trial reviewer is labelled as one */
+const REVIEWS = (() => { try { return JSON.parse(read('store-reviews.json')).reviews || []; } catch (e) { return []; } })();
+const COUNTRY = (() => { try { const n = new Intl.DisplayNames(['en'], { type: 'region' }); return c => n.of(c) || c; } catch (e) { return c => c; } })();
+const MONTH = d => { const t = new Date(d + 'T00:00:00Z'); return isNaN(t) ? '' : t.toLocaleDateString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }); };
+function reviewsOf(a) {
+  const mine = REVIEWS.filter(r => r.app === a.id);
+  if (!mine.length) return '';
+  const pid = (String(a.storeUrl || '').match(/detail\/([A-Z0-9]{12})/i) || [])[1];
+  return `
+        <section class="section" aria-labelledby="rev-title">
+            <div class="section-header"><h2 id="rev-title">Reviews on the Microsoft Store</h2>
+                <p>Every written review of ${esc(a.name)}, word for word${pid ? `, as it appears on <a href="https://apps.microsoft.com/detail/${escA(pid)}" target="_blank" rel="noopener">its Store page</a>` : ''}.</p></div>
+            <div class="rev-grid">
+${mine.map(r => `                <figure class="rev-card">
+                    <div class="rev-stars" role="img" aria-label="${r.rating} out of 5 stars">${'&#9733;'.repeat(r.rating)}${'&#9734;'.repeat(5 - r.rating)}</div>
+                    <blockquote>${r.title ? `<p class="rev-title">${esc(r.title)}</p>` : ''}${r.text ? `<p>${esc(r.text)}</p>` : ''}</blockquote>
+                    <figcaption><b>${esc(r.name)}</b>, ${esc(COUNTRY(r.market))}${MONTH(r.date) ? `, ${MONTH(r.date)}` : ''}${r.trial ? ' <span class="rev-tag">Written during the free trial</span>' : ''}</figcaption>${r.reply ? `
+                    <p class="rev-reply"><span>Reply from Hasnain Studio X</span>${esc(r.reply.text)}</p>` : ''}
+                </figure>`).join('\n')}
+            </div>
+        </section>
+`;
+}
 const WINVER = { 17763: 'Windows 10 (version 1809) or Windows 11', 18362: 'Windows 10 (version 1903) or Windows 11',
                  19041: 'Windows 10 (version 2004) or Windows 11', 22000: 'Windows 11' };
 const FIT_ORDER = ['OS', 'Processor', 'Memory', 'Graphics Processor', 'Video Memory', 'DirectX', 'Camera'];
@@ -762,6 +787,7 @@ ${ad.asks.map(([k, v]) => `                <div class="spec-cell"><dt>${esc(k)}<
             </dl>
         </section>
 
+${reviewsOf(a)}
         <section class="section" aria-labelledby="faq-title">
             <div class="section-header"><h2 id="faq-title">Questions</h2></div>
             <div class="app-faq">

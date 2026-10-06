@@ -2754,3 +2754,20 @@ html.srch-open{overflow:hidden;}
 }
 @keyframes mDrop{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
 @media (prefers-reduced-motion:reduce){.top-bar.open nav{animation:none;}.m-bars i{transition:none;}}
+
+/* What buyers say, and each app page's Store reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1rem;}
+.rev-card{margin:0;display:flex;flex-direction:column;gap:.75rem;padding:1.3rem 1.35rem;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--card-border);}
+.rev-stars{color:#f2dfb8;letter-spacing:.12em;font-size:1rem;line-height:1;}
+.rev-card blockquote{margin:0;color:var(--ink);line-height:1.6;}
+.rev-card blockquote p{margin:0;}
+.rev-card .rev-title{font-weight:600;margin-bottom:.35rem;}
+.rev-card figcaption{margin-top:auto;color:var(--ink-soft);font-size:.86rem;line-height:1.55;}
+.rev-card figcaption b{color:var(--ink);font-weight:600;}
+.rev-card figcaption a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;}
+.rev-tag{display:inline-block;margin-left:.35rem;padding:.1rem .5rem;border-radius:var(--r-pill);border:1px solid var(--card-border);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;color:var(--ink-faint);}
+.rev-reply{margin:0;padding:.7rem .85rem;border-left:2px solid var(--accent-line);background:rgba(255,255,255,.025);border-radius:0 10px 10px 0;color:var(--ink-soft);font-size:.88rem;line-height:1.55;}
+.rev-reply span{display:block;margin-bottom:.2rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+.rev-card .rev-clamp{display:-webkit-box;-webkit-line-clamp:6;line-clamp:6;-webkit-box-orient:vertical;overflow:hidden;}
+.rev-more{align-self:flex-start;font-size:.86rem;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;}
+.rev-more:hover{color:var(--ink);}
