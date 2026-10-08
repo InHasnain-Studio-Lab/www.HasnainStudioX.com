@@ -193,8 +193,8 @@
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <ul style="padding-left:1.25rem;line-height:2;">
-                        <li>Files, notes, the PC screen and your control input travel between your phone and your PC, encrypted.</li>
-                        <li>On the same Wi-Fi they go directly. Over the internet a signaling service introduces the two devices, and a relay may carry the encrypted stream when a network blocks a direct path. Neither keeps it.</li>
+                        <li>Files, notes and your control input travel between your phone and your PC, encrypted. A watched PC screen is encrypted in the live video mode; on the same Wi-Fi, joining a screen and the still picture mode use your local network without encryption.</li>
+                        <li>Send, and Watch on the same Wi-Fi, go directly between your phone and your PC. Control, on any network, and Watch from another network use a signaling service to introduce the two devices, and a relay may carry the encrypted stream when a network blocks a direct path. Neither keeps it.</li>
                         <li>There is no account, no advertising and no analytics or crash reporting service.</li>
                         <li>We have no servers that store your files, screen or input.</li>
                         <li>We do not sell, share or monetise user data.</li>
@@ -254,6 +254,11 @@
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
+                    <h3>Wake and Shortcuts</h3>
+                    <p>A PC's network (MAC) address, saved so Wake on LAN can switch it on, and the launchers, key macros and text snippets you create for Control.</p>
+                </article>
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
                     <h3>Settings and Pro State</h3>
                     <p>Your appearance choices, and whether Pro was validated with its Google Play purchase token, kept on the phone so Pro works offline.</p>
                 </article>
@@ -269,12 +274,12 @@
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Your Wi-Fi Network</h3>
-                    <p>While the app is open it announces this phone's name and id on your local network so HSX NanoSend can list it, and asks the network for HSX NanoCastify. Transfers on the same Wi-Fi go straight to the PC, encrypted end to end.</p>
+                    <p>While the app is open it announces this phone's name and id on your local network so HSX NanoSend can list it, and asks the network for HSX NanoCastify. Transfers on the same Wi-Fi go straight to the PC, encrypted end to end. Watch on the same Wi-Fi connects straight to HSX NanoCastify: the live video mode is encrypted, while the join step (room code, PIN and this phone's name), the control socket and the still picture mode are not.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Signaling Service</h3>
-                    <p>To watch or control a PC over the internet, the phone and the PC exchange connection details through a Supabase Realtime channel: a channel name derived from the link code (never the code itself), signed one time values, this phone's id and name, and network addresses. Messages are relayed, not stored; Supabase keeps short operational logs.</p>
+                    <p>To control a PC on any network, or watch one over the internet, the phone and the PC exchange connection details through a Supabase Realtime channel: a channel name derived from the link code (never the code itself), signed one time values, this phone's id and name, and network addresses. Messages are relayed, not stored; Supabase keeps short operational logs.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -289,7 +294,7 @@
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
                     <h3>Purchase Verification</h3>
-                    <p>When you buy or restore Pro, the app sends the Google Play purchase token, the product id and the app's package name to our verification service, which checks the purchase with Google Play. No personal data is included. The service stores nothing itself; its host, Supabase, keeps short operational request logs.</p>
+                    <p>When you buy or restore Pro, and about once a week while Pro is active, the app sends the Google Play purchase token, the product id and the app's package name to our verification service, which checks the purchase with Google Play. No personal data is included. The service stores nothing itself; its host, Supabase, keeps short operational request logs.</p>
                 </article>
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -297,7 +302,7 @@
                     <p>Links to our website, email or Google Play open only when you tap them.</p>
                 </article>
             </div>
-            <p class="policy-note">These are the only network requests the app makes. Signaling and purchase verification use encrypted HTTPS or secure WebSockets, and the links to your PC are encrypted end to end.</p>
+            <p class="policy-note">These are the only network requests the app makes. Signaling and purchase verification use encrypted HTTPS or secure WebSockets. Send, Control and live video Watch are encrypted end to end; same Wi-Fi Watch setup and still pictures are not.</p>
         </section>
 
         <section class="section" aria-labelledby="play-title">
