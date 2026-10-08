@@ -1037,21 +1037,21 @@
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
                 /*TERMAPPS_START*/
-                print('Hasnain Studio X - 73 applications live, 2 in development', 'ok');
+                print('Hasnain Studio X - 74 applications live, 1 in development', 'ok');
                 print('', '');
-                print('WINDOWS (68)', 'warn');
+                print('WINDOWS (69)', 'warn');
                 print('  AI tools: DreamMint AI, HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX MorphLora, HSX Nostalgicel, HSX NovaDiffux, HSX PixUnica, HSX Pocktium, HSX PromptKinetics, HSX QuantumGen AI Studio, HSX SocialDeck Pro, HSX StudioFlow, HSX WriteDesk', '');
-                print('  Audio & video: HSX BeatGrid, HSX CastVisuality, HSX DepthStudio 3D, HSX GlowCraft, HSX MediaLucent, HSX PhotoVidix, HSX PrimeCut Ultra, HSX SenseCapture, Hypersonus Ultra, MediaTidy Ultra, PC Screen Recorder Pro, SpatiaX Ultra, VAudio Elite', '');
+                print('  Audio & video: HSX BeatGrid, HSX DepthStudio 3D, HSX GlowCraft, HSX MediaLucent, HSX NanoCastify, HSX PhotoVidix, HSX PrimeCut Ultra, HSX SenseCapture, Hypersonus Ultra, MediaTidy Ultra, PC Screen Recorder Pro, SpatiaX Ultra, VAudio Elite', '');
                 print('  Creative & documents: HSX ArtGen Studio, HSX CreatorStudio, HSX DocMento, HSX ExeCrafter, HSX SpillFrame, HSX WebX Studio, HSX WorkX Suite, QR Creator Studio', '');
-                print('  Files & transfer: FlipX Studio, HSX ConvertStudio, HSX FileGuardian Ultra, PC Archive Pro, PC Download Manager Ultra, QuantumDrop', '');
+                print('  Files & transfer: FlipX Studio, HSX ConvertStudio, HSX FileGuardian Ultra, HSX NanoSend, PC Archive Pro, PC Download Manager Ultra', '');
                 print('  Games & explore: HSX GameFabrix, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
                 print('  Other: HSX NanoCodify, HSX NanoVisuality, Pixumbra Studio', '');
-                print('  System & performance: HSX AI Browser, HSX Automafy, HSX BootForge, HSX EarthShell, HSX FocusRoom Ultra, HSX HandsFree PC, HSX SmartClicker, KatanicOS, NimbusDock, PC BenchX Ultra, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
+                print('  System & performance: HSX AI Browser, HSX Automafy, HSX BootForge, HSX EarthShell, HSX FocusRoom Ultra, HSX HaloVox Ultra, HSX HandsFree PC, HSX SmartClicker, KatanicOS, NimbusDock, PC BenchX Ultra, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
                 print('', '');
                 print('ANDROID (5)', 'warn');
                 print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');
                 print('', '');
-                print('In development: 2 more. Full catalogue at hasnainstudiox.com', '');
+                print('In development: 1 more. Full catalogue at hasnainstudiox.com', '');
                 /*TERMAPPS_END*/
             }
         };

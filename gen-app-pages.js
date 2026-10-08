@@ -151,8 +151,8 @@ const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a);
    TM is used throughout: it asserts an unregistered mark and needs no
    registration. The registered symbol is reserved for Hasnain Studio X alone. */
 const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
-  'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
-  'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
+  'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
+  'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
   'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
   'KatanicOS', 'MoneyHalo', 'VectalonOS', 'SolsticeOS', 'XCipher', 'NimbusDock', 'DocMento',
   'ExeCrafter', 'SpillFrame', 'EarthShell', 'AstraMorph', 'VDroidX', 'DreamMint'];

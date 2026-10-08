@@ -1380,8 +1380,8 @@ function syncTrademarks() {
   if (!/<!--TRADEMARKS_START-->/.test(s)) return '  ! about.html trademark marker not found';
 
   const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
-    'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'QuantumDrop',
-    'SpatiaX', 'XSeasons', 'Automafy', 'CastVisuality', 'FotoTensor', 'GameFabrix',
+    'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
+    'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
     'KatanicOS', 'VectalonOS', 'SolsticeOS', 'NimbusDock', 'DocMento',
     'ExeCrafter', 'SpillFrame', 'EarthShell', 'DreamMint'];
