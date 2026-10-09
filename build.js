@@ -547,7 +547,8 @@ function syncPolicyIndex() {
 
   const pages = fs.readdirSync(path.join(ROOT, 'privacy'))
     .filter(f => f.endsWith('.html'))
-    .filter(f => !/HSX:RENAME-REDIRECT/.test(read('privacy/' + f)))
+    /* a superseded page still answers for a Store listing but is listed once, at its new address */
+    .filter(f => !/HSX:RENAME-REDIRECT|HSX:SUPERSEDED/.test(read('privacy/' + f)))
     .map(f => {
       const t = (read('privacy/' + f).match(/<title>([\s\S]*?)<\/title>/) || [, f])[1];
       return { file: 'privacy/' + f, name: t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim() };
