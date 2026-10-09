@@ -1046,7 +1046,7 @@
                 print('  Files & transfer: FlipX Studio, HSX ConvertStudio, HSX FileGuardian Ultra, HSX NanoSend, PC Archive Pro, PC Download Manager Ultra', '');
                 print('  Games & explore: HSX GameFabrix, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
                 print('  Other: HSX NanoCodify, HSX NanoVisuality, Pixumbra Studio', '');
-                print('  System & performance: HSX AI Browser, HSX Automafy, HSX BootForge, HSX EarthShell, HSX FocusRoom Ultra, HSX HaloVox Ultra, HSX HandsFree PC, HSX SmartClicker, KatanicOS, NimbusDock, PC BenchX Ultra, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, SolsticeOS, VectalonOS, XSeasons', '');
+                print('  System & performance: HSX AI Browser, HSX Automafy, HSX BootForge, HSX TerralisOS, HSX FocusRoom Ultra, HSX HaloVox Ultra, HSX HandsFree PC, HSX SmartClicker, HSX KatanaOS, NimbusDock, PC BenchX Ultra, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, HSX MicaOS, HSX NetrixOS, XSeasons', '');
                 print('', '');
                 print('ANDROID (5)', 'warn');
                 print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');

@@ -18,6 +18,12 @@ const ROOT = __dirname;
 const P = f => path.join(ROOT, f);
 const read = f => fs.readFileSync(P(f), 'utf8');
 const write = (f, s) => fs.writeFileSync(P(f), s, 'utf8');
+/* every published folder of pages, so a new one such as terms/ never ships
+   pointing at a stylesheet that has since been renamed */
+const pageFolders = () => fs.readdirSync(ROOT, { withFileTypes: true })
+  .filter(d => d.isDirectory() && !/^[_.]/.test(d.name) &&
+    !['guides-src', 'articles-src', 'og-src', 'worker', 'tools', 'node_modules', 'images', 'vendor'].includes(d.name))
+  .map(d => d.name);
 const today = new Date().toISOString().slice(0, 10);
 /* must stay identical to slug() in gen-app-pages.js */
 const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -729,7 +735,7 @@ function syncNav() {
     ['Contact',   'contact.html']
   ];
   const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
-    .concat(['apps', 'privacy', 'guides'].flatMap(d => {
+    .concat(pageFolders().flatMap(d => {
       try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
       catch (e) { return []; }
     }));
@@ -907,7 +913,7 @@ function syncAssetVersions() {
     map[a] = hashed;
   }
   const targets = fs.readdirSync(ROOT).filter(f => /\.html$/.test(f) && !f.startsWith('_'))
-    .concat(['apps', 'privacy', 'guides'].flatMap(d => {
+    .concat(pageFolders().flatMap(d => {
       try { return fs.readdirSync(P(d)).filter(f => /\.html$/.test(f)).map(f => d + '/' + f); }
       catch (e) { return []; }
     }));
@@ -1383,8 +1389,8 @@ function syncTrademarks() {
     'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
     'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-    'KatanicOS', 'VectalonOS', 'SolsticeOS', 'NimbusDock', 'DocMento',
-    'ExeCrafter', 'SpillFrame', 'EarthShell', 'DreamMint'];
+    'KatanaOS', 'NetrixOS', 'MicaOS', 'NimbusDock', 'DocMento',
+    'ExeCrafter', 'SpillFrame', 'TerralisOS', 'DreamMint'];
   const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const apps = win.concat(and);
   const other = [...new Set(apps
