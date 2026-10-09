@@ -76,7 +76,8 @@ const CAT = {
 const WHO_OVERRIDE = {
   writedesk: 'writers, students and professionals who want drafting and rewriting help that never sends a word of their work to anyone else',
   aiassistantpro: 'students, professionals and anyone who wants an everyday AI assistant without handing their questions and files to a cloud service',
-  halovoxultra: 'anyone who wants to run their PC by voice, to rest their hands or simply to work faster, without sending a word they say to a cloud service'
+  halovoxultra: 'anyone who wants to run their PC by voice, to rest their hands or simply to work faster, without sending a word they say to a cloud service',
+  nanopilot: 'anyone who wants to reach their PC from the sofa, another room or another town, without a remote access account or a cloud service watching their screen'
 };
 const CATMAP = eval('({' + grab(read('Windows-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
 const CATMAP_A = eval('({' + grab(read('android-apps.html'), /var CATMAP = \{/, '\n        };') + '})');
@@ -141,8 +142,11 @@ const NETWORKED = new Set([
    false; but they are not standalone either, so "works with the network
    switched off" is false too. They get their own wording. */
 const LOCAL_LINK = new Set(['castvisuality', 'quantumdrop']);
+/* Phone remote control: the internet only introduces the two devices; the session runs encrypted between them. */
+const REMOTE_LINK = new Set(['nanopilot']);
 const isLinked  = a => LOCAL_LINK.has(a.id);
-const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a);
+const isRemote  = a => REMOTE_LINK.has(a.id);
+const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a) && !isRemote(a);
 
 /* Trademarks
    COINED are invented words owned outright by the studio; the mark is the
@@ -244,7 +248,8 @@ const SUBJECT_RULES = [
 /* Titles that touch every kind of data, where the first matching rule names the wrong one. */
 const SUBJECT_OVERRIDE = {
   aiassistantpro: { short: 'your questions and files', long: 'the conversations, pictures and documents you work with' },
-  halovoxultra: { short: 'your spoken commands', long: 'the words you speak and the windows you work in' }
+  halovoxultra: { short: 'your spoken commands', long: 'the words you speak and the windows you work in' },
+  nanopilot: { short: 'your screen and files', long: 'your screen, your typing and the files you send' }
 };
 function subjectOf(a) {
   if (SUBJECT_OVERRIDE[a.id]) return SUBJECT_OVERRIDE[a.id];
@@ -383,7 +388,10 @@ function faqFor(a) {
     [`Which versions of Android does it support?`, `Android ${ad.minAndroid} or later.`],
   ];
   const os = a.platform === 'Android' ? 'Android' : 'Windows 10 and Windows 11';
-  const net = isLinked(a)
+  const net = isRemote(a)
+    ? [`Does ${a.name} need an internet connection?`,
+       `Only to reach your PC when your phone is away from home. A signalling channel introduces your phone and your PC and stores nothing; the screen, your input and your files then travel encrypted between your two devices. On your own Wi-Fi, a browser can also connect over the local network.`]
+    : isLinked(a)
     ? [`Does ${a.name} need an internet connection?`,
        `No. ${a.name} works over your own Wi-Fi, or your laptop's hotspot where there is no Wi-Fi at all. Your devices talk to each other directly, so nothing is routed through a server and nothing needs an internet connection.`]
     : isOffline(a)
@@ -680,7 +688,7 @@ ${hero ? `
                 <span class="proof-chip">No account</span>
                 <span class="proof-chip">${ad ? 'No analytics' : 'No telemetry'}</span>
                 <span class="proof-chip">No subscription</span>
-                <span class="proof-chip">${ad ? 'Files stay on the phone' : isLinked(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
+                <span class="proof-chip">${ad ? 'Files stay on the phone' : isLinked(a) || isRemote(a) ? 'Your devices only' : isOffline(a) ? 'Runs offline' : 'Your data stays local'}</span>
             </div>${out && ad ? `
             <p class="buy-promise">Free on Google Play, with an optional one-time Pro unlock. There is no
             subscription and no account to keep it working. Genuine copies are published only on Google Play.</p>` : out ? `
@@ -752,7 +760,9 @@ ${ad.groups.map(([h, p]) => `                <div class="app-q"><h3>${esc(h)}</h
             <p>Plenty of the alternatives send ${esc(subj.short)} to a server to be
             handled. ${esc(a.name)} does not.
             Processing runs on your ${a.platform === 'Android' ? 'phone’s own processor' : 'CPU or GPU'},
-            and ${esc(subj.long)} stay where you put them.${ad ? ' ' + esc(ad.net) : isLinked(a)
+            and ${esc(subj.long)} stay where you put them.${ad ? ' ' + esc(ad.net) : isRemote(a)
+              ? ` ${esc(a.name)} uses the internet only to introduce your phone to your PC; the session itself runs encrypted between your two devices and is never stored by Hasnain Studio X.`
+              : isLinked(a)
               ? ` ${esc(a.name)} does need your devices to be on the same network, but that is the only link involved: it runs over your own Wi-Fi or a hotspot, with nothing routed through a server and no internet connection required.`
               : isOffline(a)
               ? ' The application keeps working with the network switched off.'
@@ -792,7 +802,7 @@ ${ad.asks.map(([k, v]) => `                <div class="spec-cell"><dt>${esc(k)}<
                 <div class="spec-cell spec-cell--${out ? 'good' : 'wait'}"><dt>Availability</dt><dd><span class="spec-dot" aria-hidden="true"></span>${out ? 'Available now' : (cert ? 'In certification' : 'In development')}</dd></div>
                 <div class="spec-cell"><dt>Licence</dt><dd>${ad ? 'Free, optional one-time Pro' : price && price.value > 0 ? 'Free trial, then ' + esc(price.shown) + ' once (UK)' : 'Free trial, then one purchase'}</dd></div>${vram ? `
                 <div class="spec-cell"><dt>Graphics</dt><dd>${vram} GB+ dedicated VRAM</dd></div>` : ''}
-                <div class="spec-cell spec-cell--${ad ? 'note' : isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? esc(ad.netShort) : isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
+                <div class="spec-cell spec-cell--${ad ? 'note' : isOffline(a) ? 'good' : isLinked(a) ? 'good' : 'note'}"><dt>Network required</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? esc(ad.netShort) : isRemote(a) ? 'Only to link your phone' : isLinked(a) ? 'Your own network only' : isOffline(a) ? 'No, works offline' : 'Online content only'}</dd></div>
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
                 <div class="spec-cell spec-cell--${ad ? 'note' : 'good'}"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? 'None. Free version shows ads' : 'None'}</dd></div>
                 <div class="spec-cell"><dt>Publisher</dt><dd>Hasnain Studio X</dd></div>

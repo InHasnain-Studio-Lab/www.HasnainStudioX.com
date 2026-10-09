@@ -206,6 +206,7 @@ module.exports.INTENT = {
   pcvisionbulwark:        'Blue Light and Eye Comfort App for PC',
   handsfreepc:            'Offline Voice Control for Windows',
   halovoxultra:           'Hands-Free Voice Control for Windows PC',
+  nanopilot:              'Control Your Windows PC From Your Phone',
   nimbusdock:             'Customisable Desktop Dock for Windows 11',
   xseasons:               'Live Seasonal Wallpaper App for Windows 11',
   horizonos:              'Private Desktop Shell and Launcher for Windows',
