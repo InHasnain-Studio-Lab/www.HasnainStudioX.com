@@ -158,8 +158,8 @@ const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pock
   'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
   'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
   'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-  'KatanaOS', 'MoneyHalo', 'NetrixOS', 'MicaOS', 'XCipher', 'NimbusDock', 'DocMento',
-  'ExeCrafter', 'SpillFrame', 'TerralisOS', 'AstraMorph', 'VDroidX', 'DreamMint'];
+  'KatanicOS', 'MoneyHalo', 'GlactisOS', 'CrystalunaOS', 'XCipher', 'NimbusDock', 'DocMento',
+  'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'AstraMorph', 'VDroidX', 'DreamMint'];
 const tmNorm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 /* the mark this application asserts */
 const markFor = a => COINED.find(c => tmNorm(a.name).includes(tmNorm(c))) || a.name;

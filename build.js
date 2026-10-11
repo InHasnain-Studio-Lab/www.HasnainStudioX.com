@@ -1390,8 +1390,8 @@ function syncTrademarks() {
     'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
     'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-    'KatanaOS', 'NetrixOS', 'MicaOS', 'NimbusDock', 'DocMento',
-    'ExeCrafter', 'SpillFrame', 'TerralisOS', 'DreamMint'];
+    'KatanicOS', 'GlactisOS', 'CrystalunaOS', 'NimbusDock', 'DocMento',
+    'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'DreamMint'];
   const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const apps = win.concat(and);
   const other = [...new Set(apps

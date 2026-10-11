@@ -188,7 +188,7 @@ window.AppViz = (function () {
        suite    = PDF / Word / spreadsheet docs (HSX WorkX Suite, WorkX Suite)
        imagegen = GPU image generation render   (HSX StudioFlow)
        prompt   = structured prompt assembly    (HSX PromptKinetics)
-       shell    = desktop shell + widgets       (HSX MicaOS)
+       shell    = desktop shell + widgets       (HSX CrystalunaOS)
        docs     = document text extraction      (DocsMining)
        lock     = AES-256 local encryption      (XCipher)            */
     var byId = {
@@ -202,6 +202,7 @@ window.AppViz = (function () {
         flipxstudio: 'convert',
         workxsuite: 'suite', hsxstudioflow: 'imagegen',
         forgexpro: 'prompt', horizonos: 'shell',
+        limonaos: 'shell', prisnovaos: 'shell', redspawnos: 'shell',
         docsmining: 'docs',
         pcguardx: 'guard',      /* privacy toggles dashboard */
         pocktium: 'chat',    /* local AI chat */
