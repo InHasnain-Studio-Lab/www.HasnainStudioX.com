@@ -245,6 +245,18 @@ const SUBJECT_RULES = [
 ];
 /* Every phrase is plural so the surrounding sentences agree without special
    cases. */
+/* Names an app was released under before; searches for them still arrive. */
+const FORMERLY = {
+  fototensor: ['HSX Vanta'],
+  creatorxstudio: ['CreatorX Studio'],
+  quantumdrop: ['QuantumDrop'],
+  castvisuality: ['HSX CastVisuality'],
+  quantumos: ['HSX KatanaOS'],
+  horizonos: ['SolsticeOS', 'HSX MicaOS'],
+  earthos: ['HSX EarthShell', 'HSX TerralisOS'],
+  nexusos: ['VectalonOS', 'HSX NetrixOS'],
+};
+const formerOf = a => FORMERLY[a.id] || [];
 /* Titles that touch every kind of data, where the first matching rule names the wrong one. */
 const SUBJECT_OVERRIDE = {
   aiassistantpro: { short: 'your questions and files', long: 'the conversations, pictures and documents you work with' },
@@ -558,7 +570,7 @@ function pageFor(a) {
       { '@type': 'WebSite', '@id': BASE + '#website', url: BASE, name: 'Hasnain Studio X',
         publisher: { '@id': BASE + '#organization' }, inLanguage: 'en-GB' },
       { '@type': 'SoftwareApplication', '@id': url + '#app', name: a.name,
-        alternateName: [...new Set([a.name.replace(/^HSX /, ''), markFor(a)])],
+        alternateName: [...new Set([a.name.replace(/^HSX /, ''), markFor(a), ...formerOf(a)])],
         description: a.description, applicationCategory: c.schema,
         operatingSystem: osFull, softwareVersion: a.version || undefined,
         memoryRequirements: vram ? vram + ' GB dedicated GPU VRAM (minimum)' : undefined,
@@ -677,7 +689,8 @@ ${hero ? `
             <h1 id="app-title">${esc(a.name)}</h1>
             <p class="app-tagline">${esc(a.tagline)}</p>
             <p class="hero-sub">${esc(a.description)}</p>
-            <div class="app-cta">
+${formerOf(a).length ? `            <p class="app-note">Previously released as ${formerOf(a).map(esc).join(' and ')}.</p>
+` : ''}            <div class="app-cta">
                 <a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                     ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a>
                 <a class="btn btn--secondary" href="${catalogue}">All ${esc(catalogueLabel)}</a>${pid ? `
