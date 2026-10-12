@@ -156,10 +156,10 @@ const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a) && !isRemote(a);
    registration. The registered symbol is reserved for Hasnain Studio X alone. */
 const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
   'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
-  'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
+  'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor',
   'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
   'KatanicOS', 'MoneyHalo', 'GlactisOS', 'CrystalunaOS', 'XCipher', 'NimbusDock', 'DocMento',
-  'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'AstraMorph', 'VDroidX', 'DreamMint'];
+  'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'LimonaOS', 'PrisnovaOS', 'RedspawnOS', 'AstraMorph', 'VDroidX', 'DreamMint'];
 const tmNorm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 /* the mark this application asserts */
 const markFor = a => COINED.find(c => tmNorm(a.name).includes(tmNorm(c))) || a.name;
@@ -255,6 +255,7 @@ const FORMERLY = {
   horizonos: ['SolsticeOS', 'HSX MicaOS'],
   earthos: ['HSX EarthShell', 'HSX TerralisOS'],
   nexusos: ['VectalonOS', 'HSX NetrixOS'],
+  gamefabrix: ['HSX GameFabrix', 'HSX Game Studio'],
 };
 const formerOf = a => FORMERLY[a.id] || [];
 /* Titles that touch every kind of data, where the first matching rule names the wrong one. */

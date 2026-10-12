@@ -1044,7 +1044,7 @@
                 print('  Audio & video: HSX BeatGrid, HSX DepthStudio 3D, HSX GlowCraft, HSX MediaLucent, HSX NanoCastify, HSX PhotoVidix, HSX PrimeCut Ultra, HSX SenseCapture, Hypersonus Ultra, MediaTidy Ultra, PC Screen Recorder Pro, SpatiaX Ultra, VAudio Elite', '');
                 print('  Creative & documents: HSX ArtGen Studio, HSX CreatorStudio, HSX DocMento, HSX ExeCrafter, HSX SpillFrame, HSX WebX Studio, HSX WorkX Suite, QR Creator Studio', '');
                 print('  Files & transfer: FlipX Studio, HSX ConvertStudio, HSX FileGuardian Ultra, HSX NanoSend, PC Archive Pro, PC Download Manager Ultra', '');
-                print('  Games & explore: HSX GameFabrix, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
+                print('  Games & explore: HSX Game Studio Pro, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
                 print('  Other: HSX NanoCodify, HSX NanoVisuality, Pixumbra Studio', '');
                 print('  System & performance: HSX AI Browser, HSX Automafy, HSX BootForge, HSX EarthvisOS, HSX FocusRoom Ultra, HSX HaloVox Ultra, HSX HandsFree PC, HSX SmartClicker, HSX KatanicOS, NimbusDock, PC BenchX Ultra, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, HSX CrystalunaOS, HSX GlactisOS, XSeasons', '');
                 print('', '');

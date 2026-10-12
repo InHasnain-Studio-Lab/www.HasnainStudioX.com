@@ -1388,10 +1388,10 @@ function syncTrademarks() {
 
   const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
     'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
-    'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor', 'GameFabrix',
+    'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
     'KatanicOS', 'GlactisOS', 'CrystalunaOS', 'NimbusDock', 'DocMento',
-    'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'DreamMint'];
+    'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'LimonaOS', 'PrisnovaOS', 'RedspawnOS', 'DreamMint'];
   const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const apps = win.concat(and);
   const other = [...new Set(apps
