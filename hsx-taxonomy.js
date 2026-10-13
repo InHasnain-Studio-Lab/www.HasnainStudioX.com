@@ -32,13 +32,34 @@ module.exports.HUBS = [
     ]
   },
   {
+    key: 'desktop',
+    slug: 'desktop-customisation-apps',
+    nav: 'Desktop shell',
+    h1: 'Desktop shells and customisation apps for Windows',
+    title: 'Windows desktop shells, docks and live wallpapers | HSX',
+    desc: 'Replace the Windows desktop with a shell of your own: docks, widgets, command palettes and live wallpapers. Runs on your PC, no account, no telemetry.',
+    lead: 'Whole new desktops for Windows. Each shell brings its own dock, widgets, command palette and live wallpapers, and some lay a living planet or a synthwave grid behind your work. Docks and seasonal wallpapers sit alongside them for a lighter change.',
+    body: 'A desktop shell sees more of your machine than almost anything else you install: every app you open, every window, your clipboard. That is why none of these shells create an account or send anything off the device. The Windows taskbar only steps aside after you agree, and it comes straight back the moment you choose Desktop mode or exit.',
+    check: [
+      ['Whether it can hand the desktop back', 'A good shell restores the Windows taskbar the instant you leave it, and never leaves your PC stuck in its own layout.'],
+      ['What it reads, and where that goes', 'A shell reads your apps, windows and system readings to show them to you. None of it should leave the machine.'],
+      ['How heavy it is', 'Live wallpapers should follow what your PC is doing without stealing the performance you need for real work.']
+    ],
+    faq: [
+      ['Can I go back to the normal Windows desktop?', 'Yes. Desktop mode, the tray icon and Exit all bring the Windows taskbar straight back, and it returns on its own if the shell closes.'],
+      ['Do the shells send anything about my PC?', 'No. App lists, windows and system readings are read only to show them to you on screen, and nothing is transmitted.'],
+      ['Can I use my own wallpaper?', 'Yes. The shells let you use your own pictures, and each one lists the wallpaper options it supports on its own page.'],
+      ['Is there a subscription?', 'No. Every application is a free trial followed by one purchase.']
+    ]
+  },
+  {
     key: 'system',
     slug: 'pc-optimisation-apps',
     nav: 'PC & system',
     h1: 'PC optimisation and system tools for Windows',
     title: 'PC optimisation and system apps for Windows | HSX',
-    desc: 'Cleanup, startup control, privacy settings, display comfort and desktop customisation for Windows 10 and 11. Local tools, no account, no telemetry.',
-    lead: 'This is the largest part of the catalogue: tools that make a Windows machine behave the way you want it to. Cleanup and startup control, privacy switches gathered into one place, display comfort, docks and desktop shells.',
+    desc: 'Cleanup, startup control, privacy settings, display comfort, voice control and focus for Windows 10 and 11. Local tools, no account, no telemetry.',
+    lead: 'Tools that make a Windows machine behave the way you want it to. Cleanup and startup control, privacy switches gathered into one place, benchmarks, display comfort, hands-free voice control and a distraction-free place to work.',
     body: 'System utilities are the category where trust matters most, because a cleanup tool by definition gets to see everything on the disk. That is the reason none of these applications create an account, phone home, or transmit a report of what they found. The tool runs, you see the result, and the result stays on your machine.',
     check: [
       ['What it sends back', 'Many free optimisers are funded by the data they collect. If a cleanup tool needs an account, ask what the account is for.'],
@@ -53,13 +74,34 @@ module.exports.HUBS = [
     ]
   },
   {
+    key: 'audio',
+    slug: 'audio-enhancement-apps',
+    nav: 'Audio',
+    h1: 'Audio enhancement and spatial sound apps for Windows',
+    title: 'Audio enhancer and spatial sound apps for Windows | HSX',
+    desc: 'Spatial sound, audio enhancement and music making for Windows. Works with the headphones and speakers you already own, processed on your own PC.',
+    lead: 'Better sound from the hardware you already have. Spatial audio for ordinary headphones, enhancement and equalisation across every app, and tools for making music, all processed on your own machine.',
+    body: 'Audio processing has to happen where the sound is, which makes running locally the only sensible design rather than a privacy feature. There is nothing to upload and no account to sign into, and the effect is applied as the sound plays, with no round trip to anywhere.',
+    check: [
+      ['Whether it works with your own headphones', 'Good spatial audio works with ordinary stereo headphones and speakers, not just one brand of hardware.'],
+      ['What it adds in delay', 'Processing that lags behind the picture ruins films and games. Low latency matters more than a long list of presets.'],
+      ['Whether it covers every app', 'An enhancer that only works inside its own player is a player, not an enhancer.']
+    ],
+    faq: [
+      ['Do I need special headphones?', 'No. The audio range works with ordinary stereo headphones and speakers, and each application explains what it supports on its own page.'],
+      ['Does it work with games and streaming?', 'Each application says on its own page whether it works on everything your PC plays or inside its own player.'],
+      ['Is any audio uploaded?', 'No. All processing runs on your own machine.'],
+      ['Is there a subscription?', 'No. Every application is a free trial followed by one purchase.']
+    ]
+  },
+  {
     key: 'media',
     slug: 'audio-and-video-apps',
-    nav: 'Audio & video',
-    h1: 'Audio and video apps for Windows',
-    title: 'Audio and video apps for Windows, offline | HSX',
-    desc: 'Spatial audio, playback, screen recording, capture and editing for Windows. Processing runs on your own machine, so nothing is uploaded to be handled.',
-    lead: 'Playback, spatial sound, capture, recording and editing. The common thread is that the processing happens on your own CPU or GPU rather than on a server you upload to and wait for.',
+    nav: 'Video & capture',
+    h1: 'Video editing, capture and conversion apps for Windows',
+    title: 'Offline video editing and screen recording apps | HSX',
+    desc: 'Video editing, screen recording, capture and conversion for Windows. Processing runs on your own machine, so nothing is uploaded to be handled.',
+    lead: 'Editing, screen recording, capture and conversion. The common thread is that the processing happens on your own CPU or GPU rather than on a server you upload to and wait for.',
     body: 'For anyone working with footage or long recordings, that is a practical difference before it is a privacy one. Media files are large. Uploading an hour of video to be processed and downloading it again costs more time than the processing itself, and it puts an unreleased edit on someone else’s disk. Local processing removes both problems at once.',
     check: [
       ['Whether your files leave the machine', 'Any tool that processes in the cloud has a copy of your footage for as long as the job runs, and often longer.'],
@@ -69,18 +111,18 @@ module.exports.HUBS = [
     faq: [
       ['Are exported files watermarked?', 'No. Once an application is purchased, what it produces is a clean file with no watermark and no export limit.'],
       ['Do these apps upload my footage anywhere?', 'No. Conversion, capture and editing all run on your own hardware. There is no upload step, which is also why large files are not slow to work with.'],
-      ['Is spatial audio supported on any headphones?', 'The spatial audio range works with ordinary stereo headphones and speakers. Each application explains what it supports on its own page.'],
+      ['Can I record my screen and edit it in the same place?', 'Recording, editing and conversion are separate applications with separate jobs, and each one writes standard files the others open directly.'],
       ['Can I use these commercially?', 'Yes. A purchased licence covers the work you produce with it.']
     ]
   },
   {
     key: 'creative',
     slug: 'document-and-design-apps',
-    nav: 'Documents & design',
-    h1: 'Document and design apps for Windows',
-    title: 'Offline document and design apps for Windows | HSX',
-    desc: 'PDF and document work, web and publishing tools, QR and packaging utilities for Windows. Files stay on your machine, with no account and no subscription.',
-    lead: 'Documents, publishing, web design and the small production jobs that sit around them. The kind of work that used to need a suite of software and now usually needs a subscription instead.',
+    nav: 'AI writing & docs',
+    h1: 'Private AI assistants, writing and document apps for Windows',
+    title: 'Private AI assistant and document apps for Windows | HSX',
+    desc: 'AI chat, writing help, a private browser and document tools for Windows. Your questions and files stay on your machine, with no account and no subscription.',
+    lead: 'An assistant to ask, help with writing and posting, a browser that keeps to itself, and tools for reading, summarising and organising documents. The kind of work that now usually means sending everything to someone else’s server.',
     body: 'Document tools are where the subscription model bites hardest, because the files are the ones you cannot afford to lose access to. A contract, an invoice archive or a client’s brand kit should not stop opening because a plan lapsed. Everything here is bought once and keeps working, and the documents never go anywhere to be processed.',
     check: [
       ['Whether your documents are uploaded to be converted', 'Most free online PDF tools work by receiving your file. For anything confidential that is the whole question.'],
@@ -90,7 +132,7 @@ module.exports.HUBS = [
     faq: [
       ['Are my documents uploaded for conversion?', 'No. Conversion, translation and export all happen on your own machine. There is no upload and no server-side copy.'],
       ['Do the files stop opening if I stop paying?', 'No. Each application is a one-time purchase, and what it produces is a standard file that other software can open.'],
-      ['Is there a file size limit?', 'No artificial one. What you can process is bounded by your own machine, not by a plan tier.'],
+      ['Do the AI assistants send my questions anywhere?', 'No. The assistants run on your own machine, so what you ask and the files you share with them stay there.'],
       ['Do I need an account?', 'No. No application in the catalogue asks you to create one.']
     ]
   },

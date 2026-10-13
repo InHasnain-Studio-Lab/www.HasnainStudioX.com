@@ -54,23 +54,28 @@ const rel  = u => String(u || '').replace(/^https?:\/\/(www\.)?hasnainstudiox\.c
 /* Category shapes the "who it is for" line and the schema type, so pages in
    different parts of the catalogue do not read identically. */
 const CAT = {
-  system:   { label: 'System & Performance', schema: 'UtilitiesApplication',
+  desktop:  { label: 'Desktop Shells & Customisation', schema: 'UtilitiesApplication',
+              who: 'people who want a Windows desktop that looks and works the way they choose, without a shell that reports on them' },
+  system:   { label: 'PC Performance & Control', schema: 'UtilitiesApplication',
               who: 'people who want their machine to run properly without handing a cleanup tool the keys to their data' },
-  media:    { label: 'Audio & Video',        schema: 'MultimediaApplication',
-              who: 'editors, musicians and anyone who works with sound or footage and does not want it uploaded for processing' },
-  creative: { label: 'Creative & Documents', schema: 'DesignApplication',
-              who: 'designers, writers and small studios who need professional output without a monthly bill' },
-  ai:       { label: 'AI Tools',             schema: 'MultimediaApplication',
+  ai:       { label: 'AI Image & Art', schema: 'MultimediaApplication',
               who: 'creators who want generative tooling on their own GPU, with no API keys, no queue and nothing metered per use' },
-  explore:  { label: 'Games & Explore',      schema: 'GameApplication',
-              who: 'anyone who enjoys exploring simulated worlds without an always-on connection' },
-  dev:      { label: 'Developer Tools',      schema: 'DeveloperApplication',
-              who: 'developers who want their source, their history and their tooling to stay on their own machine' },
-  photo:    { label: 'Photo & Imaging',      schema: 'DesignApplication',
+  creative: { label: 'AI Assistants & Documents', schema: 'BusinessApplication',
+              who: 'writers, students and professionals who want an assistant and their documents to stay on their own machine' },
+  audio:    { label: 'Audio', schema: 'MultimediaApplication',
+              who: 'listeners, gamers and musicians who want better sound from the hardware they already own' },
+  media:    { label: 'Video & Capture', schema: 'MultimediaApplication',
+              who: 'editors and creators who work with footage and do not want it uploaded for processing' },
+  photo:    { label: 'Photo & Imaging', schema: 'DesignApplication',
               who: 'photographers, sellers and anyone finishing a folder of pictures who would rather not upload them to a subscription service' },
-  files:    { label: 'Files & Transfer',     schema: 'UtilitiesApplication',
-              who: 'people moving, converting or archiving files who would rather not route them through someone else’s server' }
+  files:    { label: 'Files & Transfer', schema: 'UtilitiesApplication',
+              who: 'people moving, converting or archiving files who would rather not route them through someone else’s server' },
+  explore:  { label: 'Games, 3D & Explore', schema: 'GameApplication',
+              who: 'anyone who enjoys exploring simulated worlds, or building games, without an always-on connection' },
+  dev:      { label: 'Developer & Productivity', schema: 'DeveloperApplication',
+              who: 'developers and office workers who want their source, their files and their tooling to stay on their own machine' }
 };
+
 /* A handful of titles do not fit their category's stock sentence. Overriding
    one line is better than inventing a category for a single application. */
 const WHO_OVERRIDE = {
@@ -85,8 +90,7 @@ const CATMAP_A = eval('({' + grab(read('android-apps.html'), /var CATMAP = \{/, 
    entry is never silently filed under System & Performance. */
 const CAT_FALLBACK = { utilities: 'system', media: 'media', productivity: 'creative', ai: 'ai', files: 'files', games: 'explore' };
 /* Apps whose catalogue category is too coarse for their page. */
-const CAT_OVERRIDE = { nanocodify: 'dev', nanovisuality: 'photo', pixumbrastudio: 'photo',
-                       glowlab: 'photo', photovidix: 'photo', mediatidyultra: 'photo' };
+const CAT_OVERRIDE = {};
 const whoOf = a => WHO_OVERRIDE[a.id] || catOf(a).who;
 const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLBACK[a.category]] || CAT.system;
 

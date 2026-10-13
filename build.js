@@ -1129,8 +1129,9 @@ function syncTerminalApps() {
   const line = (t, cls) => "                print(" + q(t) + ", " + q(cls || '') + ");";
 
   const wl = live(win), ws = soon(win), al = live(and), as = soon(and);
-  const CATN = { system: 'System & performance', media: 'Audio & video', creative: 'Creative & documents',
-                 ai: 'AI tools', explore: 'Games & explore', files: 'Files & transfer' };
+  const CATN = { desktop: 'Desktop shells', system: 'PC performance', ai: 'AI image & art', creative: 'AI assistants & documents',
+                 audio: 'Audio', media: 'Video & capture', photo: 'Photo & imaging', files: 'Files & transfer',
+                 explore: 'Games, 3D & explore', dev: 'Developer & productivity' };
   let CM = {};
   try {
     const src = read('Windows-apps.html');
