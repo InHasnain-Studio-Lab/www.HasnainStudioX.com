@@ -160,7 +160,7 @@ function readContact() {
 
     return {
         e: endpoint,
-        m: (source.match(/mailto:([^"]+)"/) || [])[1] || 'Hasnain@outlook.at',
+        m: (source.match(/mailto:([^"]+)"/) || [])[1] || 'contact@hasnainstudiox.com',
         x: social ? social[0] : null,
         t: pick('c-topic'),
         p: pick('c-platform'),
@@ -441,7 +441,7 @@ const catalogue = {
         n: 'Hasnain Studio X',
         a: 'Hasnain Butt Akhtar',
         s: 'https://hasnainstudiox.com',
-        c: 'Hasnain@outlook.at',
+        c: 'contact@hasnainstudiox.com',
         l: 'England, United Kingdom',
     },
     ct: readContact(),
