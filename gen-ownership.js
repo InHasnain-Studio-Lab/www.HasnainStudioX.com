@@ -8,6 +8,7 @@ const path = require('path');
 const ROOT = __dirname;
 const P = f => path.join(ROOT, f);
 const read = f => fs.readFileSync(P(f), 'utf8');
+const { FORMERLY } = require('./hsx-taxonomy.js');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const AUTHOR = 'Hasnain Butt Akhtar';
@@ -103,7 +104,8 @@ function build() {
       ? `<a href="${esc(app.p ? 'https://apps.microsoft.com/detail/' + app.p : app.u)}">${esc(id)}</a>`
       : '<span class="own-none">not listed</span>';
     return `                    <tr>
-                        <td><a href="${esc(app.su || './')}">${esc(app.n)}</a></td>
+                        <td><a href="${esc(app.su || './')}">${esc(app.n)}</a>${(FORMERLY[app.i] || []).length
+                          ? `<span class="own-was">Earlier: ${FORMERLY[app.i].map(esc).join(', ')}</span>` : ''}</td>
                         <td>${app.pf === 'and' ? 'Android' : 'Windows'}</td>
                         <td class="own-id">${store}</td>
                         <td>${shown(dates[app.i])}</td>
@@ -113,6 +115,7 @@ function build() {
   const listed = apps.map(app => ({
     '@type': 'SoftwareApplication',
     name: app.n,
+    alternateName: (FORMERLY[app.i] || []).length ? FORMERLY[app.i] : undefined,
     url: app.su || undefined,
     operatingSystem: app.pf === 'and' ? 'Android' : 'Windows',
     author: { '@id': 'https://hasnainstudiox.com/#founder' },
@@ -173,13 +176,24 @@ ${rows}
             </div>
         </section>
 
+        <section class="section" aria-labelledby="own-names-title">
+            <h2 id="own-names-title">Names and marks</h2>
+            <p>Every application name above is used as a trade mark of ${STUDIO}, together with the invented words
+            within those names, such as DreamVivid, NanoVisuality and Pixumbra. Each has been in use since the
+            date it was first published, and a renamed application keeps the history of the names it was released
+            under before, shown beneath it. The full list of marks is on the
+            <a href="about.html#tm-title">About page</a>.</p>
+            <p>Using any of these names, or a name close enough to be mistaken for one, on other software, or
+            presenting a copy as genuine, is not permitted.</p>
+        </section>
+
         <section class="section" aria-labelledby="own-verify-title">
             <h2 id="own-verify-title">How to verify this</h2>
             <ul>
                 <li><strong>Microsoft:</strong> the publisher account for ${STUDIO} is verified and held in the name
                 ${AUTHOR}. Microsoft can confirm this to any platform that asks.</li>
                 <li><strong>Trade mark:</strong> UK trade mark application UK00004429289 for the name ${STUDIO}, filed
-                12 August 2026, names ${AUTHOR} as owner. The application is searchable on the
+                12 August 2026 and published for opposition until 28 October 2026, names ${AUTHOR} as owner. The application is searchable on the
                 <a href="https://www.gov.uk/search-for-trademark">UK Intellectual Property Office register</a>.</li>
                 <li><strong>Founder:</strong> the studio's <a href="about.html">About page</a> and the founder's own
                 site at <a href="https://inhasnain.com/">inhasnain.com</a> both name ${AUTHOR} as the sole developer.</li>

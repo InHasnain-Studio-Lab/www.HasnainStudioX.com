@@ -341,3 +341,16 @@ module.exports.HUBS.push(
     ]
   }
 );
+
+/* Names an app was released under before; searches for them still arrive. */
+module.exports.FORMERLY = {
+  fototensor: ['HSX Vanta'],
+  creatorxstudio: ['CreatorX Studio'],
+  quantumdrop: ['QuantumDrop'],
+  castvisuality: ['HSX CastVisuality'],
+  quantumos: ['HSX KatanaOS'],
+  horizonos: ['SolsticeOS', 'HSX MicaOS'],
+  earthos: ['HSX EarthShell', 'HSX TerralisOS'],
+  nexusos: ['VectalonOS', 'HSX NetrixOS'],
+  gamefabrix: ['HSX GameFabrix', 'HSX Game Studio'],
+};

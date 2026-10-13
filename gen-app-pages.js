@@ -94,7 +94,7 @@ const catOf = a => CAT[CAT_OVERRIDE[a.id]] || CAT[CATMAP[a.id]] || CAT[CAT_FALLB
    hub so the catalogue is a two-level tree rather than a flat list, and so a
    crawler landing on one app page can reach every sibling in its category.
    This resolver must stay identical to the one in gen-category-pages.js. */
-const { HUBS, GPU_VRAM, INTENT } = require('./hsx-taxonomy.js');
+const { HUBS, GPU_VRAM, INTENT, FORMERLY } = require('./hsx-taxonomy.js');
 const { DETAILS: ANDROID, ADS } = require('./android-details.js');
 const catKeyOf = a => CAT_OVERRIDE[a.id] || CATMAP[a.id] || CATMAP_A[a.id]
                    || CAT_FALLBACK[a.category] || 'system';
@@ -245,18 +245,6 @@ const SUBJECT_RULES = [
 ];
 /* Every phrase is plural so the surrounding sentences agree without special
    cases. */
-/* Names an app was released under before; searches for them still arrive. */
-const FORMERLY = {
-  fototensor: ['HSX Vanta'],
-  creatorxstudio: ['CreatorX Studio'],
-  quantumdrop: ['QuantumDrop'],
-  castvisuality: ['HSX CastVisuality'],
-  quantumos: ['HSX KatanaOS'],
-  horizonos: ['SolsticeOS', 'HSX MicaOS'],
-  earthos: ['HSX EarthShell', 'HSX TerralisOS'],
-  nexusos: ['VectalonOS', 'HSX NetrixOS'],
-  gamefabrix: ['HSX GameFabrix', 'HSX Game Studio'],
-};
 const formerOf = a => FORMERLY[a.id] || [];
 /* Titles that touch every kind of data, where the first matching rule names the wrong one. */
 const SUBJECT_OVERRIDE = {
