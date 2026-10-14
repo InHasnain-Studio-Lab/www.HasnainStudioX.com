@@ -1040,15 +1040,15 @@
                 print('Hasnain Studio X - 79 applications live, 0 in development', 'ok');
                 print('', '');
                 print('WINDOWS (74)', 'warn');
-                print('  AI assistants & documents: BrowseX AI, DocClarity Pro, DocMento Pro, PC AI Assistant Pro, Pocktium AI, SocialDeck Pro, WriteDesk Pro', '');
-                print('  AI image & art: Artivra Studio, DreamMint AI, DreamVivid AI, FotoTensor Pro, InfiniteGen Studio, MorphLora Studio, NanoVisuality Pro, Nostalgicel Studio, NovaDiffux Studio, PixUnica Studio, PromptKinetics Pro, QuantumGen AI Studio, StudioFlow AI', '');
+                print('  AI assistants & documents: DocClarity Pro, DocMento Pro, PC AI Assistant Pro, PC AI Browser Ultra, Pocktium AI, SocialDeck Pro, WriteDesk Pro', '');
+                print('  AI image & art: DreamMint AI, DreamVivid AI, FotoTensor Pro, InfiniteGen Studio, MorphLora Studio, NanoVisuality Pro, Nostalgicel Studio, NovaDiffux Studio, PC AI Art Studio, PixUnica Studio, PromptKinetics Pro, QuantumGen AI Studio, StudioFlow AI', '');
                 print('  Audio: BeatGrid Studio, Hypersonus Ultra, SpatiaX Ultra, VAudio Elite', '');
                 print('  Desktop shells: CrystalunaOS, EarthvisOS, GlactisOS, KatanicOS, LimonaOS, PrisnovaOS, RedspawnOS', '');
                 print('  Developer & productivity: ExeCrafter Pro, NanoCodify AI, PC Office Suite Pro, Web Builder Studio', '');
                 print('  Files & transfer: NanoCastify Pro, NanoPilot Pro, NanoSend Pro, PC Archive Pro, PC Download Manager Ultra, QR Creator Studio', '');
                 print('  Games, 3D & explore: GameFabrix Studio, LaunchHarbor Pro, PlanetX, PlanetX: Earth Explorer, PlanetX: Infinity, TerraOrbitix 3D', '');
                 print('  Other: NimbusDock Pro, XSeasons Pro', '');
-                print('  PC performance: Automafy Pro, BootForge Pro, FileGuardian Ultra, FocusRoom Ultra, HaloVox Ultra, PC Benchmark Ultra, PC Booster Ultra, PC Cleanup Ultra, PC Guard Ultra, PC HandsFree Pro, PC Screen Comfort Ultra, SmartClicker Pro', '');
+                print('  PC performance: Automafy Pro, BootForge Pro, FileGuardian Ultra, FocusRoom Ultra, HaloVox Ultra, PC Auto Clicker Pro, PC Benchmark Ultra, PC Booster Ultra, PC Cleanup Ultra, PC Guard Ultra, PC HandsFree Pro, PC Screen Comfort Ultra', '');
                 print('  Photo & imaging: DepthStudio 3D, MediaTidy Ultra, PC Photo Editor Ultra, PhotoVidix Pro, Pixumbra Studio', '');
                 print('  Video & capture: ConvertStudio Pro, MediaLucent Pro, PC Media Converter Pro, PC Screen Recorder Pro, PC Stream Studio Ultra, PC Video Editor Ultra, SenseCapture Pro, SpillFrame Studio', '');
                 print('', '');

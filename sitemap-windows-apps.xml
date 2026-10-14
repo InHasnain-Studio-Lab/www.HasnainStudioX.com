@@ -3,17 +3,6 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/artivra-studio.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/artivra-studio-og.jpg</image:loc>
-      <image:title>Offline AI Design and Poster Studio</image:title>
-    </image:image>
-  </url>
-
-  <url>
     <loc>https://hasnainstudiox.com/apps/automafy-pro.html</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -43,17 +32,6 @@
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/bootforge-pro-og.jpg</image:loc>
       <image:title>Create Bootable USB Drives on Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/browsex-ai.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/browsex-ai-og.jpg</image:loc>
-      <image:title>Private AI Browser for Windows</image:title>
     </image:image>
   </url>
 
@@ -399,6 +377,17 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/pc-ai-art-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-ai-art-studio-og.jpg</image:loc>
+      <image:title>Offline AI Design and Poster Studio</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/pc-ai-assistant-pro.html</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -410,6 +399,17 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/pc-ai-browser-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-ai-browser-ultra-og.jpg</image:loc>
+      <image:title>Private AI Browser for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/pc-archive-pro.html</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
@@ -417,6 +417,17 @@
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/pc-archive-pro-og.jpg</image:loc>
       <image:title>Zip, Extract and Encrypt Files on Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-auto-clicker-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-auto-clicker-pro-og.jpg</image:loc>
+      <image:title>Auto Clicker and Macro Recorder for PC</image:title>
     </image:image>
   </url>
 
@@ -703,17 +714,6 @@
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/sensecapture-pro-og.jpg</image:loc>
       <image:title>Sound-Triggered Camera and Voice Recorder</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/smartclicker-pro.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/smartclicker-pro-og.jpg</image:loc>
-      <image:title>Auto Clicker and Macro Recorder for PC</image:title>
     </image:image>
   </url>
 
