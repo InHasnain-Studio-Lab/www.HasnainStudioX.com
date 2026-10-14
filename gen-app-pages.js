@@ -120,7 +120,7 @@ const REINDEX = h => h
            '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>')
   .replace(/<meta name="(googlebot|bingbot)" content="[^"]*"\/?>/gi,
            (m, bot) => '<meta name="' + bot + '" content="index, follow, max-snippet:-1, max-image-preview:large"/>');
-const TPL = REINDEX(read('privacy/HSXStudioFlowPrivacy.html')
+const TPL = REINDEX(read('privacy/StudioFlowAIPrivacy.html')
   .replace(/(href|src)="\.\.\//g, '$1="'));
 const headOpen = TPL.slice(0, TPL.indexOf('<body>'));
 const afterBody = TPL.slice(TPL.indexOf('<body>'));

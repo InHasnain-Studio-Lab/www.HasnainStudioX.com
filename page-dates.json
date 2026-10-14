@@ -507,15 +507,15 @@
   "h": "9017a80c944d3cee",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/FlipXStudioPrivacy.html": {
+ "privacy/PCMediaConverterProPrivacy.html": {
   "h": "04967f2e67368826",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXAIAssistantProPrivacy.html": {
+ "privacy/PCAIAssistantProPrivacy.html": {
   "h": "3504901042891c1b",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXAIBrowserPrivacy.html": {
+ "privacy/BrowseXAIPrivacy.html": {
   "h": "c1b2a06498c6e8e4",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -523,23 +523,23 @@
   "h": "ce646df5c2428160",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXArtGenStudioPrivacy.html": {
+ "privacy/ArtivraStudioPrivacy.html": {
   "h": "a0f4a57068471f8d",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXAutomafyPrivacy.html": {
+ "privacy/AutomafyProPrivacy.html": {
   "h": "53bbc15825c24387",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXBeatGridPrivacy.html": {
+ "privacy/BeatGridStudioPrivacy.html": {
   "h": "3335184ca8282ef1",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXBootForgePrivacy.html": {
+ "privacy/BootForgeProPrivacy.html": {
   "h": "94cc1ac776cc55e6",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXCastVisualityPrivacy.html": {
+ "privacy/NanoCastifyProPrivacy.html": {
   "h": "f76cd3d1d683438d",
   "t": "2026-10-08T14:13:00+00:00"
  },
@@ -547,11 +547,11 @@
   "h": "c8965b4fdcf77b52",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXConvertStudioPrivacy.html": {
+ "privacy/ConvertStudioProPrivacy.html": {
   "h": "21b9c6f401897a3c",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXCreatorStudioPrivacy.html": {
+ "privacy/PCStreamStudioUltraPrivacy.html": {
   "h": "aabf0af26e733fc6",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -559,19 +559,19 @@
   "h": "0a509cd2e1e81d50",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXDepthStudio3DPrivacy.html": {
+ "privacy/DepthStudio3DPrivacy.html": {
   "h": "dbef505f54108317",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXDocClarityPrivacy.html": {
+ "privacy/DocClarityProPrivacy.html": {
   "h": "ad33d745b1055bce",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXDocMentoPrivacy.html": {
+ "privacy/DocMentoProPrivacy.html": {
   "h": "633dead7d43da7d5",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXDreamVividAIPrivacy.html": {
+ "privacy/DreamVividAIPrivacy.html": {
   "h": "1270e4024d4d2d73",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -579,19 +579,19 @@
   "h": "9638f32f0bebac5f",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXExeCrafterPrivacy.html": {
+ "privacy/ExeCrafterProPrivacy.html": {
   "h": "8493d6af8a178667",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXFileGuardianUltraPrivacy.html": {
+ "privacy/FileGuardianUltraPrivacy.html": {
   "h": "221ce452f1a2c166",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXFocusRoomUltraPrivacy.html": {
+ "privacy/FocusRoomUltraPrivacy.html": {
   "h": "588ae66e1ff149cb",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXFotoTensorPrivacy.html": {
+ "privacy/FotoTensorProPrivacy.html": {
   "h": "1faa9d867100fc84",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -599,7 +599,7 @@
   "h": "daacacb52e6094c9",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXGlowCraftPrivacy.html": {
+ "privacy/PCPhotoEditorUltraPrivacy.html": {
   "h": "5a0c0a2ff487e8eb",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -607,31 +607,31 @@
   "h": "40f854585a52fcc6",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/HSXHaloVoxUltraPrivacy.html": {
+ "privacy/HaloVoxUltraPrivacy.html": {
   "h": "2ce1c2c2b8a20e08",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXHandsFreePCPrivacy.html": {
+ "privacy/PCHandsFreeProPrivacy.html": {
   "h": "a2902e17ae321471",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXInfiniteGenStudioPrivacy.html": {
+ "privacy/InfiniteGenStudioPrivacy.html": {
   "h": "fe2ab15dba76c425",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXLaunchHarborPrivacy.html": {
+ "privacy/LaunchHarborProPrivacy.html": {
   "h": "d8d902e3a70dcd8b",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXMediaLucentPrivacy.html": {
+ "privacy/MediaLucentProPrivacy.html": {
   "h": "43e03a0955e42e28",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXMorphLoraPrivacy.html": {
+ "privacy/MorphLoraStudioPrivacy.html": {
   "h": "a7e2807ec8ee3c4e",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXNanoCodifyPrivacy.html": {
+ "privacy/NanoCodifyAIPrivacy.html": {
   "h": "13afedab18d8a5fa",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -639,35 +639,35 @@
   "h": "ffbca48af4a7bff0",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/HSXNanoPilotPrivacy.html": {
+ "privacy/NanoPilotProPrivacy.html": {
   "h": "05eb990b096f2129",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/HSXNanoVisualityPrivacy.html": {
+ "privacy/NanoVisualityProPrivacy.html": {
   "h": "e0734c8b5d9a7887",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXNostalgicelPrivacy.html": {
+ "privacy/NostalgicelStudioPrivacy.html": {
   "h": "4a40dace8d29507a",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXNovaDiffuxPrivacy.html": {
+ "privacy/NovaDiffuxStudioPrivacy.html": {
   "h": "b1cd73239bd59ec7",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXPhotoVidixPrivacy.html": {
+ "privacy/PhotoVidixProPrivacy.html": {
   "h": "dbbb42d9905ad8aa",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXPixUnicaPrivacy.html": {
+ "privacy/PixUnicaStudioPrivacy.html": {
   "h": "ef0047781c13decb",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXPlanetXPrivacy.html": {
+ "privacy/PlanetXPrivacy.html": {
   "h": "d4ec9adf9b44a7f9",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXPocktiumPrivacy.html": {
+ "privacy/PocktiumAIPrivacy.html": {
   "h": "3d456d774728b67e",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -675,19 +675,19 @@
   "h": "b12b505b68bf7d16",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/HSXPrimeCutUltraPrivacy.html": {
+ "privacy/PCVideoEditorUltraPrivacy.html": {
   "h": "b0f948e7c0c3d4fc",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXPromptKineticsPrivacy.html": {
+ "privacy/PromptKineticsProPrivacy.html": {
   "h": "be17902e9862722f",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXQuantumGenAIStudioPrivacy.html": {
+ "privacy/QuantumGenAIStudioPrivacy.html": {
   "h": "56cbe0aa7508afdd",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXSenseCapturePrivacy.html": {
+ "privacy/SenseCaptureProPrivacy.html": {
   "h": "941e86454580175a",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -695,35 +695,35 @@
   "h": "d26591109c9376db",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/HSXSmartClickerPrivacy.html": {
+ "privacy/SmartClickerProPrivacy.html": {
   "h": "5600239b59eb1cbb",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXSocialDeckProPrivacy.html": {
+ "privacy/SocialDeckProPrivacy.html": {
   "h": "0fb35de699cb0cbf",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXSpillFramePrivacy.html": {
+ "privacy/SpillFrameStudioPrivacy.html": {
   "h": "67aa21066e76345b",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXStudioFlowPrivacy.html": {
+ "privacy/StudioFlowAIPrivacy.html": {
   "h": "9e10d37fa74e1163",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXTerraOrbitix3DPrivacy.html": {
+ "privacy/TerraOrbitix3DPrivacy.html": {
   "h": "27f263b10f5b6236",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXWebXStudioPrivacy.html": {
+ "privacy/WebBuilderStudioPrivacy.html": {
   "h": "d35e2a94d548a5ce",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXWorkXSuitePrivacy.html": {
+ "privacy/PCOfficeSuiteProPrivacy.html": {
   "h": "f0d60872fbc6b6d9",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/HSXWriteDeskPrivacy.html": {
+ "privacy/WriteDeskProPrivacy.html": {
   "h": "7307c1db55274905",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -747,7 +747,7 @@
   "h": "80d1515e207f4063",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/NimbusDockPrivacy.html": {
+ "privacy/NimbusDockProPrivacy.html": {
   "h": "d25ddd7ec54591d0",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -755,7 +755,7 @@
   "h": "ea1f7868b598dc05",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/PCBenchXUltraPrivacy.html": {
+ "privacy/PCBenchmarkUltraPrivacy.html": {
   "h": "8349e2fe03f9c3da",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -763,7 +763,7 @@
   "h": "b4cc450928a26727",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/PCGuardXPrivacy.html": {
+ "privacy/PCGuardUltraPrivacy.html": {
   "h": "4928afa0eacd2510",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -771,15 +771,15 @@
   "h": "887101ff06df19a3",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/PCTuneXPrivacy.html": {
+ "privacy/PCCleanupUltraPrivacy.html": {
   "h": "5ff711d656e4b943",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/PCTurboXUltraPrivacy.html": {
+ "privacy/PCBoosterUltraPrivacy.html": {
   "h": "4adbf6cf969fc1a7",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/PCVisionBulwarkPrivacy.html": {
+ "privacy/PCScreenComfortUltraPrivacy.html": {
   "h": "1bdb49509505bbbe",
   "t": "2026-10-04T00:48:00+00:00"
  },
@@ -799,7 +799,7 @@
   "h": "2e8f149c252411a3",
   "t": "2026-10-04T00:48:00+00:00"
  },
- "privacy/QuantumDropPrivacy.html": {
+ "privacy/NanoSendProPrivacy.html": {
   "h": "8d07fc78565cc8fe",
   "t": "2026-10-08T14:13:00+00:00"
  },
@@ -827,7 +827,7 @@
   "h": "b789b014c5cbb2ec",
   "t": "2026-10-08T14:13:00+00:00"
  },
- "privacy/XSeasonsPrivacy.html": {
+ "privacy/XSeasonsProPrivacy.html": {
   "h": "ec1db0569e37e467",
   "t": "2026-10-04T00:48:00+00:00"
  },
