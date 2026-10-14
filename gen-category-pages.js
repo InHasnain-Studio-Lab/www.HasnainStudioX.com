@@ -4,7 +4,7 @@
 
    Output: apps/<hub-slug>.html
 
-   Why these exist: an app page answers a brand query ("HSX NovaDiffux"),
+   Why these exist: an app page answers a brand query ("NovaDiffux Studio"),
    and the catalogue answers "what does this studio make". Neither answers
    "offline photo editor for Windows", which is how someone who has never
    heard of the studio actually searches. Until now those queries had

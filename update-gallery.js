@@ -32,7 +32,7 @@ const EXT      = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif']);
 const KNOWN    = new Set(['portrait', 'concept', 'video', 'product']);
 
 /* An image can also be tagged with the id of the app that generated it, e.g.
-   fototensor__Restored-Portrait.png -> filed under HSX FotoTensor. The valid
+   fototensor__Restored-Portrait.png -> filed under FotoTensor Pro. The valid
    ids come from the registry build.js writes into HSXAIstudio.html, so the two
    can never drift apart. */
 function appIds() {

@@ -33,7 +33,7 @@ const SOON  = ALL.filter(a => a.status === 'soon' && hasRealCopy(a));
 const PAGES = LIVE.concat(SOON);
 
 const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-/* A few titles ship on both platforms (FlipX Studio). The Windows page keeps the
+/* A few titles ship on both platforms (PC Media Converter Pro). The Windows page keeps the
    plain slug; the Android twin gets -android, so no page ever overwrites another
    and no already-published URL changes. */
 const DUPES = (() => {
@@ -154,15 +154,15 @@ const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a) && !isRemote(a);
 
 /* Trademarks
    COINED are invented words owned outright by the studio; the mark is the
-   bare word, not the product name it sits inside (HSX NovaDiffux -> NovaDiffux).
+   bare word, not the product name it sits inside (NovaDiffux Studio -> NovaDiffux).
    Every other application asserts its full product name as the mark.
    TM is used throughout: it asserts an unregistered mark and needs no
    registration. The registered symbol is reserved for Hasnain Studio X alone. */
 const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
   'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
-  'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor',
+  'SpatiaX', 'XSeasons Pro', 'Automafy', 'NanoCastify', 'FotoTensor',
   'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-  'KatanicOS', 'MoneyHalo', 'GlactisOS', 'CrystalunaOS', 'XCipher', 'NimbusDock', 'DocMento',
+  'KatanicOS', 'MoneyHalo', 'GlactisOS', 'CrystalunaOS', 'XCipher', 'NimbusDock Pro', 'DocMento',
   'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'LimonaOS', 'PrisnovaOS', 'RedspawnOS', 'AstraMorph', 'VDroidX', 'DreamMint'];
 const tmNorm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 /* the mark this application asserts */
@@ -682,7 +682,7 @@ ${hero ? `
             <h1 id="app-title">${esc(a.name)}</h1>
             <p class="app-tagline">${esc(a.tagline)}</p>
             <p class="hero-sub">${esc(a.description)}</p>
-${formerOf(a).length ? `            <p class="app-note">Previously released as ${formerOf(a).map(esc).join(' and ')}.</p>
+${formerOf(a).length ? `            <p class="app-note">Previously released as ${formerOf(a).map(esc).join(', ').replace(/, ([^,]*)$/, ' and $1')}.</p>
 ` : ''}            <div class="app-cta">
                 <a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                     ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a>

@@ -3,7 +3,7 @@
   "d": "Answer two quick questions and get a short list of apps for what you will actually do with it, checked against your hardware. Nothing you choose is sent anywhere.",
   "goals": [
     { "k": "work", "n": "Work and documents", "d": "Documents, PDFs, writing, focus and the jobs you repeat every day.",
-      "apps": ["workxsuite", "writedesk", "docmento", "focusroomultra", "automafy", "nimbusdock", "pcdownloadmanagerultra", "autoclickx"] },
+      "apps": ["workxsuite", "writedesk", "docmento", "focusroomultra", "automafy", "nimbusdock-pro", "pcdownloadmanagerultra", "autoclickx"] },
     { "k": "create", "n": "Video, photos and music", "d": "Record, edit and finish your own footage, pictures and sound.",
       "apps": ["primecut", "pcscreenrecorderpro", "glowlab", "photovidix", "beatxpro", "creatorxstudio", "pixumbrastudio", "nanovisuality", "spatiaxultra"] },
     { "k": "ai", "n": "AI on this PC", "d": "Chat, images, video and writing with models that run on your own hardware.", "gpu": true,
@@ -13,7 +13,7 @@
     { "k": "tidy", "n": "Keep it quick and tidy", "d": "Startup, space and duplicates, so the PC stays the way it arrived.",
       "apps": ["pctunex", "pcturboxultra", "mediatidyultra", "pcvisionbulwark", "pcbenchxultra"] },
     { "k": "play", "n": "Games, globes and play", "d": "One home for your games, worlds to explore and a desktop that is yours.",
-      "apps": ["aetheris", "gamefabrix", "planetxearthexplorer", "planetx", "terraorbitix", "planetxinfinity", "xseasons"] },
+      "apps": ["aetheris", "gamefabrix", "planetxearthexplorer", "planetx", "terraorbitix", "planetxinfinity", "xseasons-pro"] },
     { "k": "phone", "n": "Phone and PC together", "d": "Move files, share your screen and keep your phone in step with the PC.",
       "apps": ["quantumdrop", "castvisuality", "mobiletunex", "workxsuiteandroid", "convertmasterultra", "docsmining", "spatiaxmobile"] }
   ],

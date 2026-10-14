@@ -177,18 +177,18 @@
    Used by the Windows / Android catalogue renderers and the home page. */
 window.AppViz = (function () {
     /* One animation per app, derived from that app's real feature set:
-       gauge    = junk cleanup + optimisation (PC TuneX, Mobile TuneX)
+       gauge    = junk cleanup + optimisation (PC Cleanup Ultra, Mobile TuneX)
        qr       = QR design + export            (QR Creator Studio)
-       dock     = dock with live app pins       (NimbusDock)
-       transfer = device-to-device Wi-Fi share  (HSX NanoSend)
-       seasons  = seasonal wallpaper cycle      (XSeasons)
+       dock     = dock with live app pins       (NimbusDock Pro)
+       transfer = device-to-device Wi-Fi share  (NanoSend Pro)
+       seasons  = seasonal wallpaper cycle      (XSeasons Pro)
        spatial  = 3D positional audio field     (SpatiaX Ultra / Mobile)
        eq       = media player + visualizer     (VAudio Elite)
-       convert  = local media conversion        (FlipX Studio)
-       suite    = PDF / Word / spreadsheet docs (HSX WorkX Suite, WorkX Suite)
-       imagegen = GPU image generation render   (HSX StudioFlow)
-       prompt   = structured prompt assembly    (HSX PromptKinetics)
-       shell    = desktop shell + widgets       (HSX CrystalunaOS)
+       convert  = local media conversion        (PC Media Converter Pro)
+       suite    = PDF / Word / spreadsheet docs (PC Office Suite Pro, WorkX Suite)
+       imagegen = GPU image generation render   (StudioFlow AI)
+       prompt   = structured prompt assembly    (PromptKinetics Pro)
+       shell    = desktop shell + widgets       (CrystalunaOS)
        docs     = document text extraction      (DocsMining)
        lock     = AES-256 local encryption      (XCipher)            */
     var byId = {

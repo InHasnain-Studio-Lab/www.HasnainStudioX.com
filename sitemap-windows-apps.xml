@@ -3,8 +3,118 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/artivra-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/artivra-studio-og.jpg</image:loc>
+      <image:title>Offline AI Design and Poster Studio</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/automafy-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/automafy-pro-og.jpg</image:loc>
+      <image:title>Offline Task Automation Software for PC</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/beatgrid-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/beatgrid-studio-og.jpg</image:loc>
+      <image:title>Offline DJ Mixing Software for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/bootforge-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/bootforge-pro-og.jpg</image:loc>
+      <image:title>Create Bootable USB Drives on Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/browsex-ai.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/browsex-ai-og.jpg</image:loc>
+      <image:title>Private AI Browser for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/convertstudio-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/convertstudio-pro-og.jpg</image:loc>
+      <image:title>Offline File Converter for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/crystalunaos.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/crystalunaos-og.jpg</image:loc>
+      <image:title>Private Desktop Shell for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/depthstudio-3d.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/depthstudio-3d-og.jpg</image:loc>
+      <image:title>Turn Photos into 3D Models, Offline</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/docclarity-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/docclarity-pro-og.jpg</image:loc>
+      <image:title>On-Device AI Document Analyser for PC</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/docmento-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/docmento-pro-og.jpg</image:loc>
+      <image:title>Offline PDF Editor and Translator</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/dreammint-ai.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -14,536 +124,107 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/flipx-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/dreamvivid-ai.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/flipx-studio-og.jpg</image:loc>
-      <image:title>Offline Media Converter for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-ai-assistant-pro.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-ai-assistant-pro-og.jpg</image:loc>
-      <image:title>Private Offline AI Chat for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-ai-browser.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-ai-browser-og.jpg</image:loc>
-      <image:title>Private AI Browser for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-artgen-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-artgen-studio-og.jpg</image:loc>
-      <image:title>Offline AI Design and Poster Studio</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-automafy.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-automafy-og.jpg</image:loc>
-      <image:title>Offline Task Automation Software for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-beatgrid.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-beatgrid-og.jpg</image:loc>
-      <image:title>Offline DJ Mixing Software for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-bootforge.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-bootforge-og.jpg</image:loc>
-      <image:title>Create Bootable USB Drives on Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-convertstudio.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-convertstudio-og.jpg</image:loc>
-      <image:title>Offline File Converter for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-creatorstudio.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-creatorstudio-og.jpg</image:loc>
-      <image:title>Offline Creative Suite for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-depthstudio-3d.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-depthstudio-3d-og.jpg</image:loc>
-      <image:title>Turn Photos into 3D Models, Offline</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-docclarity.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-docclarity-og.jpg</image:loc>
-      <image:title>On-Device AI Document Analyser for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-docmento.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-docmento-og.jpg</image:loc>
-      <image:title>Offline PDF Editor and Translator</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-dreamvivid-ai.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-dreamvivid-ai-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/dreamvivid-ai-og.jpg</image:loc>
       <image:title>High-Res Offline AI Image Generator</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-earthvisos.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/earthvisos.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-earthvisos-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/earthvisos-og.jpg</image:loc>
       <image:title>Live World Map Desktop Wallpaper</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-execrafter.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/execrafter-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-execrafter-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/execrafter-pro-og.jpg</image:loc>
       <image:title>Build Windows Apps Without Coding</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-fileguardian-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/fileguardian-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-fileguardian-ultra-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/fileguardian-ultra-og.jpg</image:loc>
       <image:title>Offline File Backup and Versioning</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-focusroom-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/focusroom-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-focusroom-ultra-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/focusroom-ultra-og.jpg</image:loc>
       <image:title>Offline Focus and Productivity Timer</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-fototensor.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/fototensor-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-fototensor-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/fototensor-pro-og.jpg</image:loc>
       <image:title>Local AI Portrait Generator &amp;amp; Enhancer</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-game-studio-pro.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/gamefabrix-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-game-studio-pro-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/gamefabrix-studio-og.jpg</image:loc>
       <image:title>Make 2D Games Without Coding, Offline</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-glowcraft.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/glactisos.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-glowcraft-og.jpg</image:loc>
-      <image:title>Offline Photo Editor with AI Tools</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/glactisos-og.jpg</image:loc>
+      <image:title>Synthwave Desktop Shell for Windows</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-halovox-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/halovox-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-halovox-ultra-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/halovox-ultra-og.jpg</image:loc>
       <image:title>Hands-Free Voice Control for Windows PC</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-handsfree-pc.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-handsfree-pc-og.jpg</image:loc>
-      <image:title>Offline Voice Control for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-infinitegen-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-infinitegen-studio-og.jpg</image:loc>
-      <image:title>Unlimited Offline AI Image Maker</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-launchharbor.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-launchharbor-og.jpg</image:loc>
-      <image:title>Unified Game Launcher for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-medialucent.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-medialucent-og.jpg</image:loc>
-      <image:title>Streaming Hub and Media Player for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-morphlora.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-morphlora-og.jpg</image:loc>
-      <image:title>Offline AI Photo Restyler for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-nanocastify.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nanocastify-og.jpg</image:loc>
-      <image:title>Screen Mirroring &amp;amp; Remote Control for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-nanocodify.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nanocodify-og.jpg</image:loc>
-      <image:title>Private Offline Code Editor for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-nanosend.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nanosend-og.jpg</image:loc>
-      <image:title>Send Files Between Devices Over Wi-Fi</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-nanovisuality.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nanovisuality-og.jpg</image:loc>
-      <image:title>AI Photo Enhancer and 4K Upscaler</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-nostalgicel.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-nostalgicel-og.jpg</image:loc>
-      <image:title>Offline Retro Anime Image Generator</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-novadiffux.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-novadiffux-og.jpg</image:loc>
-      <image:title>Offline AI Image Generator, No Subscription</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-photovidix.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-photovidix-og.jpg</image:loc>
-      <image:title>Local Photo and Video Organiser for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-pixunica.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-pixunica-og.jpg</image:loc>
-      <image:title>Offline 4K AI Image Generator for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-planetx.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-planetx-og.jpg</image:loc>
-      <image:title>3D Space and Universe Explorer for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-pocktium.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-pocktium-og.jpg</image:loc>
-      <image:title>Offline AI Assistant for Windows, No Account</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-primecut-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-primecut-ultra-og.jpg</image:loc>
-      <image:title>Offline Video Editor for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-promptkinetics.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-promptkinetics-og.jpg</image:loc>
-      <image:title>AI Prompt Builder for Windows, Offline</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-quantumgen-ai-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-quantumgen-ai-studio-og.jpg</image:loc>
-      <image:title>Offline AI Image and Clip Maker</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-sensecapture.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-sensecapture-og.jpg</image:loc>
-      <image:title>Sound-Triggered Camera and Voice Recorder</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-smartclicker.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-smartclicker-og.jpg</image:loc>
-      <image:title>Auto Clicker and Macro Recorder for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-socialdeck-pro.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-socialdeck-pro-og.jpg</image:loc>
-      <image:title>Offline Social Post Writer for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-spillframe.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-spillframe-og.jpg</image:loc>
-      <image:title>Drawing and Animation Studio for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-studioflow.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-studioflow-og.jpg</image:loc>
-      <image:title>Offline AI Image Generator for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-terraorbitix-3d.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-terraorbitix-3d-og.jpg</image:loc>
-      <image:title>3D Globe and Earth Explorer for PC</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-webx-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-webx-studio-og.jpg</image:loc>
-      <image:title>Offline Drag-and-Drop Website Builder</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-workx-suite.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-workx-suite-og.jpg</image:loc>
-      <image:title>Offline PDF, Word and Spreadsheet Suite</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-writedesk.html</loc>
-    <lastmod>2026-10-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-writedesk-og.jpg</image:loc>
-      <image:title>Offline AI Writing Assistant for Windows</image:title>
-    </image:image>
-  </url>
-
-  <url>
     <loc>https://hasnainstudiox.com/apps/hypersonus-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -553,19 +234,63 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-katanicos.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/infinitegen-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-katanicos-og.jpg</image:loc>
-      <image:title>Desktop Command Console for Windows</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/infinitegen-studio-og.jpg</image:loc>
+      <image:title>Unlimited Offline AI Image Maker</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/katanicos.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/katanicos-og.jpg</image:loc>
+      <image:title>Anime Desktop Shell and Live Wallpapers</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/launchharbor-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/launchharbor-pro-og.jpg</image:loc>
+      <image:title>Unified Game Launcher for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/limonaos.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/limonaos-og.jpg</image:loc>
+      <image:title>Desktop Shell With Dock and Widgets</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/medialucent-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/medialucent-pro-og.jpg</image:loc>
+      <image:title>Streaming Hub and Media Player for PC</image:title>
     </image:image>
   </url>
 
   <url>
     <loc>https://hasnainstudiox.com/apps/mediatidy-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -575,19 +300,118 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/nimbusdock.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/morphlora-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/nimbusdock-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/morphlora-studio-og.jpg</image:loc>
+      <image:title>Offline AI Photo Restyler for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/nanocastify-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nanocastify-pro-og.jpg</image:loc>
+      <image:title>Screen Mirroring &amp;amp; Remote Control for PC</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/nanocodify-ai.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nanocodify-ai-og.jpg</image:loc>
+      <image:title>Private Offline Code Editor for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/nanopilot-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nanopilot-pro-og.jpg</image:loc>
+      <image:title>Control Your Windows PC From Your Phone</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/nanosend-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nanosend-pro-og.jpg</image:loc>
+      <image:title>Send Files Between Devices Over Wi-Fi</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/nanovisuality-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nanovisuality-pro-og.jpg</image:loc>
+      <image:title>AI Photo Enhancer and 4K Upscaler</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/nimbusdock-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nimbusdock-pro-og.jpg</image:loc>
       <image:title>Customisable Desktop Dock for Windows 11</image:title>
     </image:image>
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/nostalgicel-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/nostalgicel-studio-og.jpg</image:loc>
+      <image:title>Offline Retro Anime Image Generator</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/novadiffux-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/novadiffux-studio-og.jpg</image:loc>
+      <image:title>Offline AI Image Generator</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-ai-assistant-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-ai-assistant-pro-og.jpg</image:loc>
+      <image:title>Private Offline AI Chat for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/pc-archive-pro.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -597,19 +421,41 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/pc-benchx-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/pc-benchmark-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-benchx-ultra-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-benchmark-ultra-og.jpg</image:loc>
       <image:title>Windows PC Benchmark and Hardware Test</image:title>
     </image:image>
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/pc-booster-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-booster-ultra-og.jpg</image:loc>
+      <image:title>Windows RAM and CPU Optimiser for Gaming</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-cleanup-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-cleanup-ultra-og.jpg</image:loc>
+      <image:title>Windows PC Cleaner and Startup Manager</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/pc-download-manager-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -619,19 +465,74 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/pc-guardx.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/pc-guard-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-guardx-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-guard-ultra-og.jpg</image:loc>
       <image:title>Windows Privacy Settings Dashboard, Offline</image:title>
     </image:image>
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/pc-handsfree-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-handsfree-pro-og.jpg</image:loc>
+      <image:title>Offline Voice Control for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-media-converter-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-media-converter-pro-og.jpg</image:loc>
+      <image:title>Offline Media Converter for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-office-suite-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-office-suite-pro-og.jpg</image:loc>
+      <image:title>Offline PDF, Word and Sheets Suite</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-photo-editor-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-photo-editor-ultra-og.jpg</image:loc>
+      <image:title>Offline Photo Editor with AI Tools</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-screen-comfort-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-screen-comfort-ultra-og.jpg</image:loc>
+      <image:title>Blue Light Filter for PC</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/pc-screen-recorder-pro.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -641,41 +542,41 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/pc-tunex.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/pc-stream-studio-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-tunex-og.jpg</image:loc>
-      <image:title>Windows PC Cleaner and Startup Manager</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-stream-studio-ultra-og.jpg</image:loc>
+      <image:title>Offline Creative Suite for Windows</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/pc-turbox-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/pc-video-editor-ultra.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-turbox-ultra-og.jpg</image:loc>
-      <image:title>Windows RAM and CPU Optimiser for Gaming</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-video-editor-ultra-og.jpg</image:loc>
+      <image:title>Offline Video Editor for Windows</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/pc-visionbulwark.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/photovidix-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-visionbulwark-og.jpg</image:loc>
-      <image:title>Blue Light and Eye Comfort App for PC</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/photovidix-pro-og.jpg</image:loc>
+      <image:title>Local Photo and Video Organiser for PC</image:title>
     </image:image>
   </url>
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pixumbra-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -685,8 +586,19 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/pixunica-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pixunica-studio-og.jpg</image:loc>
+      <image:title>Offline 4K AI Image Generator for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/planetx-earth-explorer.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -697,7 +609,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/planetx-infinity.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -707,8 +619,52 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/planetx.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/planetx-og.jpg</image:loc>
+      <image:title>3D Space and Universe Explorer for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pocktium-ai.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pocktium-ai-og.jpg</image:loc>
+      <image:title>Offline AI Assistant for Windows, No Account</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/prisnovaos.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/prisnovaos-og.jpg</image:loc>
+      <image:title>Desktop Dock, Widgets and Live Wallpapers</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/promptkinetics-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/promptkinetics-pro-og.jpg</image:loc>
+      <image:title>AI Prompt Builder for Windows, Offline</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/qr-creator-studio.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -718,19 +674,63 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-crystalunaos.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/quantumgen-ai-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-crystalunaos-og.jpg</image:loc>
-      <image:title>Private Desktop Shell and Launcher for Windows</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/quantumgen-ai-studio-og.jpg</image:loc>
+      <image:title>Offline AI Image and Clip Maker</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/redspawnos.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/redspawnos-og.jpg</image:loc>
+      <image:title>Gaming Desktop Shell With Live Wallpapers</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/sensecapture-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/sensecapture-pro-og.jpg</image:loc>
+      <image:title>Sound-Triggered Camera and Voice Recorder</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/smartclicker-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/smartclicker-pro-og.jpg</image:loc>
+      <image:title>Auto Clicker and Macro Recorder for PC</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/socialdeck-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/socialdeck-pro-og.jpg</image:loc>
+      <image:title>Offline Social Post Writer for Windows</image:title>
     </image:image>
   </url>
 
   <url>
     <loc>https://hasnainstudiox.com/apps/spatiax-ultra.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -740,8 +740,41 @@
   </url>
 
   <url>
+    <loc>https://hasnainstudiox.com/apps/spillframe-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/spillframe-studio-og.jpg</image:loc>
+      <image:title>Drawing and Animation Studio for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/studioflow-ai.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/studioflow-ai-og.jpg</image:loc>
+      <image:title>Offline AI Image Generator for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/terraorbitix-3d.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/terraorbitix-3d-og.jpg</image:loc>
+      <image:title>3D Globe and Earth Explorer for PC</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://hasnainstudiox.com/apps/vaudio-elite.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -751,23 +784,34 @@
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/hsx-glactisos.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/web-builder-studio.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/hsx-glactisos-og.jpg</image:loc>
-      <image:title>Synthwave Desktop Shell for Windows</image:title>
+      <image:loc>https://hasnainstudiox.com/images/apps/web-builder-studio-og.jpg</image:loc>
+      <image:title>Offline Drag-and-Drop Website Builder</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://hasnainstudiox.com/apps/xseasons.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <loc>https://hasnainstudiox.com/apps/writedesk-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/xseasons-og.jpg</image:loc>
+      <image:loc>https://hasnainstudiox.com/images/apps/writedesk-pro-og.jpg</image:loc>
+      <image:title>Offline AI Writing Assistant for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/xseasons-pro.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/xseasons-pro-og.jpg</image:loc>
       <image:title>Live Seasonal Wallpaper App for Windows 11</image:title>
     </image:image>
   </url>

@@ -1172,7 +1172,7 @@ function syncFooters() {
   /* names that used to appear in hand-written copy and are not real products */
   const RETIRED = ['HSX PC Tune', 'HSX PC Guard', 'HSX Seasons', 'HSX Spatia', 'HSX VAudio',
                    'HSX Promptalon',
-                   'HSX FlipStudio', 'HSX NimbusDock', 'HSX QuantumDrop', 'SpatiaX Mobile',
+                   'HSX FlipStudio', 'HSX NimbusDock Pro', 'HSX QuantumDrop', 'SpatiaX Mobile',
                    'InHasnain Studio X'];
   let fixed = 0, flagged = [];
   const walkDir = d => {
@@ -1389,9 +1389,9 @@ function syncTrademarks() {
 
   const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
     'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
-    'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor',
+    'SpatiaX', 'XSeasons Pro', 'Automafy', 'NanoCastify', 'FotoTensor',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-    'KatanicOS', 'GlactisOS', 'CrystalunaOS', 'NimbusDock', 'DocMento',
+    'KatanicOS', 'GlactisOS', 'CrystalunaOS', 'NimbusDock Pro', 'DocMento',
     'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'LimonaOS', 'PrisnovaOS', 'RedspawnOS', 'DreamMint'];
   const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const apps = win.concat(and);
@@ -1517,7 +1517,7 @@ if (contestMsg) sitemapMsg += '\n' + contestMsg;
 function syncGalleryApps() {
   const file = 'HSXAIstudio.html';
   if (!fs.existsSync(P(file))) return '';
-  // Explicit list. A loose regex drags in PC TuneX and NimbusDock, which have
+  // Explicit list. A loose regex drags in PC Cleanup Ultra and NimbusDock Pro, which have
   // nothing to do with generated artwork. Add an id here when you ship a new
   // creative tool.
   const AI_APPS = new Set([

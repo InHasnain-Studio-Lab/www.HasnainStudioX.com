@@ -1012,7 +1012,7 @@ a:hover{color:var(--accent);}
 .vq i:nth-child(7n){animation-delay:1.15s;}
 @keyframes vqblink{0%,100%{opacity:.3;}50%{opacity:1;}}
 
-/* dock - NimbusDock */
+/* dock - NimbusDock Pro */
 .vd{
     display:flex;gap:9px;align-items:flex-end;padding:9px 15px;
     border-radius:15px;background:rgba(255,255,255,.06);border:1px solid var(--line);
@@ -1034,7 +1034,7 @@ a:hover{color:var(--accent);}
 .vt-line i:nth-child(3){animation-delay:1.1s;background:var(--rose);}
 @keyframes vtgo{0%{left:0;opacity:0;}15%{opacity:1;}85%{opacity:1;}100%{left:calc(100% - 6px);opacity:0;}}
 
-/* seasons - XSeasons */
+/* seasons - XSeasons Pro */
 .vs{
     position:relative;width:78%;height:62px;border-radius:10px;overflow:hidden;
     background:linear-gradient(180deg,#2b3654,#101627);
@@ -1175,7 +1175,7 @@ a:hover{color:var(--accent);}
 .vsu b:nth-child(3){border-top-color:var(--mint);animation-delay:.9s;}
 @keyframes vsulift{0%,100%{transform:none;}18%{transform:translateY(-6px);}36%{transform:none;}}
 
-/* imagegen - HSX StudioFlow: image rendering on your own GPU */
+/* imagegen - StudioFlow AI: image rendering on your own GPU */
 .vimg{
     position:relative;width:84px;height:58px;border-radius:8px;overflow:hidden;
     background:rgba(255,255,255,.05);border:1px solid var(--line);
@@ -1234,7 +1234,7 @@ a:hover{color:var(--accent);}
     background:linear-gradient(90deg, rgba(243,179,207,.5), rgba(199,165,247,.5), rgba(159,232,214,.5));
 }
 
-/* guard - PC GuardX: privacy toggles flipping on */
+/* guard - PC Guard Ultra: privacy toggles flipping on */
 .vgd{display:flex;align-items:center;gap:14px;}
 .vgd-shield{
     width:34px;height:38px;
@@ -1260,7 +1260,7 @@ a:hover{color:var(--accent);}
     100%{left:2px;background:var(--ink-faint);}
 }
 
-/* chat - HSX Pocktium: local conversation with typing dots */
+/* chat - Pocktium AI: local conversation with typing dots */
 .vch{display:flex;flex-direction:column;gap:9px;width:104px;}
 .vch-b1,.vch-b2{position:relative;height:18px;border-radius:10px;}
 .vch-b1{
@@ -1283,7 +1283,7 @@ a:hover{color:var(--accent);}
 @keyframes vchin{0%{opacity:0;transform:translateY(7px);}12%,88%{opacity:1;transform:none;}100%{opacity:0;transform:translateY(-4px);}}
 @keyframes vchdot{0%,100%{transform:translateY(0);opacity:.5;}50%{transform:translateY(-3px);opacity:1;}}
 
-/* gallery - HSX PhotoVidix: photo library with light sweep */
+/* gallery - PhotoVidix Pro: photo library with light sweep */
 .vga{position:relative;display:flex;gap:8px;overflow:hidden;padding:4px;border-radius:10px;}
 .vga i{
     width:34px;height:46px;border-radius:7px;border:1px solid var(--line);

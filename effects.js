@@ -1037,21 +1037,25 @@
             privacy: function () { print('Zero telemetry. Zero accounts. All processing stays on your device.', ''); },
             apps: function () {
                 /*TERMAPPS_START*/
-                print('Hasnain Studio X - 74 applications live, 1 in development', 'ok');
+                print('Hasnain Studio X - 79 applications live, 0 in development', 'ok');
                 print('', '');
-                print('WINDOWS (69)', 'warn');
-                print('  AI tools: DreamMint AI, HSX DocClarity, HSX DreamVivid AI, HSX FotoTensor, HSX InfiniteGen Studio, HSX MorphLora, HSX Nostalgicel, HSX NovaDiffux, HSX PixUnica, HSX Pocktium, HSX PromptKinetics, HSX QuantumGen AI Studio, HSX SocialDeck Pro, HSX StudioFlow, HSX WriteDesk', '');
-                print('  Audio & video: HSX BeatGrid, HSX DepthStudio 3D, HSX GlowCraft, HSX MediaLucent, HSX NanoCastify, HSX PhotoVidix, HSX PrimeCut Ultra, HSX SenseCapture, Hypersonus Ultra, MediaTidy Ultra, PC Screen Recorder Pro, SpatiaX Ultra, VAudio Elite', '');
-                print('  Creative & documents: HSX ArtGen Studio, HSX CreatorStudio, HSX DocMento, HSX ExeCrafter, HSX SpillFrame, HSX WebX Studio, HSX WorkX Suite, QR Creator Studio', '');
-                print('  Files & transfer: FlipX Studio, HSX ConvertStudio, HSX FileGuardian Ultra, HSX NanoSend, PC Archive Pro, PC Download Manager Ultra', '');
-                print('  Games & explore: HSX Game Studio Pro, HSX LaunchHarbor, HSX PlanetX, HSX TerraOrbitix 3D, PlanetX: Earth Explorer, PlanetX: Infinity', '');
-                print('  Other: HSX NanoCodify, HSX NanoVisuality, Pixumbra Studio', '');
-                print('  System & performance: HSX AI Browser, HSX Automafy, HSX BootForge, HSX EarthvisOS, HSX FocusRoom Ultra, HSX HaloVox Ultra, HSX HandsFree PC, HSX SmartClicker, HSX KatanicOS, NimbusDock, PC BenchX Ultra, PC GuardX, PC TuneX, PC TurboX Ultra, PC VisionBulwark, HSX CrystalunaOS, HSX GlactisOS, XSeasons', '');
+                print('WINDOWS (74)', 'warn');
+                print('  AI assistants & documents: BrowseX AI, DocClarity Pro, DocMento Pro, PC AI Assistant Pro, Pocktium AI, SocialDeck Pro, WriteDesk Pro', '');
+                print('  AI image & art: Artivra Studio, DreamMint AI, DreamVivid AI, FotoTensor Pro, InfiniteGen Studio, MorphLora Studio, NanoVisuality Pro, Nostalgicel Studio, NovaDiffux Studio, PixUnica Studio, PromptKinetics Pro, QuantumGen AI Studio, StudioFlow AI', '');
+                print('  Audio: BeatGrid Studio, Hypersonus Ultra, SpatiaX Ultra, VAudio Elite', '');
+                print('  Desktop shells: CrystalunaOS, EarthvisOS, GlactisOS, KatanicOS, LimonaOS, PrisnovaOS, RedspawnOS', '');
+                print('  Developer & productivity: ExeCrafter Pro, NanoCodify AI, PC Office Suite Pro, Web Builder Studio', '');
+                print('  Files & transfer: NanoCastify Pro, NanoPilot Pro, NanoSend Pro, PC Archive Pro, PC Download Manager Ultra, QR Creator Studio', '');
+                print('  Games, 3D & explore: GameFabrix Studio, LaunchHarbor Pro, PlanetX, PlanetX: Earth Explorer, PlanetX: Infinity, TerraOrbitix 3D', '');
+                print('  Other: NimbusDock Pro, XSeasons Pro', '');
+                print('  PC performance: Automafy Pro, BootForge Pro, FileGuardian Ultra, FocusRoom Ultra, HaloVox Ultra, PC Benchmark Ultra, PC Booster Ultra, PC Cleanup Ultra, PC Guard Ultra, PC HandsFree Pro, PC Screen Comfort Ultra, SmartClicker Pro', '');
+                print('  Photo & imaging: DepthStudio 3D, MediaTidy Ultra, PC Photo Editor Ultra, PhotoVidix Pro, Pixumbra Studio', '');
+                print('  Video & capture: ConvertStudio Pro, MediaLucent Pro, PC Media Converter Pro, PC Screen Recorder Pro, PC Stream Studio Ultra, PC Video Editor Ultra, SenseCapture Pro, SpillFrame Studio', '');
                 print('', '');
                 print('ANDROID (5)', 'warn');
                 print('  ConvertMaster Ultra, DocsMining, Mobile TuneX, SpatiaX Ultra Mobile, WorkX Suite', '');
                 print('', '');
-                print('In development: 1 more. Full catalogue at hasnainstudiox.com', '');
+                print('In development: 0 more. Full catalogue at hasnainstudiox.com', '');
                 /*TERMAPPS_END*/
             }
         };
