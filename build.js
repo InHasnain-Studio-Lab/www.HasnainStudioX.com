@@ -1517,7 +1517,7 @@ if (contestMsg) sitemapMsg += '\n' + contestMsg;
 function syncGalleryApps() {
   const file = 'HSXAIstudio.html';
   if (!fs.existsSync(P(file))) return '';
-  // Explicit list. A loose regex drags in PC Cleanup Ultra and NimbusDock Pro, which have
+  // Explicit list. A loose regex drags in PC TuneX Ultra and NimbusDock Pro, which have
   // nothing to do with generated artwork. Add an id here when you ship a new
   // creative tool.
   const AI_APPS = new Set([

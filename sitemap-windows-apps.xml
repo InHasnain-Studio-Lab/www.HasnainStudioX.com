@@ -4,7 +4,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/automafy-pro.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -26,7 +26,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/bootforge-pro.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -136,7 +136,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/fileguardian-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -147,7 +147,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/focusroom-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -191,7 +191,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/halovox-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -422,7 +422,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-auto-clicker-pro.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -433,34 +433,12 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-benchmark-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/pc-benchmark-ultra-og.jpg</image:loc>
       <image:title>Windows PC Benchmark and Hardware Test</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/pc-booster-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-booster-ultra-og.jpg</image:loc>
-      <image:title>Windows RAM and CPU Optimiser for Gaming</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://hasnainstudiox.com/apps/pc-cleanup-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://hasnainstudiox.com/images/apps/pc-cleanup-ultra-og.jpg</image:loc>
-      <image:title>Windows PC Cleaner and Startup Manager</image:title>
     </image:image>
   </url>
 
@@ -477,7 +455,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-guard-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -488,7 +466,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-handsfree-pro.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -532,7 +510,7 @@
 
   <url>
     <loc>https://hasnainstudiox.com/apps/pc-screen-comfort-ultra.html</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
@@ -560,6 +538,28 @@
     <image:image>
       <image:loc>https://hasnainstudiox.com/images/apps/pc-stream-studio-ultra-og.jpg</image:loc>
       <image:title>Offline Creative Suite for Windows</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-tunex-ultra.html</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-tunex-ultra-og.jpg</image:loc>
+      <image:title>Windows PC Cleaner and Startup Manager</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://hasnainstudiox.com/apps/pc-turbox-ultra.html</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hasnainstudiox.com/images/apps/pc-turbox-ultra-og.jpg</image:loc>
+      <image:title>Windows RAM and CPU Optimiser for Gaming</image:title>
     </image:image>
   </url>
 

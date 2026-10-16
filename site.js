@@ -177,7 +177,7 @@
    Used by the Windows / Android catalogue renderers and the home page. */
 window.AppViz = (function () {
     /* One animation per app, derived from that app's real feature set:
-       gauge    = junk cleanup + optimisation (PC Cleanup Ultra, Mobile TuneX)
+       gauge    = junk cleanup + optimisation (PC TuneX Ultra, Mobile TuneX)
        qr       = QR design + export            (QR Creator Studio)
        dock     = dock with live app pins       (NimbusDock Pro)
        transfer = device-to-device Wi-Fi share  (NanoSend Pro)
