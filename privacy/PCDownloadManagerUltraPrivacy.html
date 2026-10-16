@@ -292,16 +292,16 @@
             <div class="grid" style="grid-template-columns:1fr;">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
-                    <p>The optional <strong>PC Download Manager Ultra Capture</strong> add-on for Chrome, Edge, Firefox and other browsers hands the downloads you start in the browser to the desktop app. It does nothing on its own and works only while the app is installed on the same PC.</p>
+                    <p>The optional <strong>PC Download Manager Ultra Capture</strong> add-on for Chrome, Edge, Firefox and other browsers hands the downloads you start in the browser, and media files it finds on a page, to the desktop app. It does nothing on its own and works only while the app is installed on the same PC.</p>
                     <h3 style="margin-top:1rem;">What it reads</h3>
                     <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:2;">
                         <li>The address of a download you start, its referrer and the browser's user agent.</li>
                         <li>The cookies for that download's address, so files behind a sign-in still download.</li>
-                        <li>The addresses of video and audio streams on the page you are viewing, so you can send them to the app.</li>
+                        <li>The addresses of video and audio files on the page you are viewing, so you can send them to the app.</li>
                         <li>The title and address of the active tab, shown in the add-on's popup.</li>
                     </ul>
                     <h3 style="margin-top:1rem;">Where it goes</h3>
-                    <p style="margin-top:0.5rem;">Only to the app on the same PC, over a local connection (127.0.0.1) or the browser's native messaging link to the installed app. <strong>Nothing is sent to us, to any server, or to any third party.</strong> The app accepts these local requests only from the add-on.</p>
+                    <p style="margin-top:0.5rem;">Only to the app on the same PC, over a local connection (127.0.0.1). <strong>Nothing is sent to us, to any server, or to any third party.</strong> The app accepts these local requests only from the add-on.</p>
                     <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:2;">
                         <li>No analytics, tracking or advertising.</li>
                         <li>No remote code: every script is inside the add-on package.</li>
@@ -312,9 +312,9 @@
                     <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:2;">
                         <li><strong>downloads</strong>: to notice a download starting and hand it to the app.</li>
                         <li><strong>cookies</strong>: to pass sign-in cookies for that download to the app.</li>
-                        <li><strong>webRequest</strong>: read only, to detect video and audio streams.</li>
+                        <li><strong>webRequest</strong>: read only, to notice video and audio files on a page.</li>
                         <li><strong>All websites</strong>: downloads and media can come from any site.</li>
-                        <li><strong>nativeMessaging, tabs, storage, alarms, contextMenus</strong>: the link to the app, the popup, your two settings, a one minute connection check and the right-click option.</li>
+                        <li><strong>storage, alarms, contextMenus</strong>: your two settings, a one minute connection check and the right-click option.</li>
                     </ul>
                     <p style="margin-top:0.75rem;">You can turn capture off in the add-on's popup or remove the add-on in your browser at any time. Removing it stops all of the above.</p>
                 </article>
