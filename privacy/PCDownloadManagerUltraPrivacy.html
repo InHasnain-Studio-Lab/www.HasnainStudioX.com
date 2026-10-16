@@ -114,7 +114,7 @@
           "@id": "https://hasnainstudiox.com/#organization"
         }
       },
-      "dateModified": "2026-10-04T00:48:00+00:00",
+      "dateModified": "2026-10-16T12:00:00+00:00",
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -179,9 +179,10 @@
                 <p class="lead">PC Download Manager Ultra is developed by Hasnain Studio X with a local&#8209;first, privacy&#8209;first design philosophy.</p>
                 <p style="color:var(--text-muted); font-size:0.88rem; margin-top:8px;">
                     <strong style="color:var(--text-main);">Effective date:</strong> 7 July 2026 &nbsp;·&nbsp;
+                    <strong style="color:var(--text-main);">Last updated:</strong> 16 October 2026 &nbsp;·&nbsp;
                     <strong style="color:var(--text-main);">Publisher:</strong> Hasnain Studio X &nbsp;·&nbsp;
                     <strong style="color:var(--text-main);">Developer:</strong> Hasnain Butt Akhtar &nbsp;·&nbsp;
-                    <strong style="color:var(--text-main);">Applies to:</strong> PC Download Manager Ultra (Windows App)
+                    <strong style="color:var(--text-main);">Applies to:</strong> PC Download Manager Ultra (Windows App) and its optional browser add-on
                 </p>
             </div>
         </section>
@@ -279,15 +280,49 @@
                     <p>PC Download Manager Ultra makes network connections only to <strong>the file servers you choose to download from</strong>. When you start a download, the app contacts that URL directly and, where you provide them through the optional browser companion, sends the cookies, referrer, and headers needed so authenticated downloads work. This traffic goes to the file host, not to us.</p>
                     <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:2;">
                         <li>No account is required and none is created.</li>
-                        <li>The optional Chrome and Edge companion runs on your machine and talks to the app locally; it is not a web service.</li>
+                        <li>The optional browser add-on runs in your browser and talks to the app on the same PC; it is not a web service. See section 5.</li>
                         <li>We receive no download links, no file contents, and no browsing data.</li>
                     </ul>
                 </article>
             </div>
         </section>
 
+        <section class="section" aria-labelledby="addon-title">
+            <div class="section-header"><h2 id="addon-title">5. Browser Add-on (Optional)</h2></div>
+            <div class="grid" style="grid-template-columns:1fr;">
+                <article class="card" role="listitem">
+                    <div class="card-accent"></div>
+                    <p>The optional <strong>PC Download Manager Ultra Capture</strong> add-on for Chrome, Edge, Firefox and other browsers hands the downloads you start in the browser to the desktop app. It does nothing on its own and works only while the app is installed on the same PC.</p>
+                    <h3 style="margin-top:1rem;">What it reads</h3>
+                    <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:2;">
+                        <li>The address of a download you start, its referrer and the browser's user agent.</li>
+                        <li>The cookies for that download's address, so files behind a sign-in still download.</li>
+                        <li>The addresses of video and audio streams on the page you are viewing, so you can send them to the app.</li>
+                        <li>The title and address of the active tab, shown in the add-on's popup.</li>
+                    </ul>
+                    <h3 style="margin-top:1rem;">Where it goes</h3>
+                    <p style="margin-top:0.5rem;">Only to the app on the same PC, over a local connection (127.0.0.1) or the browser's native messaging link to the installed app. <strong>Nothing is sent to us, to any server, or to any third party.</strong> The app accepts these local requests only from the add-on.</p>
+                    <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:2;">
+                        <li>No analytics, tracking or advertising.</li>
+                        <li>No remote code: every script is inside the add-on package.</li>
+                        <li>The add-on stores two settings in your browser, capture on or off and capture all downloads, and nothing else.</li>
+                        <li>The cookies it reads are used for the download you started and are not kept by the add-on.</li>
+                    </ul>
+                    <h3 style="margin-top:1rem;">Why it asks for its permissions</h3>
+                    <ul style="margin-top:0.5rem;padding-left:1.25rem;line-height:2;">
+                        <li><strong>downloads</strong>: to notice a download starting and hand it to the app.</li>
+                        <li><strong>cookies</strong>: to pass sign-in cookies for that download to the app.</li>
+                        <li><strong>webRequest</strong>: read only, to detect video and audio streams.</li>
+                        <li><strong>All websites</strong>: downloads and media can come from any site.</li>
+                        <li><strong>nativeMessaging, tabs, storage, alarms, contextMenus</strong>: the link to the app, the popup, your two settings, a one minute connection check and the right-click option.</li>
+                    </ul>
+                    <p style="margin-top:0.75rem;">You can turn capture off in the add-on's popup or remove the add-on in your browser at any time. Removing it stops all of the above.</p>
+                </article>
+            </div>
+        </section>
+
         <section class="section" aria-labelledby="store-title">
-            <div class="section-header"><h2 id="store-title">5. Microsoft Store Licensing</h2></div>
+            <div class="section-header"><h2 id="store-title">6. Microsoft Store Licensing</h2></div>
             <div class="grid" style="grid-template-columns:1fr;">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -302,7 +337,7 @@
         </section>
 
         <section class="section" aria-labelledby="permissions-title">
-            <div class="section-header"><h2 id="permissions-title">6. App Permissions</h2></div>
+            <div class="section-header"><h2 id="permissions-title">7. App Permissions</h2></div>
             <div class="grid">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -328,7 +363,7 @@
         </section>
 
         <section class="section" aria-labelledby="children-title">
-            <div class="section-header"><h2 id="children-title">7. Children's Privacy</h2></div>
+            <div class="section-header"><h2 id="children-title">8. Children's Privacy</h2></div>
             <div class="grid" style="grid-template-columns:1fr;">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
@@ -338,7 +373,7 @@
         </section>
 
         <section class="section" aria-labelledby="changes-title">
-            <div class="section-header"><h2 id="changes-title">8. Policy Updates</h2></div>
+            <div class="section-header"><h2 id="changes-title">9. Policy Updates</h2></div>
             <div class="grid" style="grid-template-columns:1fr;">
                 <article class="card" role="listitem">
                     <div class="card-accent"></div>
