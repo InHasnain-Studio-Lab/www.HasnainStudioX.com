@@ -41,7 +41,7 @@ Applies to every page, meta description, structured-data field and guide.
 |---|---|
 | `sitemap.xml` | **the only sitemap.** 85 pages + 3 gallery images, in one file |
 | `robots.txt` | crawl rules, points at the sitemap |
-| `88d79d2aa8d9f1a589221f1ca7cdec66.txt` | IndexNow ownership proof for Bing - do not rename or delete |
+| `b0acc9d970954ca19f3d76421331a14d.txt` | IndexNow ownership proof for Bing - do not rename or delete |
 
 ### Hosting
 | | |
