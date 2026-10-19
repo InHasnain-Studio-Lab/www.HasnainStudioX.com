@@ -1208,8 +1208,8 @@ function syncFooters() {
 }
 const footerMsg = syncFooters();
 
-/* the Company column
-   The Products column has been generated for a while; Company was still
+/* the Studio column
+   The Products column has been generated for a while; the Studio column was still
    hand-edited and had drifted, carrying an empty list item on all 96 pages
    and inconsistent indentation. It also now has to carry the website privacy
    policy, which AdSense requires visitors to be able to find, so it is
@@ -1234,7 +1234,7 @@ function syncFooterCompany() {
         const [h, l] = x.split('|');
         return '<li><a href="' + (h ? (up === './' ? '' : up) + h : up) + '">' + l + '</a></li>';
       }).join('\n                            ');
-      const re = /(<h2 class="footer-heading">Company<\/h2>\s*<ul class="footer-links">)([\s\S]*?)(<\/ul>)/;
+      const re = /(<h2 class="footer-heading">Studio<\/h2>\s*<ul class="footer-links">)([\s\S]*?)(<\/ul>)/;
       const m = s.match(re);
       if (m && m[2].trim() !== want) {
         s = s.replace(re, (_, x, y, z) => x + '\n                            ' + want + '\n                        ' + z);
