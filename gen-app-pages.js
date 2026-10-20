@@ -201,6 +201,16 @@ const videoOf = a => {
 const isOut   = a => a.status === 'live';                 // already released
 const isCert  = a => a.stage === 'certification';        // submitted, awaiting store approval
 const HUB_STORE = 'https://apps.microsoft.com/detail/9P0SCSV68797';
+const ADDONS = {
+  'PC Download Manager Ultra': {
+    name: 'PC Download Manager Ultra Capture',
+    lead: 'The optional free add-on hands the downloads you start in your browser, and media it finds on a page, straight to the app on the same PC. It works only while the app is open and sends nothing anywhere else.',
+    stores: [
+      ['Chrome Web Store', 'Google Chrome', 'https://chromewebstore.google.com/detail/pc-download-manager-ultra/gpbcbhheiemdfhakpjmcklcldlalkkbi'],
+      ['Microsoft Edge Add-ons', 'Microsoft Edge', 'https://microsoftedge.microsoft.com/addons/detail/pc-download-manager-ultra/bfojhmijppmdfnhgaocnkjffpnnimlgl'],
+    ],
+  },
+};
 const storeOf = a => a.platform === 'Android' ? 'Google Play' : 'the Microsoft Store';
 const stageOf = a => isCert(a)
   ? `with ${storeOf(a)}, going through certification`
@@ -578,6 +588,11 @@ function pageFor(a) {
         })(),
         brand: { '@type': 'Brand', name: markFor(a), owner: { '@id': BASE + '#organization' } },
         privacyPolicy: priv ? BASE + priv : undefined,
+        softwareAddOn: ADDONS[a.name] ? ADDONS[a.name].stores.map(([, browser, href]) => ({
+          '@type': 'SoftwareApplication', name: ADDONS[a.name].name + ' for ' + browser,
+          applicationCategory: 'BrowserApplication', operatingSystem: browser, url: href,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          publisher: { '@id': BASE + '#organization' } })) : undefined,
         publisher: { '@id': BASE + '#organization' },
         author: { '@id': BASE + '#founder' },
         creator: { '@id': BASE + '#founder' },
@@ -717,7 +732,15 @@ ${price ? `            <p class="buy-price"><b>${price.value > 0 ? esc(price.sho
 ${a.features.map(f => `                <li>${esc(f)}</li>`).join('\n')}
             </ul>
         </section>
-${out ? fitFor(a) : ''}${out ? firstHourOf(a, ad) : ''}${video ? `
+${ADDONS[a.name] ? `
+        <section class="section" aria-labelledby="addon-title">
+            <div class="section-header"><h2 id="addon-title">Browser add-on</h2></div>
+            <p class="app-lead">${esc(ADDONS[a.name].lead)}</p>
+            <div class="app-cta">
+${ADDONS[a.name].stores.map(([store, , href]) => `                <a class="btn btn--secondary" href="${escA(href)}" target="_blank" rel="noopener">Get it on the ${esc(store)} <span aria-hidden="true">&rarr;</span></a>`).join('\n')}
+            </div>
+        </section>
+` : ''}${out ? fitFor(a) : ''}${out ? firstHourOf(a, ad) : ''}${video ? `
         <section class="section" aria-labelledby="video-title">
             <div class="section-header"><h2 id="video-title">Watch: ${esc(video.title)}</h2></div>
             <div class="app-video">
@@ -845,6 +868,7 @@ ${related.map(r => `                <a class="app-rel" href="${slug(r.name)}.htm
             <p><a class="btn btn--primary" href="${escA(storeHref)}"${out ? ' target="_blank" rel="noopener"' : ''}>
                 ${esc(ctaLabel)} <span aria-hidden="true">&rarr;</span></a></p>
 ${out && a.platform === 'Windows' ? `            <p class="app-lead">Not ready to buy yet? <a href="${HUB_STORE}" target="_blank" rel="noopener">HSX Apps Hub</a> is free on the Microsoft Store. It shows which of your HSX apps have updates and tells you when a new one is out.</p>
+` : ''}${ADDONS[a.name] ? `            <p class="app-lead">Add the free ${esc(ADDONS[a.name].name)} add-on for ${ADDONS[a.name].stores.map(([, browser, href]) => `<a href="${escA(href)}" target="_blank" rel="noopener">${esc(browser)}</a>`).join(' or ')}.</p>
 ` : ''}${also.length ? `            <p class="app-lead">Also listed under ${also.map(h => `<a href="${h.slug}.html">${esc(h.nav.toLowerCase())}</a>`).join(' and ')}.</p>
 ` : ''}            <p class="app-note">${priv ? `<a href="../${escA(priv)}">${esc(a.name)} privacy policy</a> &middot; ` : ''}<a href="../contact.html">Support and bug reports</a> &middot; ${hub ? `<a href="${hub.slug}.html">${esc(hub.nav)} apps</a> &middot; ` : ''}<a href="${catalogue}">Full catalogue</a></p>
             <p class="app-tm">${
