@@ -366,8 +366,8 @@ module.exports.HUBS.push(
     slug: 'privacy-utilities',
     nav: 'Privacy tools',
     h1: 'Zero-telemetry privacy utilities for Windows',
-    title: 'Zero Telemetry Privacy Tools for Windows | HSX',
-    desc: 'Windows privacy controls, a tracking-free browser, encrypted file protection and a private desktop shell. No account, no telemetry, no data leaving your machine.',
+    title: 'Zero Telemetry Privacy Tools for Windows | Hasnain Studio X',
+    desc: 'Windows privacy controls, a tracking-free browser, encrypted file protection and a private desktop shell. No account, no telemetry, nothing leaves your PC.',
     lead: 'Tools whose entire job is to reduce what leaves your machine, and which, reasonably enough, collect nothing themselves.',
     body: 'A privacy tool that phones home is not a privacy tool. Everything in this group is built so there is nothing to send and nowhere to send it: no account system, no analytics, no crash reporting, no licence server. What it finds and what it protects stays on the machine it runs on, and the per-application privacy policy says so in plain terms.',
     check: [
