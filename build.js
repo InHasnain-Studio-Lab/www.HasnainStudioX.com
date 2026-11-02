@@ -1219,7 +1219,7 @@ function syncFooterCompany() {
                 'contest-rules.html|Competition Rules', 'about.html|About Hasnain Butt Akhtar',
                 '|Home', 'contact.html|Contact',
                 'privacy-policies.html|App Privacy Policies', 'ownership.html|Ownership and Copyright',
-                'privacy.html|Website Privacy'];
+                'privacy.html|Website Privacy', 'https://xlunastudio.com/|XLUNA&trade; apps'];
   let fixed = 0;
   const walkDir = d => {
     for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
@@ -1232,7 +1232,7 @@ function syncFooterCompany() {
       const up = path.relative(ROOT, d) ? '../' : './';
       const want = WANT.map(x => {
         const [h, l] = x.split('|');
-        return '<li><a href="' + (h ? (up === './' ? '' : up) + h : up) + '">' + l + '</a></li>';
+        return '<li><a href="' + (h.startsWith('https:') ? h : h ? (up === './' ? '' : up) + h : up) + '">' + l + '</a></li>';
       }).join('\n                            ');
       const re = /(<h2 class="footer-heading">Studio<\/h2>\s*<ul class="footer-links">)([\s\S]*?)(<\/ul>)/;
       const m = s.match(re);
