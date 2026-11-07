@@ -192,8 +192,7 @@ ${rows}
             <ul>
                 <li><strong>Microsoft:</strong> the publisher account for ${STUDIO} is verified and held in the name
                 ${AUTHOR}. Microsoft can confirm this to any platform that asks.</li>
-                <li><strong>Trade mark:</strong> UK trade mark application UK00004429289 for the name ${STUDIO}, filed
-                12 August 2026 and published for opposition until 28 October 2026, names ${AUTHOR} as owner. The application is searchable on the
+                <li><strong>Trade mark:</strong> UK registered trade mark No. UK00004429289 for the name ${STUDIO}, registered on 6 November 2026 with effect from 12 August 2026, names ${AUTHOR} as owner. The registration is searchable on the
                 <a href="https://www.gov.uk/search-for-trademark">UK Intellectual Property Office register</a>.</li>
                 <li><strong>Founder:</strong> the studio's <a href="about.html">About page</a> and the founder's own
                 site at <a href="https://inhasnain.com/">inhasnain.com</a> both name ${AUTHOR} as the sole developer.</li>

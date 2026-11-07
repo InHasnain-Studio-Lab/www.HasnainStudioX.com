@@ -1288,10 +1288,9 @@ const fontMsg = syncFonts();
    developer (which the About page and the schema both already say).
    An app page or an app's policy names that product's mark; every other page
    makes the general claim, because naming one product on the contact page
-   would be arbitrary. Every mark carries ™ while the studio name is an
-   application (UK00004429289). ® may only go on once the IPO has registered it:
-   claiming registration before then is an offence under s.95 of the Trade
-   Marks Act 1994. */
+   would be arbitrary. The studio name is registered (UK00004429289) and carries ®. Product
+   names are unregistered and carry ™: claiming registration for them is an
+   offence under s.95 of the Trade Marks Act 1994. */
 function syncCopyright() {
   const NAME_BY_APPPAGE = {}, NAME_BY_POLICY = {};
   for (const a of win.concat(and))
@@ -1421,7 +1420,7 @@ function syncTrademarks() {
                 <li>${e(o)}&trade;</li>`).join('')}
             </ul>
 
-            <p class="tm-note"><strong>Hasnain Studio X&trade;</strong> is a trade mark of Hasnain Studio X.
+            <p class="tm-note"><strong>Hasnain Studio X&reg;</strong> is a UK registered trade mark of Hasnain Butt Akhtar, No. UK00004429289.
             All other marks shown on this page are unregistered trademarks used
             by the studio; the &trade; symbol asserts those rights and does not indicate registration.
             Any third-party names mentioned elsewhere on this site are the property of their

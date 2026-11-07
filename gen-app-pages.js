@@ -876,7 +876,7 @@ ${out && a.platform === 'Windows' ? `            <p class="app-lead">Not ready t
                 ? `${esc(a.name)}&trade; is a trademark of Hasnain Studio X.`
                 : `${esc(a.name)}&trade; and ${esc(markFor(a))}&trade; are trademarks of Hasnain Studio X.`
             }${isCoined(a) ? ` ${esc(markFor(a))}&trade; is a coined term originated by Hasnain Studio X.` : ''}
-            Hasnain Studio X&trade; is a trade mark of Hasnain Studio X.</p>
+            Hasnain Studio X&reg; is a registered trade mark of Hasnain Butt Akhtar.</p>
         </section>
     </main>`;
 
