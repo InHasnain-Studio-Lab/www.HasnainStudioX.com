@@ -1303,9 +1303,9 @@ function syncCopyright() {
     }
   } catch (e) { /* no privacy/ folder */ }
 
-  const LINE = mark => '&copy; 2026 Hasnain Studio X. All rights reserved. ' + (mark
-    ? mark.replace(/&/g, '&amp;') + '&trade; and all related marks are trade marks of Hasnain Studio X.'
-    : 'All product names and related marks are trade marks of Hasnain Studio X.');
+  const LINE = mark => '&copy; 2026 Hasnain Studio X&reg;. All rights reserved. ' + (mark
+    ? mark.replace(/&/g, '&amp;') + '&trade; and all related marks are trade marks of Hasnain Studio X&reg;.'
+    : 'All product names and related marks are trade marks of Hasnain Studio X&reg;.');
 
   let n = 0;
   const walk = d => {
