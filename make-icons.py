@@ -1,8 +1,7 @@
 """Regenerate the app icons from the studio mark.
 
-   images/brand-icon-master.png is the same artwork the HSX Apps Hub ships,
-   so the browser tab, the home screen, the PWA and the Windows tile all
-   show the icon people already associate with the apps.
+   brand-icon-master.png is the studio mark, rendered from favicon.svg, so the
+   browser tab, the home screen, the PWA and the Windows tile all match.
 
    The master is trimmed to its artwork before scaling, otherwise the
    transparent margin around it makes every generated icon look small.

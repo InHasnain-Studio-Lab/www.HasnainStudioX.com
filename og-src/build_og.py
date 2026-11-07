@@ -29,11 +29,7 @@ from cards import CARDS
 
 FONTS = make_fonts()
 
-LOGO = """<svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M13 1.5L24 7.5V18.5L13 24.5L2 18.5V7.5Z" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
-  <path d="M8.5 9V17M17.5 9V17M8.5 13H17.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
-</svg>"""
-
+LOGO = """<svg  viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ogrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdb8ee"/><stop offset=".5" stop-color="#9478c4"/><stop offset="1" stop-color="#5b4287"/></linearGradient><linearGradient id="ogcore" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d2a58"/><stop offset="1" stop-color="#1c1229"/></linearGradient><linearGradient id="ogsilver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#e8e4f3"/><stop offset="1" stop-color="#b6adcc"/></linearGradient></defs><path d="M50 3L91 26.5V73.5L50 97L9 73.5V26.5Z" fill="url(#ogrim)"/><path d="M50 11.5L83.6 30.8V69.2L50 88.5L16.4 69.2V30.8Z" fill="url(#ogcore)"/><path d="M50 11.5L83.6 30.8V69.2L50 88.5L16.4 69.2V30.8Z" fill="none" stroke="#e3d7f8" stroke-opacity=".45" stroke-width=".8"/><path d="M36 31V69M64 31V69M36 50H64" fill="none" stroke="url(#ogsilver)" stroke-width="9" stroke-linecap="round"/></svg>"""
 GRAIN = ("url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'>"
          "<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/>"
          "<feColorMatrix type='saturate' values='0'/></filter>"
