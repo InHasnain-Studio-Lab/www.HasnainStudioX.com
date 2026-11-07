@@ -1298,7 +1298,7 @@ function syncCopyright() {
   try {
     for (const f of fs.readdirSync(P('privacy')).filter(f => f.endsWith('.html'))) {
       const t = (read('privacy/' + f).match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1];
-      const n = t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').trim();
+      const n = t.replace(/\s+/g, ' ').replace(/\s*-\s*Privacy Policy.*$/i, '').replace(/(?:\s+for Windows)?\s*:\s*Privacy\b.*$/i, '').trim();
       if (n) NAME_BY_POLICY['privacy/' + f] = n;
     }
   } catch (e) { /* no privacy/ folder */ }
