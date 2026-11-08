@@ -1219,7 +1219,7 @@ function syncFooterCompany() {
                 'contest-rules.html|Competition Rules', 'about.html|About Hasnain Butt Akhtar',
                 '|Home', 'contact.html|Contact',
                 'privacy-policies.html|App Privacy Policies', 'ownership.html|Ownership and Copyright',
-                'privacy.html|Website Privacy', 'https://xlunastudio.com/|XLUNA&trade; apps'];
+                'privacy.html|Website Privacy', 'https://xlunastudio.com/|XLUNA&trade; apps', 'https://www.youtube.com/channel/UCNuvZ3PW4pRD05N_4lae-5g|YouTube'];
   let fixed = 0;
   const walkDir = d => {
     for (const ent of fs.readdirSync(d, { withFileTypes: true })) {

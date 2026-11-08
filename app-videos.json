@@ -1,1 +1,23 @@
-{}
+{
+  "pctunex": {
+    "youtube": "y3AhQ7O0KXo",
+    "title": "PC TuneX Ultra - Repair and clean your Windows PC",
+    "uploaded": "2026-11-07",
+    "seconds": 139,
+    "description": "Run one health check, then repair what it finds and get back the space junk was taking. Over 100 repair and maintenance tools in one place, with an honest health score that counts only the problems the app can really fix."
+  },
+  "pcturboxultra": {
+    "youtube": "waCw6VYt9gA",
+    "title": "PC TurboX Ultra - Full PC optimisation with Turbo Boost and Game Mode",
+    "uploaded": "2026-11-07",
+    "seconds": 137,
+    "description": "One-click Turbo Boost reclaims memory, clears junk and sets a high performance power plan, then shows exactly what it did. Game Mode, Startup Manager and live gauges are all on your PC."
+  },
+  "spatiaxultra": {
+    "youtube": "ogrbTxONULA",
+    "title": "SpatiaX Ultra - Real-time 3D spatial audio engine for Windows",
+    "uploaded": "2026-11-07",
+    "seconds": 144,
+    "description": "A real-time audio engine that transforms your headphone or speaker experience with 3D spatial sound and signature profiles, all running locally on your PC."
+  }
+}
