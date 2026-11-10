@@ -1,8 +1,8 @@
 {
   "pctunex": {
-    "youtube": "y3AhQ7O0KXo",
+    "youtube": "FHnqxR17vRc",
     "title": "PC TuneX Ultra - Repair and clean your Windows PC",
-    "uploaded": "2026-11-07",
+    "uploaded": "2026-11-10",
     "seconds": 139,
     "description": "Run one health check, then repair what it finds and get back the space junk was taking. Over 100 repair and maintenance tools in one place, with an honest health score that counts only the problems the app can really fix."
   },
@@ -19,5 +19,54 @@
     "uploaded": "2026-11-07",
     "seconds": 144,
     "description": "A real-time audio engine that transforms your headphone or speaker experience with 3D spatial sound and signature profiles, all running locally on your PC."
+  },
+  "horizonos": {
+    "youtube": "HIEXMwXzyuU",
+    "title": "CrystalunaOS - A glass desktop on one hotkey",
+    "uploaded": "2026-11-10",
+    "seconds": 139,
+    "description": "Press one hotkey and a full-screen glass desktop opens over Windows, with live wallpapers, a command bar that understands plain words and widgets that actually do things."
+  },
+  "nexusos": {
+    "youtube": "jpjtRC-CcUE",
+    "title": "GlactisOS - A neon desktop that reacts to your PC",
+    "uploaded": "2026-11-10",
+    "seconds": 141,
+    "description": "A live synthwave grid that surges with your real processor load, glowing system panels read straight from Windows, and a complete desktop shell on top."
+  },
+  "quantumos": {
+    "youtube": "qiQXWS7AZog",
+    "title": "KatanicOS - A live anime desktop for Windows",
+    "uploaded": "2026-11-10",
+    "seconds": 142,
+    "description": "Anime-style live wallpapers that move with your processor, memory and network, a torii dock for every app and window, and widgets that report what is really happening."
+  },
+  "limonaos": {
+    "youtube": "AxaYEFI2d5I",
+    "title": "LimonaOS - A bright citrus desktop for Windows",
+    "uploaded": "2026-11-10",
+    "seconds": 136,
+    "description": "Bright citrus scenes that move with your processor, memory and network, a counter dock for every app and window, and a launcher that runs on one keystroke."
+  },
+  "prisnovaos": {
+    "youtube": "tnU6ermnhDY",
+    "title": "PrisnovaOS - A live desktop cut from light",
+    "uploaded": "2026-11-10",
+    "seconds": 133,
+    "description": "Prism scenes that move with your processor, memory and network, a dock for every app and window, and widgets that report the truth about your PC."
+  },
+  "redspawnos": {
+    "youtube": "7jyEX-CiOUM",
+    "title": "RedspawnOS - A gaming desktop that reads your rig",
+    "uploaded": "2026-11-10",
+    "seconds": 137,
+    "description": "Bold gaming scenes that move with your processor, memory and network, a dock for every app and window, and live readouts without alt-tabbing to a monitor tool."
+  },
+  "earthos": {
+    "youtube": "sR30JElmH9o",
+    "title": "EarthvisOS - The real Earth as your desktop",
+    "uploaded": "2026-11-10",
+    "seconds": 133,
+    "description": "A live satellite map of the world behind everything you do, lit by real daylight and city lights from the sun's actual position, with a complete desktop shell on top."
   }
 }
