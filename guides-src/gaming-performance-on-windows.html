@@ -1,0 +1,101 @@
+<!--HSX:GUIDE {
+  "title": "Gaming performance on Windows: what helps and what is myth",
+  "nav": "Gaming performance explained",
+  "h1": "Gaming performance on Windows: what actually helps, and what is myth",
+  "standfirst": "The Windows settings that genuinely raise frame rates or smooth out stutter, the popular tweaks that do nothing, and how to tell which problem you actually have.",
+  "description": "Improve gaming performance on Windows 11: Game Mode, power mode, graphics card choice and drivers, plus the RAM cleaner and tweak myths that do nothing.",
+  "section": "Games",
+  "published": "2026-11-10",
+  "keywords": ["improve FPS Windows 11", "Windows Game Mode does it help", "game stutter Windows", "best power mode for gaming", "RAM cleaner gaming myth"],
+  "apps": [
+    { "name": "PC TurboX Ultra", "href": "apps/pc-turbox-ultra.html", "note": "Reversible Game Mode, startup control and live gauges" },
+    { "name": "PC TuneX Ultra", "href": "apps/pc-tunex-ultra.html", "note": "Benchmark your PC and repair what slows it down" }
+  ]
+}-->
+
+<p class="art-lead">There is more bad advice about gaming performance than almost any other PC topic. Some of it
+is harmless, some of it makes things worse, and a small amount of it genuinely helps. The good news is that the
+settings that matter are few, free and already in Windows.</p>
+
+<h2>First, name the problem</h2>
+
+<p>Low frame rate and stutter feel similar but have different causes, so it is worth knowing which one you have.</p>
+
+<p><strong>Low frame rate</strong> means the game is smooth but slow, steadily below what you want. That usually
+means the graphics card or processor is working flat out, and the fixes are settings: resolution, detail, and
+making sure the right hardware is doing the work.</p>
+
+<p><strong>Stutter</strong> means the game is mostly fine but freezes or hitches for a moment. That usually means
+something interrupted it: a background task, a full drive, overheating, or the game loading something it did not
+have ready. Turning detail down rarely fixes stutter, which is why so many people try it and give up.</p>
+
+<p>Most games have a performance overlay, and your graphics card's own software has one too. Watching frame rate,
+processor use and graphics use together for a few minutes tells you more than any list of tweaks.</p>
+
+<h2>The settings that genuinely help</h2>
+
+<ol class="art-steps">
+  <li><strong>Plug the laptop in.</strong> Laptops cut their graphics power sharply on battery. This single change
+  is often worth more than every other item here.</li>
+  <li><strong>Set the power mode.</strong> In Settings, System, Power and battery, choose Best performance while you
+  play. Balanced is fine the rest of the time.</li>
+  <li><strong>Use the right graphics card.</strong> Laptops with two graphics chips sometimes run a game on the
+  weaker one. In Settings, System, Display, Graphics, choose the game and set it to High performance.</li>
+  <li><strong>Turn on Game Mode.</strong> It is in Settings, Gaming, Game Mode, and is usually on already. It
+  tells Windows to hold back updates and background work while a game runs.</li>
+  <li><strong>Update the graphics driver</strong> from the card maker's own app or website. New games often run
+  noticeably better on a driver released for them.</li>
+  <li><strong>Stop background recording</strong> if you never use it. In Settings, Gaming, Captures, turn off
+  recording what happened in the background.</li>
+</ol>
+
+<h2>The things that cause stutter</h2>
+
+<p><strong>Background apps.</strong> A cloud sync, a browser with forty tabs or a launcher updating another game
+can all grab the processor or drive at the wrong moment. Close what you do not need before you play, and check
+Task Manager's Startup apps page for programs you never asked to start with Windows.</p>
+
+<p><strong>A full drive.</strong> Games stream data constantly. A drive with almost no free space slows down, and
+an older hard disk stutters far more than a solid state drive. If you can, install the games you play most on an
+SSD and keep a sensible amount of space free.</p>
+
+<p><strong>Heat.</strong> When a processor or graphics card gets too hot, it slows itself down to protect itself.
+If a game starts smooth and gets worse after twenty minutes, heat is the likely cause. Clean the vents, keep the
+laptop off soft surfaces, and check temperatures in your graphics card's overlay.</p>
+
+<h2>The myths</h2>
+
+<p><strong>RAM cleaners raise frame rates.</strong> They do not. Windows uses spare memory to keep things ready,
+and gives it to a game the moment the game asks. Emptying it by force just means Windows has to load those things
+again, which can cause the very stutter you were trying to fix. Freeing memory helps only when it is genuinely
+full, and the real fix then is closing the program that is using it.</p>
+
+<p><strong>Registry tweaks unlock hidden speed.</strong> Almost all of these date from much older versions of
+Windows and do nothing today, or quietly break something else.</p>
+
+<p><strong>Disabling dozens of services.</strong> The savings are tiny and the side effects are real. If you want a
+quieter machine while you play, a reversible game mode that switches things back afterwards is safer than a list
+of permanent changes.</p>
+
+<p><strong>Defragmenting an SSD.</strong> It brings no benefit and adds wear. Windows already optimises solid state
+drives correctly on its own schedule.</p>
+
+<h2>Quick reference</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Symptom</th><th>Most likely fix</th></tr></thead>
+  <tbody>
+    <tr><td>Much slower on battery</td><td>Plug in and set Best performance</td></tr>
+    <tr><td>Slow on a laptop with two graphics chips</td><td>Set the game to High performance in Graphics settings</td></tr>
+    <tr><td>Smooth, then worse after a while</td><td>Heat. Clean the vents and check temperatures</td></tr>
+    <tr><td>Random hitches</td><td>Close background apps and check free drive space</td></tr>
+    <tr><td>Slow in one new game only</td><td>Update the graphics driver</td></tr>
+    <tr><td>Slow everywhere, all the time</td><td>Lower resolution or detail. The hardware is at its limit</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="art-note">The short version: plug in, pick the right power mode and graphics card, keep drivers current
+and the drive uncluttered, and watch the overlay before believing any tweak. Anything that promises more frames by
+emptying memory or editing the registry is selling a feeling, not a frame rate.</p>

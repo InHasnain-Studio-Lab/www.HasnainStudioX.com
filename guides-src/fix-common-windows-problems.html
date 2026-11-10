@@ -1,0 +1,115 @@
+<!--HSX:GUIDE {
+  "title": "Fix common Windows problems yourself",
+  "nav": "Fix common Windows problems",
+  "h1": "How to fix the most common Windows problems yourself",
+  "standfirst": "A stuck print queue, a network that will not connect, an update that never finishes, and damaged system files: the repairs that work, in the order to try them.",
+  "description": "Fix a stuck print queue, broken Wi-Fi, failed Windows updates and damaged system files yourself, with the safe built-in repairs and the order to try them.",
+  "section": "Windows",
+  "published": "2026-11-10",
+  "keywords": ["fix printer queue stuck Windows 11", "network reset Windows 11", "Windows update stuck", "sfc scannow DISM", "repair Windows without reinstalling"],
+  "apps": [
+    { "name": "PC TuneX Ultra", "href": "apps/pc-tunex-ultra.html", "note": "A health check and over 100 repair tools in one place" },
+    { "name": "PC TurboX Ultra", "href": "apps/pc-turbox-ultra.html", "note": "Network tools, cleanup and startup control" }
+  ]
+}-->
+
+<p class="art-lead">Most of the faults that make people think their PC needs a reinstall are much smaller than
+they look. A printer that will not print, a network that drops, an update that fails every night: each has a
+standard repair that Windows already includes. The skill is knowing which one to reach for, and in what order.</p>
+
+<h2>Before you touch anything</h2>
+
+<p>Two minutes of preparation saves a lot of worry.</p>
+
+<ul>
+  <li><strong>Restart properly.</strong> Choose Restart, not Shut down. A shut down PC with fast startup turned on
+  does not fully reload Windows, so a restart clears faults that switching off and on again does not.</li>
+  <li><strong>Make a restore point.</strong> Search the Start menu for Create a restore point, select your Windows
+  drive and choose Create. If a repair makes things worse, you can step back.</li>
+  <li><strong>Write down the exact message.</strong> An error code searched word for word finds the answer far more
+  often than a description of the symptom.</li>
+</ul>
+
+<h2>The print queue that will not clear</h2>
+
+<p>A document gets stuck, everything behind it waits, and cancelling does nothing. The queue is held by a Windows
+service called the Print Spooler, and the cure is to stop it, empty its folder and start it again.</p>
+
+<ol class="art-steps">
+  <li>Search the Start menu for Services and open it.</li>
+  <li>Find Print Spooler, right click it and choose Stop.</li>
+  <li>Open File Explorer, go to C:\Windows\System32\spool\PRINTERS and delete everything inside. Windows will ask
+  for permission. Delete only the contents, not the folder.</li>
+  <li>Back in Services, right click Print Spooler and choose Start, then print again.</li>
+</ol>
+
+<h2>The network that will not connect</h2>
+
+<p>Work from the simplest cause to the deepest. First, check whether other devices on the same network are online.
+If they are not, the problem is the router or your provider, and restarting the router is the right first step.
+If only your PC is affected, try these in order and test after each one:</p>
+
+<ol class="art-steps">
+  <li>Turn Wi-Fi off and on, or unplug and replug the network cable.</li>
+  <li>Forget the Wi-Fi network in Settings and join it again with the password.</li>
+  <li>Open Command Prompt as administrator and run <code>ipconfig /flushdns</code>. It clears the list of web
+  addresses Windows remembers, which fixes sites that load everywhere except your PC.</li>
+  <li>If that fails, run <code>netsh winsock reset</code> and <code>netsh int ip reset</code>, then restart.</li>
+  <li>As a last step, use Network reset in Settings, Network and internet, Advanced network settings. It
+  reinstalls every network adapter, so you will need your Wi-Fi password again afterwards.</li>
+</ol>
+
+<h2>The update that fails every time</h2>
+
+<p>When Windows Update fails over and over with the same code, the downloaded files are often damaged, and Windows
+keeps retrying the broken copy. Clearing them makes it download fresh ones.</p>
+
+<ol class="art-steps">
+  <li>Open Services and stop Windows Update and Background Intelligent Transfer Service.</li>
+  <li>Open C:\Windows\SoftwareDistribution and delete the contents of the Download folder inside it.</li>
+  <li>Start both services again and check for updates.</li>
+</ol>
+
+<p>If an update still fails, search for its KB number with the word failed. Sometimes the fix is simply waiting for
+Microsoft to replace a faulty update, and that is worth knowing before you spend an evening on it.</p>
+
+<h2>When Windows itself is damaged</h2>
+
+<p>Odd crashes, settings pages that will not open and features that stop working can point to damaged system
+files. Windows can check and repair its own files with two commands. Run them in Command Prompt as administrator,
+in this order:</p>
+
+<ol class="art-steps">
+  <li><code>DISM /Online /Cleanup-Image /RestoreHealth</code> repairs the store Windows uses as its reference copy.
+  It can take a while and may pause at a percentage. Let it finish.</li>
+  <li><code>sfc /scannow</code> then compares your system files against that copy and replaces any that are
+  damaged.</li>
+  <li>Restart when both have finished.</li>
+</ol>
+
+<h2>What not to do</h2>
+
+<p><strong>Skip registry cleaners.</strong> Removing leftover registry entries does not make Windows faster, and a
+wrong deletion can stop an app or Windows feature from working. <strong>Be wary of long lists of services to
+disable.</strong> Most save nothing you would notice and break something you will. <strong>Do not run repair
+tools you downloaded from an advert.</strong> If a site is warning you your PC is infected, close it.</p>
+
+<h2>Quick reference</h2>
+
+<div class="art-table-wrap">
+<table class="art-table">
+  <thead><tr><th>Problem</th><th>First thing to try</th></tr></thead>
+  <tbody>
+    <tr><td>Printing stuck</td><td>Stop Print Spooler, empty the PRINTERS folder, start it again</td></tr>
+    <tr><td>One website will not load</td><td>Flush the DNS cache with <code>ipconfig /flushdns</code></td></tr>
+    <tr><td>No internet on this PC only</td><td>Forget and rejoin the network, then the winsock and IP resets</td></tr>
+    <tr><td>Update fails with the same code</td><td>Clear the SoftwareDistribution Download folder</td></tr>
+    <tr><td>Random crashes and broken settings</td><td>DISM RestoreHealth, then <code>sfc /scannow</code></td></tr>
+    <tr><td>Everything got worse after a change</td><td>Go back to the restore point you made first</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="art-note">The short version: restart properly, make a restore point, and work from the smallest repair
+to the biggest. Most faults are fixed long before a reinstall would have been, and every step here is one Windows
+already provides.</p>
