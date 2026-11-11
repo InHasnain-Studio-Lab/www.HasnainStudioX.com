@@ -611,7 +611,7 @@ function pageFor(a) {
         jobTitle: 'Founder and Software Developer',
         url: BASE + 'about.html',
         worksFor: { '@id': BASE + '#organization' },
-        sameAs: ['https://x.com/HasnainStudioX',
+        sameAs: ['https://x.com/inhasnain_',
                  'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X',
                  'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X'] },
       { '@type': 'WebPage', '@id': url + '#webpage', url, name: TITLE, description: DESC,
