@@ -42,7 +42,8 @@ const keyOf = a => CAT_OVERRIDE[a.id] || CATMAP_W[a.id] || CATMAP_A[a.id]
                || CAT_FALLBACK[a.category] || 'system';
 
 /* app slugs must match gen-app-pages.js exactly or every link here is a 404 */
-const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const PAGE_SLUG = require('./hsx-taxonomy.js').PAGE_SLUG || {};
+const baseSlug = n => PAGE_SLUG[n] || String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const DUPES = (() => {
   const w = new Set(WIN.map(a => baseSlug(a.name))), d = new Set();
   for (const a of AND) if (w.has(baseSlug(a.name))) d.add(baseSlug(a.name));

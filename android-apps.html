@@ -263,7 +263,7 @@
             .m-turbo .bst2 { animation-delay: -.33s; }
             .m-turbo .bst3 { animation-delay: -.66s; }
 
-            /* PC Guard Ultra - shield scanned top to bottom */
+            /* PC GuardX - shield scanned top to bottom */
             .m-guard .scan { animation: mScanY 2.4s var(--ease) infinite; }
             .m-guard .tick { stroke-dasharray: 44; animation: mDraw 2.4s var(--ease) infinite; }
 
@@ -284,7 +284,7 @@
             .m-shell .pn3 { animation-delay: -.8s; }
             .m-shell .pn4 { animation-delay: -1.2s; }
 
-            /* NimbusDock Pro - dock icons magnifying as the pointer passes */
+            /* NimbusDock - dock icons magnifying as the pointer passes */
             .m-dock .di  { animation: mDockMag 2.6s var(--ease) infinite; }
             @keyframes mDockMag { 0%,100% { transform: scale(1) translateY(0); opacity: .55; }
                                   50% { transform: scale(1.55) translateY(-2px); opacity: 1; } }
@@ -306,7 +306,7 @@
             .m-click .cur { animation: mClick 1.3s var(--ease) infinite; }
             @keyframes mClick { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-1.5px,-1.5px); } }
 
-            /* XSeasons Pro - wallpaper cycling through the four seasons */
+            /* XSeasons - wallpaper cycling through the four seasons */
             .m-season .q  { animation: mSeason 6s linear infinite; }
             @keyframes mSeason { 0%,18% { opacity: 1; } 30%,100% { opacity: .16; } }
             .m-season .q2 { animation-delay: -4.5s; }
@@ -336,7 +336,7 @@
             .m-play .wv { stroke-dasharray: 44; animation: mDraw 2.2s linear infinite; }
             .m-play .tri { animation: mPulse 2.2s var(--ease) infinite; }
 
-            /* MediaLucent Pro - a screen pulling a stream in */
+            /* HSX MediaLucent - a screen pulling a stream in */
             .m-stream .w  { transform-box: view-box; transform-origin: 20px 30px;
                             animation: mRing 2s var(--ease) infinite; }
             .m-stream .w2 { animation-delay: -1s; }
@@ -347,7 +347,7 @@
             .m-cut .clip { animation: mBlink 2.6s var(--ease) infinite; }
             .m-cut .clip2 { animation-delay: -1.3s; }
 
-            /* PhotoVidix Pro - a photo stack being sorted */
+            /* HSX PhotoVidix - a photo stack being sorted */
             .m-stack .p1 { animation: mShuffle 3.2s var(--ease) infinite; }
             @keyframes mShuffle { 0%,100% { transform: translate(0,0); opacity: 1; }
                                   40% { transform: translate(9px,-5px); opacity: .35; }
@@ -371,7 +371,7 @@
             @keyframes mShutter { 0%,70%,100% { transform: scale(1); opacity: .55; } 80% { transform: scale(.45); opacity: 1; } }
             .m-aper .snd { animation: mRing 2.2s var(--ease) infinite; transform-box: view-box; transform-origin: 20px 20px; }
 
-            /* NanoCastify Pro - a broadcast pushing signal outward */
+            /* HSX NanoCastify - a broadcast pushing signal outward */
             .m-cast .ring { transform-box: view-box; transform-origin: 20px 27px;
                             animation: mRing 2.1s var(--ease) infinite; }
             .m-cast .ring2 { animation-delay: -1.05s; }
@@ -384,7 +384,7 @@
             .m-sheet .c2 { animation-delay: -.35s; } .m-sheet .c3 { animation-delay: -.7s; }
             .m-sheet .c4 { animation-delay: -1.05s; }
 
-            /* DocMento Pro - text translating between scripts */
+            /* HSX DocMento - text translating between scripts */
             .m-trans .g1 { animation: mSwap 3s var(--ease) infinite; }
             .m-trans .g2 { animation: mSwap 3s var(--ease) infinite; animation-delay: -1.5s; }
             @keyframes mSwap { 0%,40% { opacity: 1; transform: translateY(0); }
@@ -407,13 +407,13 @@
             .m-qr .md4 { animation-delay: -1.2s; } .m-qr .md5 { animation-delay: -1.6s; }
 
             /* AI TOOLS */
-            /* StudioFlow AI - an image resolving out of noise */
+            /* HSX StudioFlow - an image resolving out of noise */
             .m-gen .px  { animation: mBlink 1.8s steps(1) infinite; }
             .m-gen .px2 { animation-delay: -.3s; } .m-gen .px3 { animation-delay: -.6s; }
             .m-gen .px4 { animation-delay: -.9s; } .m-gen .px5 { animation-delay: -1.2s; }
             .m-gen .px6 { animation-delay: -1.5s; }
 
-            /* FotoTensor Pro - face landmarks being detected */
+            /* HSX FotoTensor - face landmarks being detected */
             .m-face .lm  { animation: mBlink 2.2s var(--ease) infinite; }
             .m-face .lm2 { animation-delay: -.5s; } .m-face .lm3 { animation-delay: -1s; }
             .m-face .scan { animation: mScanY 2.2s var(--ease) infinite; }
@@ -452,7 +452,7 @@
             @keyframes mGlobe { 0% { transform: scaleX(1); } 50% { transform: scaleX(.1); } 100% { transform: scaleX(1); } }
             .m-globe .mer2 { animation-delay: -2.2s; }
 
-            /* TerraOrbitix 3D - dropping to street level on the globe */
+            /* HSX TerraOrbitix 3D - dropping to street level on the globe */
             .m-terra .pin { animation: mDrop 2.6s var(--ease) infinite; }
             @keyframes mDrop { 0% { transform: translateY(-9px); opacity: 0; }
                                30%,72% { transform: translateY(0); opacity: 1; }
@@ -467,7 +467,7 @@
             .m-jungle .tr2 { animation-delay: -1.7s; }
 
             /* FILES & TRANSFER */
-            /* NanoSend Pro - a file hopping between two devices */
+            /* HSX NanoSend - a file hopping between two devices */
             .m-drop .pk  { animation: mHop 1.8s var(--ease) infinite; }
             @keyframes mHop { 0% { transform: translate(-9px,0); opacity: 0; }
                               20% { opacity: 1; } 50% { transform: translate(0,-6px); }
@@ -773,7 +773,7 @@
         ]
       },
       "inLanguage": "en-GB",
-      "dateModified": "2026-11-08T00:49:00+00:00",
+      "dateModified": "2026-11-11T02:53:00+00:00",
       "publisher": {
         "@id": "https://hasnainstudiox.com/#organization"
       }
@@ -1769,7 +1769,7 @@
         </script>
 
         <script src="fluid.e197bf533b.js" defer></script>
-        <script src="site.75e5385d7d.js" defer></script>
-        <script src="effects.2d73d217de.js" defer></script>
+        <script src="site.aeb55bb0e5.js" defer></script>
+        <script src="effects.718077e7be.js" defer></script>
     </body>
 </html>

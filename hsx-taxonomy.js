@@ -386,66 +386,113 @@ module.exports.HUBS.push(
 
 /* Names an app was released under before; searches for them still arrive. */
 module.exports.FORMERLY = {
-  fototensor: ['HSX Vanta', 'HSX FotoTensor'],
+  fototensor: ['HSX Vanta'],
   creatorxstudio: ['CreatorX Studio', 'HSX CreatorStudio'],
-  quantumdrop: ['QuantumDrop', 'HSX NanoSend'],
-  castvisuality: ['HSX CastVisuality', 'HSX NanoCastify'],
+  quantumdrop: ['QuantumDrop'],
+  castvisuality: ['HSX CastVisuality'],
   quantumos: ['HSX KatanaOS', 'HSX KatanicOS'],
   horizonos: ['SolsticeOS', 'HSX MicaOS', 'HSX CrystalunaOS'],
   earthos: ['HSX EarthShell', 'HSX TerralisOS', 'HSX EarthvisOS'],
   nexusos: ['VectalonOS', 'HSX NetrixOS', 'HSX GlactisOS'],
-  gamefabrix: ['HSX GameFabrix', 'HSX Game Studio', 'HSX Game Studio Pro'],
+  gamefabrix: ['HSX GameFabrix', 'HSX Game Studio'],
   pctunex: ['PC TuneX', 'PC Tune Ultra', 'PC Cleanup Ultra'],
-  nimbusdock: ['NimbusDock'],
-  xseasons: ['XSeasons'],
+
+
   pcturboxultra: ['PC Turbo Ultra', 'PC Performance Booster Ultra', 'PC Booster Ultra'],
   flipxstudio: ['FlipX Studio'],
-  medialucent: ['HSX MediaLucent'],
-  workxsuite: ['HSX WorkX Suite'],
-  webxstudio: ['HSX WebX Studio'],
-  forgexpro: ['HSX PromptKinetics'],
-  hsxstudioflow: ['HSX StudioFlow'],
-  pcguardx: ['PC GuardX'],
+
+
+
+
+
+
   pcbenchxultra: ['PC BenchX Ultra'],
   pocktium: ['HSX Pocktium'],
-  photovidix: ['HSX PhotoVidix'],
+
   browsex: ['HSX AI Browser'],
-  socialdeckpro: ['HSX SocialDeck Pro'],
-  convertxpro: ['HSX ConvertStudio'],
-  docclarity: ['HSX DocClarity'],
-  docmento: ['HSX DocMento'],
+
+
+
+
   glowlab: ['HSX GlowCraft'],
   pcvisionbulwark: ['PC VisionBulwark'],
-  planetx: ['HSX PlanetX'],
+
   handsfreepc: ['HSX HandsFree PC'],
-  terraorbitix: ['HSX TerraOrbitix 3D'],
+
   primecut: ['HSX PrimeCut Ultra'],
   autoclickx: ['HSX SmartClicker'],
-  image3dx: ['HSX DepthStudio 3D'],
-  sensecapture: ['HSX SenseCapture'],
-  novadiffux: ['HSX NovaDiffux'],
-  beatxpro: ['HSX BeatGrid'],
-  spillframe: ['HSX SpillFrame'],
+
+
+
+
+
   execrafter: ['HSX ExeCrafter'],
-  automafy: ['HSX Automafy'],
+
   limonaos: ['HSX LimonaOS'],
   prisnovaos: ['HSX PrisnovaOS'],
   redspawnos: ['HSX RedspawnOS'],
-  focusroomultra: ['HSX FocusRoom Ultra'],
-  bootforge: ['HSX BootForge'],
-  fileguardianultra: ['HSX FileGuardian Ultra'],
-  aetheris: ['HSX LaunchHarbor'],
-  artgenstudio: ['HSX ArtGen Studio'],
-  quantumxai: ['HSX QuantumGen AI Studio'],
-  dreamgenaiultra: ['HSX DreamVivid AI'],
-  infinitegenai: ['HSX InfiniteGen Studio'],
-  nanovisuality: ['HSX NanoVisuality'],
-  nanocodify: ['HSX NanoCodify'],
-  writedesk: ['HSX WriteDesk'],
-  pixunica: ['HSX PixUnica'],
-  nostalgicel: ['HSX Nostalgicel'],
-  morphlora: ['HSX MorphLora'],
-  aiassistantpro: ['HSX AI Assistant Pro'],
-  nanopilot: ['HSX NanoPilot'],
-  halovoxultra: ['HSX HaloVox Ultra'],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
+/* Shown names follow the Microsoft Store listing; pages keep the address made from the earlier site name. */
+module.exports.PAGE_SLUG = {
+  "NimbusDock": "nimbusdock-pro",
+  "HSX NanoSend": "nanosend-pro",
+  "XSeasons": "xseasons-pro",
+  "HSX MediaLucent": "medialucent-pro",
+  "HSX WorkX Suite": "pc-office-suite-pro",
+  "HSX WebX Studio": "web-builder-studio",
+  "HSX PromptKinetics": "promptkinetics-pro",
+  "HSX StudioFlow": "studioflow-ai",
+  "HSX FotoTensor": "fototensor-pro",
+  "PC GuardX": "pc-guard-ultra",
+  "HSX PhotoVidix": "photovidix-pro",
+  "HSX NanoCastify": "nanocastify-pro",
+  "HSX SocialDeck Pro": "socialdeck-pro",
+  "HSX ConvertStudio": "convertstudio-pro",
+  "HSX DocClarity": "docclarity-pro",
+  "HSX DocMento": "docmento-pro",
+  "HSX PlanetX": "planetx",
+  "HSX TerraOrbitix 3D": "terraorbitix-3d",
+  "HSX DepthStudio 3D": "depthstudio-3d",
+  "HSX SenseCapture": "sensecapture-pro",
+  "HSX NovaDiffux": "novadiffux-studio",
+  "HSX BeatGrid": "beatgrid-studio",
+  "HSX SpillFrame": "spillframe-studio",
+  "HSX Automafy": "automafy-pro",
+  "HSX FocusRoom Ultra": "focusroom-ultra",
+  "HSX BootForge": "bootforge-pro",
+  "HSX FileGuardian Ultra": "fileguardian-ultra",
+  "HSX LaunchHarbor": "launchharbor-pro",
+  "HSX Game Studio Pro": "gamefabrix-studio",
+  "HSX ArtGen Studio": "pc-ai-art-studio",
+  "HSX DreamMint AI": "dreammint-ai",
+  "HSX QuantumGen AI Studio": "quantumgen-ai-studio",
+  "HSX DreamVivid AI": "dreamvivid-ai",
+  "HSX InfiniteGen Studio": "infinitegen-studio",
+  "HSX NanoVisuality": "nanovisuality-pro",
+  "HSX NanoCodify": "nanocodify-ai",
+  "HSX WriteDesk": "writedesk-pro",
+  "HSX PixUnica": "pixunica-studio",
+  "HSX Nostalgicel": "nostalgicel-studio",
+  "HSX MorphLora": "morphlora-studio",
+  "HSX AI Assistant Pro": "pc-ai-assistant-pro",
+  "HSX NanoPilot": "nanopilot-pro",
+  "HSX HaloVox Ultra": "halovox-ultra"
 };

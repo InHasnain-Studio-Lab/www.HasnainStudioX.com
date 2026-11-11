@@ -26,7 +26,8 @@ const pageFolders = () => fs.readdirSync(ROOT, { withFileTypes: true })
   .map(d => d.name);
 const today = new Date().toISOString().slice(0, 10);
 /* must stay identical to slug() in gen-app-pages.js */
-const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const PAGE_SLUG = require('./hsx-taxonomy.js').PAGE_SLUG || {};
+const baseSlug = n => PAGE_SLUG[n] || String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 let DUPE_SLUGS = new Set();          // filled once both catalogues are read
 const appSlug = (name, platform) => {
   const b = baseSlug(name);
@@ -214,7 +215,7 @@ let sitemapMsg = '';
          real anchor to the app's privacy page so it works without JS and so the
          79 policy pages stop being orphans. JS re-renders it to a modal button. */
       const PLAT = file === 'android-apps.html' ? 'Android' : 'Windows';
-      const slugOf = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      const slugOf = n => PAGE_SLUG[n] || String(n).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
       /* the artwork basename for an app, or null when it has none yet */
       function heroOf(a){
         const b = slugOf(a.name);
@@ -1388,9 +1389,9 @@ function syncTrademarks() {
 
   const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
     'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
-    'SpatiaX', 'XSeasons Pro', 'Automafy', 'NanoCastify', 'FotoTensor',
+    'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor',
     'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-    'KatanicOS', 'GlactisOS', 'CrystalunaOS', 'NimbusDock Pro', 'DocMento',
+    'KatanicOS', 'GlactisOS', 'CrystalunaOS', 'NimbusDock', 'DocMento',
     'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'LimonaOS', 'PrisnovaOS', 'RedspawnOS', 'DreamMint'];
   const nm = t => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const apps = win.concat(and);

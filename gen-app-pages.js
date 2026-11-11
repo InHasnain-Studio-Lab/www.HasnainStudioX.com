@@ -32,7 +32,8 @@ const hasRealCopy = a => Array.isArray(a.features)
 const SOON  = ALL.filter(a => a.status === 'soon' && hasRealCopy(a));
 const PAGES = LIVE.concat(SOON);
 
-const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const PAGE_SLUG = require('./hsx-taxonomy.js').PAGE_SLUG || {};
+const baseSlug = n => PAGE_SLUG[n] || String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 /* A few titles ship on both platforms (PC Media Converter Pro). The Windows page keeps the
    plain slug; the Android twin gets -android, so no page ever overwrites another
    and no already-published URL changes. */
@@ -160,9 +161,9 @@ const isOffline = a => !NETWORKED.has(a.id) && !isLinked(a) && !isRemote(a);
    registration. The registered symbol is reserved for Hasnain Studio X alone. */
 const COINED = ['NovaDiffux', 'NanoCodify', 'NanoVisuality', 'PhotoVidix', 'Pocktium',
   'PromptKinetics', 'TerraOrbitix', 'Hypersonus', 'VisionBulwark', 'Pixumbra', 'NanoSend',
-  'SpatiaX', 'XSeasons Pro', 'Automafy', 'NanoCastify', 'FotoTensor',
+  'SpatiaX', 'XSeasons', 'Automafy', 'NanoCastify', 'FotoTensor',
   'InfiniteGen', 'MediaLucent', 'DocClarity', 'DreamVivid', 'LaunchHarbor', 'SenseCapture',
-  'KatanicOS', 'MoneyHalo', 'GlactisOS', 'CrystalunaOS', 'XCipher', 'NimbusDock Pro', 'DocMento',
+  'KatanicOS', 'MoneyHalo', 'GlactisOS', 'CrystalunaOS', 'XCipher', 'NimbusDock', 'DocMento',
   'ExeCrafter', 'SpillFrame', 'EarthvisOS', 'LimonaOS', 'PrisnovaOS', 'RedspawnOS', 'AstraMorph', 'VDroidX', 'DreamMint'];
 const tmNorm = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 /* the mark this application asserts */

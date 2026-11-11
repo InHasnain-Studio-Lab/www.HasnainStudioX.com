@@ -36,7 +36,7 @@ def slugs():
     const rd=f=>eval("["+grab(fs.readFileSync(f,"utf8"),/const APPS = \[/,"\n        ];")
       .replace(/icon: ico\((?:.[^']*.)\),/g,"")+"]");
     const W=rd("Windows-apps.html"),A=rd("android-apps.html");
-    const base=n=>String(n).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+    const PS=require("./hsx-taxonomy.js").PAGE_SLUG||{};const base=n=>PS[n]||String(n).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
     const wset=new Set(W.map(a=>base(a.name)));
     const out=[];
     W.forEach(a=>out.push([base(a.name),a.name]));

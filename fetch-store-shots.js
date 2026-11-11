@@ -16,7 +16,8 @@ const ROOT = __dirname, OUT = path.join(ROOT, 'store-shots');
 const MARKET = 'GB', LANG = 'en-gb';
 
 const read = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
-const baseSlug = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const PAGE_SLUG = require('./hsx-taxonomy.js').PAGE_SLUG || {};
+const baseSlug = n => PAGE_SLUG[n] || String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 function apps() {
   const src = read('Windows-apps.html');
