@@ -64,7 +64,7 @@ const ORG = {
   '@type': 'Organization', '@id': BASE + '#organization', name: 'Hasnain Studio X', url: BASE,
   alternateName: ['InHasnain', 'HSX', 'Hasnain StudioX', 'HasnainStudioX', 'Hasnain Studio'],
   logo: { '@type': 'ImageObject', url: BASE + 'images/icon-512.png', width: 512, height: 512 },
-  founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain Butt Akhtar' },
+  founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain' },
   sameAs: ['https://x.com/HasnainStudioX',
            'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X',
            'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X',
@@ -72,7 +72,7 @@ const ORG = {
 };
 const SITE = { '@type': 'WebSite', '@id': BASE + '#website', url: BASE, name: 'Hasnain Studio X',
                publisher: { '@id': BASE + '#organization' }, inLanguage: 'en-GB' };
-const AUTHOR = { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain Butt Akhtar',
+const AUTHOR = { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain',
                  jobTitle: 'Founder and developer', worksFor: { '@id': BASE + '#organization' },
                  url: BASE + 'about.html' };
 
@@ -143,7 +143,7 @@ function pageFor(g) {
                 <div class="hero-eyebrow">${esc(g.section || 'Guide')} &middot; ${readMins(g.words)} min read</div>
                 <h1 id="guide-title">${esc(g.h1 || g.title)}</h1>
                 <p class="app-tagline">${esc(g.standfirst || g.description)}</p>
-                <p class="app-note">By <a href="../about.html">Hasnain Butt Akhtar</a>, founder and developer
+                <p class="app-note">By <a href="../about.html">Hasnain</a>, founder and developer
                 &middot; <time datetime="${escA(g.published)}">${esc(niceDate(g.published))}</time>${
                   g.updated ? ` &middot; updated <time datetime="${escA(g.updated)}">${esc(niceDate(g.updated))}</time>` : ''}</p>
             </header>

@@ -1217,7 +1217,7 @@ const footerMsg = syncFooters();
    generated on the same terms: one definition, applied everywhere. */
 function syncFooterCompany() {
   const WANT = ['community.html|Vote and Feedback', 'bug-hunt.html|Bug Hunt', 'roadmap.html|Roadmap', 'showcase.html|Showcase',
-                'contest-rules.html|Competition Rules', 'about.html|About Hasnain Butt Akhtar',
+                'contest-rules.html|Competition Rules', 'about.html|About the founder',
                 '|Home', 'contact.html|Contact',
                 'privacy-policies.html|App Privacy Policies', 'ownership.html|Ownership and Copyright',
                 'privacy.html|Website Privacy', 'https://xlunastudio.com/|XLUNA&trade; apps', 'https://www.youtube.com/channel/UCNuvZ3PW4pRD05N_4lae-5g|YouTube'];
@@ -1421,7 +1421,7 @@ function syncTrademarks() {
                 <li>${e(o)}&trade;</li>`).join('')}
             </ul>
 
-            <p class="tm-note"><strong>Hasnain Studio X&reg;</strong> is a UK registered trade mark of Hasnain Butt Akhtar, No. UK00004429289.
+            <p class="tm-note"><strong>Hasnain Studio X&reg;</strong> is a UK registered trade mark, No. UK00004429289.
             All other marks shown on this page are unregistered trademarks used
             by the studio; the &trade; symbol asserts those rights and does not indicate registration.
             Any third-party names mentioned elsewhere on this site are the property of their

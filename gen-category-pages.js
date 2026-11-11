@@ -109,7 +109,7 @@ function pageFor(hub) {
       { '@type': 'Organization', '@id': BASE + '#organization', name: 'Hasnain Studio X', url: BASE,
         alternateName: ['InHasnain', 'HSX', 'Hasnain StudioX', 'HasnainStudioX', 'Hasnain Studio'],
         logo: { '@type': 'ImageObject', url: BASE + 'images/icon-512.png', width: 512, height: 512 },
-        founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain Butt Akhtar' },
+        founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain' },
         sameAs: ['https://x.com/HasnainStudioX',
                  'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X',
                  'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X',
@@ -242,7 +242,7 @@ ${hub.faq.map(([q, ans]) => `                <div class="app-q"><h3>${esc(q)}</h
 ${siblings.map(s => `                <a class="cat-sib" href="${s.slug}.html"><span class="cat-sib-n">${esc(s.nav)}</span><span class="cat-sib-t">${esc(s.h1)}</span></a>`).join('\n')}
             </div>
             <p class="app-note"><a href="../Windows-apps.html">Full Windows catalogue</a>${hasAndroid ? ' &middot; <a href="../android-apps.html">Android catalogue</a>' : ''} &middot; <a href="../privacy-policies.html">Privacy policies</a> &middot; <a href="../about.html">About the studio</a></p>
-            <p class="app-tm">Hasnain Studio X&reg; is a registered trade mark of Hasnain Butt Akhtar. Product names shown on this page
+            <p class="app-tm">Hasnain Studio X&reg; is a UK registered trade mark, No. UK00004429289. Product names shown on this page
             are trademarks of Hasnain Studio X.</p>
         </section>
     </main>`;

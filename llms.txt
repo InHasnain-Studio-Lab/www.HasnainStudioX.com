@@ -1,6 +1,6 @@
 # Hasnain Studio X
 
-> An independent UK software studio run by Hasnain Butt Akhtar, publishing
+> An independent UK software studio run by its founder, Hasnain, publishing
 > local-first Windows and Android applications under the HSX brand. Every
 > application does its work on the user's own machine: no account, no telemetry,
 > no subscription, and no data sent to a server.

@@ -566,7 +566,7 @@ function pageFor(a) {
       { '@type': 'Organization', '@id': BASE + '#organization', name: 'Hasnain Studio X', url: BASE,
         alternateName: ['InHasnain', 'HSX', 'Hasnain StudioX', 'HasnainStudioX', 'Hasnain Studio'],
         logo: { '@type': 'ImageObject', url: BASE + 'images/icon-512.png', width: 512, height: 512 },
-        founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain Butt Akhtar' },
+        founder: { '@type': 'Person', '@id': BASE + '#founder', name: 'Hasnain' },
         sameAs: ['https://x.com/HasnainStudioX',
                  'https://apps.microsoft.com/search/publisher?name=Hasnain+Studio+X',
                  'https://play.google.com/store/apps/developer?id=Hasnain+Studio+X',
@@ -606,8 +606,8 @@ function pageFor(a) {
         embedUrl: 'https://www.youtube-nocookie.com/embed/' + video.id,
         publisher: { '@id': BASE + '#organization' }, about: { '@id': url + '#app' } } : undefined,
       { '@type': 'Person', '@id': BASE + '#founder',
-        name: 'Hasnain Butt Akhtar',
-        alternateName: ['Hasnain Butt', 'Hasnain Akhtar', 'InHasnain'],
+        name: 'Hasnain',
+        alternateName: ['InHasnain'],
         jobTitle: 'Founder and Software Developer',
         url: BASE + 'about.html',
         worksFor: { '@id': BASE + '#organization' },
@@ -836,7 +836,7 @@ ${ad.asks.map(([k, v]) => `                <div class="spec-cell"><dt>${esc(k)}<
                 <div class="spec-cell spec-cell--good"><dt>Account required</dt><dd><span class="spec-dot" aria-hidden="true"></span>None</dd></div>
                 <div class="spec-cell spec-cell--${ad ? 'note' : 'good'}"><dt>Telemetry</dt><dd><span class="spec-dot" aria-hidden="true"></span>${ad ? 'None. Free version shows ads' : 'None'}</dd></div>
                 <div class="spec-cell"><dt>Publisher</dt><dd>Hasnain Studio X</dd></div>
-                <div class="spec-cell"><dt>Developer</dt><dd><a href="../about.html">Hasnain Butt Akhtar</a></dd></div>
+                <div class="spec-cell"><dt>Developer</dt><dd><a href="../about.html">Hasnain Studio X</a></dd></div>
             </dl>
         </section>
 
@@ -877,7 +877,7 @@ ${out && a.platform === 'Windows' ? `            <p class="app-lead">Not ready t
                 ? `${esc(a.name)}&trade; is a trademark of Hasnain Studio X.`
                 : `${esc(a.name)}&trade; and ${esc(markFor(a))}&trade; are trademarks of Hasnain Studio X.`
             }${isCoined(a) ? ` ${esc(markFor(a))}&trade; is a coined term originated by Hasnain Studio X.` : ''}
-            Hasnain Studio X&reg; is a registered trade mark of Hasnain Butt Akhtar.</p>
+            Hasnain Studio X&reg; is a UK registered trade mark, No. UK00004429289.</p>
         </section>
     </main>`;
 
